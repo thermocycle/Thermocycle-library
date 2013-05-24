@@ -6,5 +6,6 @@ package Solkatherm "Package using REFPROP"
     substanceName="SES36",
     ThermoStates=Modelica.Media.Interfaces.PartialMedium.Choices.IndependentVariables.ph);
 
+
   annotation ();
 end Solkatherm;
