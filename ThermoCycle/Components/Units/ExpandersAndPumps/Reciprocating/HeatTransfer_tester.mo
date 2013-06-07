@@ -24,7 +24,7 @@ model HeatTransfer_tester
     use_portsData=false,
     use_angle_in=true,
     redeclare model HeatTransfer =
-        ThermoCycle.Units.Reciprocating.HeatTransfer.Adair1972)
+        ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.Adair1972)
     annotation (Placement(transformation(extent={{-10,40},{10,20}})));
 
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor wall(C=0.5*25, T(start=
@@ -43,8 +43,7 @@ equation
       color={0,0,0},
       smooth=Smooth.None));
   connect(cylinder.flange, recipFlange.flange_a)    annotation (Line(
-      points={{6.10623e-16,20},{-1.04854e-15,20},{-1.04854e-15,
-          -1.11022e-15}},
+      points={{6.10623e-16,20},{-1.04854e-15,20},{-1.04854e-15,-1.11022e-15}},
       color={0,127,0},
       smooth=Smooth.None));
   connect(wall.port, cylinder.heatPort)    annotation (Line(

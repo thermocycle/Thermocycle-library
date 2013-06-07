@@ -21,8 +21,9 @@ model Cylinder_tester
     T_start=system.T_start,
     redeclare package Medium = Modelica.Media.Air.DryAirNasa,
     use_portsData=false,
+    use_HeatTransfer=false,
     redeclare model HeatTransfer =
-        ThermoCycle.Units.Reciprocating.HeatTransfer.IdealHeatTransfer)
+        ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.IdealHeatTransfer)
     annotation (Placement(transformation(extent={{-10,40},{10,20}})));
 
 equation
@@ -35,8 +36,7 @@ equation
       color={0,0,0},
       smooth=Smooth.None));
   connect(cylinder.flange, recipFlange.flange_a)    annotation (Line(
-      points={{6.10623e-16,20},{-1.04854e-15,20},{-1.04854e-15,
-          -1.11022e-15}},
+      points={{6.10623e-16,20},{-1.04854e-15,20},{-1.04854e-15,-1.11022e-15}},
       color={0,127,0},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-80,-80},{80,80}},
