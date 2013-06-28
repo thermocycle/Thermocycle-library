@@ -1,13 +1,13 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model Cylinder
   "SweptVolume from Modelica.Fluid with initialisation algorihtm and default Medium"
-  extends Modelica.Fluid.Machines.SweptVolume(final clearance=0,heatTransfer(crankshaftAngle=angle_in_internal,pistonCrossArea = pistonCrossArea));
+  extends Modelica.Fluid.Machines.SweptVolume(final clearance=0,HeatTransfer(crankshaftAngle=angle_in_internal,pistonCrossArea = pistonCrossArea));
 
   replaceable package Medium = Modelica.Media.Air.DryAirNasa constrainedby
     Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   replaceable model HeatTransfer =
       ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.IdealHeatTransfer
-    constrainedby
+     constrainedby
     ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses.PartialCylinderHeatTransfer
     "Wall heat transfer";
 
