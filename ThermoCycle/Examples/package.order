@@ -1,8 +1,4 @@
 TestFluid
-TestDerivative
 TestComponents
+TestFunctions
 Simulations
-test_derweight
-failure_Cdot
-test_der_regsquare
-transition_tester

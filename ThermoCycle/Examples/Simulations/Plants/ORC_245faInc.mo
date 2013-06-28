@@ -5,8 +5,9 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc evaporator(
     N=10,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     Unom_sf=335,
-    redeclare package Medium2 = ThermoCycle.Media.Therminol66)
-    annotation (Placement(transformation(extent={{-62,46},{-34,70}})));
+    redeclare package Medium2 = ThermoCycle.Media.Therminol66,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff)
+    annotation (Placement(transformation(extent={{-62,44},{-34,68}})));
  ThermoCycle.Components.Units.PdropAndValves.DP dp_hp(
     A=(2*137*77609.9)^(-0.5),
     k=11857.8*137,
@@ -72,19 +73,21 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc  condenser(
     Mdotnom_sf=4,
     steadystate_T_wall=false,
     N=10,
-    max_der_wf=true,
     filter_dMdt_wf=false,
     max_drhodt_wf=50,
     steadystate_h_wf=true,
     Unom_sf=335,
     redeclare package Medium2 =
         Modelica.Media.Water.ConstantPropertyLiquidWater,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff,
+    max_der_wf=true,
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
     Tstart_inlet_sf=293.15,
     Tstart_outlet_sf=296.36)
     annotation (Placement(transformation(extent={{30,-50},{6,-70}})));
+
  ThermoCycle.Components.Units.ExpandersAndPumps.Pump pump(
     PumpType=ThermoCycle.Functions.Enumerations.PumpTypes.ORCNext,
     PumpInput=ThermoCycle.Functions.Enumerations.PumpInputs.freq,
@@ -179,20 +182,20 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.outlet_fl1, evaporator.inlet_fl1) annotation (Line(
-      points={{-18,4.66667},{-18,26},{-84,26},{-84,53.3846},{-58.7692,
-          53.3846}},
+      points={{-18,4.66667},{-18,26},{-84,26},{-84,51.3846},{-58.7692,
+          51.3846}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(evaporator.outlet_fl1, dp_hp.InFlow) annotation (Line(
-      points={{-37.2308,53.3846},{-18.1154,53.3846},{-18.1154,52},{1,52}},
+      points={{-37.2308,51.3846},{-18.1154,51.3846},{-18.1154,52},{1,52}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(evaporator.inlet_fl2, source_htf.flangeB) annotation (Line(
-      points={{-37.4462,63.5385},{-26,63.5385},{-26,76},{-17,76}},
+      points={{-37.4462,61.5385},{-26,61.5385},{-26,76},{-17,76}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(evaporator.outlet_fl2, sink_htf.flangeB) annotation (Line(
-      points={{-58.5538,63.3538},{-74,63.3538},{-74,73.88},{-84.96,
+      points={{-58.5538,61.3538},{-74,61.3538},{-74,73.88},{-84.96,
           73.88}},
       color={0,0,255},
       smooth=Smooth.None));

@@ -21,7 +21,7 @@ model SQThesisModel
     annotation (Placement(transformation(extent={{-66,10},{-86,30}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     annotation (Placement(transformation(extent={{-38,64},{-22,80}})));
- ThermoCycle.Components.Units.HeatExchangers.Hx1DConst Evaporator(
+ ThermoCycle.Components.Units.HeatExchangers.Hx  Evaporator(
     N=20,
     V_sf=0.003324,
     M_wall=13,
@@ -30,13 +30,13 @@ model SQThesisModel
     Unom_tp=3323,
     Unom_v=1359,
     Unom_sf=3855,
-    steadystate_T_sf=true,
-    steadystate_T_wall=true,
     V_wf=0.003324,
-    A_sf=3.078,
-    A_wf=3.078,
+    A=3.078,
     Mdotnom_wf=0.3706,
-    steadystate_h_wf=true,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff,
+    steadystate_T_wall=false,
+    steadystate_T_sf=true,
+    steadystate_h_wf=false,
     Mdotconst_wf=true,
     pstart_wf=1251000,
     Tstart_inlet_wf=299.96,
@@ -44,6 +44,7 @@ model SQThesisModel
     Tstart_inlet_sf=473.15,
     Tstart_outlet_sf=325.41)
     annotation (Placement(transformation(extent={{-42,36},{-22,56}})));
+
 ThermoCycle.Components.Units.ExpandersAndPumps.Generator generator(Np=1)
     annotation (Placement(transformation(extent={{82,4},{104,26}})));
 ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
@@ -60,7 +61,7 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
     p_ex_start=178000,
     T_su_start=382.55)
     annotation (Placement(transformation(extent={{54,2},{78,26}})));
-ThermoCycle.Components.Units.HeatExchangers.Hx1DConst Condenser(
+ThermoCycle.Components.Units.HeatExchangers.Hx  Condenser(
     N=20,
     V_sf=0.009562,
     M_wall=30,
@@ -70,20 +71,21 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst Condenser(
     Unom_v=477.5,
     Unom_sf=5159,
     V_wf=0.009562,
-    A_sf=7.626,
-    A_wf=7.626,
+    A=7.626,
     Mdotnom_wf=0.37,
-    steadystate_T_sf=true,
-    steadystate_h_wf=true,
-    steadystate_T_wall=true,
     Mdotconst_wf=true,
     max_der_wf=false,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff,
+    steadystate_T_wall=false,
+    steadystate_T_sf=false,
+    steadystate_h_wf=true,
     pstart_wf=148400,
     Tstart_inlet_wf=337.91,
     Tstart_outlet_wf=298.25,
     Tstart_inlet_sf=283.15,
     Tstart_outlet_sf=293.25)
     annotation (Placement(transformation(extent={{6,-12},{-14,8}})));
+
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot  Heat_sink(rho=1000, cp=4188)
     annotation (Placement(transformation(extent={{-46,-6},{-26,14}})));
 ThermoCycle.Components.FluidFlow.Sensors.SensP sensP(redeclare package Medium

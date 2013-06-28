@@ -1,131 +1,118 @@
 within ThermoCycle.Components.Units.HeatExchangers;
-model Hx "Simplified heat exchanger model, useful for the ORCNext project"
+model Hx "Simplified heat exchanger model. Not object-oriented"
  extends ThermoCycle.Components.Units.BaseUnits.BaseHxConst;
  replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model";
+
+public
+ record SummaryBase
+   replaceable Arrays T_profile;
+   record Arrays
+    parameter Integer n;
+    Modelica.SIunits.Temperature[n] Tsf;
+    Modelica.SIunits.Temperature[n] Twall;
+    Modelica.SIunits.Temperature[n] Twf;
+   Real PinchPoint;
+   end Arrays;
+   Modelica.SIunits.Pressure p_wf;
+   Modelica.SIunits.Power Q_sf;
+   Modelica.SIunits.Power Q_wf;
+ end SummaryBase;
+ replaceable record SummaryClass = SummaryBase;
+ SummaryClass Summary( T_profile( n=N, Tsf = T_sf, Twall = T_wall, Twf = T,PinchPoint = min(T_sf-T)),p_wf = p,Q_sf = A*sum(qdot_sf),Q_wf = A*sum(qdot_wf));
+
   // Heat exchanger geometric characteristics:
-  parameter Integer N(min=1) = 5 "Number of cells";
-  parameter Modelica.SIunits.Area A=16.18 "Heat exchange area";
-  parameter Modelica.SIunits.Volume V=0.03781
-    "Heat exchanger internal volume, working fluid side";
-  parameter Modelica.SIunits.Volume V_sf=0.03781
-    "Total Internal volume, hot side [m3]";
-  final parameter Modelica.SIunits.Volume Vi=V/N
-    "Internal volume for each cell, cold side [m3]";
-  final parameter Modelica.SIunits.Area Ai=A/N;
-  final parameter Modelica.SIunits.Volume Vi_sf= V_sf/N;
-  /* Select type of heat transfer*/
-  import ThermoCycle.Functions.Enumerations.HTtypes;
-  parameter HTtypes HTtype=HTtypes.LiqVap
-    "Select type of heat transfer coefficient";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l=300
-    "Constant heat transfer coefficient, liquid zone";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_tp=700
-    "Constant heat transfer coefficient, two-phase zone";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v=400
-    "Constant heat transfer coefficient, vapor zone";
+/* GEOMETRIES */
+parameter Integer N=5 "Number of nodes for the heat exchanger";
+parameter Modelica.SIunits.Volume V_sf= 0.03781 "Volume secondary fluid";
+parameter Modelica.SIunits.Volume V_wf= 0.03781 "Volume primary fluid";
+parameter Modelica.SIunits.Area A = 16.18 "Heat transfer area";
+/*HEAT TRANSFER */
+/*Secondary fluid*/
   import ThermoCycle.Functions.Enumerations.HT_sf;
-parameter HT_sf HTtype_sf=HT_sf.Const
-    "Select type of heat transfer coefficient";
- parameter Modelica.SIunits.CoefficientOfHeatTransfer  Unom_sf=369
-    "Nominal heat transfer coefficient,secondary fluid";
-    // Secondary fluid initial values:
-  parameter Modelica.SIunits.MassFlowRate Mdotnom_sf = 3
-    "Norminal secondary fluid flow rate";
-  parameter Modelica.SIunits.Temperature Tstart_sf_left=408.45
-    "Secondary fluid temperature start value - first node"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Temperature Tstart_sf_right=418.15
-    "Secondary fluid temperature start value - last node"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Temperature Tstart_sf[N]=linspace(
-        Tstart_sf_left,
-        Tstart_sf_right,
-        N) "Start value of temperature vector (initialized by default)"
-    annotation (Dialog(tab="Initialization"));
-  // Wall Temperatures initial values:
-  parameter Modelica.SIunits.Mass M_wall=69 "Wall mass";
-  parameter Modelica.SIunits.SpecificHeatCapacity c_wall=500
-    "Specific heat capacity of the metal";
-  parameter Modelica.SIunits.Temperature Tstart_wall_left=( Tstart_wf_left+Tstart_sf_right)/2
-    "Wall temperature start value - first node"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Temperature Tstart_wall_right=( Tstart_wf_right+Tstart_sf_left)/2
-    "Wall temperature start value - last node"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Temperature Tstart_wall[N]=linspace(
-        Tstart_wall_left,
-        Tstart_wall_right,
-        N) "Start value of temperature vector (initialized by default)"
-    annotation (Dialog(tab="Initialization"));
-  // Working fluid initial values:
-  parameter Modelica.SIunits.MassFlowRate Mdotnom=0.2588
-    "Nominal working fluid flow rate";
-  parameter Modelica.SIunits.Pressure pstart=23.57e5
-    "Working fluid pressure start value"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.SpecificEnthalpy hstart_left=283000
-    "Inlet working fluid enthalpy start value"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.SpecificEnthalpy hstart_right=505000
-    "Outlet enthalpy start value" annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Temperature Tstart_wf_left=334.9
-    "Working fluid temperature start value - first node"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Temperature Tstart_wf_right=413.15
-    "Working fluid temperature start value - last node"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Temperature Tstart_wf[N]=linspace(
-        Tstart_wf_left,
-        Tstart_wf_right,
-        N) "Start value of temperature vector (initialized by default)"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.SpecificEnthalpy hstart[N]=linspace(
-        hstart_left,
-        hstart_right,
-        N) "Start value of enthalpy vector (initialized by default)"
-    annotation (Dialog(tab="Initialization"));
-/* Parameters for Numerical Options */
-  parameter Boolean Mdotconst=false
-    "Set to yes to assume constant mass flow rate at each node (easier convergence)"
-    annotation (Dialog(group="Numerical options"));
-  parameter Boolean max_der=false
-    "Set to yes to limit the density derivative during phase transitions"
-    annotation (Dialog(group="Numerical options"));
-  parameter Boolean average_Tcell=true
-    "Set to yes to impose the cell enthalpy as the average of the surrounding nodes enthalpies"
-    annotation (Dialog(group="Numerical options"));
-   parameter Boolean filter_dMdt=false
-    "Set to yes to filter dMdt with a first-order filter"
-     annotation (Dialog(group="Numerical options"));
-//
-   parameter Real max_drhodt=100 "Maximum value for the density derivative"
-     annotation (Dialog(enable=max_der, group="Numerical options"));
-   parameter Modelica.SIunits.Time TT=1
+parameter ThermoCycle.Functions.Enumerations.HT_sf HTtype_sf=HT_sf.Const
+    "Secondary fluid: Choose heat transfer coeff" annotation (Dialog(group="Heat transfer", tab="General"));
+parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_sf = 369
+    "Coefficient of heat transfer, secondary fluid" annotation (Dialog(group="Heat transfer", tab="General"));
+/*Working fluid*/
+  import ThermoCycle.Functions.Enumerations.HTtypes;
+parameter HTtypes HTtype_wf=HTtypes.LiqVap
+    "Working fluid: Choose heat transfer coeff. type. Set LiqVap with Unom_l=Unom_tp=Unom_v to have a Const HT"
+                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"));
+parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l=300
+    "if HTtype = LiqVap: heat transfer coefficient, liquid zone" annotation (Dialog(group="Heat transfer", tab="General"));
+parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_tp=700
+    "if HTtype = LiqVap: heat transfer coefficient, two-phase zone" annotation (Dialog(group="Heat transfer", tab="General"));
+parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v=400
+    "if HTtype = LiqVap: heat transfer coefficient, vapor zone" annotation (Dialog(group="Heat transfer", tab="General"));
+/*METAL WALL*/
+parameter Modelica.SIunits.Mass M_wall= 69
+    "Mass of the metal wall between the two fluids";
+parameter Modelica.SIunits.SpecificHeatCapacity c_wall= 500
+    "Specific heat capacity of metal wall";
+/*MASS FLOW*/
+parameter Modelica.SIunits.MassFlowRate Mdotnom_sf= 3
+    "Nominal flow rate of secondary fluid";
+parameter Modelica.SIunits.MassFlowRate Mdotnom_wf= 0.2588
+    "Nominal flow rate of working fluid";
+/*INITIAL VALUES*/
+  /*pressure*/
+parameter Modelica.SIunits.Pressure pstart_wf= 23.57e5
+    "Nominal inlet pressure of working fluid"  annotation (Dialog(tab="Initialization"));
+/*Temperatures*/
+parameter Modelica.SIunits.Temperature Tstart_inlet_wf = 334.9
+    "Initial value of working fluid temperature at the inlet"  annotation (Dialog(tab="Initialization"));
+parameter Modelica.SIunits.Temperature Tstart_outlet_wf = 413.15
+    "Initial value of working fluid temperature at the outlet"  annotation (Dialog(tab="Initialization"));
+parameter Modelica.SIunits.Temperature Tstart_inlet_sf = 418.15
+    "Initial value of secondary fluid temperature at the inlet"  annotation (Dialog(tab="Initialization"));
+parameter Modelica.SIunits.Temperature Tstart_outlet_sf = 408.45
+    "Initial value of secondary fluid temperature at the outlet"  annotation (Dialog(tab="Initialization"));
+/*steady state */
+ parameter Boolean steadystate_T_sf=false
+    "if true, sets the derivative of T_sf (secondary fluids Temperature in each cell) to zero during Initialization"
+    annotation (Dialog(group="Intialization options", tab="Initialization"));
+parameter Boolean steadystate_h_wf=false
+    "if true, sets the derivative of h of primary fluid (working fluids enthalpy in each cell) to zero during Initialization"
+    annotation (Dialog(group="Intialization options", tab="Initialization"));
+parameter Boolean steadystate_T_wall=false
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+//NUMERICAL OPTIONS //
+  import ThermoCycle.Functions.Enumerations.Discretizations;
+  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
+    "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
+/*Working fluid*/
+  parameter Boolean Mdotconst_wf=false
+    "Set to yes to assume constant mass flow rate of primary fluid at each node (easier convergence)"
+    annotation (Dialog(tab="Numerical options"));
+  parameter Boolean max_der_wf=false
+    "Set to yes to limit the density derivative of primary fluid during phase transitions"
+    annotation (Dialog(tab="Numerical options"));
+  parameter Boolean filter_dMdt_wf=false
+    "Set to yes to filter dMdt of primary fluid with a first-order filter"
+    annotation (Dialog(tab="Numerical options"));
+  parameter Real max_drhodt_wf=100
+    "Maximum value for the density derivative of primary fluid"
+    annotation (Dialog(enable=max_der_wf, tab="Numerical options"));
+  parameter Modelica.SIunits.Time TT_wf=1
     "Integration time of the first-order filter"
-     annotation (Dialog(enable=filter_dMdt, group="Numerical options"));
-  parameter Boolean steadystate_T_sf=true
-    "if true, sets the derivative of T_sf to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
-  parameter Boolean steadystate_h=true
-    "if true, sets the derivative of h (working fluid enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
-  parameter Boolean steadystate_T_wall=true
-    "if true, sets the derivative of T_wall to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(enable=filter_dMdt_wf, tab="Numerical options"));
+ //Variables
+
   /* VARIABLES */
   /* SECONDARY FLUID */
   Modelica.SIunits.MassFlowRate M_dot_sf;
   Modelica.SIunits.SpecificHeatCapacity cp_sf;
   Modelica.SIunits.Temperature T_sf_su;
   Modelica.SIunits.Density rho_sf_su;
-  Modelica.SIunits.Temperature T_sf[N](start=Tstart_sf) "Node temperatures";
+  Modelica.SIunits.Temperature T_sf[N](start=linspace(Tstart_outlet_sf,Tstart_inlet_sf,N))
+    "Node temperatures";
   Modelica.SIunits.HeatFlux qdot_sf[N] "Average heat flux";
   Modelica.SIunits.Temperature Tnode_sf[N + 1];
   /*METAL WALL */
   Modelica.SIunits.Temperature T_wall[N](start=linspace(
-          Tstart_wall_left,
-          Tstart_wall_right,
+          (Tstart_inlet_wf+Tstart_outlet_sf)/2,
+          (Tstart_outlet_wf+Tstart_inlet_sf)/2,
           N)) "Cell temperatures";
     /* WORKING FLUID */
   Modelica.SIunits.MassFlowRate M_dot_su;
@@ -133,11 +120,11 @@ parameter HT_sf HTtype_sf=HT_sf.Const
   Medium.ThermodynamicState fluidState[N];
   Medium.SaturationProperties sat;
   Medium.SpecificEnthalpy h[N](start=linspace(
-          hstart_left,
-          hstart_right,
-          N)) "Fluid specific enthalpy at the nodes";
-  Modelica.SIunits.Pressure p(start=pstart);
-  Medium.Temperature T[N](start=Tstart_wf) "Fluid temperature";
+        Medium.specificEnthalpy_pT(pstart_wf,Tstart_inlet_wf),Medium.specificEnthalpy_pT(pstart_wf,Tstart_outlet_wf),
+        N)) "Fluid specific enthalpy at the nodes";
+  Modelica.SIunits.Pressure p(start=pstart_wf);
+  Medium.Temperature T[N](start=linspace(Tstart_inlet_wf,Tstart_outlet_wf,N))
+    "Fluid temperature";
   Medium.Density rho[N] "Fluid cell density";
   Modelica.SIunits.DerDensityByEnthalpy drdh[N]
     "Derivative of density by enthalpy";
@@ -146,7 +133,7 @@ parameter HT_sf HTtype_sf=HT_sf.Const
   Modelica.SIunits.SpecificEnthalpy hnode[N + 1] "Enthalpy state variables";
   Real dMdt[N] "Time derivative of mass in each cell between two nodes";
   Modelica.SIunits.HeatFlux qdot_wf[N] "Average heat flux";
-  Modelica.SIunits.MassFlowRate Mdot[N + 1](each start=Mdotnom, each min=0);
+  Modelica.SIunits.MassFlowRate Mdot[N + 1](each start=Mdotnom_wf, each min=0);
   //HEAT TRANSFER
   // Heat transfer variables:
   Modelica.SIunits.CoefficientOfHeatTransfer U_wf[N]
@@ -157,6 +144,11 @@ parameter HT_sf HTtype_sf=HT_sf.Const
   Real x[N] "Vapor quality";
   Modelica.SIunits.SpecificEnthalpy h_l;
   Modelica.SIunits.SpecificEnthalpy h_v;
+
+  Modelica.SIunits.Volume Vi_wf=V_wf/N;
+  Modelica.SIunits.Area Ai=A/N;
+  Modelica.SIunits.Volume Vi_sf= V_sf/N;
+
 equation
   Tnode_sf[N + 1] = T_sf_su;
   //Cold fluid properties
@@ -169,31 +161,29 @@ equation
     fluidState[j] = Medium.setState_ph(p,h[j]);
     T[j] = Medium.temperature(fluidState[j]);
     rho[j] = Medium.density(fluidState[j]);
-    if max_der then
-    //  drdp[j] = min(max_drhodt/10^5, refrigerant[j].drhodp);  // This correlation do not allow to simulate the ORCNextCycle
-    //   drdh[j] = max(max_drhodt/(-4000), refrigerant[j].drhodh);
-      drdp[j] = min(0.01,  Medium.density_derp_h(fluidState[j]));
-      drdh[j] = max(-0.01, Medium.density_derh_p(fluidState[j]));
+    if max_der_wf then
+      drdp[j] = min(max_drhodt_wf/10^5,  Medium.density_derp_h(fluidState[j]));
+      drdh[j] = max(max_drhodt_wf/(-4000), Medium.density_derh_p(fluidState[j]));
     else
       drdp[j] = Medium.density_derp_h(fluidState[j]);
       drdh[j] = Medium.density_derh_p(fluidState[j]);
     end if;
-    Vi*rho[j]*der(h[j]) + Mdot[j + 1]*(hnode[j + 1] - h[j]) - Mdot[j]*(hnode[
-      j] - h[j]) - Vi*der(p) = Ai*qdot_wf[j] "Energy balance";
+    Vi_wf*rho[j]*der(h[j]) + Mdot[j + 1]*(hnode[j + 1] - h[j]) - Mdot[j]*(hnode[
+      j] - h[j]) - Vi_wf*der(p) = Ai*qdot_wf[j] "Energy balance";
     // Equation 4.8, richter's thesis
-    if filter_dMdt then
-      der(dMdt[j]) = (Vi*(drdh[j]*der(h[j]) + drdp[j]*der(p)) - dMdt[j])/TT
+    if filter_dMdt_wf then
+      der(dMdt[j]) = (Vi_wf*(drdh[j]*der(h[j]) + drdp[j]*der(p)) - dMdt[j])/TT_wf
         "Mass derivative for each volume";
     else
-      dMdt[j] = Vi*(drdh[j]*der(h[j]) + drdp[j]*der(p));
+      dMdt[j] = Vi_wf*(drdh[j]*der(h[j]) + drdp[j]*der(p));
     end if;
     // node quantities
-    if Mdotconst then
+    if Mdotconst_wf then
       Mdot[j + 1] = Mdot[j];
     else
       dMdt[j] = -Mdot[j + 1] + Mdot[j];
     end if;
-    if average_Tcell then
+    if (Discretization == Discretizations.centr_diff) then
       h[j] = (hnode[j] + hnode[j + 1])/2;
       T_sf[j] = (Tnode_sf[j] + Tnode_sf[j + 1])/2;
     else
@@ -234,7 +224,7 @@ equation
   outletSf.Mdot = M_dot_sf;
   M_dot_su = inletWf.m_flow;
   Mdot[1] = M_dot_su;
-  if Mdotconst then
+  if Mdotconst_wf then
     outletWf.m_flow = -M_dot_su + sum(dMdt);
   else
     outletWf.m_flow = -Mdot[N + 1];
@@ -255,13 +245,13 @@ initial equation
   if steadystate_T_sf then
     der(T_sf) = zeros(N);
   end if;
-  if steadystate_h then
+  if steadystate_h_wf then
     der(h) = zeros(N);
   end if;
   if steadystate_T_wall then
     der(T_wall) = zeros(N);
   end if;
-   if filter_dMdt then
+   if filter_dMdt_wf then
      der(dMdt) = zeros(N);
    end if;
   annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},

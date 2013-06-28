@@ -50,7 +50,7 @@ parameter Modelica.SIunits.Temperature T_nom=423.15 "Nominal temperature"
     "if constinit is true, time during which the pressure drop is set to the constant value DELTAp_start"
     annotation (Dialog(tab="Initialization", enable=constinit));
 
- ThermoCycle.Components.FluidFlow.Pipes.AirFlowL[nCells] simpleAirCell(
+ ThermoCycle.Components.FluidFlow.Pipes.AirCell[ nCells] simpleAirCell(
     each Mdotnom=Mdotnom/nCells,
     each Unom=Unom,
     each Vi=V_f/nCells,

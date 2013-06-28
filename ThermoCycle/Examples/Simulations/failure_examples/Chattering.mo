@@ -12,8 +12,8 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst evaporator(
     steadystate_T_wall=false,
     Unom_sf=335,
     max_drhodt_wf=40,
-    max_der_wf=false,
-    filter_dMdt_wf=false)
+    filter_dMdt_wf=false,
+    max_der_wf=true)
     annotation (Placement(transformation(extent={{-62,46},{-34,70}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
     cp=1978,
@@ -58,8 +58,6 @@ ThermoCycle.Components.Units.HeatExchangers.HxRec1D recuperator(
     N=10,
     steadystate_h_cold=true,
     steadystate_h_hot=true,
-    Mdotconst_cold=true,
-    Mdotconst_hot=true,
     steadystate_T_wall=true,
     pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
@@ -122,7 +120,7 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Pump   pump(
    annotation (Placement(transformation(extent={{-42,-78},{-24,-60}})));
 
 equation
-m_wf = condenser.WorkingFluid.M_tot +  evaporator.WorkingFluid.M_tot + recuperator.Hotside.M_tot + recuperator.Coldside.M_tot + tank.Vtot*tank.rho;
+m_wf = 0;
 
   connect(source_Cdot.flange, evaporator.inletSf)
                                                annotation (Line(

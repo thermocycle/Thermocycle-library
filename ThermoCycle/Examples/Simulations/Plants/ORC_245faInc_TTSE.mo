@@ -46,8 +46,6 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander  expander(
     N=10,
     steadystate_h_cold=true,
     steadystate_h_hot=true,
-    Mdotconst_cold=true,
-    Mdotconst_hot=true,
     steadystate_T_wall=true,
     redeclare package Medium1 = OrganicMedium,
     redeclare package Medium2 = OrganicMedium,

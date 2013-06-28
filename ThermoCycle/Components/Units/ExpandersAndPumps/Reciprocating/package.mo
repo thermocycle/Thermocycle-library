@@ -3,6 +3,18 @@ package Reciprocating "A reciprocating machine with different connectors"
   extends Modelica.Icons.Package;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
   annotation (Documentation(info="<html>
 <p><h4><font color=\"#008000\">Reciprocating Machines</font></h4></p>
 <p>A package that provides some basic models for dynamic modelling of reciprocating machines. A base class (BaseClasses.PartialRecipMachine) takes care of the internal slider-crank-mechanism and also provides an animation thanks to the Modelica.Mechanics.Multibody package. Interaction with other parts of your model us possible via rotational flange connectors (Modelica.Mechanics.Rotational.Interfaces.Flange_xxx) that convey torque and can be connected to other components. Please have a look at the examples to see how to use the connectors.</p>

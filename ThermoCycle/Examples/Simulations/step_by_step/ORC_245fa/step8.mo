@@ -52,8 +52,6 @@ ThermoCycle.Components.Units.HeatExchangers.HxRec1D recuperator(
     N=10,
     steadystate_h_cold=true,
     steadystate_h_hot=true,
-    Mdotconst_cold=true,
-    Mdotconst_hot=true,
     steadystate_T_wall=true,
     pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},

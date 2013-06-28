@@ -155,8 +155,6 @@ parameter Boolean steadystate_T_wall=false
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
 //Variables
 protected
-Modelica.SIunits.Pressure p_hot_;
-Modelica.SIunits.Pressure p_cold_;
 Modelica.SIunits.Power Q_hot_;
 Modelica.SIunits.Power Q_cold_;
 Real PinchPoint_;
@@ -176,15 +174,12 @@ record SummaryBase
   Modelica.SIunits.Power Q_cold;
 end SummaryBase;
 replaceable record SummaryClass = SummaryBase;
-SummaryClass Summary( T_profile( n=N, Thot = Hotside.T[end:-1:1],  Twall = metalWall.T_wall,  Tcold = Coldside.T,PinchPoint = PinchPoint_), p_hot = p_hot_, p_cold = p_cold_,Q_hot = Q_hot_,Q_cold = Q_cold_);
+SummaryClass Summary( T_profile( n=N, Thot = Hotside.Cells[end:-1:1].T,  Twall = metalWall.T_wall,  Tcold = Coldside.Cells.T,PinchPoint = PinchPoint_), p_hot = Coldside.Summary.p, p_cold = Hotside.Summary.p,Q_hot = Q_hot_,Q_cold = Q_cold_);
 equation
-PinchPoint_ = min(Hotside.T[N] -Coldside.T[1],Hotside.T[1] - Coldside.T[N]);
-/*Pressure*/
-p_hot_ = Hotside.p;
-p_cold_ = Coldside.p;
+PinchPoint_ = min(Hotside.Cells[N].T -Coldside.Cells[1].T,Hotside.Cells[1].T - Coldside.Cells[N].T);
 /*Heat flow */
-Q_hot_ = -Hotside.Q_tot;
-Q_cold_ = Coldside.Q_tot;
+Q_hot_ = -Hotside.A * sum(Hotside.Cells.qdot);
+Q_cold_ = -Coldside.A * sum(Coldside.Cells.qdot);
   connect(metalWall.Wall_ext, Coldside.Wall_int) annotation (Line(
       points={{0.26,-50.4},{0.26,-41.2},{0,-41.2},{0,-92.5}},
       color={255,0,0},

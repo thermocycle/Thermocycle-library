@@ -3,6 +3,18 @@ package Functions
   extends Modelica.Icons.Package;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
   annotation (Icon(graphics={
         Text(
           extent={{-116,86},{84,-114}},

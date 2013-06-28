@@ -1,5 +1,5 @@
 within ThermoCycle.Media;
-package Therminol66 "Therminol 66: incompressible fluid model for the thermal oil"
+package Therminol66 "incompressible fluid model for the thermal oil therminol 66"
   extends CoolProp2Modelica.Media.Incompressible.TableBased(
   mediumName="Therminol66",
   T_min = Modelica.SIunits.Conversions.from_degC(0),

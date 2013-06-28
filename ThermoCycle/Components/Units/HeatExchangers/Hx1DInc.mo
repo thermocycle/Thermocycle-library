@@ -124,19 +124,8 @@ parameter Boolean steadystate_T_wall=false
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
 //Variables
 protected
-Modelica.SIunits.Temperature T_sf_su_tp
-    "Secondary fluid temperature relative to the inlet of the two-phase region";
-Modelica.SIunits.Temperature T_sf_ex_tp
-    "Secondary fluid temperature relative to the inlet of the two-phase region";
-Modelica.SIunits.Pressure p_sf_;
-Modelica.SIunits.Pressure p_wf_;
 Modelica.SIunits.Power Q_sf_;
 Modelica.SIunits.Power Q_wf_;
-Modelica.SIunits.Power Q_wf_v "thermal energy exchanged in the vapor region";
-Modelica.SIunits.Power Q_wf_tp
-    "Thermal energy exchanged in the two-phase region";
-Real cp_sf_av "Averaged specific heat capacity [J/k/s]";
-Real PinchPoint_;
 public
 record SummaryBase
   replaceable Arrays T_profile;
@@ -153,21 +142,11 @@ record SummaryBase
   Modelica.SIunits.Power Q_wf;
 end SummaryBase;
 replaceable record SummaryClass = SummaryBase;
-SummaryClass Summary( T_profile( n=N, Tsf = SecondaryFluid.T[end:-1:1],  Twall = metalWall.T_wall, Twf = WorkingFluid.T,PinchPoint = PinchPoint_), p_sf = p_sf_, p_wf = p_wf_,Q_sf = Q_sf_,Q_wf = Q_wf_);
+SummaryClass Summary( T_profile( n=N, Tsf = SecondaryFluid.T[end:-1:1],  Twall = metalWall.T_wall, Twf = WorkingFluid.Cells.T,PinchPoint = min(SecondaryFluid.T[end:-1:1]-WorkingFluid.Cells.T)), p_sf = SecondaryFluid.pstart, p_wf = WorkingFluid.Summary.p,Q_sf = Q_sf_,Q_wf = Q_wf_);
 equation
-//Pinch Point calculation
-Q_wf_v = WorkingFluid.Mdot[N]*(WorkingFluid.h[N] - WorkingFluid.h_v);
-Q_wf_tp = WorkingFluid.Mdot[N]*(WorkingFluid.h_v - WorkingFluid.h_l);
-cp_sf_av = (SecondaryFluid.Mdot*SecondaryFluid.cp[1]+ SecondaryFluid.Mdot*SecondaryFluid.cp[N])/2;
-T_sf_su_tp = SecondaryFluid.T[1] - Q_wf_v/cp_sf_av;
-T_sf_ex_tp = T_sf_su_tp - Q_wf_tp/cp_sf_av;
-PinchPoint_ = min(SecondaryFluid.T[1] -WorkingFluid.T[N], min(SecondaryFluid.T[N] -WorkingFluid.T[1],min( T_sf_su_tp - WorkingFluid.sat.Tsat,T_sf_ex_tp - WorkingFluid.sat.Tsat)));
-/*Pressure*/
-p_sf_ = SecondaryFluid.pstart;
-p_wf_ = WorkingFluid.p;
 /*Heat flow */
 Q_sf_ = -SecondaryFluid.Q_tot;
-Q_wf_ = WorkingFluid.Q_tot;
+Q_wf_ = WorkingFluid.A * sum(WorkingFluid.Cells.qdot);
   connect(countCurr.side1, metalWall.Wall_int) annotation (Line(
       points={{-4,20.75},{-4,-2.4}},
       color={255,0,0},

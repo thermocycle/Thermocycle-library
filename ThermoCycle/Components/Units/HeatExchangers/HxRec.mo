@@ -4,8 +4,6 @@ replaceable package MediumHot = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model";
 replaceable package MediumCold = ThermoCycle.Media.R245faCool
     constrainedby Modelica.Media.Interfaces.PartialMedium "Medium model";
- /*Ports*/
- extends ThermoCycle.Components.Units.BaseUnits.BaseHx;
   // Heat exchanger characteristics:
   parameter Integer N(min=1)=5 "Number of cells";
   parameter Modelica.SIunits.Area A=16.18 "Lenght of the tube";
@@ -140,6 +138,18 @@ replaceable package MediumCold = ThermoCycle.Media.R245faCool
   Real dMdt_c[N] "Time derivative of mass in each cell between two nodes";
   Modelica.SIunits.HeatFlux qdot_wf_c[N] "Average heat flux";
   Modelica.SIunits.MassFlowRate Mdot_c[N + 1](each start=Mdotnom, each min=0);
+  Interfaces.Fluid.FlangeA inletHot(redeclare package Medium = MediumHot)
+    annotation (Placement(transformation(extent={{-100,-58},{-80,-38}}),
+        iconTransformation(extent={{-110,-44},{-90,-24}})));
+  Interfaces.Fluid.FlangeB outletHot(redeclare package Medium = MediumHot)
+    annotation (Placement(transformation(extent={{86,-58},{106,-38}}),
+        iconTransformation(extent={{90,-44},{110,-24}})));
+  Interfaces.Fluid.FlangeA inletCold( redeclare package Medium = MediumCold)
+    annotation (Placement(transformation(extent={{90,48},{110,68}}),
+        iconTransformation(extent={{90,48},{110,68}})));
+  Interfaces.Fluid.FlangeB outletCold( redeclare package Medium = MediumCold)
+    annotation (Placement(transformation(extent={{-110,48},{-90,68}}),
+        iconTransformation(extent={{-110,48},{-90,68}})));
 equation
   Mdot_h[1] = M_dot_su_h;
   Mdot_c[N + 1] = M_dot_su_c;
@@ -243,9 +253,8 @@ initial equation
     der(dMdt_h) = zeros(N);
     der(dMdt_c) = zeros(N);
   end if;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
-            -100},{100,100}}),
-                         graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},
+            {100,100}}), graphics={
         Rectangle(
           extent={{-100,100},{100,-100}},
           lineColor={0,0,0},
@@ -267,6 +276,6 @@ initial equation
           thickness=0.5),
         Rectangle(extent={{-100,48},{100,68}}, lineColor={0,0,255}),
         Rectangle(extent={{-100,-44},{100,-24}}, lineColor={255,0,0})}),
-                            Diagram(coordinateSystem(preserveAspectRatio=true,
+                            Diagram(coordinateSystem(preserveAspectRatio=false,
           extent={{-100,-100},{100,100}}), graphics));
 end HxRec;

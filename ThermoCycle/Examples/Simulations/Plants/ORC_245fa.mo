@@ -52,10 +52,9 @@ ThermoCycle.Components.Units.HeatExchangers.HxRec1D recuperator(
     N=10,
     steadystate_h_cold=true,
     steadystate_h_hot=true,
-    Mdotconst_cold=true,
-    Mdotconst_hot=true,
     steadystate_T_wall=true,
-    pstart_hot=177800)
+    pstart_hot=177800,
+    Mdotconst_cold=false)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
         origin={-13,-6})));
@@ -77,7 +76,6 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
     Mdotnom_sf=4,
     steadystate_T_wall=false,
     N=10,
-    max_der_wf=true,
     filter_dMdt_wf=false,
     max_drhodt_wf=50,
     steadystate_T_sf=false,
@@ -87,7 +85,8 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
     Tstart_inlet_sf=293.15,
-    Tstart_outlet_sf=296.36)
+    Tstart_outlet_sf=296.36,
+    max_der_wf=true)
     annotation (Placement(transformation(extent={{30,-50},{6,-70}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 heat_sink(
     cp=4187,

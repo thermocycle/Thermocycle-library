@@ -160,7 +160,7 @@ ThermoCycle.Components.HeatFlow.Walls.MetalWallL metalWallCell[nCells](
     each Aext=A_sf/nCells,
     each Aint=A_wf/nCells)
     annotation (Placement(transformation(extent={{-34,-18},{34,30}})));
- ThermoCycle.Components.FluidFlow.Pipes.Flow1DimL flow1DimCell[nCells](
+    ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim        flow1DimCell[nCells](
     redeclare package Medium = Medium1,
     each Vi=V_wf/nCells,
     each Ai=A_wf/nCells,
@@ -169,7 +169,6 @@ ThermoCycle.Components.HeatFlow.Walls.MetalWallL metalWallCell[nCells](
     each Unom_tp=Unom_tp,
     each Unom_v=Unom_v,
     each pstart=pstart_wf,
-    each Tstart=Tstart_wf_in,
     each Discretization=Discretization_wf,
     each Mdotconst=Mdotconst_wf,
     each max_der=max_der_wf,

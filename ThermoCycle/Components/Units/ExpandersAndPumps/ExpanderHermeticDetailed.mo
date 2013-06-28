@@ -471,11 +471,6 @@ initial equation
     //   M_dot=M_dot_start;
   end if;
 
-equation
-  connect(flangeB, flangeB) annotation (Line(
-      points={{80,-70},{77,-70},{77,-70},{80,-70}},
-      color={0,0,255},
-      smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
             {100,100}}),       graphics), Icon(coordinateSystem(
           preserveAspectRatio=false,extent={{-100,-100},{100,100}}), graphics={

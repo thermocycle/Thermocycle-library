@@ -1,7 +1,7 @@
 within ThermoCycle.Components.HeatFlow.Sources;
 model Source_T_cell
 
-  Interfaces.HeatTransfer.ThermalPortCell ThermalPortCell
+  Interfaces.HeatTransfer.ThermalPortL ThermalPortCell
     annotation (Placement(transformation(extent={{-10,-52},{10,-32}}),
         iconTransformation(extent={{-32,-42},{50,-20}})));
   Modelica.Blocks.Interfaces.RealInput Temperature annotation (Placement(transformation(
