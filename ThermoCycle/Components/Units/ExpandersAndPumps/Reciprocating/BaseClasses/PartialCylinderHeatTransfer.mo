@@ -1,8 +1,7 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses;
-model PartialCylinderHeatTransfer
+partial model PartialCylinderHeatTransfer
   extends
     Modelica.Fluid.Vessels.BaseClasses.HeatTransfer.PartialVesselHeatTransfer;
-
     input Modelica.SIunits.Angle crankshaftAngle;
     input Modelica.SIunits.Area pistonCrossArea;
   annotation (Documentation(info="<html>
