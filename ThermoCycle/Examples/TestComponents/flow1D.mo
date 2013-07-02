@@ -12,7 +12,7 @@ model flow1D
     pstart=500000,
     Tstart_inlet=323.15,
     Tstart_outlet=373.15,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff_robust)
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-22,16},{-2,36}})));
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
@@ -55,8 +55,8 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}}), graphics),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+            100}}),     graphics),
     experiment(StopTime=50, __Dymola_Algorithm="Dassl"),
     __Dymola_experimentSetupOutput);
 end flow1D;

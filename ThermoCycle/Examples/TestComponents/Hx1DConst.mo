@@ -14,7 +14,9 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     steadystate_T_sf=true,
     steadystate_h_wf=true,
     steadystate_T_wall=true,
-    N=10)
+    N=10,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind,
+    SecondaryFluid(Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff))
     annotation (Placement(transformation(extent={{-30,-2},{2,36}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot3 source_Cdot(
     cp=1978,

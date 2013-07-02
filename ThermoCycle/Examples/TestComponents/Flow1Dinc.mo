@@ -2,7 +2,7 @@ within ThermoCycle.Examples.TestComponents;
 model Flow1Dinc
 
 parameter Integer N = 10;
-  Components.FluidFlow.Pipes.Flow1DimInc HotFluid(
+  Obsolete.Flow1DimInc_130702            HotFluid(
     redeclare package Medium = Media.Therminol66,
     A=16.18,
     V=0.03781,

@@ -1,5 +1,5 @@
-within ThermoCycle.Components.Units.HeatExchangers;
-model Hx1DInc
+within ThermoCycle.Obsolete;
+model Hx1DInc_130701
 extends Components.Units.BaseUnits.BaseHx;
   Components.FluidFlow.Pipes.Flow1Dim WorkingFluid(redeclare package Medium = Medium1,
     N=N,
@@ -31,7 +31,7 @@ extends Components.Units.BaseUnits.BaseHx;
     annotation (Placement(transformation(extent={{-47,-44},{39,20}})));
   Components.HeatFlow.Walls.CountCurr countCurr(N=N)
   annotation (Placement(transformation(extent={{-45,50},{37,5}})));
- Components.FluidFlow.Pipes.Flow1DimInc            SecondaryFluid(
+ Obsolete.Flow1DimInc_130702            SecondaryFluid(
     redeclare package Medium = Medium2,
     N=N,
     A=A_sf,
@@ -142,7 +142,7 @@ record SummaryBase
   Modelica.SIunits.Power Q_wf;
 end SummaryBase;
 replaceable record SummaryClass = SummaryBase;
-SummaryClass Summary( T_profile( n=N, Tsf = SecondaryFluid.Summary.T[end:-1:1],  Twall = metalWall.T_wall, Twf = WorkingFluid.Cells.T,PinchPoint = min(SecondaryFluid.Summary.T[end:-1:1]-WorkingFluid.Cells.T)), p_sf = SecondaryFluid.pstart, p_wf = WorkingFluid.Summary.p,Q_sf = Q_sf_,Q_wf = Q_wf_);
+SummaryClass Summary( T_profile( n=N, Tsf = SecondaryFluid.T[end:-1:1],  Twall = metalWall.T_wall, Twf = WorkingFluid.Cells.T,PinchPoint = min(SecondaryFluid.T[end:-1:1]-WorkingFluid.Cells.T)), p_sf = SecondaryFluid.pstart, p_wf = WorkingFluid.Summary.p,Q_sf = Q_sf_,Q_wf = Q_wf_);
 equation
 /*Heat flow */
 Q_sf_ = -SecondaryFluid.Q_tot;
@@ -156,15 +156,15 @@ Q_wf_ = WorkingFluid.A * sum(WorkingFluid.Cells.qdot);
       color={255,0,0},
       smooth=Smooth.None));
   connect(SecondaryFluid.Wall_int, countCurr.side2) annotation (Line(
-      points={{2,65.25},{2,47.75},{-4,47.75},{-4,34.25}},
+      points={{2,61.5},{2,47.75},{-4,47.75},{-4,34.25}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(outlet_fl2, SecondaryFluid.OutFlow) annotation (Line(
-      points={{-98,58},{-72,58},{-72,83.625},{-34.6667,83.625}},
+      points={{-98,58},{-72,58},{-72,83.55},{-42,83.55}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(SecondaryFluid.InFlow, inlet_fl2) annotation (Line(
-      points={{38.6667,84},{54,84},{54,82},{60,82},{60,60},{98,60}},
+      points={{46,84},{54,84},{54,82},{60,82},{60,60},{98,60}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(inlet_fl1, WorkingFluid.InFlow) annotation (Line(
@@ -198,4 +198,4 @@ Q_wf_ = WorkingFluid.A * sum(WorkingFluid.Cells.qdot);
           color={0,0,255},
           smooth=Smooth.None,
           thickness=0.5)}));
-end Hx1DInc;
+end Hx1DInc_130701;

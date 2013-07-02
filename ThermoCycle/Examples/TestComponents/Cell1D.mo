@@ -7,12 +7,13 @@ model Cell1D
     Unom_l=400,
     Unom_tp=1000,
     Unom_v=400,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff,
     Mdotnom=0.3,
     max_drhodt=50,
     Vi=0.005,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_smooth,
     pstart=500000)
     annotation (Placement(transformation(extent={{-22,16},{-2,36}})));
+
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot  sourceMdot(
     Mdot_0=0.3,
     UseT=false,
@@ -29,8 +30,9 @@ model Cell1D
   Modelica.Blocks.Sources.Ramp ramp(
     offset=5E5,
     startTime=5,
-    height=+4E5,
-    duration=2) annotation (Placement(transformation(extent={{14,56},{34,76}})));
+    duration=3,
+    height=+3E5)
+                annotation (Placement(transformation(extent={{14,56},{34,76}})));
 equation
   connect(sourceMdot.flangeB, flow1Dim.InFlow) annotation (Line(
       points={{-61,26},{-22,26}},

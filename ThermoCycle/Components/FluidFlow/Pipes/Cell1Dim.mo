@@ -62,8 +62,8 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   Medium.SaturationProperties sat;
   //Medium.Temperature T_sat "Saturation temperature";
   Medium.AbsolutePressure p(start=pstart);
-  Modelica.SIunits.MassFlowRate M_dot_su(start=Mdotnom, min=0);
-  Modelica.SIunits.MassFlowRate M_dot_ex(start=Mdotnom, min=0);
+  Modelica.SIunits.MassFlowRate M_dot_su(start=Mdotnom);
+  Modelica.SIunits.MassFlowRate M_dot_ex(start=Mdotnom);
   Medium.SpecificEnthalpy h(start=hstart)
     "Fluid specific enthalpy at the cells";
   Medium.Temperature T "Fluid temperature";
@@ -162,8 +162,8 @@ end if;
     hnode_ex = h;
 
   else                                           // Upwind scheme with smoothing
-    hnode_ex = if M_dot_ex >= 0 then h else inStream(OutFlow.h_outflow);
-    hnode_su = if M_dot_su <= 0 then h else inStream(InFlow.h_outflow);
+    hnode_ex = homotopy(inStream(OutFlow.h_outflow) + ThermoCycle.Functions.transition_factor(-Mdotnom/10,0,M_dot_ex,1) * (h - inStream(OutFlow.h_outflow)),h);
+    hnode_su = homotopy(h + ThermoCycle.Functions.transition_factor(-Mdotnom/10,Mdotnom/10,M_dot_su,1) * (inStream(InFlow.h_outflow) - h), inStream(InFlow.h_outflow));
   end if;
 
 Q_tot = Ai*qdot "Total heat flow through the thermal port";

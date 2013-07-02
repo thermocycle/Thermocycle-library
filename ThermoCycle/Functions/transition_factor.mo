@@ -1,5 +1,6 @@
 within ThermoCycle.Functions;
-function transition_factor "Get weighting factor for smooth transition"
+function transition_factor
+  "Get weighting factor for smooth transition (from 0 to 1)"
   extends Modelica.Icons.Function;
   import Modelica.Constants.pi;
   import Modelica.Constants.e;
@@ -54,7 +55,7 @@ algorithm
   factor := (END-START) / (stop-start);
   X := START + (position - start) * factor;
 
-  tFactor := smooth(5,noEvent(
+  tFactor := 1-smooth(5,noEvent(
   if position < start then
     1
   elseif position > stop then

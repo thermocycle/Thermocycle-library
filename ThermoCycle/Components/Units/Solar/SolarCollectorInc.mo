@@ -113,7 +113,7 @@ parameter Modelica.SIunits.Pressure pstart
     Dext_t=Dext_t,
     th_t=th_t)
     annotation (Placement(transformation(extent={{-30,-10},{14,36}})));
-  Components.FluidFlow.Pipes.Flow1DimInc SolarTube(redeclare package Medium = Medium1,
+  Obsolete.Flow1DimInc_130702            SolarTube(redeclare package Medium = Medium1,
     N=N,
     A=A_lateral,
     V=V_tube_int,

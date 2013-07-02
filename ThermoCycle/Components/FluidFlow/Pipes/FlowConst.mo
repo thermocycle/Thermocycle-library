@@ -64,26 +64,25 @@ parameter Boolean steadystate_T=true
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass";
 equation
-   Tnode[1] = T_su;
+  Tnode[1] = T_su;
   for j in 1:N loop
- qdot[j] = U*(T_wall[j] -T[j]);
- //Energy balance- There is no mass balance.
-    Vi*cp*rho_su*der(T[j]) + Mdot*cp*(Tnode[j + 1] -
-      Tnode[j]) = Ai*qdot[j];
-if (Discretization==Discretizations.centr_diff) then
+    qdot[j] = U*(T_wall[j] - T[j]);
+     //Energy balance- There is no mass balance.
+    Vi*cp*rho_su*der(T[j]) + Mdot*cp*(Tnode[j + 1] - Tnode[j]) = Ai*qdot[j];
+    if (Discretization == Discretizations.centr_diff or Discretization ==
+        Discretizations.centr_diff_robust or Discretization == Discretizations.centr_diff_AllowFlowReversal) then
       T[j] = (Tnode[j] + Tnode[j + 1])/2;
-    else
-      Tnode[j] = T[j];
+    else         // Upwind schemes
+      Tnode[j + 1] = T[j];
       //!! Needs to be modified in case of flow reversal
     end if;
   end for;
  // Choose heat transfer coefficient
- if (HTtype == HT_sf.Const) then
-      U = Unom;
-      elseif (HTtype == HT_sf.MassFlowDependent) then
-       U = ThermoCycle.Functions.U_sf(
-                          Unom=Unom, Mdot=Mdotnom/Mdotnom);
- end if;
+  if (HTtype == HT_sf.Const) then
+    U = Unom;
+  elseif (HTtype == HT_sf.MassFlowDependent) then
+    U = ThermoCycle.Functions.U_sf(Unom=Unom, Mdot=Mdotnom/Mdotnom);
+  end if;
 Q_tot = Ai*sum(qdot) "Total heat flow through the thermal port";
 M_tot = V * rho_su;
 //* BOUNDARY CONDITIONS *//

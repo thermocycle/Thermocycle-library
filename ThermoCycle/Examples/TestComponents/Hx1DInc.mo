@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.TestComponents;
 model Hx1DInc
+
 ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
       Medium =
         Media.Therminol66,
@@ -12,7 +13,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
     p=2357000,
     T_0=353.15)
     annotation (Placement(transformation(extent={{-74,-18},{-54,2}})));
- ThermoCycle.Components.Units.HeatExchangers.Hx1DInc hx1DInc(
+ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc        hx1DInc(
     redeclare package Medium1 = Media.R245faCool,
     redeclare package Medium2 = Media.Therminol66,
     steadystate_h_sf=true,
@@ -23,7 +24,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF1(
     redeclare package Medium = Media.Therminol66,
     h_0=281455,
     UseT=true,
-    Mdot_0=3,
+    Mdot_0=-3,
     p=100000,
     T_0=418.15)
     annotation (Placement(transformation(extent={{10,72},{30,92}})));
@@ -31,8 +32,8 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF1(
     annotation (Placement(transformation(extent={{40,-8},{60,12}})));
 equation
   connect(hx1DInc.outlet_fl1, sinkPFluid1.flangeB) annotation (Line(
-      points={{0.307692,13.6923},{16,13.6923},{16,12},{28,12},{28,1.8},{
-          41.6,1.8}},
+      points={{0.307692,13.6923},{16,13.6923},{16,12},{28,12},{28,1.8},{41.6,
+          1.8}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(hx1DInc.inlet_fl2, sourceWF1.flangeB) annotation (Line(

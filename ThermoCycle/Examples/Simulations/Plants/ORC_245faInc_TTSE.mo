@@ -2,7 +2,7 @@ within ThermoCycle.Examples.Simulations.Plants;
 model ORC_245faInc_TTSE
 replaceable package OrganicMedium = Media.R245faCool2;
 
-ThermoCycle.Components.Units.HeatExchangers.Hx1DInc  evaporator(
+ThermoCycle.Components.Units.HeatExchangers.Hx1DInc                  evaporator(
     N=10,
     redeclare package Medium1 = OrganicMedium,
     Unom_sf=335,
@@ -65,7 +65,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     DELTAp_lin_nom=3000,
     DELTAp_quad_nom=5150)
     annotation (Placement(transformation(extent={{32,0},{12,20}})));
- ThermoCycle.Components.Units.HeatExchangers.Hx1DInc condenser(
+ThermoCycle.Components.Units.HeatExchangers.Hx1DInc                 condenser(
     Unom_l=500,
     Unom_tp=1500,
     Unom_v=750,
@@ -161,13 +161,12 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.outlet_fl2, condenser.inlet_fl1) annotation (Line(
-      points={{-7.2,-16.4533},{-7.2,-36},{38,-36},{38,-56.1538},{
-          27.2308,-56.1538}},
+      points={{-7.2,-16.4533},{-7.2,-36},{38,-36},{38,-56.1538},{27.2308,
+          -56.1538}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(condenser.outlet_fl1, tank.InFlow) annotation (Line(
-      points={{8.76923,-56.1538},{-14,-56.1538},{-14,-56},{-33,-56},{
-          -33,-61.44}},
+      points={{8.76923,-56.1538},{-14,-56.1538},{-14,-56},{-33,-56},{-33,-61.44}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(source_cf.flangeB, condenser.inlet_fl2) annotation (Line(
@@ -175,13 +174,11 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(condenser.outlet_fl2, sink_htf1.flangeB) annotation (Line(
-      points={{27.0462,-64.4615},{42,-64.4615},{42,-74.12},{50.96,
-          -74.12}},
+      points={{27.0462,-64.4615},{42,-64.4615},{42,-74.12},{50.96,-74.12}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.outlet_fl1, evaporator.inlet_fl1) annotation (Line(
-      points={{-18,4.66667},{-18,26},{-84,26},{-84,53.3846},{-58.7692,
-          53.3846}},
+      points={{-18,4.66667},{-18,26},{-84,26},{-84,53.3846},{-58.7692,53.3846}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(evaporator.outlet_fl1, dp_hp.InFlow) annotation (Line(
@@ -193,8 +190,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(evaporator.outlet_fl2, sink_htf.flangeB) annotation (Line(
-      points={{-58.5538,63.3538},{-74,63.3538},{-74,73.88},{-84.96,
-          73.88}},
+      points={{-58.5538,63.3538},{-74,63.3538},{-74,73.88},{-84.96,73.88}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
