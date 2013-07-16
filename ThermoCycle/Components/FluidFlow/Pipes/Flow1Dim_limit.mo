@@ -1,6 +1,6 @@
 within ThermoCycle.Components.FluidFlow.Pipes;
-model Flow1Dim
-  "1-D fluid flow model (finite volume discretization - real fluid model). Based on the cell component"
+model Flow1Dim_limit
+  "1-D fluid flow model (finite volume discretization - real fluid model). Based on the cell component with limited node enthalpy"
 replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
@@ -32,10 +32,6 @@ public
   ThermoCycle.Interfaces.HeatTransfer.ThermalPort Wall_int(N=N)
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
-
-  // Calculation of the saturation properties here to avoid calculating in every cell:
-  Medium.SaturationProperties  sat;
-
 // Geometric characteristics
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1)=10 "Number of cells";
@@ -86,7 +82,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
      annotation (Dialog(group="Intialization options", tab="Initialization"));
 
- replaceable Cell1Dim
+ replaceable Cell1Dim_limit
         Cells[N](
     redeclare package Medium = Medium,
     each Vi=V/N,
@@ -96,19 +92,14 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     each Unom_tp=Unom_tp,
     each Unom_v=Unom_v,
     each pstart=pstart,
-    each Discretization=Discretization,
     each Mdotconst=Mdotconst,
     each max_der=max_der,
     each filter_dMdt=filter_dMdt,
     each max_drhodt=max_drhodt,
     each TT=TT,
     each steadystate=steadystate,
-    hstart = hstart,
-    each sat_in= {sat.ddldp,sat.ddvdp,sat.dhldp,sat.dhvdp,sat.dTp,sat.hl,sat.hv,sat.sigma,sat.sl,sat.sv,sat.dl,sat.dv,sat.psat,sat.Tsat},
-    each ComputeSat = false)
-            annotation (Placement(transformation(extent={{-26,-62},
-            {28,-18}})));    // Avoids computing the saturation properties in each cell.
-    //each sat_in = sat,
+    hstart = hstart)    annotation (Placement(transformation(extent={{-26,-62},
+            {28,-18}})));
   Interfaces.HeatTransfer.ThermalPortConverter
                        thermalPortConverter(N=N)
     annotation (Placement(transformation(extent={{-10,6},{10,26}})));
@@ -117,27 +108,24 @@ protected
   Modelica.SIunits.SpecificEnthalpy hnode_[N+1];
   Modelica.SIunits.MassFlowRate Mdot_[N+1];
 
+public
+  Interfaces.Fluid.PortConverter_limit portConverter_in(redeclare package
+      Medium = Medium)
+    annotation (Placement(transformation(extent={{-62,-30},{-42,-10}})));
+  Interfaces.Fluid.PortConverter_limit portConverter_out(redeclare package
+      Medium = Medium)
+    annotation (Placement(transformation(extent={{66,-34},{46,-14}})));
 equation
   // Connect wall and refrigerant cells with eachother
   for i in 1:N-1 loop
     connect(Cells[i].OutFlow, Cells[i+1].InFlow);
   end for;
 
-  sat = Medium.setSat_p(Cells[1].p);
-
   hnode_[1:N] = Cells.hnode_su;
   hnode_[N+1] = Cells[N].hnode_ex;
   Mdot_[1:N] = Cells.M_dot_su;
   Mdot_[N+1] = Cells[N].M_dot_ex;
 
-  connect(InFlow, Cells[1].InFlow) annotation (Line(
-      points={{-90,0},{-60,0},{-60,-40},{-26,-40}},
-      color={0,0,255},
-      smooth=Smooth.None));
-  connect(Cells[N].OutFlow, OutFlow) annotation (Line(
-      points={{28,-39.78},{57,-39.78},{57,0},{90,0}},
-      color={0,0,255},
-      smooth=Smooth.None));
   connect(thermalPortConverter.single, Cells.Wall_int) annotation (Line(
       points={{0,11.9},{0,-9.05},{1,-9.05},{1,-29}},
       color={255,0,0},
@@ -146,8 +134,24 @@ equation
       points={{0,19.5},{0,48},{2,50}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,
-            -120},{120,120}}),
+  connect(InFlow, portConverter_in.Classical)    annotation (Line(
+      points={{-90,0},{-74,0},{-74,-20},{-57,-20}},
+      color={0,0,255},
+      smooth=Smooth.None));
+  connect(portConverter_in.Limited, Cells[1].InFlow)    annotation (Line(
+      points={{-47,-20},{-38,-20},{-38,-40},{-26,-40}},
+      color={0,0,255},
+      smooth=Smooth.None));
+  connect(Cells[N].OutFlow, portConverter_out.Limited)    annotation (Line(
+      points={{28,-39.78},{40,-39.78},{40,-24},{51,-24}},
+      color={0,0,255},
+      smooth=Smooth.None));
+  connect(portConverter_out.Classical, OutFlow)    annotation (Line(
+      points={{61,-24},{74,-24},{74,0},{90,0}},
+      color={0,0,255},
+      smooth=Smooth.None));
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,-120},
+            {120,120}}),
                       graphics), Icon(coordinateSystem(preserveAspectRatio=false,
                   extent={{-120,-120},{120,120}}),
                                       graphics={Rectangle(
@@ -157,5 +161,11 @@ equation
           fillPattern=FillPattern.Solid), Text(
           extent={{-92,24},{88,-20}},
           lineColor={0,0,255},
-          textString="%name")}));
-end Flow1Dim;
+          textString="%name")}),
+    Documentation(info="<html>
+<p>Implementation of the Flow 1-D model with the limiter proposed in: </p>
+<p>Schulze et al., A limiter for Preventing Singularity in Simplified Finite Volume Methods</p>
+<p>Based on the Cell1D_limit model.</p>
+<p><br/>S. Quoilin, July 2013</p>
+</html>"));
+end Flow1Dim_limit;

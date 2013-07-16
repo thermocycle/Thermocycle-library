@@ -67,12 +67,12 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst Condenser(
     filter_dMdt_wf=true,
     steadystate_T_sf=true,
     steadystate_T_wall=true,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff,
     pstart_wf=148400,
     Tstart_inlet_wf=337.91,
     Tstart_outlet_wf=298.25,
     Tstart_inlet_sf=283.15,
-    Tstart_outlet_sf=293.25,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff)
+    Tstart_outlet_sf=293.25)
     annotation (Placement(transformation(extent={{6,-12},{-14,8}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_sink(rho=1000, cp=4188)
     annotation (Placement(transformation(extent={{-46,-6},{-26,14}})));

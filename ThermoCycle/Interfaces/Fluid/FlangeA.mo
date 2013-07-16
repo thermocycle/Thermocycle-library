@@ -1,5 +1,5 @@
 within ThermoCycle.Interfaces.Fluid;
-connector FlangeA "A-type flange connector for water/steam flows"
+connector FlangeA "A-type flange connector for real fluid flows"
   extends Fluid.Flange;
   annotation (Icon(graphics={Ellipse(
           extent={{-100,100},{100,-100}},

@@ -1,5 +1,6 @@
 within ThermoCycle.Components.FluidFlow.Pipes;
-model Cell1Dim "1-D fluid flow model (Real fluid model)"
+model Cell1Dim_limit
+  "1-D fluid flow model (Real fluid model) with a limiter on the node enthalpies"
 replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
@@ -8,11 +9,11 @@ annotation (choicesAllMatching = true);
   parameter HTtypes HTtype=HTtypes.LiqVap
     "Select type of heat transfer coefficient";
 /* Thermal and fluid ports */
- ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
+ ThermoCycle.Interfaces.Fluid.FlangeA_limit InFlow(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
- ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium =
+ ThermoCycle.Interfaces.Fluid.FlangeB_limit OutFlow(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{80,-18},{120,20}})));
@@ -40,6 +41,11 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
+  parameter Boolean limit_hnode=true
+    "Limits the node enthalpy to ensure more robustness"                                  annotation(Dialog(tab="Numerical options"));
+  parameter Real yLimit(min=0,max=1)=0.9
+    "Limiting factor. Defines how close to the singular system we can go. Should be set close to 1"
+                                                                                                        annotation(Dialog(tab="Numerical options",enable=limit_hnode));
   parameter Boolean Mdotconst=false
     "Set to yes to assume constant mass flow rate at each node (easier convergence)"
     annotation (Dialog(tab="Numerical options"));
@@ -54,18 +60,13 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   parameter Modelica.SIunits.Time TT=1
     "Integration time of the first-order filter"
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
-  parameter Boolean ComputeSat=false
-    "Can be disabled if the flow is single-phase, or if saturation is passed as a parameter"
-                                                                                             annotation (Dialog(tab="Numerical options"));
-  //Medium.SaturationProperties  sat_in(ddldp=0,ddvdp=0,dhldp=0,dhvdp=0,dTp=0,hl=0,hv=1E5,sigma=0,sl=0,sv=0,dl=0,dv=0,psat=0,Tsat=300);
-  Real[14] sat_in= {0,0,0,0,0,0,1E5,0,0,0,0,0,0,300};
-
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
     annotation (Dialog(group="Intialization options", tab="Initialization"));
 /* FLUID VARIABLES */
   Medium.ThermodynamicState  fluidState;
   Medium.SaturationProperties sat;
+  //Medium.Temperature T_sat "Saturation temperature";
   Medium.AbsolutePressure p(start=pstart);
   Modelica.SIunits.MassFlowRate M_dot_su(start=Mdotnom);
   Modelica.SIunits.MassFlowRate M_dot_ex(start=Mdotnom);
@@ -93,12 +94,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
 equation
   //Saturation
-  if ComputeSat then
-    sat = Medium.setSat_p(p);
-  else
-    //sat = sat_in;
-    sat.ddldp=sat_in[1];sat.ddvdp=sat_in[2];sat.dhldp=sat_in[3];sat.dhvdp=sat_in[4];sat.dTp=sat_in[5];sat.hl=sat_in[6];sat.hv=sat_in[7];sat.sigma=sat_in[8];sat.sl=sat_in[9];sat.sv=sat_in[10];sat.dl=sat_in[11];sat.dv=sat_in[12];sat.psat=sat_in[13];sat.Tsat=sat_in[14];
-  end if;
+  sat = Medium.setSat_p(p);
   h_v = Medium.dewEnthalpy(sat);
   h_l = Medium.bubbleEnthalpy(sat);
   //T_sat = Medium.temperature(sat);
@@ -140,51 +136,25 @@ if Mdotconst then
       dMdt = -M_dot_ex + M_dot_su;
 end if;
 
-  if (Discretization == Discretizations.centr_diff) then
-    hnode_su = inStream(InFlow.h_outflow);
-    hnode_ex = 2*h - hnode_su;
-
-  elseif (Discretization == Discretizations.centr_diff_robust) then
-    hnode_su = if M_dot_su <= 0 then h else inStream(InFlow.h_outflow);
-    hnode_ex = if M_dot_ex >= 0 then 2*h - hnode_su else h;    //h is taken to nullify the convection term when there is a flow reversal on M_dot_ex
-
-  elseif (Discretization == Discretizations.centr_diff_AllowFlowReversal) then
-    if M_dot_su >= 0 and M_dot_ex >= 0 then       // Flow is going the right way
-      hnode_su = inStream(InFlow.h_outflow);
-      hnode_ex = 2*h - hnode_su;
-    elseif M_dot_su <= 0 and M_dot_ex <= 0 then       // Reverse flow
-      hnode_ex = inStream(OutFlow.h_outflow);
-      hnode_su = 2*h - hnode_ex;
-    elseif M_dot_su >= 0 and M_dot_ex <= 0 then        // Both flows entering the cell
-      hnode_ex = inStream(OutFlow.h_outflow);
-      hnode_su = inStream(InFlow.h_outflow);
-    else                                         //  M_dot_su <= 0 and M_dot_ex >= 0 ; Both flows leaving the cell
-      hnode_ex = h;
-      hnode_su = h;
-    end if;
-
-  elseif (Discretization == Discretizations.upwind_AllowFlowReversal) then
-    hnode_ex = if M_dot_ex >= 0 then h else inStream(OutFlow.h_outflow);
-    hnode_su = if M_dot_su <= 0 then h else inStream(InFlow.h_outflow);
-
-  elseif (Discretization == Discretizations.upwind) then
-    hnode_su = inStream(InFlow.h_outflow);
-    hnode_ex = h;
-
-  else                                           // Upwind scheme with smoothing
-    hnode_ex = homotopy(inStream(OutFlow.h_outflow) + ThermoCycle.Functions.transition_factor(-Mdotnom/10,0,M_dot_ex,1) * (h - inStream(OutFlow.h_outflow)),h);
-    hnode_su = homotopy(h + ThermoCycle.Functions.transition_factor(-Mdotnom/10,Mdotnom/10,M_dot_su,1) * (inStream(InFlow.h_outflow) - h), inStream(InFlow.h_outflow));
-  end if;
+//     hnode_ex = if M_dot_ex >= 0 then h else inStream(OutFlow.h_outflow);
+//     hnode_su = if M_dot_su <= 0 then h else inStream(InFlow.h_outflow);
+hnode_ex = actualStream(OutFlow.h_outflow);
+hnode_su = actualStream(InFlow.h_outflow);
+if not limit_hnode then
+    InFlow.h_outflow = h;
+    OutFlow.h_outflow = h;
+    InFlow.h_limit = -1E10;
+    OutFlow.h_limit = -1E10;
+else
+    InFlow.h_outflow = noEvent(max(h,inStream(InFlow.h_limit)));
+    OutFlow.h_outflow = noEvent(max(h,inStream(OutFlow.h_limit)));
+    InFlow.h_limit = h + yLimit*rho/drdh;
+    OutFlow.h_limit = InFlow.h_limit;
+end if;
 
 Q_tot = Ai*qdot "Total heat flow through the thermal port";
 M_tot = Vi*rho;
 
-//* BOUNDARY CONDITIONS *//
- /* Enthalpies */
-  InFlow.h_outflow = hnode_su;
-  OutFlow.h_outflow = hnode_ex;
-//  InFlow.h_outflow = h;
-//  OutFlow.h_outflow = h;
 /* pressures */
  p = OutFlow.p;
  InFlow.p = p;
@@ -216,5 +186,10 @@ initial equation
           extent={{-92,40},{88,-40}},
           lineColor={0,0,255},
           fillColor={0,255,255},
-          fillPattern=FillPattern.Solid)}));
-end Cell1Dim;
+          fillPattern=FillPattern.Solid)}),
+    Documentation(info="<html>
+<p>Implementation of the Cell 1-D model with the limiter proposed in: </p>
+<p>Schulze et al., A limiter for Preventing Singularity in Simplified Finite Volume Methods</p>
+<p><br/>S. Quoilin, July 2013</p>
+</html>"));
+end Cell1Dim_limit;
