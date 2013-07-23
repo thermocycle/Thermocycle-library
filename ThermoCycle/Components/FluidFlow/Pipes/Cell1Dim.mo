@@ -82,6 +82,8 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     "Enthalpy state variable at inlet node";
   Modelica.SIunits.SpecificEnthalpy hnode_ex(start=hstart)
     "Enthalpy state variable at outlet node";
+  Modelica.SIunits.Temperature Tnode_su "Temperature at the inlet node";
+  Modelica.SIunits.Temperature Tnode_ex "Temperature at the outlet node";
   Real dMdt "Time derivative of mass in cell";
   Modelica.SIunits.HeatFlux qdot "heat flux at each cell";
   Modelica.SIunits.CoefficientOfHeatTransfer U
@@ -91,16 +93,32 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   Modelica.SIunits.SpecificEnthalpy h_v;
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
+
 equation
   //Saturation
   if ComputeSat then
     sat = Medium.setSat_p(p);
   else
     //sat = sat_in;
-    sat.ddldp=sat_in[1];sat.ddvdp=sat_in[2];sat.dhldp=sat_in[3];sat.dhvdp=sat_in[4];sat.dTp=sat_in[5];sat.hl=sat_in[6];sat.hv=sat_in[7];sat.sigma=sat_in[8];sat.sl=sat_in[9];sat.sv=sat_in[10];sat.dl=sat_in[11];sat.dv=sat_in[12];sat.psat=sat_in[13];sat.Tsat=sat_in[14];
+    sat.ddldp=sat_in[1];
+    sat.ddvdp=sat_in[2];
+    sat.dhldp=sat_in[3];
+    sat.dhvdp=sat_in[4];
+     sat.dTp=sat_in[5];
+    sat.hl=sat_in[6];
+   sat.hv=sat_in[7];
+   sat.sigma=sat_in[8];
+   sat.sl=sat_in[9];
+   sat.sv=sat_in[10];
+   sat.dl=sat_in[11];
+   sat.dv=sat_in[12];
+   sat.psat=sat_in[13];
+   sat.Tsat=sat_in[14];
   end if;
   h_v = Medium.dewEnthalpy(sat);
   h_l = Medium.bubbleEnthalpy(sat);
+  Tnode_su = Medium.temperature_ph(p,hnode_su);
+  Tnode_ex = Medium.temperature_ph(p,hnode_ex);
   //T_sat = Medium.temperature(sat);
   /* Fluid Properties */
   fluidState = Medium.setState_ph(p,h);

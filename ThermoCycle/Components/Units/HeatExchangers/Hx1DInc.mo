@@ -45,7 +45,7 @@ extends Components.Units.BaseUnits.BaseHx;
     Discretization=Discretization)
     annotation (Placement(transformation(extent={{46,129},{-42,39}})));
 /* GEOMETRIES */
-parameter Integer N=5 "Number of nodes for the heat exchanger";
+parameter Integer N=5 "Number of cells for the heat exchanger";
 parameter Modelica.SIunits.Volume V_sf= 0.03781 "Volume secondary fluid";
 parameter Modelica.SIunits.Volume V_wf= 0.03781 "Volume primary fluid";
 parameter Modelica.SIunits.Area A_sf = 16.18 "Area secondary fluid";
@@ -146,7 +146,7 @@ SummaryClass Summary( T_profile( n=N, Tsf = SecondaryFluid.Summary.T[end:-1:1], 
 equation
 /*Heat flow */
 Q_sf_ = -SecondaryFluid.Q_tot;
-Q_wf_ = WorkingFluid.A * sum(WorkingFluid.Cells.qdot);
+Q_wf_ = WorkingFluid.Q_tot;
   connect(countCurr.side1, metalWall.Wall_int) annotation (Line(
       points={{-4,20.75},{-4,-2.4}},
       color={255,0,0},

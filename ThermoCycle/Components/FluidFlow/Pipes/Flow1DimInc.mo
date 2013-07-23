@@ -11,11 +11,12 @@ public
     Modelica.SIunits.SpecificEnthalpy[n] h;
     Modelica.SIunits.Temperature[n] T;
     Modelica.SIunits.SpecificEnthalpy[n+1] hnode;
+    Modelica.SIunits.Temperature[n+1] Tnode;
     Modelica.SIunits.Density[n] rho;
     Modelica.SIunits.MassFlowRate Mdot;
    Modelica.SIunits.Pressure p;
  end SummaryClass;
- SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, T = Cells.T, Mdot = InFlow.m_flow, p = Cells[1].p);
+ SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_,Tnode = Tnode_, rho = Cells.rho, T = Cells.T, Mdot = InFlow.m_flow, p = Cells[1].p);
 
   import ThermoCycle.Functions.Enumerations.HT_sf;
   parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
@@ -81,7 +82,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
 
 protected
   Modelica.SIunits.SpecificEnthalpy hnode_[N+1];
-
+  Modelica.SIunits.Temperature Tnode_[N+1];
 equation
   // Connect wall and refrigerant cells with eachother
   for i in 1:N-1 loop
@@ -90,7 +91,8 @@ equation
 
   hnode_[1:N] = Cells.hnode_su;
   hnode_[N+1] = Cells[N].hnode_ex;
-
+ Tnode_[1:N] = Cells.Tnode_su;
+ Tnode_[N+1] = Cells[N].Tnode_ex;
   Q_tot = A/N*sum(Cells.qdot) "Total heat flow through the thermal port";
   M_tot = V/N*sum(Cells.rho);
 

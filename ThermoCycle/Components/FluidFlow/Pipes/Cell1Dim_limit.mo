@@ -83,6 +83,8 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     "Enthalpy state variable at inlet node";
   Modelica.SIunits.SpecificEnthalpy hnode_ex(start=hstart)
     "Enthalpy state variable at outlet node";
+  Modelica.SIunits.Temperature Tnode_su "Temperature at the inlet node";
+  Modelica.SIunits.Temperature Tnode_ex "Temperature at the outlet node";
   Real dMdt "Time derivative of mass in cell";
   Modelica.SIunits.HeatFlux qdot "heat flux at each cell";
   Modelica.SIunits.CoefficientOfHeatTransfer U
@@ -97,6 +99,8 @@ equation
   sat = Medium.setSat_p(p);
   h_v = Medium.dewEnthalpy(sat);
   h_l = Medium.bubbleEnthalpy(sat);
+  Tnode_su = Medium.temperature_ph(p,hnode_su);
+  Tnode_ex = Medium.temperature_ph(p,hnode_ex);
   //T_sat = Medium.temperature(sat);
   /* Fluid Properties */
   fluidState = Medium.setState_ph(p,h);

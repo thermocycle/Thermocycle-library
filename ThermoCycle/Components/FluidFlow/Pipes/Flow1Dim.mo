@@ -12,12 +12,13 @@ public
     parameter Integer n;
     Modelica.SIunits.SpecificEnthalpy[n] h;
     Modelica.SIunits.SpecificEnthalpy[n+1] hnode;
+    Modelica.SIunits.Temperature[n+1] Tnode;
     Modelica.SIunits.Density[n] rho;
     Modelica.SIunits.MassFlowRate[n+1] Mdot;
     Real[n] x;
    Modelica.SIunits.Pressure p;
  end SummaryClass;
- SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
+ SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_,Tnode = Tnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
 
   parameter HTtypes HTtype=HTtypes.LiqVap
     "Select type of heat transfer coefficient";
@@ -85,6 +86,8 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
      annotation (Dialog(group="Intialization options", tab="Initialization"));
+Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
+  Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
 
  replaceable Cell1Dim
         Cells[N](
@@ -115,6 +118,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
 
 protected
   Modelica.SIunits.SpecificEnthalpy hnode_[N+1];
+  Modelica.SIunits.Temperature Tnode_[N+1];
   Modelica.SIunits.MassFlowRate Mdot_[N+1];
 
 equation
@@ -127,8 +131,13 @@ equation
 
   hnode_[1:N] = Cells.hnode_su;
   hnode_[N+1] = Cells[N].hnode_ex;
+  Tnode_[1:N] = Cells.Tnode_su;
+  Tnode_[N+1] = Cells[N].Tnode_ex;
   Mdot_[1:N] = Cells.M_dot_su;
   Mdot_[N+1] = Cells[N].M_dot_ex;
+
+  Q_tot = A/N*sum(Cells.qdot) "Total heat flow through the thermal port";
+  M_tot = V/N*sum(Cells.rho) "Total mass of the fluid in the component";
 
   connect(InFlow, Cells[1].InFlow) annotation (Line(
       points={{-90,0},{-60,0},{-60,-40},{-26,-40}},

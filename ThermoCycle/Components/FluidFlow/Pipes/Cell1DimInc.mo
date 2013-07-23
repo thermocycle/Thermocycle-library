@@ -52,6 +52,8 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     "Enthalpy state variable at inlet node";
   Modelica.SIunits.SpecificEnthalpy hnode_ex(start=hstart)
     "Enthalpy state variable at outlet node";
+  Modelica.SIunits.Temperature Tnode_su "Temperature at the inlet node";
+  Modelica.SIunits.Temperature Tnode_ex "Temperature at the outlet node";
   Modelica.SIunits.HeatFlux qdot "heat flux at each cell";
   Modelica.SIunits.CoefficientOfHeatTransfer U
     "Heat transfer coefficient between wall and working fluid";
@@ -61,6 +63,8 @@ equation
   /* Fluid Properties */
   fluidState = Medium.setState_ph(p, h);
   T = Medium.temperature(fluidState);
+  Tnode_su = Medium.temperature_phX(p,hnode_su,fill(0,0));
+  Tnode_ex = Medium.temperature_phX(p,hnode_ex,fill(0,0));
   rho = Medium.density(fluidState);
   /* ENERGY BALANCE */
   Vi*rho*der(h) + M_dot*(hnode_ex - hnode_su) = Ai*qdot "Energy balance";
