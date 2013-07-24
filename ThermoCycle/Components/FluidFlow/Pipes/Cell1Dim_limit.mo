@@ -39,7 +39,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     annotation (Dialog(tab="Initialization"));
 /* NUMERICAL OPTIONS  */
   import ThermoCycle.Functions.Enumerations.Discretizations;
-  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
+  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
   parameter Boolean limit_hnode=true
     "Limits the node enthalpy to ensure more robustness"                                  annotation(Dialog(tab="Numerical options"));
@@ -140,10 +140,29 @@ if Mdotconst then
       dMdt = -M_dot_ex + M_dot_su;
 end if;
 
-//     hnode_ex = if M_dot_ex >= 0 then h else inStream(OutFlow.h_outflow);
-//     hnode_su = if M_dot_su <= 0 then h else inStream(InFlow.h_outflow);
-hnode_ex = actualStream(OutFlow.h_outflow);
-hnode_su = actualStream(InFlow.h_outflow);
+  if (Discretization == Discretizations.centr_diff) then  //dummy values since this canno by used
+    hnode_ex = 0;
+    hnode_su = 0;
+    assert(h>1E20,"Flow1dim with limiter cannot be used yet with the central differences discretization scheme");
+  elseif (Discretization == Discretizations.centr_diff_robust) then   //dummy values since this canno by used
+    hnode_ex = 0;
+    hnode_su = 0;
+    assert(h>1E20,"Flow1dim with limiter cannot be used yet with the central differences discretization scheme");
+  elseif (Discretization == Discretizations.centr_diff_AllowFlowReversal) then   //dummy values since this canno by used
+    hnode_ex = 0;
+    hnode_su = 0;
+    assert(h>1E20,"Flow1dim with limiter cannot be used yet with the central differences discretization scheme");
+  elseif (Discretization == Discretizations.upwind_AllowFlowReversal) then
+    hnode_ex = actualStream(OutFlow.h_outflow);
+    hnode_su = actualStream(InFlow.h_outflow);
+  elseif (Discretization == Discretizations.upwind) then         //In this case upwind_AllowFlowReversal and upwind are actually identical
+    hnode_ex = if M_dot_ex >= 0 then h else inStream(OutFlow.h_outflow);
+    hnode_su = if M_dot_su <= 0 then h else inStream(InFlow.h_outflow);
+  else                                           // Upwind scheme with smoothing
+    hnode_ex = homotopy(inStream(OutFlow.h_outflow) + ThermoCycle.Functions.transition_factor(-Mdotnom/10,0,M_dot_ex,1) * (h - inStream(OutFlow.h_outflow)),h);
+    hnode_su = homotopy(h + ThermoCycle.Functions.transition_factor(-Mdotnom/10,Mdotnom/10,M_dot_su,1) * (inStream(InFlow.h_outflow) - h), inStream(InFlow.h_outflow));
+  end if;
+
 if not limit_hnode then
     InFlow.h_outflow = h;
     OutFlow.h_outflow = h;

@@ -63,7 +63,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     annotation (Dialog(tab="Initialization"));
 /* NUMERICAL OPTIONS  */
   import ThermoCycle.Functions.Enumerations.Discretizations;
-  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
+  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
   parameter Boolean Mdotconst=false
     "Set to yes to assume constant mass flow rate at each node (easier convergence)"
@@ -98,6 +98,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     each filter_dMdt=filter_dMdt,
     each max_drhodt=max_drhodt,
     each TT=TT,
+    each Discretization=Discretization,
     each steadystate=steadystate,
     hstart = hstart)    annotation (Placement(transformation(extent={{-26,-62},
             {28,-18}})));
