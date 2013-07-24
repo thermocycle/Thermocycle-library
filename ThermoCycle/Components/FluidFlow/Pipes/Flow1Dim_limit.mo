@@ -12,13 +12,12 @@ public
     parameter Integer n;
     Modelica.SIunits.SpecificEnthalpy[n] h;
     Modelica.SIunits.SpecificEnthalpy[n+1] hnode;
-    Modelica.SIunits.Temperature[n+1] Tnode;
     Modelica.SIunits.Density[n] rho;
     Modelica.SIunits.MassFlowRate[n+1] Mdot;
     Real[n] x;
    Modelica.SIunits.Pressure p;
  end SummaryClass;
- SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_,Tnode = Tnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
+ SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
 
   parameter HTtypes HTtype=HTtypes.LiqVap
     "Select type of heat transfer coefficient";
@@ -108,7 +107,6 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
 
 protected
   Modelica.SIunits.SpecificEnthalpy hnode_[N+1];
-  Modelica.SIunits.Temperature Tnode_[N+1];
   Modelica.SIunits.MassFlowRate Mdot_[N+1];
 
 public
@@ -126,9 +124,6 @@ equation
 
   hnode_[1:N] = Cells.hnode_su;
   hnode_[N+1] = Cells[N].hnode_ex;
-  Tnode_[1:N] = Cells.Tnode_su;
-  Tnode_[N+1] = Cells[N].Tnode_ex;
-
   Mdot_[1:N] = Cells.M_dot_su;
   Mdot_[N+1] = Cells[N].M_dot_ex;
 

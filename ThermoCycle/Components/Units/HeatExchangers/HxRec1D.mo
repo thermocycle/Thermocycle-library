@@ -56,7 +56,7 @@ extends ThermoCycle.Components.Units.BaseUnits.BaseHx;
     Discretization=Discretization)
     annotation (Placement(transformation(extent={{-42,-152},{42,-68}})));
 /* GEOMETRIES */
-parameter Integer N=5 "Number of cells for the heat exchanger";
+parameter Integer N=5 "Number of nodes for the heat exchanger";
 parameter Modelica.SIunits.Volume Vhot = 0.03781 "Volume hot fluid";
 parameter Modelica.SIunits.Volume Vcold= 0.03781 "Volume cold fluid";
 parameter Modelica.SIunits.Area Ahot = 16.18 "Area hot fluid";
@@ -178,8 +178,8 @@ SummaryClass Summary( T_profile( n=N, Thot = Hotside.Cells[end:-1:1].T,  Twall =
 equation
 PinchPoint_ = min(Hotside.Cells[N].T -Coldside.Cells[1].T,Hotside.Cells[1].T - Coldside.Cells[N].T);
 /*Heat flow */
-Q_hot_ = -Hotside.Q_tot;
-Q_cold_ = -Coldside.Q_tot;
+Q_hot_ = -Hotside.A * sum(Hotside.Cells.qdot);
+Q_cold_ = -Coldside.A * sum(Coldside.Cells.qdot);
   connect(metalWall.Wall_ext, Coldside.Wall_int) annotation (Line(
       points={{0.26,-50.4},{0.26,-41.2},{0,-41.2},{0,-92.5}},
       color={255,0,0},
