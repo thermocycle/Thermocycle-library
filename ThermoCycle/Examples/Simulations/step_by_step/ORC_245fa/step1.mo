@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step1
-
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(p0=2357000)
     annotation (Placement(transformation(extent={{82,-10},{102,10}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(

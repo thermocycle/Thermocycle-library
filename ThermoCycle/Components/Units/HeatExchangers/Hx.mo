@@ -3,7 +3,6 @@ model Hx "Simplified heat exchanger model. Not object-oriented"
  extends ThermoCycle.Components.Units.BaseUnits.BaseHxConst;
  replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model";
-
 public
  record SummaryBase
    replaceable Arrays T_profile;
@@ -20,7 +19,6 @@ public
  end SummaryBase;
  replaceable record SummaryClass = SummaryBase;
  SummaryClass Summary( T_profile( n=N, Tsf = T_sf, Twall = T_wall, Twf = T,PinchPoint = min(T_sf-T)),p_wf = p,Q_sf = A*sum(qdot_sf),Q_wf = A*sum(qdot_wf));
-
   // Heat exchanger geometric characteristics:
 /* GEOMETRIES */
 parameter Integer N=5 "Number of nodes for the heat exchanger";
@@ -98,7 +96,6 @@ parameter Boolean steadystate_T_wall=false
     "Integration time of the first-order filter"
     annotation (Dialog(enable=filter_dMdt_wf, tab="Numerical options"));
  //Variables
-
   /* VARIABLES */
   /* SECONDARY FLUID */
   Modelica.SIunits.MassFlowRate M_dot_sf;
@@ -144,11 +141,9 @@ parameter Boolean steadystate_T_wall=false
   Real x[N] "Vapor quality";
   Modelica.SIunits.SpecificEnthalpy h_l;
   Modelica.SIunits.SpecificEnthalpy h_v;
-
   Modelica.SIunits.Volume Vi_wf=V_wf/N;
   Modelica.SIunits.Area Ai=A/N;
   Modelica.SIunits.Volume Vi_sf= V_sf/N;
-
 equation
   Tnode_sf[N + 1] = T_sf_su;
   //Cold fluid properties

@@ -1,9 +1,7 @@
 within ThermoCycle.Examples.Simulations.failure_examples;
 model Chattering
   "In this model, the simulation fails after a few hundred second. Setting the max derivative to 40 in the evaporator solves the problem"
-
   Modelica.SIunits.Mass m_wf "Total mass of the working fluid in the cycle";
-
 ThermoCycle.Components.Units.HeatExchangers.Hx1DConst evaporator(
     N=10,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
@@ -118,10 +116,8 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Pump   pump(
     impose_pressure=true,
     pstart=135000)
    annotation (Placement(transformation(extent={{-42,-78},{-24,-60}})));
-
 equation
 m_wf = 0;
-
   connect(source_Cdot.flange, evaporator.inletSf)
                                                annotation (Line(
       points={{-7.8,81.9},{12,81.9},{12,64},{-34,64}},

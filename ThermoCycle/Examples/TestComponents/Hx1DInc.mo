@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.TestComponents;
 model Hx1DInc
-
 ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
       Medium =
         Media.Therminol66,

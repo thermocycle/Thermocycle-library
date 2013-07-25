@@ -1,7 +1,6 @@
 within ThermoCycle.Examples.Simulations.Plants;
 model ORC_245faInc_TTSE
 replaceable package OrganicMedium = Media.R245faCool2;
-
 ThermoCycle.Components.Units.HeatExchangers.Hx1DInc                  evaporator(
     N=10,
     redeclare package Medium1 = OrganicMedium,

@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.TestComponents;
 model CrossHx
-
   Components.Units.HeatExchangers.CrossHX crossHX(
     nCells=10,
     V_wf=1.36e-4,

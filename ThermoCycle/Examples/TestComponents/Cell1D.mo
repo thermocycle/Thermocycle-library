@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.TestComponents;
 model Cell1D
-
   Components.FluidFlow.Pipes.Cell1Dim
          flow1Dim(
     Ai=0.2,
@@ -13,7 +12,6 @@ model Cell1D
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_smooth,
     pstart=500000)
     annotation (Placement(transformation(extent={{-22,16},{-2,36}})));
-
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot  sourceMdot(
     Mdot_0=0.3,
     UseT=false,

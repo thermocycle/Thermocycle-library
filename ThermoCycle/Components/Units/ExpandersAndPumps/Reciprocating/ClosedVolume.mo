@@ -1,29 +1,23 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model ClosedVolume "Model of a confined volume without mass transfer"
-
   Modelica.Blocks.Interfaces.RealInput volume
     annotation (Placement(transformation(extent={{120,-20},{80,20}}),
         iconTransformation(extent={{120,-20},{80,20}})));
   Modelica.Blocks.Interfaces.RealOutput pressure
     annotation (Placement(transformation(extent={{-58,-10},{-78,10}}),
         iconTransformation(extent={{-80,-10},{-100,10}})));
-
     outer Modelica.Fluid.System system;
-
   replaceable package Medium = Modelica.Media.Air.DryAirNasa constrainedby
     Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   Medium.BaseProperties props;
-
   //parameter Medium.Density rho_start = 1.2;
   parameter Medium.Temperature T_start = 1500 "Initial temperature";
   parameter Medium.AbsolutePressure p_start = 40*system.p_ambient
     "Initial pressure";
   parameter Modelica.SIunits.HeatFlowRate Q_dot = -10 "Constant heat flux";
-
   Modelica.SIunits.Mass m;
   Modelica.SIunits.InternalEnergy U;
   Modelica.SIunits.Power W_dot;
-
 // initial algorithm
 //    Medium.setState_pTX(p_start,T_start,{1});
 initial algorithm

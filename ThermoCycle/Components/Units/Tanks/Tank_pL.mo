@@ -56,7 +56,6 @@ equation
   // Energy balance:
   H_der = Vtot * ( (sat.hl * sat.dl - sat.hv * sat.dv)*der(L) + (L * (sat.hl * sat.ddldp + sat.dl * sat.dhldp) + (1-L) * (sat.hv*sat.ddvdp + sat.dv*sat.dhvdp))*der(p));
   H_der = semiLinear(M_dot_su,h_su,sat.hv) - M_dot_ex*h_ex + Vtot*der(p_tot);
-
   // Mass balance:
   Vtot * ((sat.dl-sat.dv)*der(L) + (L*sat.ddldp+(1-L)*sat.ddvdp)*der(p))=M_dot_su - M_dot_ex;
   // Total mass and enthalpy in the tank:

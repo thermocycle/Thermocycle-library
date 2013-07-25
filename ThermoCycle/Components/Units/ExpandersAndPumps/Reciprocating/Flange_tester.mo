@@ -1,6 +1,5 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model Flange_tester "A combination of a flange and a reciprocating machine"
-
   Modelica.Mechanics.Rotational.Components.Inertia inertia(
     phi(fixed=true, start=0),
     J=2,
@@ -26,7 +25,6 @@ model Flange_tester "A combination of a flange and a reciprocating machine"
     startTime=0)
     annotation (Placement(transformation(extent={{-50,50},{-30,70}})));
 equation
-
   connect(inertia.flange_b, recipFlange.crankShaft_b) annotation (Line(
       points={{-40,-30},{-20,-30}},
       color={0,0,0},

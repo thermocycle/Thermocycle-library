@@ -41,11 +41,9 @@ equation
   if cardinality(M_dot_source) == 0 then
     flange.Mdot = Mdot_0 "Flow rate set by parameter";
   end if;
-
  if cardinality(T_source) == 0 then
   flange.T = T_0 "Temperature set by parameter";
  end if;
-
   flange.cp = cp;
   flange.rho = rho;
   Hdot = flange.Mdot * (flange.T - T_ref) * cp;

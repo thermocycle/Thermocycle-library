@@ -1,6 +1,5 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model PV_tester "Test model"
-
   Modelica.Mechanics.Rotational.Components.Inertia inertia(
     phi(fixed=true, start=0),
     J=2,
@@ -23,7 +22,6 @@ equation
       points={{-40,-30},{-20,-30}},
       color={0,0,0},
       smooth=Smooth.None));
-
   connect(recipPV.crankShaft_a, speed.flange) annotation (Line(
       points={{20,-30},{40,-30}},
       color={0,0,0},

@@ -4,9 +4,7 @@ model Flow1Dim_limit
 replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
-
   import ThermoCycle.Functions.Enumerations.HTtypes;
-
 public
  record SummaryClass
     parameter Integer n;
@@ -18,7 +16,6 @@ public
    Modelica.SIunits.Pressure p;
  end SummaryClass;
  SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
-
   parameter HTtypes HTtype=HTtypes.LiqVap
     "Select type of heat transfer coefficient";
 /* Thermal and fluid ports */
@@ -81,7 +78,6 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
      annotation (Dialog(group="Intialization options", tab="Initialization"));
-
  replaceable Cell1Dim_limit
         Cells[N](
     redeclare package Medium = Medium,
@@ -104,11 +100,9 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   Interfaces.HeatTransfer.ThermalPortConverter
                        thermalPortConverter(N=N)
     annotation (Placement(transformation(extent={{-10,6},{10,26}})));
-
 protected
   Modelica.SIunits.SpecificEnthalpy hnode_[N+1];
   Modelica.SIunits.MassFlowRate Mdot_[N+1];
-
 public
   Interfaces.Fluid.PortConverter_limit portConverter_in(redeclare package
       Medium = Medium)
@@ -121,12 +115,10 @@ equation
   for i in 1:N-1 loop
     connect(Cells[i].OutFlow, Cells[i+1].InFlow);
   end for;
-
   hnode_[1:N] = Cells.hnode_su;
   hnode_[N+1] = Cells[N].hnode_ex;
   Mdot_[1:N] = Cells.M_dot_su;
   Mdot_[N+1] = Cells[N].M_dot_ex;
-
   connect(thermalPortConverter.single, Cells.Wall_int) annotation (Line(
       points={{0,11.9},{0,-9.05},{1,-9.05},{1,-29}},
       color={255,0,0},

@@ -56,7 +56,6 @@ parameter Modelica.SIunits.Pressure pstart
   import ThermoCycle.Functions.Enumerations.Discretizations;
  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
-
   Obsolete.Flow1DimInc_130702            SolarTube(redeclare package Medium = Medium1,
     N=N,
     A=A_lateral,

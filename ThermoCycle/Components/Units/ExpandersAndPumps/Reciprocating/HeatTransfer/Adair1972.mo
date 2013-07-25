@@ -4,9 +4,7 @@ model Adair1972 "Correlation of Adair et al. 1972, changeable parameters"
     ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses.PartialCylinderHeatTransfer;
   parameter Real A = 0.053 "Primary parameter";
   parameter Real B = 0.600 "Prandl number exponent";
-
   import Modelica.Constants.pi;
-
   Modelica.SIunits.Length[n] De "Equivalent diameter 6V/A";
   Modelica.SIunits.ReynoldsNumber[n] Re;
   Modelica.SIunits.PrandtlNumber[n] Pr;
@@ -19,16 +17,13 @@ model Adair1972 "Correlation of Adair et al. 1972, changeable parameters"
   Modelica.SIunits.Velocity[n] omega_g1 "Swirl velocity";
   Modelica.SIunits.Velocity[n] omega_g2 "Swirl velocity";
   Modelica.SIunits.HeatFlux[n] q_w "Heat flux from wall";
-
   Modelica.SIunits.Volume[n] volume "Cylinder volume";
   Modelica.SIunits.Angle[n] theta "Crankshaft angle";
   Modelica.SIunits.Length[n] position "Piston position from cyl. head";
-
   Real tFactor[n];
   Real tFactor1[n];
   Real tFactor2[n] "Transition factor";
   Real deltaTheta "Transition interval";
-
 equation
   deltaTheta = 0.05*pi "9 degrees crankshaft angle";
   for i in 1:n loop
@@ -52,14 +47,12 @@ equation
       "Switch back from omega_g2 to omega_g1";
     tFactor[i] = tFactor1[i] + (1-tFactor2[i]);
     omega_g[i] = tFactor[i]*omega_g1[i] + (1 - tFactor[i])*omega_g2[i];
-
     Pr[i] = Medium.prandtlNumber(states[i]);
     assert(Pr[i] > 0, "Invalid Prandtl number, make sure transport properties are calculated.");
     eta[i] = Medium.dynamicViscosity(states[i]);
     assert(eta[i] > 0, "Invalid viscosity, make sure transport properties are calculated.");
     lambda[i] = Medium.thermalConductivity(states[i]);
     assert(lambda[i] > 0, "Invalid thermal conductivity, make sure transport properties are calculated.");
-
     surfaceAreas[i] = pistonCrossArea + 2 * sqrt(pistonCrossArea*pi)*position[i]
       "Defines position";
     volume[i] = pistonCrossArea * position[i] "Get volumes";
@@ -71,7 +64,6 @@ equation
     -q_w[i] = h[i] * (Ts[i] - heatPorts[i].T);
     Q_flows[i] = surfaceAreas[i]*q_w[i];
   end for;
-
   annotation(Documentation(info="<html>
 <p>Simple heat transfer correlation with two parameters. </p>
 <p>You can find the paper describing the correlation here: <a href=\"http://docs.lib.purdue.edu/icec/45/\">http://docs.lib.purdue.edu/icec/45/</a></p>

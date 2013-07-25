@@ -14,7 +14,6 @@ model flow1D
     Tstart_outlet=373.15,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-32,8},{6,46}})));
-
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot Source(
     Mdot_0=0.3,
     UseT=false,

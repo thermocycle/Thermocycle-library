@@ -470,7 +470,6 @@ initial equation
     p_su = p_su_start;
     //   M_dot=M_dot_start;
   end if;
-
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
             {100,100}}),       graphics), Icon(coordinateSystem(
           preserveAspectRatio=false,extent={{-100,-100},{100,100}}), graphics={

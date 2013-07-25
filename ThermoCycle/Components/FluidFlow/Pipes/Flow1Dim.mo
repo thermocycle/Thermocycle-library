@@ -4,9 +4,7 @@ model Flow1Dim
 replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
-
   import ThermoCycle.Functions.Enumerations.HTtypes;
-
 public
  record SummaryClass
     parameter Integer n;
@@ -18,7 +16,6 @@ public
    Modelica.SIunits.Pressure p;
  end SummaryClass;
  SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
-
   parameter HTtypes HTtype=HTtypes.LiqVap
     "Select type of heat transfer coefficient";
 /* Thermal and fluid ports */
@@ -32,10 +29,8 @@ public
   ThermoCycle.Interfaces.HeatTransfer.ThermalPort Wall_int(N=N)
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
-
   // Calculation of the saturation properties here to avoid calculating in every cell:
   Medium.SaturationProperties  sat;
-
 // Geometric characteristics
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1)=10 "Number of cells";
@@ -85,7 +80,6 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
      annotation (Dialog(group="Intialization options", tab="Initialization"));
-
  replaceable Cell1Dim
         Cells[N](
     redeclare package Medium = Medium,
@@ -112,24 +106,19 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   Interfaces.HeatTransfer.ThermalPortConverter
                        thermalPortConverter(N=N)
     annotation (Placement(transformation(extent={{-10,6},{10,26}})));
-
 protected
   Modelica.SIunits.SpecificEnthalpy hnode_[N+1];
   Modelica.SIunits.MassFlowRate Mdot_[N+1];
-
 equation
   // Connect wall and refrigerant cells with eachother
   for i in 1:N-1 loop
     connect(Cells[i].OutFlow, Cells[i+1].InFlow);
   end for;
-
   sat = Medium.setSat_p(Cells[1].p);
-
   hnode_[1:N] = Cells.hnode_su;
   hnode_[N+1] = Cells[N].hnode_ex;
   Mdot_[1:N] = Cells.M_dot_su;
   Mdot_[N+1] = Cells[N].M_dot_ex;
-
   connect(InFlow, Cells[1].InFlow) annotation (Line(
       points={{-90,0},{-60,0},{-60,-40},{-26,-40}},
       color={0,0,255},

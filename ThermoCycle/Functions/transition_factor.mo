@@ -4,18 +4,14 @@ function transition_factor
   extends Modelica.Icons.Function;
   import Modelica.Constants.pi;
   import Modelica.Constants.e;
-
   input Real start =    0.25 "start of transition interval";
   input Real stop =     0.75 "end of transition interval";
   input Real position = 0.0 "current position";
   input Integer order = 2 "Smooth up to which derivative?";
-
   output Real tFactor "weighting factor";
-
 protected
   Real[4] a_map = {-1/2, -2/pi, -3/4, -8/pi} "First parameters";
   Real[4] b_map = {1/2,   1/2,   1/2,  1/2} "Second parameters";
-
   // Rename variables to match with Richter2008, p.68ff
   Real phi "current phase";
   Real a "multiplier";
@@ -23,7 +19,6 @@ protected
   Real x_t "Start of transition";
   Real x "Current position";
   Real DELTAx "Length of transition";
-
   // Parameters for generalised logistic function
   Real A = 0 "Lower asymptote";
   Real K = 1 "Upper asymptote";
@@ -35,11 +30,9 @@ protected
   Real END =     0;
   Real START =   0;
   Real factor =  0;
-
 algorithm
   assert(order>=0, "This function only supports positive values for the order of smooth derivatives.");
   assert(start<stop, "There is only support for positive differences, please provide start < stop.");
-
   // 0th to 2nd order
   a      := a_map[order+1];
   b      := b_map[order+1];
@@ -47,14 +40,12 @@ algorithm
   DELTAx := stop - start;
   x_t    := start + 0.5*DELTAx;
   phi    := (x - x_t) / DELTAx * pi;
-
   // higher order
   // We need to do some arbitrary scaling:
   END   :=  4.0;
   START := -2.0;
   factor := (END-START) / (stop-start);
   X := START + (position - start) * factor;
-
   tFactor := 1-smooth(5,noEvent(
   if position < start then
     1
@@ -71,7 +62,6 @@ algorithm
       1 - (A + ( K-A)  / ( 1 + Q * e^(-B*(X - M)))^(1/nu))));
 //     elseif (order == 3) then
 //       a * ( 1/4 * cos(phi)^3 * sin(phi) + 3/8 * cos(phi) * sin(phi) + 3/8*phi)  + b
-
   annotation (smoothOrder=5,Documentation(info="<html>
 <p><h4><font color=\"#008000\">DESCRIPTION:</font></h4></p>
 <p>This function returns a value between 1 and 0. A smooth transition is achieved by means of defining the <code>position</code> and the transition intervall from <code>start</code> to <code>stop</code> parameter. Outside this intervall, the 1 and the 0 are returned, respectively. This transition function with up to two smooth derivatives was taken from [1]. If you provide an <code>order</code> higher than 2, the generalised logistic function[2] will be used to calculated the transition curve.</p>

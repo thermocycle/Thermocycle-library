@@ -2,9 +2,7 @@ within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses;
 partial model PartialRecipMachine
   "Model of a one cylinder engine with crank and slider mechanism"
   import SI = Modelica.SIunits;
-
   parameter Boolean animate=true;
-
   replaceable parameter
     ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses.BaseGeometry
     geometry constrainedby
@@ -12,12 +10,10 @@ partial model PartialRecipMachine
     "Define geometry here or replace with approriate record."
                     annotation (choicesAllMatching=true,Placement(transformation(extent={{58,-123},
             {103,-78}})));
-
   final parameter SI.Length s_TDC=sqrt((geometry.r_crank + geometry.l_conrod)
       ^2 - geometry.d_ppin^2) "Crank shaft to TDC";
   final parameter SI.Length s_BDC=sqrt((geometry.r_crank - geometry.l_conrod)
       ^2 - geometry.d_ppin^2) "Crank shaft to BDC";
-
   final parameter SI.Length z_cra=geometry.d_ppin/(geometry.r_crank +
       geometry.l_conrod)*geometry.r_crank "Crank pin z at TDC";
   final parameter SI.Length y_cra=s_TDC/(geometry.r_crank + geometry.l_conrod)
@@ -26,15 +22,12 @@ partial model PartialRecipMachine
       geometry.l_conrod)*geometry.l_conrod "Rod pin z at TDC";
   final parameter SI.Length y_rod=s_TDC/(geometry.r_crank + geometry.l_conrod)
       *geometry.l_conrod "Rod pin y at TDC";
-
   final parameter SI.Length h_TDC=geometry.V_tdc/(Modelica.Constants.pi
       *geometry.r_piston^2) "equivalent height at TDC";
   final parameter SI.Length h_top=s_TDC + geometry.h_piston + h_TDC
     "Height of cylinder";
-
   final parameter SI.Length stroke=s_TDC - s_BDC;
   final parameter SI.Length bore=geometry.r_piston*2;
-
   Modelica.Mechanics.MultiBody.Parts.BodyCylinder piston(
     diameter=2*geometry.r_piston,
     color={155,155,155},
@@ -116,7 +109,6 @@ partial model PartialRecipMachine
                                                               annotation (
       Placement(transformation(extent={{173,-165},{193,-145}}),
         iconTransformation(extent={{160,-110},{200,-70}})));
-
 equation
   connect(world.frame_b, mainCrankBearing.frame_a)
     annotation (Line(
@@ -144,7 +136,6 @@ equation
       color={95,95,95},
       thickness=0.5,
       smooth=Smooth.None));
-
   connect(slider.frame_b, piston.frame_a)    annotation (Line(
       points={{-2.75546e-015,120},{0,118},{-1.11023e-015,115},{
           2.75546e-015,115},{2.75546e-015,110}},

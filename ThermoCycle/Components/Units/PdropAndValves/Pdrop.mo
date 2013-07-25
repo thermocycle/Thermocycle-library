@@ -43,7 +43,6 @@ equation
   InFlow.h_outflow = inStream(OutFlow.h_outflow);
   inStream(InFlow.h_outflow) = OutFlow.h_outflow;
 initial equation
-
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-120,-120},{
             120,120}}),

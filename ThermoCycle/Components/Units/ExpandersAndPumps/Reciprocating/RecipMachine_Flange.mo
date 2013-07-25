@@ -2,12 +2,10 @@ within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model RecipMachine_Flange "Model of single cylinder with a flange connector"
   extends
     ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses.PartialRecipMachine;
-
 public
   Modelica.Mechanics.Translational.Interfaces.Flange_a flange_a
     annotation (Placement(transformation(extent={{-10,170},{10,190}})));
 equation
-
   connect(flange_a, slider.axis) annotation (Line(
       points={{5.55112e-16,180},{0,180},{0,168},{40,168},{40,123},{9,123}},
       color={0,127,0},

@@ -2,7 +2,6 @@ within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model Cylinder
   "SweptVolume from Modelica.Fluid with initialisation algorihtm and default Medium"
   extends Modelica.Fluid.Machines.SweptVolume(final clearance=0,HeatTransfer(crankshaftAngle=angle_in_internal,pistonCrossArea = pistonCrossArea));
-
   replaceable package Medium = Modelica.Media.Air.DryAirNasa constrainedby
     Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   replaceable model HeatTransfer =
@@ -10,10 +9,8 @@ model Cylinder
      constrainedby
     ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses.PartialCylinderHeatTransfer
     "Wall heat transfer";
-
 //   HeatTransfer heatTransfer(
 //     final pistonCrossArea = pistonCrossArea);
-
 //   HeatTransfer heatTransfer(
 //     final crankshaftAngle = 5,
 //     final pistonCrossArea = pistonCrossArea);
@@ -24,7 +21,6 @@ model Cylinder
 //     final surfaceAreas={pistonCrossArea+2*sqrt(pistonCrossArea*pi)*(flange.s+clearance/pistonCrossArea)},
 // protected
 //   Real[:] test;
-
     parameter Boolean use_angle_in = false
     "Enable input connector for crankshaft angle"
     annotation (Dialog(tab="Assumptions", group="Heat transfer"));
@@ -51,7 +47,6 @@ initial algorithm
 //   end if;
   m := medium.d*V;
   U := m*(medium.h - p_start / medium.d);
-
 // equation
 //   test = heatTransfer(crankshaftAngle=5);
 equation
@@ -59,6 +54,5 @@ equation
   if noEvent(not use_angle_in) then
     angle_in_internal = 0;
   end if;
-
   annotation (Icon(graphics), Diagram(graphics));
 end Cylinder;

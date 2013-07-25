@@ -5,7 +5,6 @@ parameter Integer nCells = 5 "Discretization number of cells";
     Modelica.Media.Interfaces.PartialMedium "Working fluid" annotation (choicesAllMatching=true);
  replaceable package Medium2 =Modelica.Media.Air.SimpleAir constrainedby
     Modelica.Media.Interfaces.PartialMedium "Secondary fluid fluid" annotation (choicesAllMatching = true);
-
   /*PARAMETER */
   /*Geometry*/
   parameter Modelica.SIunits.Volume V_wf =  0.0397
@@ -22,7 +21,6 @@ parameter Integer nCells = 5 "Discretization number of cells";
   parameter Modelica.SIunits.Mass M_wall_tot= 69 "Mass of the Wall ";
   parameter Modelica.SIunits.SpecificHeatCapacity c_wall= 500
     "Specific heat capacity of the metal ";
-
 /*HEAT TRANSFER */
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l= 300
     "if HTtype = LiqVap : Heat transfer coefficient, liquid zone " annotation (Dialog(group="Heat transfer", tab="General"));
@@ -32,7 +30,6 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l= 300
     "if HTtype = LiqVap : heat transfer coefficient, vapor zone" annotation (Dialog(group="Heat transfer", tab="General"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_sf= 100
     "Constant heat transfer coefficient" annotation (Dialog(group="Heat transfer", tab="General"));
-
 /*PRESSURE DROP SECONDARY FLUID */
    parameter Boolean UseNom_sf=false
     "Use Nominal conditions to compute pressure drop characteristics" annotation (Dialog(group="Pdrop_sf", tab="General"));
@@ -46,7 +43,6 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l= 300
  parameter Modelica.SIunits.Pressure DELTAp_0_sf=500
     "Pressure drop below which a 3rd order interpolation is used for the computation of the flow rate in order to avoid infinite derivative at 0"
                                                                                                         annotation (Dialog(group="Pdrop_sf", tab="General"));
-
 parameter Modelica.SIunits.Pressure p_nom_sf=1e5 "Nominal pressure"
                        annotation (Dialog(group="Pdrop_sf",tab="Nominal Conditions"));
 parameter Modelica.SIunits.Temperature T_nom_sf=283.15 "Nominal temperature"
@@ -65,36 +61,28 @@ parameter Modelica.SIunits.Temperature T_nom_sf=283.15 "Nominal temperature"
    parameter Boolean   use_rho_nom_sf=false
     "Use the nominal density for the computation of the pressure drop (i.e it depends only the flow rate)"
                            annotation (Dialog(group="Pdrop_sf",tab="Nominal Conditions"));
-
 /*INITIALIZATION */
  /* WorkingFluid Initial values */
 parameter Modelica.SIunits.Pressure pstart_wf = 23.57
     "Fluid pressure start value"     annotation (Dialog(tab="Initialization"));
-
   parameter Medium1.Temperature Tstart_wf_in "Inlet temperature start value"
      annotation (Dialog(tab="Initialization"));
-
   //parameter Medium1.Temperature Tstart_wf_out "outlet temperature start value"annotation (Dialog(tab="Initialization"));
-
   parameter Medium1.SpecificEnthalpy hstart_wf_in=Medium1.specificEnthalpy_pT(pstart_wf,Tstart_wf_in)
     "Start value of inlet enthalpy"
     annotation (Dialog(tab="Initialization"));
   //parameter Medium1.SpecificEnthalpy hstart_wf_out = Medium2.specificEnthalpy_pT(pstart_wf,Tstart_wf_out)
   //  "Start value of inlet enthalpy"                                                                                                     annotation (Dialog(tab="Initialization"));
-
 //parameter Modelica.SIunits.SpecificEnthalpy[nCells] hSTART = linspace(hstart_wf_in,hstart_wf_out,nCells);
-
 /*Metal Wall*/
   parameter Modelica.SIunits.Temperature T_start_wall = (Tstart_wf_in + T_nom_sf)/2
     "Start value of temperature (initialized by default)"
     annotation (Dialog(tab="Initialization"));
-
 parameter Boolean steadystate_wf=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
     annotation (Dialog(group="Intialization options", tab="Initialization"));
 parameter Boolean steadystate_T_wall=true
     "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
-
       parameter Boolean constinit_sf=false
     "if true, sets the pressure drop to a constant value at the beginning of the simulation in order to avoid oscillations"
     annotation (Dialog(group="Intialization options",tab="Initialization"));
@@ -106,9 +94,7 @@ parameter Boolean steadystate_T_wall=true
     parameter Modelica.SIunits.Time t_init_sf=10
     "if constinit is true, time during which the pressure drop is set to the constant value DELTAp_start"
     annotation (Dialog(tab="Initialization", enable=constinit));
-
 /* NUMERICAL OPTIONS*/
-
 /* Working Fluid */
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization_wf=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
@@ -127,7 +113,6 @@ parameter Boolean steadystate_T_wall=true
   parameter Modelica.SIunits.Time TT_wf=1
     "Integration time of the first-order filter"
     annotation (Dialog(enable=max_der_wf, tab="Numerical options"));
-
   ThermoCycle.Components.FluidFlow.Pipes.MultiFlow1D_DP multiFlow1D_DP(
     redeclare package Medium = Medium2,
     nCells=nCells,
@@ -186,7 +171,6 @@ ThermoCycle.Interfaces.Fluid.FlangeA Inlet_fl2(redeclare package Medium =Medium2
 ThermoCycle.Interfaces.Fluid.FlangeB Outlet_fl2(redeclare package Medium=Medium2)
     annotation (Placement(transformation(extent={{-12,-106},{8,-86}})));
 equation
-
   // Connect wall and refrigerant cells with eachother
   for i in 1:nCells-1 loop
     connect(flow1DimCell[i].OutFlow, flow1DimCell[i+1].InFlow);
@@ -209,7 +193,6 @@ equation
       points={{-0.68,-1.2},{-0.68,-33.6},{1,-33.6},{1,-39.5}},
       color={255,0,0},
       smooth=Smooth.None));
-
   connect(Inlet_fl2, multiFlow1D_DP.flangeA) annotation (Line(
       points={{0,96},{-2,96},{-2,72},{-66,72},{-66,-53},{-20,-53}},
       color={0,0,255},
@@ -218,7 +201,6 @@ equation
       points={{-1,41},{-1,28.5},{0,28.5},{0,13.2}},
       color={255,0,0},
       smooth=Smooth.None));
-
   annotation (Diagram(graphics), Icon(graphics={
         Rectangle(
           extent={{-100,100},{100,-100}},

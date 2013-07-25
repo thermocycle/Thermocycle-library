@@ -21,7 +21,6 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL  Wall_int
         iconTransformation(extent={{-40,40},{40,60}})));
 // Geometric characteristics
   constant Real pi = Modelica.Constants.pi "pi-greco";
-
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
   parameter Modelica.SIunits.Area Ai "Lateral surface of a single cell";
   parameter Modelica.SIunits.MassFlowRate Mdotnom "Nominal fluid flow rate";
@@ -73,11 +72,9 @@ equation
   if (Discretization == Discretizations.centr_diff) then
     hnode_su = inStream(InFlow.h_outflow);
     hnode_ex = 2*h - hnode_su;
-
   elseif (Discretization == Discretizations.centr_diff_robust) then     //no robustness method implemented for incompressible flow
     hnode_su = inStream(InFlow.h_outflow);
     hnode_ex = 2*h - hnode_su;
-
   elseif (Discretization == Discretizations.centr_diff_AllowFlowReversal) then
     if M_dot >= 0 then       // Flow is going the right way
       hnode_su = inStream(InFlow.h_outflow);
@@ -86,23 +83,18 @@ equation
       hnode_ex = inStream(OutFlow.h_outflow);
       hnode_su = 2*h - hnode_ex;
     end if;
-
   elseif (Discretization == Discretizations.upwind_AllowFlowReversal) then
     hnode_ex = if M_dot >= 0 then h else inStream(OutFlow.h_outflow);
     hnode_su = if M_dot <= 0 then h else inStream(InFlow.h_outflow);
-
   elseif (Discretization == Discretizations.upwind) then
     hnode_su = inStream(InFlow.h_outflow);
     hnode_ex = h;
-
   else                                           // Upwind scheme with smoothing (not implemented here)
     hnode_ex = if M_dot >= 0 then h else inStream(OutFlow.h_outflow);
     hnode_su = if M_dot <= 0 then h else inStream(InFlow.h_outflow);
   end if;
-
   Q_tot = Ai*qdot "Total heat flow through the thermal port";
   M_tot = Vi*rho;
-
 //* BOUNDARY CONDITIONS *//
  /* Enthalpies */
   hnode_su = InFlow.h_outflow;
@@ -120,7 +112,6 @@ equation
   Wall_int.T = T_wall;
  /*Heat flow */
   Wall_int.phi = qdot;
-
 initial equation
   if steadystate then
     der(h) = 0;

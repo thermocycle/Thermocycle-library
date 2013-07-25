@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.TestComponents;
 model SolarCollector
-
   ThermoCycle.Components.Units.Solar.SolarCollectorIncSchott solarCollectorIncSchott(
     L=20,
     A_P=5,

@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.TestComponents;
 model Expander
-
   Modelica.Blocks.Sources.Ramp N_rot(
     duration=100,
     startTime=400,

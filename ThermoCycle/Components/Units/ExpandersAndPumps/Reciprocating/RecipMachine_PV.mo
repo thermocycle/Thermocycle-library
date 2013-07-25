@@ -14,14 +14,12 @@ model RecipMachine_PV
   Modelica.Blocks.Interfaces.RealInput pressure
     annotation (Placement(transformation(extent={{-120,100},{-80,140}}),
         iconTransformation(extent={{-120,100},{-80,140}})));
-
   outer Modelica.Fluid.System system;
   parameter Boolean use_p_crank = false "Use non-ambient crankcase pressure?";
   parameter Modelica.SIunits.AbsolutePressure p_crank(min=10,displayUnit="bar") = 101325
     "Custom crankcase pressure, counteracts chamber pressure forces"
   annotation (Evaluate = true,
                 Dialog(enable = use_p_crank));
-
 protected
 Modelica.SIunits.Volume tmp;
 Modelica.SIunits.AbsolutePressure p_crank_internal;
@@ -42,7 +40,6 @@ equation
       points={{9,141},{52,141},{52,160},{74,160},{74,150},{73,150}},
       color={0,127,0},
       smooth=Smooth.None));
-
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-180,-180},
             {180,180}}), graphics), Icon(coordinateSystem(preserveAspectRatio=true,
           extent={{-180,-180},{180,180}}), graphics={Text(

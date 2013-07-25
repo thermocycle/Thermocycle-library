@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step8
-
  ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
     N=10,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,

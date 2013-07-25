@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.Simulations.Plants;
 model ORC_245faInc
-
 ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     N=10,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
@@ -87,7 +86,6 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     Tstart_inlet_sf=293.15,
     Tstart_outlet_sf=296.36)
     annotation (Placement(transformation(extent={{30,-50},{6,-70}})));
-
  ThermoCycle.Components.Units.ExpandersAndPumps.Pump pump(
     PumpType=ThermoCycle.Functions.Enumerations.PumpTypes.ORCNext,
     PumpInput=ThermoCycle.Functions.Enumerations.PumpInputs.freq,

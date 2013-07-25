@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.TestComponents;
 model Flow1DConst
-
 parameter Integer N = 5;
   Components.FluidFlow.Pipes.FlowConst flowConst(N=N)
     annotation (Placement(transformation(extent={{20,84},{-42,34}})));

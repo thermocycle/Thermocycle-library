@@ -21,7 +21,6 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL  Wall_int
         iconTransformation(extent={{-40,40},{40,60}})));
 // Geometric characteristics
   constant Real pi = Modelica.Constants.pi "pi-greco";
-
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
   parameter Modelica.SIunits.Area Ai "Lateral surface of a single cell";
   parameter Modelica.SIunits.MassFlowRate Mdotnom "Nominal fluid flow rate";
@@ -59,7 +58,6 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                                                                              annotation (Dialog(tab="Numerical options"));
   //Medium.SaturationProperties  sat_in(ddldp=0,ddvdp=0,dhldp=0,dhvdp=0,dTp=0,hl=0,hv=1E5,sigma=0,sl=0,sv=0,dl=0,dv=0,psat=0,Tsat=300);
   Real[14] sat_in= {0,0,0,0,0,0,1E5,0,0,0,0,0,0,300};
-
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
     annotation (Dialog(group="Intialization options", tab="Initialization"));
@@ -97,7 +95,20 @@ equation
     sat = Medium.setSat_p(p);
   else
     //sat = sat_in;
-    sat.ddldp=sat_in[1];sat.ddvdp=sat_in[2];sat.dhldp=sat_in[3];sat.dhvdp=sat_in[4];sat.dTp=sat_in[5];sat.hl=sat_in[6];sat.hv=sat_in[7];sat.sigma=sat_in[8];sat.sl=sat_in[9];sat.sv=sat_in[10];sat.dl=sat_in[11];sat.dv=sat_in[12];sat.psat=sat_in[13];sat.Tsat=sat_in[14];
+    sat.ddldp=sat_in[1];
+                        sat.ddvdp=sat_in[2];
+                                            sat.dhldp=sat_in[3];
+                                                                sat.dhvdp=sat_in[4];
+                                                                                    sat.dTp=sat_in[5];
+                                                                                                      sat.hl=sat_in[6];
+                                                                                                        sat.hv=sat_in[7];
+                                                                                                        sat.sigma=sat_in[8];
+                                                                                                        sat.sl=sat_in[9];
+                                                                                                        sat.sv=sat_in[10];
+                                                                                                        sat.dl=sat_in[11];
+                                                                                                        sat.dv=sat_in[12];
+                                                                                                        sat.psat=sat_in[13];
+                                                                                                        sat.Tsat=sat_in[14];
   end if;
   h_v = Medium.dewEnthalpy(sat);
   h_l = Medium.bubbleEnthalpy(sat);
@@ -139,15 +150,12 @@ if Mdotconst then
    else
       dMdt = -M_dot_ex + M_dot_su;
 end if;
-
   if (Discretization == Discretizations.centr_diff) then
     hnode_su = inStream(InFlow.h_outflow);
     hnode_ex = 2*h - hnode_su;
-
   elseif (Discretization == Discretizations.centr_diff_robust) then
     hnode_su = if M_dot_su <= 0 then h else inStream(InFlow.h_outflow);
     hnode_ex = if M_dot_ex >= 0 then 2*h - hnode_su else h;    //h is taken to nullify the convection term when there is a flow reversal on M_dot_ex
-
   elseif (Discretization == Discretizations.centr_diff_AllowFlowReversal) then
     if M_dot_su >= 0 and M_dot_ex >= 0 then       // Flow is going the right way
       hnode_su = inStream(InFlow.h_outflow);
@@ -162,23 +170,18 @@ end if;
       hnode_ex = h;
       hnode_su = h;
     end if;
-
   elseif (Discretization == Discretizations.upwind_AllowFlowReversal) then
     hnode_ex = if M_dot_ex >= 0 then h else inStream(OutFlow.h_outflow);
     hnode_su = if M_dot_su <= 0 then h else inStream(InFlow.h_outflow);
-
   elseif (Discretization == Discretizations.upwind) then
     hnode_su = inStream(InFlow.h_outflow);
     hnode_ex = h;
-
   else                                           // Upwind scheme with smoothing
     hnode_ex = homotopy(inStream(OutFlow.h_outflow) + ThermoCycle.Functions.transition_factor(-Mdotnom/10,0,M_dot_ex,1) * (h - inStream(OutFlow.h_outflow)),h);
     hnode_su = homotopy(h + ThermoCycle.Functions.transition_factor(-Mdotnom/10,Mdotnom/10,M_dot_su,1) * (inStream(InFlow.h_outflow) - h), inStream(InFlow.h_outflow));
   end if;
-
 Q_tot = Ai*qdot "Total heat flow through the thermal port";
 M_tot = Vi*rho;
-
 //* BOUNDARY CONDITIONS *//
  /* Enthalpies */
   InFlow.h_outflow = hnode_su;
@@ -202,7 +205,6 @@ OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
  Wall_int.T = T_wall;
  /*Heat flow */
   Wall_int.phi = qdot;
-
 initial equation
   if steadystate then
     der(h) = 0;

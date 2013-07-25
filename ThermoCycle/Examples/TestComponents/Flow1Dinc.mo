@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.TestComponents;
 model Flow1Dinc
-
 parameter Integer N = 10;
   Obsolete.Flow1DimInc_130702            HotFluid(
     redeclare package Medium = Media.Therminol66,

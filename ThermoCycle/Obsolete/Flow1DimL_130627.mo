@@ -21,7 +21,6 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL  Wall_int
         iconTransformation(extent={{-40,40},{40,60}})));
 // Geometric characteristics
   constant Real pi = Modelica.Constants.pi "pi-greco";
-
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
   parameter Modelica.SIunits.Area Ai "Lateral surface of a single cell";
   parameter Modelica.SIunits.MassFlowRate Mdotnom "Nominal fluid flow rate";
@@ -141,7 +140,6 @@ else
 end if;
 Q_tot = Ai*qdot "Total heat flow through the thermal port";
 M_tot = Vi*rho;
-
 //* BOUNDARY CONDITIONS *//
  /* Enthalpies */
  inStream(InFlow.h_outflow) = hnode_su;

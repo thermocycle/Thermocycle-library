@@ -1,7 +1,6 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model Cylinder_tester
   "A combination of Cylinder model and a reciprocating machine"
-
   Modelica.Mechanics.Rotational.Components.Inertia inertia(
     phi(fixed=true, start=0),
     J=2,
@@ -25,7 +24,6 @@ model Cylinder_tester
     redeclare model HeatTransfer =
         ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.IdealHeatTransfer)
     annotation (Placement(transformation(extent={{-10,40},{10,20}})));
-
 equation
   connect(inertia.flange_b, recipFlange.crankShaft_b) annotation (Line(
       points={{-40,-30},{-20,-30}},

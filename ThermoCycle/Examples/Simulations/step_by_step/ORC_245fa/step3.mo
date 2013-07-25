@@ -1,13 +1,11 @@
 within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step3
-
  Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(  Mdot_0=0.2588,
     h_0=281455,
     UseT=true,
     p=2357000,
     T_0=353.15)
     annotation (Placement(transformation(extent={{-92,-10},{-72,10}})));
-
 ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
     N=10,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
@@ -40,7 +38,6 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
     h_out=5.04E5,
     pstart=2357000)
     annotation (Placement(transformation(extent={{62,-6},{82,14}})));
-
 equation
   connect(source_Cdot.flange, hx1DConst.inletSf)
                                                annotation (Line(

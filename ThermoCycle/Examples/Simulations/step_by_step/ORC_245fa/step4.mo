@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step4
-
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=0.2588,
     h_0=281455,

@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.TestComponents;
 model Pump
-
 ThermoCycle.Components.Units.ExpandersAndPumps.Pump Pump
     annotation (Placement(transformation(extent={{-26,-16},{4,14}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceP sourceP(p0=142000)

@@ -94,7 +94,6 @@ parameter Modelica.SIunits.Pressure pstart
   import ThermoCycle.Functions.Enumerations.Discretizations;
  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
-
 /*Working fluid*/
   parameter Boolean Mdotconst=false
     "Set to yes to assume constant mass flow rate of primary fluid at each node (easier convergence)"

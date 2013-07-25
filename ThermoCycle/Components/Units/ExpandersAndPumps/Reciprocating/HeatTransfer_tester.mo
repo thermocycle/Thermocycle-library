@@ -1,7 +1,6 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model HeatTransfer_tester
   "A combination of Cylinder model and a reciprocating machine"
-
   Modelica.Mechanics.Rotational.Components.Inertia inertia(
     phi(fixed=true, start=0),
     J=2,
@@ -26,14 +25,12 @@ model HeatTransfer_tester
     redeclare model HeatTransfer =
         ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.Adair1972)
     annotation (Placement(transformation(extent={{-10,40},{10,20}})));
-
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor wall(C=0.5*25, T(start=
           773.15))
     annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
   Modelica.Mechanics.Rotational.Sensors.AngleSensor angleSensor
     annotation (Placement(transformation(extent={{40,-20},{60,0}})));
 equation
-
   connect(inertia.flange_b, recipFlange.crankShaft_b) annotation (Line(
       points={{-40,-30},{-20,-30}},
       color={0,0,0},

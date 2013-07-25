@@ -1,6 +1,5 @@
 within ThermoCycle.Components.FluidFlow.Sources;
 model inputs
-
   HeatFlow.Sources.SourceT1 sourceMdot
     annotation (Placement(transformation(extent={{-102,20},{36,96}})));
   SourceMdot1 sourceTemp

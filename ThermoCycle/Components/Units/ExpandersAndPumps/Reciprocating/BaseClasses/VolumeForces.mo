@@ -2,11 +2,9 @@ within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses;
 model VolumeForces "Converts pressure into forces on both ends of a cylinder"
   import SI = Modelica.SIunits;
   extends Modelica.Mechanics.Translational.Interfaces.PartialCompliant;
-
   parameter SI.Length bore;
   SI.AbsolutePressure p(min=10);
   constant Real pi=Modelica.Constants.pi;
-
   Modelica.Blocks.Interfaces.RealInput pressure annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
@@ -16,7 +14,6 @@ equation
   //s_rel contains the distance between the two flanges...
   p = pressure;
   f = -pi * bore^2/4 * p;
-
   annotation (Icon(coordinateSystem(
         preserveAspectRatio=true,
         extent={{-100,-100},{100,100}},

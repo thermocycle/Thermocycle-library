@@ -1,7 +1,6 @@
 within ThermoCycle.Examples.TestComponents;
 model failure_Cdot
   "check button gives an error, alghouth it calculates fine. If the upper or downer part is removed the error disappears"
-
  ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2  Heat_source1(
     cp=4232,
     Mdot_0=0.15,

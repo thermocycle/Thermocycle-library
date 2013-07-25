@@ -22,7 +22,6 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL  Wall_int
         iconTransformation(extent={{-40,40},{40,60}})));
 // Geometric characteristics
   constant Real pi = Modelica.Constants.pi "pi-greco";
-
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
   parameter Modelica.SIunits.Area Ai "Lateral surface of a single cell";
   parameter Modelica.SIunits.MassFlowRate Mdotnom "Nominal fluid flow rate";
@@ -135,7 +134,6 @@ if Mdotconst then
    else
       dMdt = -M_dot_ex + M_dot_su;
 end if;
-
   if (Discretization == Discretizations.centr_diff) then  //dummy values since this canno by used
     hnode_ex = 0;
     hnode_su = 0;
@@ -158,7 +156,6 @@ end if;
     hnode_ex = homotopy(inStream(OutFlow.h_outflow) + ThermoCycle.Functions.transition_factor(-Mdotnom/10,0,M_dot_ex,1) * (h - inStream(OutFlow.h_outflow)),h);
     hnode_su = homotopy(h + ThermoCycle.Functions.transition_factor(-Mdotnom/10,Mdotnom/10,M_dot_su,1) * (inStream(InFlow.h_outflow) - h), inStream(InFlow.h_outflow));
   end if;
-
 if not limit_hnode then
     InFlow.h_outflow = h;
     OutFlow.h_outflow = h;
@@ -170,10 +167,8 @@ else
     InFlow.h_limit = h + yLimit*rho/drdh;
     OutFlow.h_limit = InFlow.h_limit;
 end if;
-
 Q_tot = Ai*qdot "Total heat flow through the thermal port";
 M_tot = Vi*rho;
-
 /* pressures */
  p = OutFlow.p;
  InFlow.p = p;
@@ -191,7 +186,6 @@ OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
  Wall_int.T = T_wall;
  /*Heat flow */
   Wall_int.phi = qdot;
-
 initial equation
   if steadystate then
     der(h) = 0;

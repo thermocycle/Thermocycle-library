@@ -17,7 +17,6 @@ parameter Integer nCells=2;
   parameter Modelica.SIunits.Area A=(2*9.5*23282.7)^(-0.5)
     "Valve throat area for quadratic pressure drop (dp = 1/A²*M_dot²/(2*rho))"
                                                                                  annotation (Dialog(enable=(not UseNom)));
-
  parameter Modelica.SIunits.Pressure DELTAp_0=500
     "Pressure drop below which a 3rd order interpolation is used for the computation of the flow rate in order to avoid infinite derivative at 0";
 parameter Modelica.SIunits.Pressure p_nom=1e5 "Nominal pressure"
@@ -49,7 +48,6 @@ parameter Modelica.SIunits.Temperature T_nom=423.15 "Nominal temperature"
     parameter Modelica.SIunits.Time t_init=10
     "if constinit is true, time during which the pressure drop is set to the constant value DELTAp_start"
     annotation (Dialog(tab="Initialization", enable=constinit));
-
  ThermoCycle.Components.FluidFlow.Pipes.AirCell[ nCells] simpleAirCell(
     each Mdotnom=Mdotnom/nCells,
     each Unom=Unom,
@@ -106,13 +104,11 @@ equation
       points={{-10,0.1},{-12,0.1},{-12,0},{-1,0}},
       color={0,0,255},
       smooth=Smooth.None));
-
   for j in 1:nCells loop
   connect(multiPort.ports_b[j], simpleAirCell[j].InFlow);
   connect(dP[j].OutFlow, multiPort1.ports_b[j]);
   end for
   annotation (Diagram(graphics));
-
   annotation (Diagram(graphics), Icon(graphics={
         Rectangle(
           extent={{-90,40},{88,26}},

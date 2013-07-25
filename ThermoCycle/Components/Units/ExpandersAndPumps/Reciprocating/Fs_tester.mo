@@ -1,6 +1,5 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model Fs_tester "Test model for Fs connectors"
-
   Modelica.Mechanics.Rotational.Components.Inertia inertia(
     phi(fixed=true, start=0),
     J=2,
@@ -22,7 +21,6 @@ model Fs_tester "Test model for Fs connectors"
     startTime=0)
     annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
 equation
-
   connect(inertia.flange_b, recipFs.crankShaft_b) annotation (Line(
       points={{-40,-30},{-20,-30}},
       color={0,0,0},

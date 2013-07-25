@@ -1,7 +1,6 @@
 within ThermoCycle.Obsolete;
 model ORC_DetailedExpander_130627
   "Non-regenerative ORC with double-PID control system and variable Tev, detailed expander model"
-
 ThermoCycle.Components.Units.Tanks.Tank tank(
     level_start=0.5,
     hstart=2.32e5,

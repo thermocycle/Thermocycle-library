@@ -107,13 +107,11 @@ elseif (ExpType == ExpTypes.HermExp) then
   FF = FF_exp;
   epsilon = epsilon_s;
 end if;
-
    //BOUNDARY CONDITIONS //
    /* Enthalpies */
    h_su = inStream(InFlow.h_outflow);
    h_su = InFlow.h_outflow;
    //InFlow.h_outflow = inStream(OutFlow.h_outflow);
-
    OutFlow.h_outflow = h_ex;
    /*Mass flows */
    M_dot = InFlow.m_flow;

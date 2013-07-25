@@ -4,7 +4,6 @@ model Flow1DimInc
 replaceable package Medium = ThermoCycle.Media.Therminol66 constrainedby
     Modelica.Media.Interfaces.PartialMedium
     "Medium model - Incompressible Fluid" annotation (choicesAllMatching = true);
-
 public
  record SummaryClass
     parameter Integer n;
@@ -16,7 +15,6 @@ public
    Modelica.SIunits.Pressure p;
  end SummaryClass;
  SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, T = Cells.T, Mdot = InFlow.m_flow, p = Cells[1].p);
-
   import ThermoCycle.Functions.Enumerations.HT_sf;
   parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
 /* Thermal and fluid ports */
@@ -58,10 +56,8 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
     annotation (Dialog(group="Intialization options", tab="Initialization"));
-
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
-
  Cell1DimInc
         Cells[N](
     redeclare package Medium = Medium,
@@ -78,22 +74,17 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   Interfaces.HeatTransfer.ThermalPortConverter
                        thermalPortConverter(N=N)
     annotation (Placement(transformation(extent={{-10,6},{10,26}})));
-
 protected
   Modelica.SIunits.SpecificEnthalpy hnode_[N+1];
-
 equation
   // Connect wall and refrigerant cells with eachother
   for i in 1:N-1 loop
     connect(Cells[i].OutFlow, Cells[i+1].InFlow);
   end for;
-
   hnode_[1:N] = Cells.hnode_su;
   hnode_[N+1] = Cells[N].hnode_ex;
-
   Q_tot = A/N*sum(Cells.qdot) "Total heat flow through the thermal port";
   M_tot = V/N*sum(Cells.rho);
-
   connect(InFlow, Cells[1].InFlow) annotation (Line(
       points={{-90,0},{-60,0},{-60,-40},{-26,-40}},
       color={0,0,255},

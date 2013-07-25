@@ -136,7 +136,6 @@ DELTAp_quad = 1/A_ok^2 /(2*rho)*Modelica.Fluid.Utilities.regSquare(Mdot,1e-4);
   inStream(InFlow.h_outflow) = OutFlow.h_outflow;
   //DELTAp = 38453.9*Mdot + 23282.7*Mdot^2;
 initial equation
-
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
             100}}), graphics={Text(extent={{-100,-40},{100,-74}}, textString=
