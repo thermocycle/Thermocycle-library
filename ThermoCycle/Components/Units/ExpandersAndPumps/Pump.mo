@@ -85,7 +85,7 @@ equation
   else
     eta_in = eta_is;
     M_dot = V_dot*rho_su;
-    V_dot = epsilon_v * V_dot_max;
+    V_dot = epsilon_v * V_dot_max *min(X_pp, 1);
   end if;
   /*BOUNDARY CONDITIONS */
   /* Enthalpies */
