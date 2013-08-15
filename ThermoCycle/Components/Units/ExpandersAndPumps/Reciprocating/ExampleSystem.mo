@@ -21,10 +21,10 @@ model ExampleSystem
     use_HeatTransfer=true,
     redeclare model HeatTransfer =
         ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.Adair1972,
-
     use_angle_in=true,
     redeclare package Medium = Modelica.Media.Water.WaterIF97_ph)
     annotation (Placement(transformation(extent={{-30,40},{-10,20}})));
+
   Modelica.Fluid.Sources.Boundary_pT inlet(
     nPorts=1,
     redeclare package Medium = Modelica.Media.Water.WaterIF97_pT,

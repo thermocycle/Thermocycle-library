@@ -15,3 +15,4 @@ StrokeBoreGeometry
 ValveTimer
 ValveTimerTester
 ExampleSystem
+StiffSpeedDependentLoad
