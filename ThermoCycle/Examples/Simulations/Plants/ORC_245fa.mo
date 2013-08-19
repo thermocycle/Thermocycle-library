@@ -1,12 +1,17 @@
 within ThermoCycle.Examples.Simulations.Plants;
 model ORC_245fa
+
 ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
     N=10,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     steadystate_T_sf=false,
     steadystate_h_wf=false,
     steadystate_T_wall=false,
-    Unom_sf=335)
+    Unom_sf=335,
+    redeclare model Medium1HeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-62,46},{-34,70}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
     cp=1978,
@@ -52,8 +57,16 @@ ThermoCycle.Components.Units.HeatExchangers.HxRec1D recuperator(
     steadystate_h_cold=true,
     steadystate_h_hot=true,
     steadystate_T_wall=true,
-    pstart_hot=177800,
-    Mdotconst_cold=false)
+    Mdotconst_cold=false,
+    redeclare model ColdSideHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+
+    redeclare model HotSideSideHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+
+    pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
         origin={-13,-6})));
@@ -62,11 +75,11 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     A=(2*9.5*23282.7)^(-0.5),
     Mdot_nom=0.2588,
     use_rho_nom=true,
+    UseHomotopy=false,
     p_nom=190000,
     T_nom=351.15,
     DELTAp_lin_nom=3000,
-    DELTAp_quad_nom=5150,
-    UseHomotopy=false)
+    DELTAp_quad_nom=5150)
     annotation (Placement(transformation(extent={{32,0},{12,20}})));
 ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
     Unom_l=500,
@@ -80,12 +93,16 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
     steadystate_T_sf=false,
     steadystate_h_wf=true,
     Unom_sf=335,
+    max_der_wf=true,
+    redeclare model Medium1HeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
     Tstart_inlet_sf=293.15,
     Tstart_outlet_sf=296.36,
-    max_der_wf=true)
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{30,-50},{6,-70}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 heat_sink(
     cp=4187,
@@ -151,7 +168,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(f_pp.y, pump.flow_in) annotation (Line(
-      points={{-77.4,-6},{-67.04,-6},{-67.04,-32.88}},
+      points={{-77.4,-6},{-65.84,-6},{-65.84,-32.4}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(tank.InFlow, condenser.outletWf) annotation (Line(

@@ -15,8 +15,7 @@ public
    Modelica.SIunits.Pressure p;
  end SummaryClass;
  SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, T = Cells.T, Mdot = InFlow.m_flow, p = Cells[1].p);
-  import ThermoCycle.Functions.Enumerations.HT_sf;
-  parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
+
 /* Thermal and fluid ports */
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
@@ -38,7 +37,9 @@ public
     "Nominal fluid flow rate";
    parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "if HTtype = Const: Heat transfer coefficient";
- /* FLUID INITIAL VALUES */
+
+ /********************************* FLUID INITIAL VALUES ******************************/
+
 parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                      annotation (Dialog(tab="Initialization"));
   parameter Medium.Temperature Tstart_inlet "Inlet temperature start value"
@@ -49,18 +50,30 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
         Medium.specificEnthalpy_pTX(pstart,Tstart_inlet,fill(0,0)),Medium.specificEnthalpy_pTX(pstart,Tstart_outlet,fill(0,0)),
         N) "Start value of enthalpy vector (initialized by default)"
     annotation (Dialog(tab="Initialization"));
-/* NUMERICAL OPTIONS  */
+/***************************************   NUMERICAL OPTIONS  ***************************************************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
     annotation (Dialog(group="Intialization options", tab="Initialization"));
+
+  /******************************* HEAT TRANSFER MODEL **************************************/
+
+replaceable model Flow1DimIncHeatTransferModel =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+    "Fluid heat transfer model" annotation (choicesAllMatching = true);
+
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
- Cell1DimInc
+
+  /********************************** CELLS *****************************************/
+ ThermoCycle.Components.FluidFlow.Pipes.Cell1DimInc
         Cells[N](
     redeclare package Medium = Medium,
+    redeclare each final model HeatTransfer = Flow1DimIncHeatTransferModel,
     each Vi=V/N,
     each Ai=A/N,
     each Mdotnom=Mdotnom,
@@ -73,9 +86,11 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
             {28,-18}})));
   Interfaces.HeatTransfer.ThermalPortConverter
                        thermalPortConverter(N=N)
-    annotation (Placement(transformation(extent={{-10,6},{10,26}})));
+    annotation (Placement(transformation(extent={{-8,-4},{10,22}})));
 protected
   Modelica.SIunits.SpecificEnthalpy hnode_[N+1];
+
+  /*************************************** EQUATION *************************************/
 equation
   // Connect wall and refrigerant cells with eachother
   for i in 1:N-1 loop
@@ -89,20 +104,20 @@ equation
       points={{-90,0},{-60,0},{-60,-40},{-26,-40}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(Cells[N].OutFlow, OutFlow) annotation (Line(
-      points={{28,-39.78},{57,-39.78},{57,0},{90,0}},
-      color={0,0,255},
-      smooth=Smooth.None));
   connect(thermalPortConverter.single, Cells.Wall_int) annotation (Line(
-      points={{0,11.9},{0,-9.05},{1,-9.05},{1,-29}},
+      points={{1,3.67},{2,-16},{1,-29}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(thermalPortConverter.multi, Wall_int) annotation (Line(
-      points={{0,19.5},{0,48},{2,50}},
+      points={{1,13.55},{1,48},{2,50}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,-120},
-            {120,120}}),
+  connect(Cells[N].OutFlow, OutFlow) annotation (Line(
+      points={{28,-39.78},{50,-39.78},{50,0},{90,0}},
+      color={0,0,255},
+      smooth=Smooth.None));
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-120,
+            -120},{120,120}}),
                       graphics), Icon(coordinateSystem(preserveAspectRatio=true,
                   extent={{-120,-120},{120,120}}),
                                       graphics={Rectangle(

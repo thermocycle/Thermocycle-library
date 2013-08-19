@@ -2,7 +2,9 @@ within ThermoCycle.Components.Units.Solar;
 model SolarCollectorIncSchott
 replaceable package Medium1 = Media.Therminol66 constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
-// PARAMETERS //
+
+/************************************   PARAMETERS ***********************************************/
+
 constant Real  pi = Modelica.Constants.pi;
 //FOCUS
 parameter Boolean PTR = true "Set true to use the 2008 PTR collector";
@@ -33,11 +35,6 @@ parameter Modelica.SIunits.Length Dext_t =  0.07 "External diameter tube";
                               //if PTR then 0.07 elseif UVAC then 0.056 else 0.056
 parameter Modelica.SIunits.Length th_t =  0.0025 "tube thickness";
                       //if PTR then 0.0025 elseif UVAC then 0.003 else 0.003
-// Parameters for convective heat transfer in the fluid //
-  import ThermoCycle.Functions.Enumerations.HT_sf;
-parameter HT_sf HTtype=HT_sf.Const
-    "Working fluid: Choose heat transfer coeff. type. Set LiqVap with Unom_l=Unom_tp=Unom_v to have a Const HT"
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "Nominal heat transfer coefficient" annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.MassFlowRate Mdotnom "Total nominal Mass flow";
@@ -52,11 +49,25 @@ parameter Modelica.SIunits.Pressure pstart
  parameter Boolean steadystate_T_fl=false
     "if true, sets the derivative of the fluid Temperature in each cell to zero during Initialization"
                                                                                                       annotation (Dialog(group="Intialization options", tab="Initialization"));
-//NUMERICAL OPTION
+
+/*******************************************   NUMERICAL OPTION   **************************************/
+
   import ThermoCycle.Functions.Enumerations.Discretizations;
  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
-  Obsolete.Flow1DimInc_130702            SolarTube(redeclare package Medium = Medium1,
+
+/*******************************************   HEAT TRANSFER     ************************************/
+
+/*Secondary fluid*/
+replaceable model FluidHeatTransferModel =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+   constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+
+ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc           SolarTube(redeclare
+      package Medium =                                                                            Medium1,
+redeclare final model Flow1DimIncHeatTransferModel = FluidHeatTransferModel,
     N=N,
     A=A_lateral,
     V=V_tube_int,
@@ -66,7 +77,6 @@ parameter Modelica.SIunits.Pressure pstart
     Tstart_outlet=Tstart_outlet,
     Mdotnom=Mdotnom,
     steadystate=steadystate_T_fl,
-    HTtype=HTtype,
     Discretization=Discretization)
     annotation (Placement(transformation(extent={{-27,-21},{27,21}},
         rotation=90,
@@ -104,17 +114,18 @@ parameter Modelica.SIunits.Pressure pstart
   Interfaces.Fluid.FlangeB OutFlow( redeclare package Medium = Medium1)
     annotation (Placement(transformation(extent={{-10,80},{10,100}}),
         iconTransformation(extent={{-10,92},{10,112}})));
+
 equation
   connect(OutFlow, SolarTube.OutFlow) annotation (Line(
-      points={{0,90},{46.79,90},{46.79,48}},
+      points={{0,90},{46.825,90},{46.825,43.5}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(InFlow, SolarTube.InFlow) annotation (Line(
-      points={{0,-90},{47,-90},{47,-6}},
+      points={{0,-90},{47,-90},{47,-1.5}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(absorberSchott.wall_int, SolarTube.Wall_int) annotation (Line(
-      points={{18.5,19},{23.5,19},{23.5,21},{36.5,21}},
+      points={{18.5,19},{23.5,19},{23.5,21},{38.25,21}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(Theta, absorberSchott.Theta) annotation (Line(

@@ -1,11 +1,12 @@
 within ThermoCycle.Components.Units.HeatExchangers;
 model CrossHX
-parameter Integer nCells = 5 "Discretization number of cells";
+parameter Integer N(min=1) = 5 "Number of cells";
  replaceable package Medium1 =ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium "Working fluid" annotation (choicesAllMatching=true);
  replaceable package Medium2 =Modelica.Media.Air.SimpleAir constrainedby
     Modelica.Media.Interfaces.PartialMedium "Secondary fluid fluid" annotation (choicesAllMatching = true);
-  /*PARAMETER */
+
+  /*******************************************  PARAMETER *****************************************************************/
   /*Geometry*/
   parameter Modelica.SIunits.Volume V_wf =  0.0397
     "Volume of working fluid side";
@@ -21,7 +22,21 @@ parameter Integer nCells = 5 "Discretization number of cells";
   parameter Modelica.SIunits.Mass M_wall_tot= 69 "Mass of the Wall ";
   parameter Modelica.SIunits.SpecificHeatCapacity c_wall= 500
     "Specific heat capacity of the metal ";
-/*HEAT TRANSFER */
+
+/******************************** HEAT TRANSFER **************************************************/
+/*Secondary fluid*/
+replaceable model Medium2HeatTransferModel =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+   constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+/*Working fluid*/
+replaceable model Medium1HeatTransferModel =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+   constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l= 300
     "if HTtype = LiqVap : Heat transfer coefficient, liquid zone " annotation (Dialog(group="Heat transfer", tab="General"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_tp= 700
@@ -30,7 +45,9 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l= 300
     "if HTtype = LiqVap : heat transfer coefficient, vapor zone" annotation (Dialog(group="Heat transfer", tab="General"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_sf= 100
     "Constant heat transfer coefficient" annotation (Dialog(group="Heat transfer", tab="General"));
+
 /*PRESSURE DROP SECONDARY FLUID */
+
    parameter Boolean UseNom_sf=false
     "Use Nominal conditions to compute pressure drop characteristics" annotation (Dialog(group="Pdrop_sf", tab="General"));
  parameter Modelica.SIunits.Length h_sf=0
@@ -61,7 +78,9 @@ parameter Modelica.SIunits.Temperature T_nom_sf=283.15 "Nominal temperature"
    parameter Boolean   use_rho_nom_sf=false
     "Use the nominal density for the computation of the pressure drop (i.e it depends only the flow rate)"
                            annotation (Dialog(group="Pdrop_sf",tab="Nominal Conditions"));
-/*INITIALIZATION */
+
+/************************************************* INITIALIZATION ********************************/
+
  /* WorkingFluid Initial values */
 parameter Modelica.SIunits.Pressure pstart_wf = 23.57
     "Fluid pressure start value"     annotation (Dialog(tab="Initialization"));
@@ -71,10 +90,8 @@ parameter Modelica.SIunits.Pressure pstart_wf = 23.57
   parameter Medium1.SpecificEnthalpy hstart_wf_in=Medium1.specificEnthalpy_pT(pstart_wf,Tstart_wf_in)
     "Start value of inlet enthalpy"
     annotation (Dialog(tab="Initialization"));
-  //parameter Medium1.SpecificEnthalpy hstart_wf_out = Medium2.specificEnthalpy_pT(pstart_wf,Tstart_wf_out)
-  //  "Start value of inlet enthalpy"                                                                                                     annotation (Dialog(tab="Initialization"));
-//parameter Modelica.SIunits.SpecificEnthalpy[nCells] hSTART = linspace(hstart_wf_in,hstart_wf_out,nCells);
-/*Metal Wall*/
+
+  /*Metal Wall*/
   parameter Modelica.SIunits.Temperature T_start_wall = (Tstart_wf_in + T_nom_sf)/2
     "Start value of temperature (initialized by default)"
     annotation (Dialog(tab="Initialization"));
@@ -94,7 +111,9 @@ parameter Boolean steadystate_T_wall=true
     parameter Modelica.SIunits.Time t_init_sf=10
     "if constinit is true, time during which the pressure drop is set to the constant value DELTAp_start"
     annotation (Dialog(tab="Initialization", enable=constinit));
-/* NUMERICAL OPTIONS*/
+
+/*************************************** NUMERICAL OPTIONS    *****************************************************************/
+
 /* Working Fluid */
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization_wf=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
@@ -113,9 +132,11 @@ parameter Boolean steadystate_T_wall=true
   parameter Modelica.SIunits.Time TT_wf=1
     "Integration time of the first-order filter"
     annotation (Dialog(enable=max_der_wf, tab="Numerical options"));
-  ThermoCycle.Components.FluidFlow.Pipes.MultiFlow1D_DP multiFlow1D_DP(
+  ThermoCycle.Components.FluidFlow.Pipes.MultiFlow1D_DP    multiFlow1D_DP(
     redeclare package Medium = Medium2,
-    nCells=nCells,
+    redeclare final model MultiFlow1DimHeatTransferModel =
+        Medium2HeatTransferModel,
+    N=N,
     V_f=V_sf,
     Mdotnom=Mdotnom_sf,
     Unom=Unom_sf,
@@ -136,19 +157,21 @@ parameter Boolean steadystate_T_wall=true
     t_init=t_init_sf,
     A_f=A_sf,
     A=Athroat_sf)
-    annotation (Placement(transformation(extent={{-20,-80},{22,-26}})));
-ThermoCycle.Components.HeatFlow.Walls.MetalWallL metalWallCell[nCells](
-    each M_wall=M_wall_tot/nCells,
+    annotation (Placement(transformation(extent={{-20,-66},{20,-32}})));
+ThermoCycle.Components.HeatFlow.Walls.MetalWallL metalWallCell[N](
+    each M_wall=M_wall_tot/N,
     each c_wall=c_wall,
     each Tstart_wall=T_start_wall,
     each steadystate_T_wall=steadystate_T_wall,
-    each Aext=A_sf/nCells,
-    each Aint=A_wf/nCells)
+    each Aext=A_sf/N,
+    each Aint=A_wf/N)
     annotation (Placement(transformation(extent={{-34,-18},{34,30}})));
-    ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim        flow1DimCell[nCells](
+    ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim           flow1DimCell[N](
     redeclare package Medium = Medium1,
-    each Vi=V_wf/nCells,
-    each Ai=A_wf/nCells,
+    redeclare final model HeatTransfer =
+        Medium1HeatTransferModel,
+    each Vi=V_wf/N,
+    each Ai=A_wf/N,
     each Mdotnom=Mdotnom_wf,
     each Unom_l=Unom_l,
     each Unom_tp=Unom_tp,
@@ -172,29 +195,29 @@ ThermoCycle.Interfaces.Fluid.FlangeB Outlet_fl2(redeclare package Medium=Medium2
     annotation (Placement(transformation(extent={{-12,-106},{8,-86}})));
 equation
   // Connect wall and refrigerant cells with eachother
-  for i in 1:nCells-1 loop
+  for i in 1:N-1 loop
     connect(flow1DimCell[i].OutFlow, flow1DimCell[i+1].InFlow);
   end for;
-// flow1DimCell.hstart = linspace(hstart_wf_in,hstart_wf_out,nCells);
+// flow1DimCell.hstart = linspace(hstart_wf_in,hstart_wf_out,N);
   connect(Outlet_fl2, multiFlow1D_DP.flangeB) annotation (Line(
-      points={{-2,-96},{-2,-72},{52,-72},{52,-50},{34,-50},{34,-53},{22,-53}},
+      points={{-2,-96},{-2,-78},{86,-78},{86,-48},{72,-48},{72,-49},{20,-49}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(Inlet_fl1, flow1DimCell[1].InFlow) annotation (Line(
       points={{-102,0},{-42,0},{-42,52},{-28,52}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(flow1DimCell[nCells].OutFlow, Outlet_fl1) annotation (Line(
+  connect(flow1DimCell[N].OutFlow, Outlet_fl1) annotation (Line(
       points={{26,51.78},{62,51.78},{62,0},{98,0}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(metalWallCell.Wall_ext, multiFlow1D_DP.thermalPortCell) annotation (
       Line(
-      points={{-0.68,-1.2},{-0.68,-33.6},{1,-33.6},{1,-39.5}},
+      points={{-0.68,-1.2},{-0.68,-33.6},{0,-33.6},{0,-40.5}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(Inlet_fl2, multiFlow1D_DP.flangeA) annotation (Line(
-      points={{0,96},{-2,96},{-2,72},{-66,72},{-66,-53},{-20,-53}},
+      points={{0,96},{-2,96},{-2,72},{-66,72},{-66,-49},{-20,-49}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(flow1DimCell.Wall_int, metalWallCell.Wall_int) annotation (Line(

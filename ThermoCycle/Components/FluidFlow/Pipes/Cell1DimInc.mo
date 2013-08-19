@@ -4,9 +4,7 @@ model Cell1DimInc
 replaceable package Medium = Media.Therminol66 constrainedby
     Modelica.Media.Interfaces.PartialMedium
     "Medium model - Incompressible Fluid" annotation (choicesAllMatching = true);
-//* Select heat transfer coefficient */
-  import ThermoCycle.Functions.Enumerations.HT_sf;
-  parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
+
 /* Thermal and fluid ports */
  ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
         Medium)
@@ -26,6 +24,7 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL  Wall_int
   parameter Modelica.SIunits.MassFlowRate Mdotnom "Nominal fluid flow rate";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "Nominal Heat transfer coefficient ";
+
  /* FLUID INITIAL VALUES */
 parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                      annotation (Dialog(tab="Initialization"));
@@ -38,24 +37,48 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
     annotation (Dialog(group="Intialization options", tab="Initialization"));
-/* FLUID VARIABLES */
+
+/********************************* HEAT TRANSFER MODEL ********************************/
+/* Heat transfer Model */
+replaceable model HeatTransfer =
+ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+    "Convective heat transfer"                                                         annotation (choicesAllMatching = true);
+HeatTransfer heatTransfer( redeclare final package Medium = Medium,
+final n=1,
+final Mdotnom = Mdotnom,
+final Unom_l = Unom,
+final Unom_tp = Unom,
+final Unom_v = Unom,
+final M_dot = M_dot,
+final x = 0,
+final FluidState={fluidState})
+                          annotation (Placement(transformation(extent={{-12,-14},
+            {8,6}})));
+
+/*************************   FLUID VARIABLES    ******************************/
+
   Medium.ThermodynamicState  fluidState;
   Medium.AbsolutePressure p(start=pstart);
   Modelica.SIunits.MassFlowRate M_dot(start=Mdotnom);
   Medium.SpecificEnthalpy h(start=hstart, stateSelect = StateSelect.always)
     "Fluid specific enthalpy at the cells";
   Medium.Temperature T "Fluid temperature";
-  Modelica.SIunits.Temperature T_wall "Internal wall temperature";
+  //Modelica.SIunits.Temperature T_wall "Internal wall temperature";
   Medium.Density rho "Fluid cell density";
   Modelica.SIunits.SpecificEnthalpy hnode_su(start=hstart)
     "Enthalpy state variable at inlet node";
   Modelica.SIunits.SpecificEnthalpy hnode_ex(start=hstart)
     "Enthalpy state variable at outlet node";
   Modelica.SIunits.HeatFlux qdot "heat flux at each cell";
-  Modelica.SIunits.CoefficientOfHeatTransfer U
-    "Heat transfer coefficient between wall and working fluid";
+//   Modelica.SIunits.CoefficientOfHeatTransfer U
+//     "Heat transfer coefficient between wall and working fluid";
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
+
+/***********************************  EQUATIONS ************************************/
+
 equation
   /* Fluid Properties */
   fluidState = Medium.setState_ph(p, h);
@@ -63,12 +86,11 @@ equation
   rho = Medium.density(fluidState);
   /* ENERGY BALANCE */
   Vi*rho*der(h) + M_dot*(hnode_ex - hnode_su) = Ai*qdot "Energy balance";
-  qdot = U*(T_wall - T);
-  if (HTtype == HT_sf.Const) then
-    U = Unom;
-  elseif (HTtype == HT_sf.MassFlowDependent) then
-    U = ThermoCycle.Functions.U_sf(Unom=Unom, Mdot=M_dot/Mdotnom);
-  end if;
+
+  Q_tot = Ai*qdot "Total heat flow through the thermal port";
+  M_tot = Vi*rho;
+
+qdot = heatTransfer.q_dot[1];
   if (Discretization == Discretizations.centr_diff) then
     hnode_su = inStream(InFlow.h_outflow);
     hnode_ex = 2*h - hnode_su;
@@ -93,8 +115,7 @@ equation
     hnode_ex = if M_dot >= 0 then h else inStream(OutFlow.h_outflow);
     hnode_su = if M_dot <= 0 then h else inStream(InFlow.h_outflow);
   end if;
-  Q_tot = Ai*qdot "Total heat flow through the thermal port";
-  M_tot = Vi*rho;
+
 //* BOUNDARY CONDITIONS *//
  /* Enthalpies */
   hnode_su = InFlow.h_outflow;
@@ -108,15 +129,21 @@ equation
   InFlow.Xi_outflow = inStream(OutFlow.Xi_outflow);
   OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
   /* Thermal port boundary condition */
-/*Temperatures */
-  Wall_int.T = T_wall;
- /*Heat flow */
-  Wall_int.phi = qdot;
+// /*Temperatures */
+//   Wall_int.T = T_wall;
+//  /*Heat flow */
+//   Wall_int.phi = qdot;
 initial equation
   if steadystate then
     der(h) = 0;
       end if;
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+
+equation
+  connect(heatTransfer.thermalPortL[1], Wall_int) annotation (Line(
+      points={{-2.2,2.6},{-2.2,25.3},{2,25.3},{2,50}},
+      color={255,0,0},
+      smooth=Smooth.None));
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
             -100},{100,100}}),
                       graphics), Icon(graphics={Rectangle(
           extent={{-92,40},{88,-40}},

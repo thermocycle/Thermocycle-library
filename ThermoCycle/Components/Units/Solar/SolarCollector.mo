@@ -2,7 +2,9 @@ within ThermoCycle.Components.Units.Solar;
 model SolarCollector
 replaceable package Medium1 = Media.R245fa constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
-// PARAMETERS //
+
+/*********************** PARAMETERS ****************************/
+
 constant Real  pi = Modelica.Constants.pi;
 //FOCUS
 //parameter Boolean PTR "Choose type of collector";
@@ -63,11 +65,7 @@ parameter Modelica.SIunits.Temperature T_t_start_out
     "Temperature at the outlet of the tube"
                                            annotation (Dialog(tab="Initialization"));
 // Flow-1D
-// Convective heat transfer in the fluid //
-  import ThermoCycle.Functions.Enumerations.HTtypes;
-parameter HTtypes HTtype=HTtypes.LiqVap
-    "Working fluid: Choose heat transfer coeff. type. Set LiqVap with Unom_l=Unom_tp=Unom_v to have a Const HT"
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"));
+
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l=300
     "if HTtype = LiqVap: heat transfer coefficient, liquid zone" annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_tp=700
@@ -90,7 +88,9 @@ parameter Modelica.SIunits.Pressure pstart
  parameter Boolean steadystate_T_fl=false
     "if true, sets the derivative of the fluid Temperature in each cell to zero during Initialization"
                                                                                                       annotation (Dialog(group="Intialization options", tab="Initialization"));
-//NUMERICAL OPTION
+
+/***************************    NUMERICAL OPTION    *****************************************************/
+
   import ThermoCycle.Functions.Enumerations.Discretizations;
  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
@@ -107,10 +107,21 @@ parameter Modelica.SIunits.Pressure pstart
   parameter Real max_drhodt=100
     "Maximum value for the density derivative of primary fluid"
     annotation (Dialog(enable=max_der_wf, tab="Numerical options"));
-  parameter Modelica.SIunits.Time TT=1
+   parameter Modelica.SIunits.Time TT=1
     "Integration time of the first-order filter"
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
-  Components.HeatFlow.Walls.SolAbs solAbs(
+
+   /*******************************   HEAT TRANSFER MODEL    **************************************/
+
+replaceable model FluidHeatTransferModel =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+    "Fluid heat transfer model" annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+
+ /******************************* COMPONENTS ***********************************/
+
+    Components.HeatFlow.Walls.SolAbs solAbs(
     eps1=eps1,
     eps2=eps2,
     eps3=eps3,
@@ -141,6 +152,7 @@ parameter Modelica.SIunits.Pressure pstart
     th_t=th_t)
     annotation (Placement(transformation(extent={{-22,-24},{12,30}})));
   Components.FluidFlow.Pipes.Flow1Dim flow1Dim(redeclare package Medium = Medium1,
+  redeclare final model Flow1DimHeatTransferModel = FluidHeatTransferModel,
     N=N,
     A=A_lateral,
     V=V_tube_int,
@@ -157,7 +169,6 @@ parameter Modelica.SIunits.Pressure pstart
     max_drhodt=max_drhodt,
     TT=TT,
     steadystate=steadystate_T_fl,
-    HTtype=HTtype,
     Discretization=Discretization)
                                   annotation (Placement(transformation(
         extent={{-27.5,-31.5},{27.5,31.5}},
