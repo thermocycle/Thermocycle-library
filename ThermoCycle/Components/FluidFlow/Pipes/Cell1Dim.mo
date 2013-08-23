@@ -191,8 +191,8 @@ end if;
       hnode_su = h;
     end if;
   elseif (Discretization == Discretizations.upwind_AllowFlowReversal) then
-    hnode_ex = if M_dot_ex >= 0 then h else inStream(OutFlow.h_outflow);
-    hnode_su = if M_dot_su <= 0 then h else inStream(InFlow.h_outflow);
+    hnode_ex = if noEvent(M_dot_ex >= 0) then h else inStream(OutFlow.h_outflow);
+    hnode_su = if noEvent(M_dot_su <= 0) then h else inStream(InFlow.h_outflow);
   elseif (Discretization == Discretizations.upwind) then
     hnode_su = inStream(InFlow.h_outflow);
     hnode_ex = h;
