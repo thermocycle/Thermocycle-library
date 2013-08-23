@@ -2,9 +2,7 @@ within ThermoCycle.Components.Units.Solar;
 model SolarCollectorInc
 replaceable package Medium1 = Media.Therminol66 constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
-
-/************************************* PARAMETERS ********************************************************/
-
+// PARAMETERS //
 constant Real  pi = Modelica.Constants.pi;
 //FOCUS
 //parameter Boolean PTR "Choose type of collector";
@@ -62,7 +60,10 @@ parameter Modelica.SIunits.Temperature T_t_start_out
     "Temperature at the outlet of the tube" annotation (Dialog(tab="Initialization"));
 // Flow-1D
 // Parameters for convective heat transfer in the fluid //
-
+  import ThermoCycle.Functions.Enumerations.HT_sf;
+parameter HT_sf HTtype=HT_sf.Const
+    "Working fluid: Choose heat transfer coeff. type. Set LiqVap with Unom_l=Unom_tp=Unom_v to have a Const HT"
+                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "Nominal heat transfer coefficient" annotation (Dialog(group="Heat transfer", tab="General"));
 //parameter Real kw "Exponent of the mass flow rate in the h.t.c. correlation";
@@ -78,23 +79,10 @@ parameter Modelica.SIunits.Pressure pstart
  parameter Boolean steadystate_T_fl=false
     "if true, sets the derivative of the fluid Temperature in each cell to zero during Initialization"
                                                                                                       annotation (Dialog(group="Intialization options", tab="Initialization"));
-
-/********************************************    NUMERICAL OPTION   ********************************************************/
-
+//NUMERICAL OPTION
   import ThermoCycle.Functions.Enumerations.Discretizations;
  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
-
-   /*************************** HEAT TRANSFER ************************************/
-
-replaceable model FluidHeatTransferModel =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
-   constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
-
-/******************************************************************* COMPONENTS **************************************************/
-
   Components.HeatFlow.Walls.SolAbs solAbs(
     eps1=eps1,
     eps2=eps2,
@@ -125,10 +113,7 @@ replaceable model FluidHeatTransferModel =
     Dext_t=Dext_t,
     th_t=th_t)
     annotation (Placement(transformation(extent={{-30,-10},{14,36}})));
-  ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc     SolarTube(redeclare
-      package Medium =                                                                        Medium1,
-    redeclare final model Flow1DimIncHeatTransferModel =
-        FluidHeatTransferModel,
+  Obsolete.Flow1DimInc_130702            SolarTube(redeclare package Medium = Medium1,
     N=N,
     A=A_lateral,
     V=V_tube_int,
@@ -160,18 +145,17 @@ replaceable model FluidHeatTransferModel =
   Interfaces.Fluid.FlangeB OutFlow( redeclare package Medium = Medium1)
     annotation (Placement(transformation(extent={{-10,88},{10,108}}),
         iconTransformation(extent={{-10,92},{10,112}})));
-
 equation
   connect(solAbs.wall_int, SolarTube.Wall_int) annotation (Line(
-      points={{11.8,13},{21.7,13},{21.7,14},{38,14}},
+      points={{11.8,13},{21.7,13},{21.7,14},{36,14}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(SolarTube.OutFlow, OutFlow) annotation (Line(
-      points={{47.8,40.6667},{47.8,98},{0,98}},
+      points={{47.76,46},{47.76,98},{0,98}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(InFlow, SolarTube.InFlow) annotation (Line(
-      points={{10,-90},{48,-90},{48,-12.6667}},
+      points={{10,-90},{48,-90},{48,-18}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(DNI, solAbs.DNI) annotation (Line(

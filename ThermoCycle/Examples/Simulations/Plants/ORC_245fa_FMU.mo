@@ -6,11 +6,7 @@ model ORC_245fa_FMU
     steadystate_T_sf=false,
     steadystate_h_wf=false,
     steadystate_T_wall=false,
-    Unom_sf=335,
-    redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
-
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    Unom_sf=335)
     annotation (Placement(transformation(extent={{-92,46},{-64,70}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
     cp=1978,
@@ -50,14 +46,7 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
     Mdotconst_cold=true,
     Mdotconst_hot=true,
     steadystate_T_wall=true,
-    redeclare model ColdSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-
-    redeclare model HotSideSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-
-    pstart_hot=177800,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
         origin={-13,-6})));
@@ -85,15 +74,11 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
     steadystate_T_sf=false,
     steadystate_h_wf=true,
     Unom_sf=335,
-    redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
-
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
     Tstart_inlet_sf=293.15,
-    Tstart_outlet_sf=296.36,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    Tstart_outlet_sf=296.36)
     annotation (Placement(transformation(extent={{62,-50},{38,-70}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 heat_sink(
     cp=4187,
@@ -281,7 +266,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(Up, pump.flow_in) annotation (Line(
-      points={{-111,-7},{-111,-19.5},{-87.84,-19.5},{-87.84,-32.4}},
+      points={{-111,-7},{-111,-19.5},{-89.04,-19.5},{-89.04,-32.88}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Uexp, generatorNext.f) annotation (Line(

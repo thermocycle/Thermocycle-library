@@ -5,10 +5,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     Unom_sf=335,
     redeclare package Medium2 = ThermoCycle.Media.Therminol66,
-    redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
-
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff)
     annotation (Placement(transformation(extent={{-62,44},{-34,68}})));
  ThermoCycle.Components.Units.PdropAndValves.DP dp_hp(
     A=(2*137*77609.9)^(-0.5),
@@ -52,14 +49,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     steadystate_T_wall=true,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     redeclare package Medium2 = ThermoCycle.Media.R245faCool,
-    redeclare model ColdSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-
-    redeclare model HotSideSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-
-    pstart_hot=177800,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
         origin={-13,-6})));
@@ -88,16 +78,13 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     Unom_sf=335,
     redeclare package Medium2 =
         Modelica.Media.Water.ConstantPropertyLiquidWater,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff,
     max_der_wf=true,
-    redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
-
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
     Tstart_inlet_sf=293.15,
-    Tstart_outlet_sf=296.36,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    Tstart_outlet_sf=296.36)
     annotation (Placement(transformation(extent={{30,-50},{6,-70}})));
  ThermoCycle.Components.Units.ExpandersAndPumps.Pump pump(
     PumpType=ThermoCycle.Functions.Enumerations.PumpTypes.ORCNext,
@@ -162,7 +149,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(f_pp.y, pump.flow_in) annotation (Line(
-      points={{-77.4,-6},{-65.84,-6},{-65.84,-32.4}},
+      points={{-77.4,-6},{-67.04,-6},{-67.04,-32.88}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(recuperator.inlet_fl1, pump.OutFlow) annotation (Line(

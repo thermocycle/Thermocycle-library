@@ -1,19 +1,12 @@
 within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step9
-
-ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
+ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
     N=10,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     steadystate_T_sf=false,
-    Unom_sf=335,
-    steadystate_h_wf=true,
-    steadystate_T_wall=true,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
-    redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
-
-    redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
+    steadystate_h_wf=false,
+    steadystate_T_wall=false,
+    Unom_sf=335)
     annotation (Placement(transformation(extent={{-62,46},{-34,70}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
     cp=1978,
@@ -54,18 +47,11 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
         origin={65,67})));
 ThermoCycle.Components.Units.ExpandersAndPumps.Generator generatorNext(Np=1)
     annotation (Placement(transformation(extent={{70,20},{98,48}})));
-ThermoCycle.Components.Units.HeatExchangers.HxRec1D    recuperator(
+ThermoCycle.Components.Units.HeatExchangers.HxRec1D recuperator(
     N=10,
     steadystate_h_cold=true,
     steadystate_h_hot=true,
     steadystate_T_wall=true,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
-    redeclare model ColdSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-
-    redeclare model HotSideSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-
     pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
@@ -75,38 +61,31 @@ ThermoCycle.Components.Units.PdropAndValves.DP  dp_lp(
     A=(2*9.5*23282.7)^(-0.5),
     Mdot_nom=0.2588,
     use_rho_nom=true,
-    UseHomotopy=false,
     p_nom=190000,
     T_nom=351.15,
     DELTAp_lin_nom=3000,
-    DELTAp_quad_nom=5150)
+    DELTAp_quad_nom=5150,
+    UseHomotopy=false)
     annotation (Placement(transformation(extent={{32,0},{12,20}})));
-ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    condenser(
+ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
     Unom_l=500,
     Unom_tp=1500,
     Unom_v=750,
     Mdotnom_sf=4,
+    steadystate_T_wall=false,
     N=10,
     max_der_wf=true,
     filter_dMdt_wf=false,
     max_drhodt_wf=50,
+    steadystate_T_sf=false,
     steadystate_h_wf=true,
     Unom_sf=335,
-    steadystate_T_sf=true,
-    steadystate_T_wall=true,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
-    redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
-
-    redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
-
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
     Tstart_inlet_sf=293.15,
     Tstart_outlet_sf=296.36)
-    annotation (Placement(transformation(extent={{32,-50},{8,-70}})));
+    annotation (Placement(transformation(extent={{30,-50},{6,-70}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2  heat_sink(
     cp=4187,
     rho=1000,
@@ -162,7 +141,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(heat_sink.flange,condenser. inletSf) annotation (Line(
-      points={{21.26,-75.07},{-10,-75.07},{-10,-65},{8,-65}},
+      points={{21.26,-75.07},{-10,-75.07},{-10,-65},{6,-65}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(tank.OutFlow, pump.InFlow) annotation (Line(
@@ -170,11 +149,11 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(f_pp.y, pump.flow_in) annotation (Line(
-      points={{-77.4,-6},{-65.84,-6},{-65.84,-32.4}},
+      points={{-77.4,-6},{-67.04,-6},{-67.04,-32.88}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(tank.InFlow, condenser.outletWf) annotation (Line(
-      points={{-33,-61.44},{-33,-55},{8,-55}},
+      points={{-33,-61.44},{-33,-55},{6,-55}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.inlet_fl1, pump.OutFlow) annotation (Line(
@@ -190,7 +169,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.outlet_fl2, condenser.inletWf) annotation (Line(
-      points={{-7.2,-16.4533},{-7.2,-36},{44,-36},{44,-55},{32,-55}},
+      points={{-7.2,-16.4533},{-7.2,-36},{44,-36},{44,-55},{30,-55}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},

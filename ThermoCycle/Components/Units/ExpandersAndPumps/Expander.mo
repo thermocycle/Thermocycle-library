@@ -93,7 +93,7 @@ if (ExpType == ExpTypes.ODExp) then
           log_rp=log(p_su/p_ex),
           N_rot=rpm);
 elseif (ExpType == ExpTypes.ORCNext) then
-  FF= ThermoCycle.Functions.ORCNext.correlation_screw_FFVs(p_su_exp= p_su,rho_su_exp= rho_su,rpm=N_rot*60);  // V_s has to be set ugual to 1 [m3]
+  FF =0.00003915;  // V_s has to be set ugual to 1 [m3]
     epsilon = ThermoCycle.Functions.ORCNext.correlation_screwORCNext(
           rp=p_su/p_ex,
           rpm=N_rot*60,
@@ -107,13 +107,11 @@ elseif (ExpType == ExpTypes.HermExp) then
   FF = FF_exp;
   epsilon = epsilon_s;
 end if;
-
    //BOUNDARY CONDITIONS //
    /* Enthalpies */
    h_su = inStream(InFlow.h_outflow);
    h_su = InFlow.h_outflow;
    //InFlow.h_outflow = inStream(OutFlow.h_outflow);
-
    OutFlow.h_outflow = h_ex;
    /*Mass flows */
    M_dot = InFlow.m_flow;
@@ -126,8 +124,8 @@ end if;
   der(flange_elc.phi) = 2*N_rot*Modelica.Constants.pi;
   flange_elc.tau = W_dot/(2*N_rot*Modelica.Constants.pi)
   annotation (Diagram(graphics));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
-            -100},{100,100}}), graphics), Icon(coordinateSystem(
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-120,
+            -120},{120,120}}), graphics), Icon(coordinateSystem(
           preserveAspectRatio=false,extent={{-120,-120},{120,120}}), graphics={
           Text(
           extent={{-68,-44},{74,-72}},

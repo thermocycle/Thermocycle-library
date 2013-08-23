@@ -38,15 +38,12 @@ ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     steadystate_T_wall=false,
     steadystate_h_wf=false,
     max_der_wf=true,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff,
-    redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
-
     pstart_wf=1251000,
     Tstart_inlet_wf=299.96,
     Tstart_outlet_wf=382.55,
     Tstart_inlet_sf=473.15,
-    Tstart_outlet_sf=325.41)
+    Tstart_outlet_sf=325.41,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff)
     annotation (Placement(transformation(extent={{-42,36},{-22,56}})));
 ThermoCycle.Components.Units.ExpandersAndPumps.Generator generator(Np=1)
     annotation (Placement(transformation(extent={{82,4},{104,26}})));
@@ -70,9 +67,6 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst Condenser(
     steadystate_T_sf=true,
     steadystate_T_wall=true,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff,
-    redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
-
     pstart_wf=148400,
     Tstart_inlet_wf=337.91,
     Tstart_outlet_wf=298.25,
@@ -183,7 +177,7 @@ equation
       pattern=LinePattern.Dot,
       smooth=Smooth.None));
   connect(control_unit1.CS_Xpp, Pump.flow_in) annotation (Line(
-      points={{59.28,63.6},{70,63.6},{70,32},{-72.8,32},{-72.8,28}},
+      points={{59.28,63.6},{70,63.6},{70,32},{-71.8,32},{-71.8,27.6}},
       color={0,0,127},
       pattern=LinePattern.Dot,
       smooth=Smooth.None));

@@ -24,7 +24,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(f_pp.y, Pump.flow_in) annotation (Line(
-      points={{-18,47},{-18,22},{-15.8,22},{-15.8,11}},
+      points={{-18,47},{-18,22},{-17.3,22},{-17.3,10.4}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(graphics));

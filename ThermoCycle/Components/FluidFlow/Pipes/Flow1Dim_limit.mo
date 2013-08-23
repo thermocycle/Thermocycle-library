@@ -4,7 +4,7 @@ model Flow1Dim_limit
 replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
-
+  import ThermoCycle.Functions.Enumerations.HTtypes;
 public
  record SummaryClass
     parameter Integer n;
@@ -16,7 +16,8 @@ public
    Modelica.SIunits.Pressure p;
  end SummaryClass;
  SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
-
+  parameter HTtypes HTtype=HTtypes.LiqVap
+    "Select type of heat transfer coefficient";
 /* Thermal and fluid ports */
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
@@ -77,21 +78,9 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
      annotation (Dialog(group="Intialization options", tab="Initialization"));
- /******************************* HEAT TRANSFER MODEL **************************************/
-
-replaceable model Flow1Dim_limitHeatTransferModel =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
-constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-    "Fluid heat transfer model" annotation (choicesAllMatching = true);
-
- Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
- Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
-
- replaceable ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim_limit
+ replaceable Cell1Dim_limit
         Cells[N](
     redeclare package Medium = Medium,
-    redeclare each final model HeatTransfer = Flow1Dim_limitHeatTransferModel,
     each Vi=V/N,
     each Ai=A/N,
     each Mdotnom=Mdotnom,
@@ -130,8 +119,6 @@ equation
   hnode_[N+1] = Cells[N].hnode_ex;
   Mdot_[1:N] = Cells.M_dot_su;
   Mdot_[N+1] = Cells[N].M_dot_ex;
-  Q_tot = A/N*sum(Cells.qdot) "Total heat flow through the thermal port";
-  M_tot = V/N*sum(Cells.rho);
   connect(thermalPortConverter.single, Cells.Wall_int) annotation (Line(
       points={{0,11.9},{0,-9.05},{1,-9.05},{1,-29}},
       color={255,0,0},
