@@ -4,6 +4,7 @@ DP
 Expander
 failure_Cdot
 flow1D
+flow1D_HX
 flow1D_reversal
 flow1D_reverse
 Flow1DConst
@@ -14,3 +15,6 @@ HxRec1D
 Pump
 SolarCollector
 Tank
+Test_Flow1D_HX
+HxRec1D_HX
+Recuperator_HX

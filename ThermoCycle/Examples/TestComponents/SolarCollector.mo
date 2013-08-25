@@ -1,13 +1,16 @@
 within ThermoCycle.Examples.TestComponents;
 model SolarCollector
-  ThermoCycle.Components.Units.Solar.SolarCollectorIncSchott solarCollectorIncSchott(
+
+  ThermoCycle.Components.Units.Solar.SolarCollectorIncSchott    solarCollectorIncSchott(
     L=20,
     A_P=5,
     Mdotnom=0.5,
     Unom=1,
     Tstart_inlet=298.15,
     Tstart_outlet=373.15,
-    pstart=100000)
+    pstart=100000,
+    redeclare model FluidHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Ideal)
     annotation (Placement(transformation(extent={{-34,-28},{8,42}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(Mdot_0=0.5, redeclare
       package Medium =

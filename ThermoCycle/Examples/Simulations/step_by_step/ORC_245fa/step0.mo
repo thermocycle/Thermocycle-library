@@ -10,7 +10,7 @@ parameter Integer N=10;
     p=2357000,
     T_0=353.15)
     annotation (Placement(transformation(extent={{-92,-10},{-72,10}})));
- ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim flow1Dim(
+ ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim    flow1Dim(
     A=16.18,
     V=0.03781,
     Mdotnom=0.25,
@@ -30,12 +30,11 @@ parameter Integer N=10;
     Mdot_0=3,
     T_0=418.15)
     annotation (Placement(transformation(extent={{72,56},{52,76}})));
-ThermoCycle.Components.FluidFlow.Pipes.FlowConst SecondaryFluid(
+ThermoCycle.Components.FluidFlow.Pipes.Flow1DConst SecondaryFluid(
     A=16.18,
     V=0.03781,
-    steadystate_T=true,
+    steadystate=true,
     Mdotnom=1,
-    HTtype=ThermoCycle.Functions.Enumerations.HT_sf.Const,
     N=12,
     Unom=100,
     Tstart_inlet=473.15,
@@ -73,7 +72,7 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=false),
+          preserveAspectRatio=true),
                       graphics), Icon(coordinateSystem(extent={{-100,-100},
             {100,100}})),
     experiment(StopTime=1000),
