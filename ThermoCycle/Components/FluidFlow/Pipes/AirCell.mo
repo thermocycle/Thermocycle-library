@@ -3,9 +3,7 @@ model AirCell
 replaceable package Medium = Modelica.Media.Air.SimpleAir constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
-//* Select heat transfer coefficient */
-  import ThermoCycle.Functions.Enumerations.HT_sf;
-parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
+
 /* Thermal and fluid ports */
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
         Medium)
@@ -25,19 +23,36 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_ext
   parameter Modelica.SIunits.MassFlowRate Mdotnom "Nominal fluid flow rate";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "Constant heat transfer coefficient";
-/* FLUID VARIABLES */
+
+/*****************HEAT TRANSFER MODEL************************/
+replaceable model HeatTransfer =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+    "Convective heat transfer"                                                         annotation (Dialog(choicesAllMatching = true));
+HeatTransfer ConvectiveHeatTransfer(redeclare final package Medium = Medium,
+final n=1,
+final Mdotnom = Mdotnom,
+final Unom_l = Unom,
+final Unom_tp = Unom,
+final Unom_v = Unom,
+final M_dot = Mdot,
+final x = 0,
+final FluidState={fluidState})
+   annotation (Placement(transformation(extent={{-8,-16},{12,4}})));
+//final diameter = diameter,
+
+/********************* FLUID VARIABLES *********************/
   Medium.ThermodynamicState  fluidState;
   Modelica.SIunits.MassFlowRate Mdot;
   Medium.Temperature T_su "Inlet fluid temperature";
   Medium.Temperature T_ex "Exit fluid temperature";
-  Modelica.SIunits.Temperature T_wall "Internal wall temperature";
   Medium.Density rho "Average fluid cell density";
   Medium.SpecificHeatCapacity cp "Average fluid cell heat capacity";
   Modelica.SIunits.HeatFlux qdot "heat flux at each cell";
-  Modelica.SIunits.CoefficientOfHeatTransfer U
-    "Heat transfer coefficient between wall and working fluid";
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
+
 equation
   T_su = Medium.temperature(Medium.setState_ph(InFlow.p,InFlow.h_outflow));
   /* Fluid Properties */
@@ -46,14 +61,10 @@ equation
   cp = Medium.specificHeatCapacityCp(fluidState);
   /* ENERGY BALANCE */
   Mdot*cp*(T_ex - T_su) = Ai*qdot "Energy balance";
-  qdot = Unom*(T_wall - (T_su + T_ex)/2);
- if (HTtype == HT_sf.Const) then
-      U = Unom;
-      elseif (HTtype == HT_sf.MassFlowDependent) then
-       U = ThermoCycle.Functions.U_sf(Unom=Unom, Mdot=Mdot/Mdotnom);
- end if;
 Q_tot = Ai*qdot "Total heat flow through the thermal port";
+qdot = ConvectiveHeatTransfer.q_dot[1];
 M_tot = Vi*rho;
+
 //* BOUNDARY CONDITIONS *//
  /* Enthalpies */
  inStream(InFlow.h_outflow) = Medium.specificEnthalpy(Medium.setState_pT(InFlow.p,T_su));
@@ -64,10 +75,10 @@ M_tot = Vi*rho;
  Mdot = InFlow.m_flow;
  OutFlow.m_flow = -Mdot;
   /* Thermal port boundary condition */
-/*Temperatures */
- Wall_ext.T = T_wall;
- /*Heat flow */
-  Wall_ext.phi = qdot;
+  connect(ConvectiveHeatTransfer.thermalPortL[1], Wall_ext) annotation (Line(
+      points={{1.8,0.6},{1.8,22.3},{2,22.3},{2,50}},
+      color={255,0,0},
+      smooth=Smooth.None));
   annotation (Diagram(graphics), Icon(graphics={Rectangle(
           extent={{-92,40},{88,-40}},
           lineColor={0,0,255},

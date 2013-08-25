@@ -74,11 +74,11 @@ equation
       color={0,0,0},
       smooth=Smooth.None));
   connect(cylinder.flange, recipFlange.flange_a)    annotation (Line(
-      points={{-20,20},{-20,-1.11022e-15}},
+      points={{-20,20},{-20,0}},
       color={0,127,0},
       smooth=Smooth.None));
   connect(recipFlange.crankShaft_a, angleSensor.flange) annotation (Line(
-      points={{-1.11022e-15,-30},{10,-30}},
+      points={{0,-30},{10,-30}},
       color={0,0,0},
       smooth=Smooth.None));
   connect(angleSensor.phi, exhaustTimer.angle_in) annotation (Line(
@@ -90,7 +90,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(exhaustTimer.y, exhaustValve.opening) annotation (Line(
-      points={{61,-10},{66,-10},{66,70},{6.66134e-16,70},{6.66134e-16,58}},
+      points={{61,-10},{66,-10},{66,70},{0,70},{0,58}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(injectionTimer.y, injectionValve.opening) annotation (Line(

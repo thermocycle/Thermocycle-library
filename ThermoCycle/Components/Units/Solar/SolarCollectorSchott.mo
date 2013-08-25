@@ -2,7 +2,8 @@ within ThermoCycle.Components.Units.Solar;
 model SolarCollectorSchott
 replaceable package Medium1 = Media.R245fa constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
-// PARAMETERS //
+
+/********************* PARAMETERS *******************************************************************/
 constant Real  pi = Modelica.Constants.pi;
 //FOCUS
 parameter Boolean PTR = true "Set true to use the 2008 PTR collector";
@@ -62,10 +63,10 @@ parameter Modelica.SIunits.Temperature Tstart_outlet
 parameter Modelica.SIunits.Pressure pstart
     "Temperature of the fluid at the inlet of the collector" annotation (Dialog(tab="Initialization"));
 /*steady state */
- parameter Boolean steadystate_T_fl=false
+parameter Boolean steadystate_T_fl=false
     "if true, sets the derivative of the fluid Temperature in each cell to zero during Initialization"
                                                                                                       annotation (Dialog(group="Intialization options", tab="Initialization"));
-//NUMERICAL OPTION
+/*********************************   NUMERICAL OPTION  *************************************************************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
  parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
@@ -85,6 +86,17 @@ parameter Modelica.SIunits.Pressure pstart
   parameter Modelica.SIunits.Time TT=1
     "Integration time of the first-order filter"
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
+
+/*************************** HEAT TRANSFER ************************************/
+/*Secondary fluid*/
+replaceable model FluidHeatTransferModel =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+   constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+
+/******************************************  COMPONENTS *********************************************************/
+
   Components.HeatFlow.Walls.AbsorberSchott absorberSchott(
     eps1=eps1,
     eps2=eps2,
@@ -119,6 +131,8 @@ parameter Modelica.SIunits.Pressure pstart
     annotation (Placement(transformation(extent={{-10,80},{10,100}}),
         iconTransformation(extent={{-10,92},{10,112}})));
   Components.FluidFlow.Pipes.Flow1Dim flow1Dim(redeclare package Medium = Medium1,
+  redeclare final model Flow1DimHeatTransferModel =
+        FluidHeatTransferModel,
     N=N,
     A=A_lateral,
     V=V_tube_int,
@@ -135,12 +149,12 @@ parameter Modelica.SIunits.Pressure pstart
     max_drhodt=max_drhodt,
     TT=TT,
     steadystate=steadystate_T_fl,
-    HTtype=HTtype,
     Discretization=Discretization)
                                   annotation (Placement(transformation(
         extent={{-27.5,-31.5},{27.5,31.5}},
         rotation=90,
         origin={44.5,23.5})));
+
 equation
   connect(Theta, absorberSchott.Theta) annotation (Line(
       points={{-68,40},{-52,40},{-52,38},{-42,38},{-42,28.61},{-22.29,28.61}},

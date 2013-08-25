@@ -1,13 +1,17 @@
 within ThermoCycle.Components.Units.HeatExchangers;
 model HxRec1D
 extends ThermoCycle.Components.Units.BaseUnits.BaseHx;
-  Components.FluidFlow.Pipes.Flow1Dim Hotside(
+
+/******************************* COMPONENTS ***********************************/
+  ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim
+                                         Hotside(
     redeclare package Medium = Medium2,
+    redeclare final model Flow1DimHeatTransferModel =
+        HotSideSideHeatTransferModel,
     N=N,
     A=Ahot,
     V=Vhot,
     Mdotnom=MdotNom_Hot,
-    HTtype=HTtypeHot,
     pstart=pstart_hot,
     Tstart_inlet=Tstart_inlet_hot,
     Tstart_outlet=Tstart_outlet_hot,
@@ -21,7 +25,7 @@ extends ThermoCycle.Components.Units.BaseUnits.BaseHx;
     Unom_tp=Unom_tp_hot,
     Unom_v=Unom_v_hot,
     Discretization=Discretization)
-    annotation (Placement(transformation(extent={{40,134},{-34,74}})));
+    annotation (Placement(transformation(extent={{38,134},{-36,74}})));
   Components.HeatFlow.Walls.CountCurr countCurr(N=N, counterCurrent=true)
     annotation (Placement(transformation(extent={{62,58},{-58,-8}})));
   Components.HeatFlow.Walls.MetalWall metalWall(
@@ -33,14 +37,15 @@ extends ThermoCycle.Components.Units.BaseUnits.BaseHx;
     Tstart_wall_1=(Tstart_inlet_cold + Tstart_outlet_hot)/2,
     steadystate_T_wall=steadystate_T_wall,
     Tstart_wall_end=(Tstart_inlet_hot + Tstart_outlet_cold)/2)
-    annotation (Placement(transformation(extent={{-36,-70},{38,-14}})));
-  Components.FluidFlow.Pipes.Flow1Dim Coldside(
+    annotation (Placement(transformation(extent={{-40,-56},{34,0}})));
+  ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim
+                                         Coldside(
     redeclare package Medium = Medium1,
+    redeclare final model Flow1DimHeatTransferModel = ColdSideHeatTransferModel,
     N=N,
     A=Acold,
     V=Vcold,
     Mdotnom=MdotNom_Cold,
-    HTtype=HTtypeCold,
     pstart=pstart_cold,
     Tstart_inlet=Tstart_inlet_cold,
     Tstart_outlet=Tstart_outlet_cold,
@@ -54,34 +59,39 @@ extends ThermoCycle.Components.Units.BaseUnits.BaseHx;
     Unom_tp=Unom_tp_cold,
     Unom_v=Unom_v_cold,
     Discretization=Discretization)
-    annotation (Placement(transformation(extent={{-42,-152},{42,-68}})));
+    annotation (Placement(transformation(extent={{-44,-158},{40,-74}})));
 /* GEOMETRIES */
 parameter Integer N=5 "Number of nodes for the heat exchanger";
 parameter Modelica.SIunits.Volume Vhot = 0.03781 "Volume hot fluid";
 parameter Modelica.SIunits.Volume Vcold= 0.03781 "Volume cold fluid";
 parameter Modelica.SIunits.Area Ahot = 16.18 "Area hot fluid";
 parameter Modelica.SIunits.Area Acold = 16.18 "Area cold fluid";
-/*HEAT TRANSFER */
-  import ThermoCycle.Functions.Enumerations.HTtypes;
-  parameter HTtypes HTtypeCold=HTtypes.LiqVap
-    "Cold fluid: Choose heat transfer coeff. type. Set LiqVap with Unom_l=Unom_tp=Unom_v to have a Const HT"
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"));
+
+/************************************************ HEAT TRANSFER ***********************************************************/
+replaceable model ColdSideHeatTransferModel =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+   constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l_cold=100
     "if HTtype = LiqVap: heat transfer coefficient, liquid zone " annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_tp_cold=100
     "if HTtype = LiqVap: heat transfer coefficient, two-phase zone" annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v_cold=100
     "if HTtype = LiqVap: heat transfer coefficient, vapor zone" annotation (Dialog(group="Heat transfer", tab="General"));
-parameter HTtypes HTtypeHot=HTtypes.LiqVap
-    "Hot fluid: Choose heat transfer coeff. type. Set LiqVap with Unom_l=Unom_tp=Unom_v to have a Const HT"
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"));
+replaceable model HotSideSideHeatTransferModel =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+   constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l_hot=100
     "if HTtype = LiqVap: heat transfer coefficient, liquid zone " annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_tp_hot=100
     "if HTtype = LiqVap: heat transfer coefficient, two-phase zone" annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v_hot=100
     "if HTtype = LiqVap: heat transfer coefficient, vapor zone" annotation (Dialog(group="Heat transfer", tab="General"));
- /*METAL WALL*/
+
+ /*************************** METAL WALL *********************************************************/
 parameter Modelica.SIunits.Mass M_wall= 69
     "Mass of the metal wall between the two fluids";
 parameter Modelica.SIunits.SpecificHeatCapacity c_wall= 500
@@ -116,7 +126,9 @@ parameter Boolean steadystate_h_hot=false
     annotation (Dialog(group="Intialization options", tab="Initialization"));
 parameter Boolean steadystate_T_wall=false
     "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
-//NUMERICAL OPTIONS
+
+/******************************************** NUMERICAL OPTIONS ****************************************************/
+
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
@@ -174,38 +186,38 @@ record SummaryBase
   Modelica.SIunits.Power Q_cold;
 end SummaryBase;
 replaceable record SummaryClass = SummaryBase;
-SummaryClass Summary( T_profile( n=N, Thot = Hotside.Cells[end:-1:1].T,  Twall = metalWall.T_wall,  Tcold = Coldside.Cells.T,PinchPoint = PinchPoint_), p_hot = Coldside.Summary.p, p_cold = Hotside.Summary.p,Q_hot = Q_hot_,Q_cold = Q_cold_);
+SummaryClass Summary( T_profile( n=N, Thot = Hotside.Cells[end:-1:1].T,  Twall = metalWall.T_wall,  Tcold = Coldside.Cells.T,PinchPoint = PinchPoint_), p_hot = Hotside.Summary.p, p_cold = Coldside.Summary.p,Q_hot = Q_hot_,Q_cold = Q_cold_);
 equation
 PinchPoint_ = min(Hotside.Cells[N].T -Coldside.Cells[1].T,Hotside.Cells[1].T - Coldside.Cells[N].T);
 /*Heat flow */
-Q_hot_ = -Hotside.A * sum(Hotside.Cells.qdot);
-Q_cold_ = -Coldside.A * sum(Coldside.Cells.qdot);
+Q_hot_ = -Hotside.Q_tot;
+Q_cold_ = -Coldside.Q_tot;
   connect(metalWall.Wall_ext, Coldside.Wall_int) annotation (Line(
-      points={{0.26,-50.4},{0.26,-41.2},{0,-41.2},{0,-92.5}},
+      points={{-3.74,-36.4},{-3.74,-41.2},{-2,-41.2},{-2,-98.5}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(metalWall.Wall_int, countCurr.side1) annotation (Line(
-      points={{1,-33.6},{1,-14.8},{2,-14.8},{2,15.1}},
+      points={{-3,-19.6},{-3,-14.8},{2,-14.8},{2,15.1}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(Hotside.Wall_int, countCurr.side2) annotation (Line(
-      points={{3,91.5},{3,34.5},{2,34.5},{2,34.9}},
+      points={{1,91.5},{1,34.5},{2,34.5},{2,34.9}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(inlet_fl1, Coldside.InFlow) annotation (Line(
-      points={{-90,-50},{-68,-50},{-68,-110},{-35,-110}},
+      points={{-90,-50},{-68,-50},{-68,-116},{-37,-116}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(Coldside.OutFlow, outlet_fl1) annotation (Line(
-      points={{35,-109.65},{68,-109.65},{68,-50},{96,-50}},
+      points={{33,-115.65},{68,-115.65},{68,-50},{96,-50}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(Hotside.InFlow, inlet_fl2) annotation (Line(
-      points={{33.8333,104},{70,104},{70,60},{98,60}},
+      points={{31.8333,104},{70,104},{70,60},{98,60}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(Hotside.OutFlow, outlet_fl2) annotation (Line(
-      points={{-27.8333,103.75},{-65,103.75},{-65,58},{-98,58}},
+      points={{-29.8333,103.75},{-65,103.75},{-65,58},{-98,58}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-150,-150},

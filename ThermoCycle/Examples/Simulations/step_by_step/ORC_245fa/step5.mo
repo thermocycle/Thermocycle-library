@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step5
+
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=0.2588,
     p=2357000,
@@ -12,7 +13,9 @@ model step5
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     steadystate_T_sf=false,
     steadystate_h_wf=false,
-    steadystate_T_wall=false)
+    steadystate_T_wall=false,
+    redeclare model Medium1HeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-46,28},{-12,60}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
     cp=1978,
@@ -59,10 +62,16 @@ ThermoCycle.Components.Units.HeatExchangers.HxRec1D recuperator(
     N=10,
     steadystate_h_cold=true,
     steadystate_h_hot=true,
-    steadystate_T_wall=true)
+    steadystate_T_wall=true,
+    redeclare model ColdSideHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+    redeclare model HotSideSideHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-20,20},{20,-20}},
         rotation=90,
         origin={4,-32})));
+
 equation
   connect(source_Cdot.flange, hx1DConst.inletSf)
                                                annotation (Line(
@@ -86,8 +95,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.outlet_fl1, hx1DConst.inletWf) annotation (Line(
-      points={{-2.66667,-18.6667},{-2.66667,-2},{-84,-2},{-84,36},{
-          -46,36}},
+      points={{-2.66667,-18.6667},{-2.66667,-2},{-84,-2},{-84,36},{-46,36}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(expander.OutFlow, recuperator.inlet_fl2) annotation (Line(
@@ -103,7 +111,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=false),
+          preserveAspectRatio=true),
                       graphics), Icon(coordinateSystem(extent={{-100,-100},
             {100,100}})),
     experiment(StopTime=1000, __Dymola_NumberOfIntervals=5000),

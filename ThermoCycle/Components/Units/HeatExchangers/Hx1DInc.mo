@@ -1,7 +1,14 @@
 within ThermoCycle.Components.Units.HeatExchangers;
 model Hx1DInc
 extends Components.Units.BaseUnits.BaseHx;
-  Components.FluidFlow.Pipes.Flow1Dim WorkingFluid(redeclare package Medium = Medium1,
+
+/******************************* COMPONENTS ***********************************/
+
+  ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim
+                                         WorkingFluid(redeclare package Medium
+      =                                                                          Medium1,
+  redeclare final model Flow1DimHeatTransferModel =
+        Medium1HeatTransferModel,
     N=N,
     A=A_wf,
     V=V_wf,
@@ -14,7 +21,6 @@ extends Components.Units.BaseUnits.BaseHx;
     TT=TT_wf,
     Unom_l=Unom_l,
     Unom_tp=Unom_tp,
-    HTtype=HTtype_wf,
     Unom_v=Unom_v,
     steadystate=steadystate_h_wf,
     Tstart_inlet=Tstart_inlet_wf,
@@ -31,8 +37,10 @@ extends Components.Units.BaseUnits.BaseHx;
     annotation (Placement(transformation(extent={{-47,-44},{39,20}})));
   Components.HeatFlow.Walls.CountCurr countCurr(N=N)
   annotation (Placement(transformation(extent={{-45,50},{37,5}})));
- Components.FluidFlow.Pipes.Flow1DimInc            SecondaryFluid(
+ ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc   SecondaryFluid(
     redeclare package Medium = Medium2,
+    redeclare final model Flow1DimIncHeatTransferModel =
+        Medium2HeatTransferModel,
     N=N,
     A=A_sf,
     V=V_sf,
@@ -44,41 +52,53 @@ extends Components.Units.BaseUnits.BaseHx;
     steadystate=steadystate_h_sf,
     Discretization=Discretization)
     annotation (Placement(transformation(extent={{46,129},{-42,39}})));
-/* GEOMETRIES */
+
+/******************************** GEOMETRIES ***********************************/
+
 parameter Integer N=5 "Number of nodes for the heat exchanger";
 parameter Modelica.SIunits.Volume V_sf= 0.03781 "Volume secondary fluid";
 parameter Modelica.SIunits.Volume V_wf= 0.03781 "Volume primary fluid";
 parameter Modelica.SIunits.Area A_sf = 16.18 "Area secondary fluid";
 parameter Modelica.SIunits.Area A_wf = 16.18 "Area primary fluid";
-/*HEAT TRANSFER */
+
+/*************************** HEAT TRANSFER ************************************/
 /*Secondary fluid*/
-  import ThermoCycle.Functions.Enumerations.HT_sf;
-parameter ThermoCycle.Functions.Enumerations.HT_sf HTtype_sf=HT_sf.Const
-    "Secondary fluid: Choose heat transfer coeff" annotation (Dialog(group="Heat transfer", tab="General"));
+replaceable model Medium2HeatTransferModel =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+   constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_sf = 369
     "Coefficient of heat transfer, secondary fluid" annotation (Dialog(group="Heat transfer", tab="General"));
+
 /*Working fluid*/
-  import ThermoCycle.Functions.Enumerations.HTtypes;
-parameter HTtypes HTtype_wf=HTtypes.LiqVap
-    "Working fluid: Choose heat transfer coeff. type. Set LiqVap with Unom_l=Unom_tp=Unom_v to have a Const HT"
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"));
+replaceable model Medium1HeatTransferModel =
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+   constrainedby
+    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l=300
     "if HTtype = LiqVap: heat transfer coeff, liquid zone." annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_tp=700
     "if HTtype = LiqVap: heat transfer coeff, two-phase zone." annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v=400
     "if HTtype = LiqVap: heat transfer coeff, vapor zone." annotation (Dialog(group="Heat transfer", tab="General"));
-/*METAL WALL*/
+
+/*********************** METAL WALL   *******************************/
 parameter Modelica.SIunits.Mass M_wall= 69
     "Mass of the metal wall between the two fluids";
 parameter Modelica.SIunits.SpecificHeatCapacity c_wall= 500
     "Specific heat capacity of metal wall";
-/*MASS FLOW*/
+
+/*******************************  MASS FLOW   ***************************/
+
 parameter Modelica.SIunits.MassFlowRate Mdotnom_sf= 3
     "Nominal flow rate of secondary fluid";
 parameter Modelica.SIunits.MassFlowRate Mdotnom_wf= 0.2588
     "Nominal flow rate of working fluid";
-/*INITIAL VALUES*/
+
+/***************************** INITIAL VALUES **********************************/
+
   /*pressure*/
 parameter Modelica.SIunits.Pressure pstart_sf = 1e5
     "Nominal inlet pressure of secondary fluid"  annotation (Dialog(tab="Initialization"));
@@ -102,7 +122,9 @@ parameter Boolean steadystate_h_wf=false
     annotation (Dialog(group="Intialization options", tab="Initialization"));
 parameter Boolean steadystate_T_wall=false
     "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
-//NUMERICAL OPTIONS //
+
+/*************************  NUMERICAL OPTIONS ******************************************/
+
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
@@ -146,7 +168,7 @@ SummaryClass Summary( T_profile( n=N, Tsf = SecondaryFluid.Summary.T[end:-1:1], 
 equation
 /*Heat flow */
 Q_sf_ = -SecondaryFluid.Q_tot;
-Q_wf_ = WorkingFluid.A * sum(WorkingFluid.Cells.qdot);
+Q_wf_ = WorkingFluid.Q_tot;
   connect(countCurr.side1, metalWall.Wall_int) annotation (Line(
       points={{-4,20.75},{-4,-2.4}},
       color={255,0,0},

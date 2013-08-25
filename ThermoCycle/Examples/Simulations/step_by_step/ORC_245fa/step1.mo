@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step1
+
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(p0=2357000)
     annotation (Placement(transformation(extent={{82,-10},{102,10}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
@@ -9,7 +10,7 @@ model step1
     p=2357000,
     T_0=353.15)
     annotation (Placement(transformation(extent={{-92,-10},{-72,10}})));
- ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
+ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     steadystate_T_sf=true,
     steadystate_h_wf=true,
     steadystate_T_wall=true,

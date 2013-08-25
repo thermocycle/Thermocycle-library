@@ -1,13 +1,20 @@
 within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step8
- ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
+
+ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     N=10,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     steadystate_T_sf=false,
     steadystate_h_wf=false,
     steadystate_T_wall=false,
-    Unom_sf=335)
+    Unom_sf=335,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+    redeclare model Medium2HeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
+    redeclare model Medium1HeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-46,28},{-12,60}})));
+
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
     cp=1978,
     rho=928.2,
@@ -47,15 +54,21 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander  expander(
         origin={72,64})));
  ThermoCycle.Components.Units.ExpandersAndPumps.Generator generatorNext(Np=1)
     annotation (Placement(transformation(extent={{94,10},{114,30}})));
-ThermoCycle.Components.Units.HeatExchangers.HxRec1D recuperator(
+ThermoCycle.Components.Units.HeatExchangers.HxRec1D    recuperator(
     N=10,
     steadystate_h_cold=true,
     steadystate_h_hot=true,
     steadystate_T_wall=true,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+    redeclare model ColdSideHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+    redeclare model HotSideSideHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
     pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
         origin={1,-22})));
+
 ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     k=38.4E3*9.5,
     A=(2*9.5*23282.7)^(-0.5),
@@ -66,7 +79,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     DELTAp_quad_nom=5150,
     use_rho_nom=true)
     annotation (Placement(transformation(extent={{46,-16},{26,4}})));
- ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
+ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    condenser(
     Unom_l=500,
     Unom_tp=1500,
     Unom_v=750,
@@ -79,12 +92,18 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     steadystate_T_sf=false,
     steadystate_h_wf=true,
     Unom_sf=335,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+    redeclare model Medium2HeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
+    redeclare model Medium1HeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
     Tstart_inlet_sf=293.15,
     Tstart_outlet_sf=296.36)
     annotation (Placement(transformation(extent={{44,-66},{20,-86}})));
+
   ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 heat_sink(
     cp=4187,
     rho=1000,
@@ -144,7 +163,7 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   connect(condenser.outletWf, tank.InFlow) annotation (Line(
-      points={{20,-71},{0,-71},{0,-75.44},{-19,-75.44}},
+      points={{20,-71},{-20,-71},{-20,-75.44},{-19,-75.44}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(tank.OutFlow, pump.InFlow) annotation (Line(
@@ -152,7 +171,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(f_pp.y, pump.flow_in) annotation (Line(
-      points={{-67.4,-26},{-53.04,-26},{-53.04,-48.88}},
+      points={{-67.4,-26},{-51.84,-26},{-51.84,-48.4}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(recuperator.inlet_fl2, dp_lp.OutFlow) annotation (Line(

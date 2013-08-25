@@ -106,13 +106,13 @@ model SQThesisController
     annotation (Placement(transformation(extent={{-60,-34},{-40,-14}})));
   ThermoCycle.Components.Units.ControlSystems.Blocks.Tev_SPOptim tev_SP
     annotation (Placement(transformation(extent={{-60,54},{-40,74}})));
-  ThermoCycle.Functions.Init init(length=10, t_init=20)
+  Blocks.Init init(length=10, t_init=20)
             annotation (Placement(transformation(extent={{-20,-8},{0,12}})));
-  ThermoCycle.Functions.Init init1(length=8, t_init=10)
+  Blocks.Init init1(length=8, t_init=10)
              annotation (Placement(transformation(extent={{-20,54},{0,74}})));
-  ThermoCycle.Functions.Init init2(t_init=4, length=3)
+  Blocks.Init init2(t_init=4, length=3)
             annotation (Placement(transformation(extent={{70,2},{84,16}})));
-  ThermoCycle.Functions.Init init3(t_init=6, length=3)
+  Blocks.Init init3(t_init=6, length=3)
             annotation (Placement(transformation(extent={{70,66},{84,80}})));
 equation
   connect(DELTAT_SP.y, PID_pump.SP) annotation (Line(
