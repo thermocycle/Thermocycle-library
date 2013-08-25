@@ -46,11 +46,10 @@ public
             {36,54},{76,94}}), iconTransformation(extent={{36,54},{76,94}})));
   Modelica.Blocks.Interfaces.RealInput flow_in
                                             annotation (Placement(
-        transformation(extent={{-96,30},{-56,70}}), iconTransformation(
-        extent={{-12,-12},{12,12}},
+        transformation(extent={{-100,50},{-60,90}}),iconTransformation(
+        extent={{-8,-8},{8,8}},
         rotation=-90,
-        origin={-32,80})));
-
+        origin={-42,76})));
 equation
    if cardinality(flow_in) == 0 then
      if PumpInput == PumpInputs.freq then
@@ -58,7 +57,6 @@ equation
      else
        X_pp = X_pp0;
      end if;
-
     //flow_in = 0;
    else
      if PumpInput == PumpInputs.freq then
@@ -67,7 +65,6 @@ equation
        X_pp = flow_in;
      end if;
    end if;
-
    X_pp = f_pp/50;   // imposed to avoid calculation issues for some combinations of inputs
   /*Fluid properties*/
   fluidState = Medium.setState_ph(p_su,h_su);
@@ -78,9 +75,8 @@ equation
   if (PumpType == PumpTypes.ORCNext) then
     eta_in = ThermoCycle.Functions.ORCNext.correlation_pumpORCNext(f_pp=
       f_pp, r_p=p_ex/p_su);
-  M_dot = ThermoCycle.Functions.ORCNext.correlation_MdotORCNext(f_pp=f_pp);
+    M_dot = ThermoCycle.Functions.ORCNext.correlation_MdotORCNext(f_pp=f_pp);
   V_dot = 1;
-    //end if;
   elseif (PumpType == PumpTypes.SQThesis) then
     eta_in = 0.931 - 0.108*log10(X_pp) - 0.204*log10(X_pp)^2 - 0.05954*log10(
     X_pp)^3;
@@ -89,7 +85,7 @@ equation
   else
     eta_in = eta_is;
     M_dot = V_dot*rho_su;
-    V_dot = epsilon_v * V_dot_max;
+    V_dot = epsilon_v * V_dot_max *min(X_pp, 1);
   end if;
   /*BOUNDARY CONDITIONS */
   /* Enthalpies */
@@ -103,8 +99,7 @@ equation
   /*pressures*/
   p_su = InFlow.p;
   p_ex = OutFlow.p;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
-            -100},{100,100}}),
-                         graphics), Diagram(coordinateSystem(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
+            {100,100}}), graphics), Diagram(coordinateSystem(
           preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics));
 end Pump;

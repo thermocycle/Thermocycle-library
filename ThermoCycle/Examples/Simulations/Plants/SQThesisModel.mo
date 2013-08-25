@@ -178,7 +178,7 @@ equation
       pattern=LinePattern.Dot,
       smooth=Smooth.None));
   connect(control_unit1.CS_Xpp, Pump.flow_in) annotation (Line(
-      points={{59.28,63.6},{70,63.6},{70,32},{-72.8,32},{-72.8,28}},
+      points={{59.28,63.6},{70,63.6},{70,32},{-71.8,32},{-71.8,27.6}},
       color={0,0,127},
       pattern=LinePattern.Dot,
       smooth=Smooth.None));

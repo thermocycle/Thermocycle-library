@@ -15,7 +15,7 @@ Real a6 = 0.4827;
 Real dydx_0 = 0.7924;
 Real rpm_m = 3547;
 Real shape_0 = 1.213;
-Real x_0_0 = 3.079;
+Real x_0_0 = 3.076;
 Real x_m_0 = 10;
 Real y_m_0 = 0.592;
   Real rpm_star;

@@ -1,12 +1,9 @@
 within ThermoCycle.Components.FluidFlow.Pipes;
 model MultiFlow1D_DP
-  "1-D fluid flow model. The Cells are in parallel and a pressure drop is considered"
-
   replaceable package Medium = Modelica.Media.Air.SimpleAir constrainedby
     Modelica.Media.Interfaces.PartialMedium  annotation (choicesAllMatching = true);
-
-  parameter Integer N(min=1) = 10 "number of Cells";
-  parameter Modelica.SIunits.Volume V_f= 0.0397 "Total volume of fluid";
+parameter Integer nCells=2;
+ parameter Modelica.SIunits.Volume V_f= 0.0397 "Total volume of fluid";
   parameter Modelica.SIunits.Area A_f= 2.7 "Total Lateral surface";
   parameter Modelica.SIunits.MassFlowRate Mdotnom= 2 "Nominal fluid flow rate"
                                                                               annotation (Dialog(tab="Nominal Conditions"));
@@ -14,9 +11,6 @@ model MultiFlow1D_DP
     "Constant heat transfer coefficient" annotation (Dialog(tab="Nominal Conditions"));
    parameter Boolean UseNom=false
     "Use Nominal conditions to compute pressure drop characteristics";
-
-    /************************** PRESSURE DROP COEFFICIENTS *********************/
-
  parameter Modelica.SIunits.Length h=0 "Static fluid head (dp = h * rho * g)"  annotation (Dialog(enable=(not UseNom)));
   parameter Real k= 38.4E3*9.5
     "Coefficient for linear pressure drop (dp = k * V_dot)"                            annotation (Dialog(enable=(not UseNom)));
@@ -25,9 +19,6 @@ model MultiFlow1D_DP
                                                                                  annotation (Dialog(enable=(not UseNom)));
  parameter Modelica.SIunits.Pressure DELTAp_0=500
     "Pressure drop below which a 3rd order interpolation is used for the computation of the flow rate in order to avoid infinite derivative at 0";
-
-/************************** NOMINAL VALUES *********************/
-
 parameter Modelica.SIunits.Pressure p_nom=1e5 "Nominal pressure"
                        annotation (Dialog(tab="Nominal Conditions"));
 parameter Modelica.SIunits.Temperature T_nom=423.15 "Nominal temperature"
@@ -43,12 +34,9 @@ parameter Modelica.SIunits.Temperature T_nom=423.15 "Nominal temperature"
                            annotation (Dialog(tab="Nominal Conditions"));
   parameter Modelica.SIunits.Pressure   DELTAp_quad_nom=0
     "Nominal quadratic pressure drop"                                                      annotation (Dialog(tab="Nominal Conditions"));
-
-    parameter Boolean   use_rho_nom=false
+   parameter Boolean   use_rho_nom=false
     "Use the nominal density for the computation of the pressure drop (i.e it depends only the flow rate)"
                            annotation (Dialog(tab="Nominal Conditions"));
-
-/************************** INITIALIZATION OPTIONS *********************/
       parameter Boolean constinit=false
     "if true, sets the pressure drop to a constant value at the beginning of the simulation in order to avoid oscillations"
     annotation (Dialog(tab="Initialization"));
@@ -60,54 +48,43 @@ parameter Modelica.SIunits.Temperature T_nom=423.15 "Nominal temperature"
     parameter Modelica.SIunits.Time t_init=10
     "if constinit is true, time during which the pressure drop is set to the constant value DELTAp_start"
     annotation (Dialog(tab="Initialization", enable=constinit));
-/******************************* HEAT TRANSFER MODEL **************************************/
-
-replaceable model MultiFlow1DimHeatTransferModel =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
-constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-    "Fluid heat transfer model" annotation (choicesAllMatching = true);
-   /****************************  CELLS ***************************************/
-
- ThermoCycle.Components.FluidFlow.Pipes.AirCell[   N] simpleAirCell(
-   redeclare each final package Medium = Medium,
-   redeclare each final model HeatTransfer = MultiFlow1DimHeatTransferModel,
-    each Mdotnom=Mdotnom/N,
+ ThermoCycle.Components.FluidFlow.Pipes.AirCell[ nCells] simpleAirCell(
+    each Mdotnom=Mdotnom/nCells,
     each Unom=Unom,
-    each Vi=V_f/N,
-    each Ai=A_f/N)
+    each Vi=V_f/nCells,
+    each Ai=A_f/nCells)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
-ThermoCycle.Components.Units.PdropAndValves.DP[N] dP(redeclare package Medium
-      =                                                                               Medium,
+ThermoCycle.Components.Units.PdropAndValves.DP[ nCells] dP(redeclare package
+      Medium =                                                                        Medium,
     each UseNom=UseNom,
     each h=h,
     each k=k,
     each A=A,
     each DELTAp_0=DELTAp_0,
-    each Mdot_nom=Mdotnom/N,
+    each Mdot_nom=Mdotnom/nCells,
     each p_nom=p_nom,
     each T_nom=T_nom,
     each rho_nom=rho_nom,
-    each DELTAp_stat_nom=DELTAp_stat_nom/N,
-    each DELTAp_lin_nom=DELTAp_lin_nom/N,
-    each DELTAp_quad_nom=DELTAp_quad_nom/N,
+    each DELTAp_stat_nom=DELTAp_stat_nom/nCells,
+    each DELTAp_lin_nom=DELTAp_lin_nom/nCells,
+    each DELTAp_quad_nom=DELTAp_quad_nom/nCells,
     each use_rho_nom=use_rho_nom,
     each constinit=constinit,
     each UseHomotopy=UseHomotopy,
-    each DELTAp_start=DELTAp_start/N,
+    each DELTAp_start=DELTAp_start/nCells,
     each t_init=t_init)
-    annotation (Placement(transformation(extent={{4,-10},{24,10}})));
+    annotation (Placement(transformation(extent={{-2,-10},{18,10}})));
  ThermoCycle.Interfaces.Fluid.FlangeA flangeA(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-108,-10},{-88,10}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
  ThermoCycle.Interfaces.Fluid.FlangeB flangeB(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{90,-10},{110,10}}),
         iconTransformation(extent={{80,-20},{120,20}})));
-  Modelica.Fluid.Fittings.MultiPort multiPort(redeclare package Medium = Medium,nPorts_b=N)
+  Modelica.Fluid.Fittings.MultiPort multiPort(redeclare package Medium = Medium,nPorts_b=nCells)
     annotation (Placement(transformation(extent={{-78,-20},{-62,20}})));
-  Modelica.Fluid.Fittings.MultiPort multiPort1(redeclare package Medium = Medium,nPorts_b=N)
+  Modelica.Fluid.Fittings.MultiPort multiPort1(redeclare package Medium = Medium,nPorts_b=nCells)
     annotation (Placement(transformation(extent={{70,-20},{54,20}})));
-ThermoCycle.Interfaces.HeatTransfer.ThermalPortL[N] thermalPortCell
+ThermoCycle.Interfaces.HeatTransfer.ThermalPortL[nCells] thermalPortCell
     annotation (Placement(transformation(extent={{-10,44},{10,64}}),
         iconTransformation(extent={{-40,40},{40,60}})));
 equation
@@ -124,44 +101,43 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
     connect(simpleAirCell.OutFlow, dP.InFlow) annotation (Line(
-      points={{-10,0.1},{-12,0.1},{-12,0},{5,0}},
+      points={{-10,0.1},{-12,0.1},{-12,0},{-1,0}},
       color={0,0,255},
       smooth=Smooth.None));
-  for j in 1:N loop
+  for j in 1:nCells loop
   connect(multiPort.ports_b[j], simpleAirCell[j].InFlow);
   connect(dP[j].OutFlow, multiPort1.ports_b[j]);
   end for
   annotation (Diagram(graphics));
-
-  annotation (Icon(graphics={
+  annotation (Diagram(graphics), Icon(graphics={
         Rectangle(
-          extent={{-92,24},{86,10}},
+          extent={{-90,40},{88,26}},
           lineColor={135,135,135},
           fillPattern=FillPattern.Forward,
           fillColor={175,175,175}),
         Rectangle(
-          extent={{-92,40},{86,26}},
+          extent={{-90,24},{88,10}},
           lineColor={135,135,135},
           fillPattern=FillPattern.Forward,
           fillColor={175,175,175}),
         Rectangle(
-          extent={{-88,8},{90,-6}},
+          extent={{-86,8},{92,-6}},
           lineColor={135,135,135},
           fillPattern=FillPattern.Forward,
           fillColor={175,175,175}),
         Rectangle(
-          extent={{-90,-8},{88,-22}},
+          extent={{-88,-8},{90,-22}},
           lineColor={135,135,135},
           fillPattern=FillPattern.Forward,
           fillColor={175,175,175}),
         Text(
-          extent={{-84,-10},{-46,-18}},
-          lineColor={0,0,0},
-          textString="nCells",
-          textStyle={TextStyle.Bold}),
-        Text(
-          extent={{-96,36},{-58,28}},
+          extent={{-94,36},{-56,28}},
           lineColor={0,0,0},
           textString="1",
+          textStyle={TextStyle.Bold}),
+        Text(
+          extent={{-82,-10},{-44,-18}},
+          lineColor={0,0,0},
+          textString="nCells",
           textStyle={TextStyle.Bold})}));
 end MultiFlow1D_DP;

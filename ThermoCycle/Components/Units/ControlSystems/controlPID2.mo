@@ -98,23 +98,23 @@ model controlPID2
   parameter Real CSstart_Xpp = 0.5 "Xpp PID Start value of CS (scaled)";
   Modelica.Blocks.Sources.Constant DELTAT_SP(k=10)
     annotation (Placement(transformation(extent={{-62,4},{-50,16}})));
-  ThermoCycle.Components.Units.ControlSystems.Blocks.DELTAT dELTAT
+ ThermoCycle.Components.Units.ControlSystems.Blocks.DELTAT dELTAT
     annotation (Placement(transformation(extent={{-60,-34},{-40,-14}})));
   ThermoCycle.Components.Units.ControlSystems.Blocks.Tev_SPOptim tev_SP
     annotation (Placement(transformation(extent={{-60,54},{-40,74}})));
-  Blocks.Init init(length=10, t_init=20)
+  ThermoCycle.Functions.Init init(length=10, t_init=20)
             annotation (Placement(transformation(extent={{-20,-8},{0,12}})));
-  Blocks.Init init1(length=8, t_init=10)
+  ThermoCycle.Functions.Init init1(length=8, t_init=10)
              annotation (Placement(transformation(extent={{-20,54},{0,74}})));
   Modelica.Blocks.Sources.Constant DELTAT_SP1(k=1.5e5)
     annotation (Placement(transformation(extent={{-68,84},{-56,96}})));
   Modelica.Blocks.Sources.Constant const_pump(k=0.5533)
     annotation (Placement(transformation(extent={{34,-30},{46,-18}})));
-  Blocks.Init init2(t_init=4, length=3)
+  ThermoCycle.Functions.Init init2(t_init=4, length=3)
             annotation (Placement(transformation(extent={{66,4},{80,18}})));
   Modelica.Blocks.Continuous.FirstOrder firstOrder(y_start=0.33, T=5)
     annotation (Placement(transformation(extent={{-70,30},{-62,38}})));
-  Blocks.Init init3(t_init=6, length=3)
+  ThermoCycle.Functions.Init init3(t_init=6, length=3)
             annotation (Placement(transformation(extent={{70,62},{84,76}})));
   Modelica.Blocks.Sources.Constant const_exp(k=50)
     annotation (Placement(transformation(extent={{34,30},{46,42}})));

@@ -12,9 +12,7 @@ model step4
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     steadystate_T_sf=false,
     steadystate_h_wf=false,
-    steadystate_T_wall=false,
-    redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
+    steadystate_T_wall=false)
     annotation (Placement(transformation(extent={{-40,30},{-8,68}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2   source_Cdot(
     cp=1978,
