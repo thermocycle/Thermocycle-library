@@ -174,7 +174,7 @@ m_wf = 0;
       color={0,0,255},
       smooth=Smooth.None));
   connect(sine.y, pump.flow_in) annotation (Line(
-      points={{-81.4,-8},{-67.04,-8},{-67.04,-32.88}},
+      points={{-81.4,-8},{-65.84,-8},{-65.84,-32.4}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},

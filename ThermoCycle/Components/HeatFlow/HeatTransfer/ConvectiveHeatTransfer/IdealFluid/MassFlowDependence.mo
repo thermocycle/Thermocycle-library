@@ -8,7 +8,7 @@ input Modelica.SIunits.CoefficientOfHeatTransfer Unom
 Modelica.SIunits.CoefficientOfHeatTransfer U "Heat transfer coefficient";
 
 equation
-    U = Unom*(M_dot/Mdotnom)^0.8;
+    U = Unom*noEvent(abs(M_dot/Mdotnom)^0.8);
   /* Insert Qflow and T */
 q_dot = U*(thermalPortL.T - T_fluid);
 end MassFlowDependence;
