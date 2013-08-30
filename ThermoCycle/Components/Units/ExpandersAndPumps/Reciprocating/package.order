@@ -16,3 +16,4 @@ ValveTimer
 ValveTimerTester
 ExampleSystem
 StiffSpeedDependentLoad
+VariableValveTimer
