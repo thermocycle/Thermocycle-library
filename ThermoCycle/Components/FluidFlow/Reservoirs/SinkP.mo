@@ -17,7 +17,8 @@ model SinkP "Pressure sink"
         extent={{-20,-20},{20,20}},
         rotation=270)));
   Interfaces.Fluid.FlangeB flangeB(  redeclare package Medium = Medium)
-    annotation (Placement(transformation(extent={{-94,-12},{-74,8}})));
+    annotation (Placement(transformation(extent={{-94,-10},{-74,10}}),
+        iconTransformation(extent={{-94,-10},{-74,10}})));
 equation
   flangeB.p = p;
   p = in_p0;
@@ -29,7 +30,7 @@ equation
     in_h = h "Enthalpy set by parameter";
   end if;
     annotation (Placement(transformation(extent={{-108,-10},{-88,10}})),
-    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
+    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
             100}}), graphics={Text(extent={{-106,92},{-56,50}}, textString=
               "p0"), Text(extent={{54,94},{112,52}}, textString="h")}),
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
