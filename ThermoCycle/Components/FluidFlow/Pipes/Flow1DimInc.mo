@@ -16,7 +16,7 @@ public
  end SummaryClass;
  SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, T = Cells.T, Mdot = InFlow.m_flow, p = Cells[1].p);
 
-/* Thermal and fluid ports */
+/************ Thermal and fluid ports ***********/
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
@@ -27,7 +27,7 @@ public
   ThermoCycle.Interfaces.HeatTransfer.ThermalPort Wall_int(N=N)
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
-// Geometric characteristics
+/************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1)=10 "Number of cells";
   parameter Modelica.SIunits.Area A = 16.18
@@ -39,7 +39,6 @@ public
     "if HTtype = Const: Heat transfer coefficient";
 
  /********************************* FLUID INITIAL VALUES ******************************/
-
 parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                      annotation (Dialog(tab="Initialization"));
   parameter Medium.Temperature Tstart_inlet "Inlet temperature start value"
@@ -50,6 +49,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
         Medium.specificEnthalpy_pTX(pstart,Tstart_inlet,fill(0,0)),Medium.specificEnthalpy_pTX(pstart,Tstart_outlet,fill(0,0)),
         N) "Start value of enthalpy vector (initialized by default)"
     annotation (Dialog(tab="Initialization"));
+
 /***************************************   NUMERICAL OPTIONS  ***************************************************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
@@ -66,6 +66,7 @@ constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
     "Fluid heat transfer model" annotation (choicesAllMatching = true);
 
+/***************  VARIABLES ******************/
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
 
@@ -124,5 +125,17 @@ equation
           extent={{-92,40},{88,-40}},
           lineColor={0,0,255},
           fillColor={0,255,255},
-          fillPattern=FillPattern.Solid)}));
+          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
+       <p><big>This model describes the flow of incompressible fluid through a discretized one dimentional tube. It is obtained by connecting in series <b>N</b> Cell1DimInc component see (see <em><FONT COLOR=red> ThermoCycle.Components.FluidFlow.Pipes.Cell1DimInc </FONT></em>).    
+          
+          <p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:
+           <ul><li> Enthalpy at each node
+           <li>  Enthalpy at the center of each cell
+           <li> Density at the center of each cell
+           <li> Massflow at each node
+           <li> Temperature at the center of each cell
+           <li> Pressure in the tube
+           </ul>
+          
+      </HTML>"));
 end Flow1DimInc;

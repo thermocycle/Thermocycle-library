@@ -1,10 +1,10 @@
 within ThermoCycle.Components.FluidFlow.Pipes;
-model AirCell
+model AirCell "constant specific heat fluid"
 replaceable package Medium = Modelica.Media.Air.SimpleAir constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
 
-/* Thermal and fluid ports */
+/************ Thermal and fluid ports ***********/
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
@@ -16,7 +16,7 @@ annotation (choicesAllMatching = true);
 ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_ext
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
-// Geometric characteristics
+/************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
   parameter Modelica.SIunits.Area Ai "Lateral surface of a single cell";
@@ -40,9 +40,8 @@ final M_dot = Mdot,
 final x = 0,
 final FluidState={fluidState})
    annotation (Placement(transformation(extent={{-8,-16},{12,4}})));
-//final diameter = diameter,
 
-/********************* FLUID VARIABLES *********************/
+/********************* VARIABLES *********************/
   Medium.ThermodynamicState  fluidState;
   Modelica.SIunits.MassFlowRate Mdot;
   Medium.Temperature T_su "Inlet fluid temperature";

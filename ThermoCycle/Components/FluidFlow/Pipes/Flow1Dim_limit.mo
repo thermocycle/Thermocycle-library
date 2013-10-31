@@ -17,7 +17,7 @@ public
  end SummaryClass;
  SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
 
-/* Thermal and fluid ports */
+/************ Thermal and fluid ports ***********/
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
@@ -28,7 +28,15 @@ public
   ThermoCycle.Interfaces.HeatTransfer.ThermalPort Wall_int(N=N)
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
-// Geometric characteristics
+
+  Interfaces.Fluid.PortConverter_limit portConverter_in(redeclare package
+      Medium = Medium)
+    annotation (Placement(transformation(extent={{-62,-30},{-42,-10}})));
+  Interfaces.Fluid.PortConverter_limit portConverter_out(redeclare package
+      Medium = Medium)
+    annotation (Placement(transformation(extent={{66,-34},{46,-14}})));
+
+/************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1)=10 "Number of cells";
   parameter Modelica.SIunits.Area A = 16.18
@@ -45,7 +53,8 @@ public
     "if HTtype = LiqVap : heat transfer coefficient, two-phase zone";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v = 100
     "if HTtype = LiqVap : heat transfer coefficient, vapor zone";
- /* FLUID INITIAL VALUES */
+
+  /************ FLUID INITIAL VALUES ***************/
 parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                      annotation (Dialog(tab="Initialization"));
   parameter Medium.Temperature Tstart_inlet "Inlet temperature start value"
@@ -56,7 +65,8 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
         Medium.specificEnthalpy_pT(pstart,Tstart_inlet),Medium.specificEnthalpy_pT(pstart,Tstart_outlet),
         N) "Start value of enthalpy vector (initialized by default)"
     annotation (Dialog(tab="Initialization"));
-/* NUMERICAL OPTIONS  */
+
+/****************** NUMERICAL OPTIONS  ***********************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
@@ -78,13 +88,13 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
      annotation (Dialog(group="Intialization options", tab="Initialization"));
  /******************************* HEAT TRANSFER MODEL **************************************/
-
 replaceable model Flow1Dim_limitHeatTransferModel =
       ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
 constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
     "Fluid heat transfer model" annotation (choicesAllMatching = true);
 
+/***************  VARIABLES ******************/
  Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
  Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
 
@@ -114,13 +124,6 @@ constrainedby
 protected
   Modelica.SIunits.SpecificEnthalpy hnode_[N+1];
   Modelica.SIunits.MassFlowRate Mdot_[N+1];
-public
-  Interfaces.Fluid.PortConverter_limit portConverter_in(redeclare package
-      Medium = Medium)
-    annotation (Placement(transformation(extent={{-62,-30},{-42,-10}})));
-  Interfaces.Fluid.PortConverter_limit portConverter_out(redeclare package
-      Medium = Medium)
-    annotation (Placement(transformation(extent={{66,-34},{46,-14}})));
 equation
   // Connect wall and refrigerant cells with eachother
   for i in 1:N-1 loop
@@ -168,10 +171,18 @@ equation
           extent={{-92,24},{88,-20}},
           lineColor={0,0,255},
           textString="%name")}),
-    Documentation(info="<html>
-<p>Implementation of the Flow 1-D model with the limiter proposed in: </p>
+    Documentation(info="<html>         
+<p><big>Implementation of the Flow1Dim model with the limiter proposed in: </p>
 <p>Schulze et al., A limiter for Preventing Singularity in Simplified Finite Volume Methods</p>
-<p>Based on the Cell1D_limit model.</p>
+<p><big>It is obtained by connecting in series <b>N</b> Cell1Dim_limit component see (see <em><FONT COLOR=red> ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim_limit </FONT></em>).
+<p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:
+           <ul><li> Enthalpy at each node
+           <li>  Enthalpy at the center of each cell
+           <li> Density at the center of each cell
+           <li> Massflow at each node
+           <li> Vapor quality at the center of each cell
+           <li> Pressure in the tube
+           </ul>
 <p><br/>S. Quoilin, July 2013</p>
 </html>"));
 end Flow1Dim_limit;

@@ -4,7 +4,8 @@ model FlowConst
   /* Select heat transfer coefficient */
   import ThermoCycle.Functions.Enumerations.HT_sf;
 parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
-/* Thermal and fluid ports */
+
+/************ Thermal and fluid ports ***********/
   Interfaces.Fluid.Flange_Cdot flange_Cdot
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
@@ -14,7 +15,7 @@ parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
   Interfaces.HeatTransfer.ThermalPort Wall_int(N=N)
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
-  // Geometric characteristics:
+/************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1) = 10 "Number of cells";
 //   parameter Modelica.SIunits.Length L "Tube length";
@@ -31,7 +32,8 @@ parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
     "Norminal  fluid flow rate";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer  Unom=500
     "Nominal heat transfer coefficient,secondary fluid";
- /*INITIAL VALUES */
+
+ /************ FLUID INITIAL VALUES ***************/
   parameter Modelica.SIunits.Temperature Tstart_inlet = 145 + 273.15
     "Inlet temperature start value"
     annotation (Dialog(tab="Initialization"));
@@ -46,11 +48,13 @@ parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
 parameter Boolean steadystate_T=true
     "if true, sets the derivative of T to zero during Initialization"
     annotation (Dialog(group="Intialization options", tab="Initialization"));
- /* NUMERICAL OPTIONS  */
+
+/****************** NUMERICAL OPTIONS  ***********************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
-/* FLUID VARIABLES */
+
+/***************  VARIABLES ******************/
   Modelica.SIunits.MassFlowRate Mdot;
   Modelica.SIunits.SpecificHeatCapacity cp;
   Modelica.SIunits.Temperature T_su;
@@ -63,6 +67,7 @@ parameter Boolean steadystate_T=true
     "Heat transfer coefficient,secondary fluid";
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass";
+
 equation
   Tnode[1] = T_su;
   for j in 1:N loop

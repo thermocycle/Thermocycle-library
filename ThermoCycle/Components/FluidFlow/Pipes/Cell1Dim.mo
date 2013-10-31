@@ -1,11 +1,10 @@
 within ThermoCycle.Components.FluidFlow.Pipes;
-model Cell1Dim "1-D fluid flow model (Real fluid model)"
+model Cell1Dim "1-D lumped fluid flow model (Real fluid model)"
 replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
-//Modelica.Media.Interfaces.PartialTwoPhaseMedium
 
-/* Thermal and fluid ports */
+/************ Thermal and fluid ports ***********/
  ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
@@ -17,7 +16,8 @@ annotation (choicesAllMatching = true);
  ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_int
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
-// Geometric characteristics
+
+/************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
   parameter Modelica.SIunits.Area Ai "Lateral surface of a single cell";
@@ -28,12 +28,14 @@ annotation (choicesAllMatching = true);
     "if HTtype = LiqVap : heat transfer coefficient, two-phase zone";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v
     "if HTtype = LiqVap : heat transfer coefficient, vapor zone";
- /* FLUID INITIAL VALUES */
+
+ /************ FLUID INITIAL VALUES ***************/
 parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                      annotation (Dialog(tab="Initialization"));
   parameter Medium.SpecificEnthalpy hstart=1E5 "Start value of enthalpy"
     annotation (Dialog(tab="Initialization"));
-/* NUMERICAL OPTIONS  */
+
+/****************** NUMERICAL OPTIONS  ***********************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
@@ -78,7 +80,7 @@ final FluidState={fluidState})
                           annotation (Placement(transformation(extent={{-12,-14},
             {8,6}})));
 
-/* FLUID VARIABLES */
+/***************  VARIABLES ******************/
   Medium.ThermodynamicState  fluidState;
   Medium.SaturationProperties sat;
   Medium.AbsolutePressure p(start=pstart);
@@ -126,6 +128,7 @@ equation
                                                                                                         sat.psat=sat_in[13];
                                                                                                         sat.Tsat=sat_in[14];
   end if;
+
   h_v = Medium.dewEnthalpy(sat);
   h_l = Medium.bubbleEnthalpy(sat);
   //T_sat = Medium.temperature(sat);
@@ -148,15 +151,6 @@ equation
   qdot = heatTransfer.q_dot[1];
   Q_tot = Ai*qdot;
   M_tot = Vi*rho;
-// if (HTtype == HTtypes.MassFlowDependent) then
-//       U = ThermoCycle.Functions.U_sf(Unom=Unom_l, Mdot=M_dot_su/Mdotnom);
-// elseif (HTtype == HTtypes.LiqVap) then
-//       U = ThermoCycle.Functions.U_hx(
-//             Unom_l=Unom_l,
-//             Unom_tp=Unom_tp,
-//             Unom_v=Unom_v,
-//             x=x);
-// end if;
 
   /* MASS BALANCE */
   if filter_dMdt then
@@ -205,8 +199,7 @@ end if;
  /* Enthalpies */
   InFlow.h_outflow = hnode_su;
   OutFlow.h_outflow = hnode_ex;
-//  InFlow.h_outflow = h;
-//  OutFlow.h_outflow = h;
+
 /* pressures */
  p = OutFlow.p;
  InFlow.p = p;
@@ -219,11 +212,7 @@ end if;
  end if;
 InFlow.Xi_outflow = inStream(OutFlow.Xi_outflow);
 OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
-  /* Thermal port boundary condition */
-// /*Temperatures */
-//  Wall_int.T = T_wall;
-//  /*Heat flow */
-//   Wall_int.phi = qdot;
+
 initial equation
   if steadystate then
     der(h) = 0;
@@ -243,5 +232,41 @@ equation
           extent={{-92,40},{88,-40}},
           lineColor={0,0,255},
           fillColor={0,255,255},
-          fillPattern=FillPattern.Solid)}));
+          fillPattern=FillPattern.Solid), Text(
+          extent={{-88,24},{92,-20}},
+          lineColor={0,0,255},
+          textString="%Cell1D")}),Documentation(info="<HTML>
+          
+         <p><big>This model describes the flow of fluid through a single cell. An overall flow model can be obtained by interconnecting several cells in series (see <em><FONT COLOR=red>ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim</FONT></em>).
+          <p><big><b>Pressure</b> and <b>enthalpy</b> are selected as state variables. 
+          <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell. The relation between the cell and node values depends on the discretization scheme selected. 
+ <p><big>The assumptions for this model are:
+         <ul><li> Velocity is considered uniform on the cross section. 1-D lumped parameter model
+         <li> The model is based on dynamic mass and energy balances and on a static momentum balance
+         <li> Constant pressure is assumed in the cell
+         <li> Axial thermal energy transfer is neglected
+         <li> Thermal energy transfer through the lateral surface is ensured by the <em>wall_int</em> connector. The actual heat flow is computed by the thermal energy model
+         </ul>
+
+ <p><big>The model is characterized by two flow connector and one lumped thermal port connector. During normal operation the fluid enters the model from the <em>InFlow</em> connector and exits from the <em>OutFlow</em> connector. In case of flow reversal the fluid direction is inversed.
+ <p><big> The thermal energy transfer  through the lateral surface is computed by the <em>HeatTransfer</em> model which is inerithed in the <em>Cell1Dim</em> model. The different heat transfer model available for this component can be checked in <em><FONT COLOR=red>ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer</FONT></em>
+        <p><b><big>Modelling options</b></p>
+        <p><big> In the <b>General</b> tab the following options are availabe:
+        <ul><li>Medium: the user has the possibility to easly switch Medium.
+        <li> HeatTransfer: the user can choose the thermal energy model he prefers </ul> 
+        <p><big> In the <b>Initialization</b> tab the following options are availabe:
+        <ul><li> steadystate: If it sets to true, the derivative of enthalpy is sets to zero during <em>Initialization</em> 
+         </ul>
+        <p><b><big>Numerical options</b></p>
+<p><big> In this tab several options are available to make the model more robust:
+<ul><li> Discretization: 2 main discretization options are available: UpWind and central difference method. The authors raccomand the <em>UpWind Scheme - AllowsFlowReversal</em> in case flow reversal is expected.
+<li> Mdotconst: assume constant mass flow rate at each node.
+<li> max_der: if true the density derivative is truncated during phase change
+<li> filter_dMdt: if true a first order filter is applied to the fast variations of the density with respect to time
+<li> max_drhodt: it represents the maximum value of the density derivative. It activates when using max_der is set to true
+<li> TT: it represents the integration time of the first order filter. It activates when filter_dMdt is set to true
+<li> ComputeSat: if false saturation properties are not computed in the fluid model and they can be passed as a parameter.
+ </ul>
+ <p><big> 
+        </HTML>"));
 end Cell1Dim;

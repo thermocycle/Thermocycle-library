@@ -33,18 +33,7 @@ equation
           thickness=1,
           smooth=Smooth.None)}),
     Documentation(info="<HTML>
-<p>This component can be inserted in a hydraulic circuit to measure the flowrate of the fluid flowing through it.
-<p>Flow reversal is supported.
-</HTML>",
-        revisions="<html>
-<ul>
-<li><i>16 Dec 2004</i>
-    by <a href=\"mailto:francesco.casella@polimi.it\">Francesco Casella</a>:<br>
-       Standard medium definition added.</li>
-<li><i>1 Oct 2003</i>
-    by <a href=\"mailto:francesco.casella@polimi.it\">Francesco Casella</a>:<br>
-       First release.</li>
-</ul>
+
 </html>
 "));
 end SensMdot;

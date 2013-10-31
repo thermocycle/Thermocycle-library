@@ -17,7 +17,7 @@ public
  end SummaryClass;
  SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
 
-/* Thermal and fluid ports */
+/************ Thermal and fluid ports ***********/
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
@@ -28,9 +28,8 @@ public
   ThermoCycle.Interfaces.HeatTransfer.ThermalPort Wall_int(N=N)
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
-  // Calculation of the saturation properties here to avoid calculating in every cell:
-  Medium.SaturationProperties  sat;
-// Geometric characteristics
+
+/************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1)=10 "Number of cells";
   parameter Modelica.SIunits.Area A = 16.18
@@ -47,7 +46,8 @@ public
     "if HTtype = LiqVap : heat transfer coefficient, two-phase zone";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v = 100
     "if HTtype = LiqVap : heat transfer coefficient, vapor zone";
- /* FLUID INITIAL VALUES */
+
+ /************ FLUID INITIAL VALUES ***************/
 parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                      annotation (Dialog(tab="Initialization"));
   parameter Medium.Temperature Tstart_inlet "Inlet temperature start value"
@@ -58,6 +58,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
         Medium.specificEnthalpy_pT(pstart,Tstart_inlet),Medium.specificEnthalpy_pT(pstart,Tstart_outlet),
         N) "Start value of enthalpy vector (initialized by default)"
     annotation (Dialog(tab="Initialization"));
+
 /******************************** NUMERICAL OPTIONS  ********************************************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
@@ -81,15 +82,17 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
      annotation (Dialog(group="Intialization options", tab="Initialization"));
 
 /******************************* HEAT TRANSFER MODEL **************************************/
-
 replaceable model Flow1DimHeatTransferModel =
       ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
 constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
     "Fluid heat transfer model" annotation (choicesAllMatching = true);
 
+/***************  VARIABLES ******************/
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
+  Medium.SaturationProperties  sat
+    "Calculation of the saturation properties here to avoid calculating in every cell";
 
  replaceable ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim
         Cells[N](
@@ -113,8 +116,7 @@ constrainedby
     each sat_in= {sat.ddldp,sat.ddvdp,sat.dhldp,sat.dhvdp,sat.dTp,sat.hl,sat.hv,sat.sigma,sat.sl,sat.sv,sat.dl,sat.dv,sat.psat,sat.Tsat},
     each ComputeSat = false)
             annotation (Placement(transformation(extent={{-28,-48},{26,-4}})));
-                             // Avoids computing the saturation properties in each cell.
-    //each sat_in = sat,
+
   Interfaces.HeatTransfer.ThermalPortConverter
                        thermalPortConverter(N=N)
     annotation (Placement(transformation(extent={{-10,6},{10,26}})));
@@ -160,5 +162,19 @@ equation
           fillPattern=FillPattern.Solid), Text(
           extent={{-92,24},{88,-20}},
           lineColor={0,0,255},
-          textString="%name")}));
+          textString="%FLow1D")}),Documentation(info="<HTML>
+          <p><big>This model describes the flow of fluid through a discretized one dimentional tube. It is obtained by connecting in series <b>N</b> Cell1Dim component see (see <em><FONT COLOR=red> ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim </FONT></em>). The
+          resulting discretization scheme is of the staggered type i.e. state variables are computed at the center of each cell and the node variables are calculated depending on the local discretization  (Upwind or Central difference). 
+          <p><big> The <b>Modelling options</b> and the <b>Numerical options</b> are the same as the one presented in the Cell1D model documentation.
+          
+          <p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:
+           <ul><li> Enthalpy at each node
+           <li>  Enthalpy at the center of each cell
+           <li> Density at the center of each cell
+           <li> Massflow at each nodes
+           <li> Vapor quality at the center of each cell
+           <li> Pressure in the tube
+           </ul>
+          
+       </HTML>"));
 end Flow1Dim;

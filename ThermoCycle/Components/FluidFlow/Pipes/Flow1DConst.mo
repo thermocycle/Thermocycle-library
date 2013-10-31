@@ -12,7 +12,7 @@ record SummaryClass
 end SummaryClass;
  SummaryClass Summary(n=N, T = Cells[:].T, Tnode = Tnode_);
 
-/* Thermal and fluid ports */
+/************ Thermal and fluid ports ***********/
   Interfaces.Fluid.Flange_Cdot flange_Cdot
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
@@ -23,7 +23,7 @@ end SummaryClass;
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
 
-  // Geometric characteristics:
+/************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1) = 10 "Number of cells";
   parameter Modelica.SIunits.Area A= 16.18
@@ -33,7 +33,8 @@ end SummaryClass;
     "Norminal  fluid flow rate";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer  Unom=500
     "Nominal heat transfer coefficient,secondary fluid";
- /*INITIAL VALUES */
+
+/************ FLUID INITIAL VALUES ***************/
   parameter Modelica.SIunits.Temperature Tstart_inlet = 145 + 273.15
     "Inlet temperature start value"
     annotation (Dialog(tab="Initialization"));
@@ -61,10 +62,14 @@ ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.M
 constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation_IdealFluid
     "Convective heat transfer"                                                         annotation (choicesAllMatching = true);
+
+/***************  VARIABLES ******************/
 Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
 Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
+Modelica.SIunits.Temperature Tnode_[N+1]
+    "Temperature at each node of the cells";
 
-  /************************************** CELLS **************************/
+/******************************** CELLS **************************/
   ThermoCycle.Components.FluidFlow.Pipes.CellConst
         Cells[N](
     redeclare each final model HeatTransfer = Flow1DConstHeatTransferModel,
@@ -79,8 +84,6 @@ Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
             {24,-22}})));
   Interfaces.HeatTransfer.ThermalPortConverter thermalPortConverter(N=N)
     annotation (Placement(transformation(extent={{-24,-18},{16,16}})));
-
-Modelica.SIunits.Temperature Tnode_[N+1];
 
 equation
 for i in 1:N-1 loop
@@ -109,5 +112,12 @@ end for;
       color={255,0,0},
       smooth=Smooth.None));
   annotation (Icon(graphics={Rectangle(extent={{-90,40},{90,-40}},
-            lineColor={0,0,255})}), Diagram(graphics));
+            lineColor={0,0,255})}), Diagram(graphics),Documentation(info="<HTML>
+            <p><big>This model describes the flow of a constant heat capacity fluid through a discretized one dimentional tube.  It is obtained by connecting in series <b>N</b> Cell1Dim component see (see <em><FONT COLOR=red> ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim </FONT></em>).
+                
+            <p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:
+           <ul><li> Temperature at each nodes
+           <li>  Temperature at the center of each cell
+           </ul>     
+                </HTML>"));
 end Flow1DConst;
