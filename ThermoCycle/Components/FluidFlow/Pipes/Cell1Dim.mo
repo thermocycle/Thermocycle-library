@@ -237,7 +237,9 @@ equation
           lineColor={0,0,255},
           textString="%Cell1D")}),Documentation(info="<HTML>
           
-         <p><big>This model describes the flow of fluid through a single cell. An overall flow model can be obtained by interconnecting several cells in series (see <em><FONT COLOR=red>ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim</FONT></em>).
+         <p><big>Model <b>Cell1Dim</b> describes the flow of fluid through a single cell. An overall flow model can be obtained by interconnecting several cells in series 
+         (see <em><FONT COLOR=red><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a></FONT></em>).
+         
           <p><big><b>Pressure</b> and <b>enthalpy</b> are selected as state variables. 
           <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell. The relation between the cell and node values depends on the discretization scheme selected. 
  <p><big>The assumptions for this model are:
@@ -249,7 +251,8 @@ equation
          </ul>
 
  <p><big>The model is characterized by two flow connector and one lumped thermal port connector. During normal operation the fluid enters the model from the <em>InFlow</em> connector and exits from the <em>OutFlow</em> connector. In case of flow reversal the fluid direction is inversed.
- <p><big> The thermal energy transfer  through the lateral surface is computed by the <em>HeatTransfer</em> model which is inerithed in the <em>Cell1Dim</em> model. The different heat transfer model available for this component can be checked in <em><FONT COLOR=red>ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer</FONT></em>
+ <p><big> The thermal energy transfer  through the lateral surface is computed by the <em><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></em> model which is inerithed in the <em>Cell1Dim</em> model. 
+        
         <p><b><big>Modelling options</b></p>
         <p><big> In the <b>General</b> tab the following options are availabe:
         <ul><li>Medium: the user has the possibility to easly switch Medium.
