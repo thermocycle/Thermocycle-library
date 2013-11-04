@@ -2,6 +2,12 @@ within ;
 package ThermoCycle "A library for the simulation of thermal systems"
 
 
+
+
+
+
+
+
   annotation (uses(Modelica(version="3.2"),CoolProp2Modelica),Documentation(info="<HTML>
  <p><big>  The <b>ThermoCycle</b> library is an <b>open-source</b> library for dynamic modelling of ORC
 systems developed in the Modelica language. The library aims at providing a robust framework to model thermal systems, including ORC systems.</p>
@@ -44,10 +50,6 @@ The interface between ThermoCycle and CoolProp is ensured by the <b>CoolProp2Mod
 <li><strong><a href=\"modelica://ThermoCycle.Media\">Media</a> </strong>contain a list of some of the fluid available in the library. The CoolProp2Modelica library is anyway necessary to allow the coupling with CoolProp for computing the thermo-physical and transport properties of the fluids.
 </ul>
 
-
-<p><a href=\"modelica://ThermoCycle.Components.FluidFlow\">FluidFlow</a>
-
-<p><a href=\"modelica://Modelica.Blocks.Examples\">Ciaone2</a>
 
    </HTML>"));
 end ThermoCycle;
