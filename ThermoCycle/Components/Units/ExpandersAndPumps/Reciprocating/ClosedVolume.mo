@@ -1,5 +1,6 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model ClosedVolume "Model of a confined volume without mass transfer"
+
   Modelica.Blocks.Interfaces.RealInput volume
     annotation (Placement(transformation(extent={{120,-20},{80,20}}),
         iconTransformation(extent={{120,-20},{80,20}})));

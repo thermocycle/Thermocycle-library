@@ -1,9 +1,9 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer;
-model Adair1972 "Correlation of Adair et al. 1972, changeable parameters"
+model Adair1972 "Recip correlation of Adair et al. 1972, changeable parameters"
   extends
-    ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses.PartialCylinderHeatTransfer;
-  parameter Real A = 0.053 "Primary parameter";
-  parameter Real B = 0.600 "Prandl number exponent";
+    ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.RePrHeatTransfer(
+     final a = 0.053, final b = 0.800, final c = 0.600);
+
   import Modelica.Constants.pi;
   Modelica.SIunits.Length[n] De "Equivalent diameter 6V/A";
   Modelica.SIunits.ReynoldsNumber[n] Re;
@@ -24,11 +24,13 @@ model Adair1972 "Correlation of Adair et al. 1972, changeable parameters"
   Real tFactor1[n];
   Real tFactor2[n] "Transition factor";
   Real deltaTheta "Transition interval";
+
 equation
   deltaTheta = 0.05*pi "9 degrees crankshaft angle";
   for i in 1:n loop
     theta[i] = mod(crankshaftAngle,2*pi) "Promote input to array";
     omega[i] = der(crankshaftAngle) "Use continuous input for derivative";
+    assert(noEvent(omega[i] > 1e-6), "Very low rotational speed, make sure connected the crank angle input properly.", level=  AssertionLevel.warning);
     // Equation 15 from Adair et al.
     omega_g1[i] = 2*omega[i]*(1.04+cos(2*theta[i]));
     omega_g2[i] = 2*omega[i]*1/2*(1.04+cos(2*theta[i]));
@@ -47,23 +49,17 @@ equation
       "Switch back from omega_g2 to omega_g1";
     tFactor[i] = tFactor1[i] + (1-tFactor2[i]);
     omega_g[i] = tFactor[i]*omega_g1[i] + (1 - tFactor[i])*omega_g2[i];
-    Pr[i] = Medium.prandtlNumber(states[i]);
-    assert(Pr[i] > 0, "Invalid Prandtl number, make sure transport properties are calculated.");
-    eta[i] = Medium.dynamicViscosity(states[i]);
-    assert(eta[i] > 0, "Invalid viscosity, make sure transport properties are calculated.");
-    lambda[i] = Medium.thermalConductivity(states[i]);
-    assert(lambda[i] > 0, "Invalid thermal conductivity, make sure transport properties are calculated.");
+
     surfaceAreas[i] = pistonCrossArea + 2 * sqrt(pistonCrossArea*pi)*position[i]
       "Defines position";
     volume[i] = pistonCrossArea * position[i] "Get volumes";
     De[i] = 6 / pistonCrossArea * volume[i];
-    Re[i] = (Medium.density(states[i]) * De[i] * ( De[i] / 2 * omega_g[i])) / eta[i];
-    Nu[i] =  A * Re[i]^0.8 * Pr[i]^B;
-    h[i]  = Nu[i] * lambda[i] / De[i];
-    // There is a small mistake in equation 19 of the paper, DeltaT goes in the numerator.
-    -q_w[i] = h[i] * (Ts[i] - heatPorts[i].T);
-    Q_flows[i] = surfaceAreas[i]*q_w[i];
+
+    Gamma[i]  = De[i];
+    Lambda[i] = 0.5 * De[i] * omega_g[i];
+
   end for;
+
   annotation(Documentation(info="<html>
 <p>Simple heat transfer correlation with two parameters. </p>
 <p>You can find the paper describing the correlation here: <a href=\"http://docs.lib.purdue.edu/icec/45/\">http://docs.lib.purdue.edu/icec/45/</a></p>

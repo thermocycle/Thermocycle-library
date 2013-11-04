@@ -1,6 +1,6 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer;
 model ConstantHeatTransfer
-  "Cylinder heat transfer with constant heat transfer coefficient"
+  "Recip heat transfer with constant heat transfer coefficient"
   extends
     ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses.PartialCylinderHeatTransfer;
   parameter Modelica.SIunits.CoefficientOfHeatTransfer alpha0
