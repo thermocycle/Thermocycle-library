@@ -47,7 +47,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(HotFluid.OutFlow, sinkPFluid1.flangeB) annotation (Line(
-      points={{28,67.74},{40,67.74},{40,59.8},{75.6,59.8}},
+      points={{28,67.74},{40,67.74},{40,60},{75.6,60}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(graphics),

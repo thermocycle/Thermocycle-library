@@ -1,7 +1,7 @@
 within ThermoCycle.Examples.TestComponents;
 model Flow1DConst
 parameter Integer N = 5;
-  Components.FluidFlow.Pipes.FlowConst flowConst(N=N)
+ThermoCycle.Components.FluidFlow.Pipes.Flow1DConst flowConst(N=N)
     annotation (Placement(transformation(extent={{20,84},{-42,34}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot
                                                source_Cdot(
