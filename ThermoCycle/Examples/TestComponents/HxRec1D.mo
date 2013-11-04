@@ -26,7 +26,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(hxRec1D.outlet_fl1, sinkPFluid1.flangeB) annotation (Line(
-      points={{-22.6667,17.3333},{-48,17.3333},{-48,73.8},{-69.6,73.8}},
+      points={{-22.6667,17.3333},{-48,17.3333},{-48,74},{-69.6,74}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sourceWF.flangeB, hxRec1D.inlet_fl2) annotation (Line(
@@ -34,7 +34,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(hxRec1D.outlet_fl2, sinkPFluid.flangeB) annotation (Line(
-      points={{14.2933,-2.82667},{42,-2.82667},{42,-56.2},{75.6,-56.2}},
+      points={{14.2933,-2.82667},{42,-2.82667},{42,-56},{75.6,-56}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},

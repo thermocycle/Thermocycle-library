@@ -11,7 +11,7 @@ model Cell1D
     Vi=0.005,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_smooth,
     pstart=500000)
-    annotation (Placement(transformation(extent={{-22,16},{-2,36}})));
+    annotation (Placement(transformation(extent={{-24,8},{-4,28}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot  sourceMdot(
     Mdot_0=0.3,
     UseT=false,
@@ -33,7 +33,7 @@ model Cell1D
                 annotation (Placement(transformation(extent={{14,56},{34,76}})));
 equation
   connect(sourceMdot.flangeB, flow1Dim.InFlow) annotation (Line(
-      points={{-61,26},{-22,26}},
+      points={{-61,26},{-42,26},{-42,18},{-24,18}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(const.y, source_T.Temperature) annotation (Line(
@@ -41,19 +41,19 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(flow1Dim.OutFlow, sinkP.flangeB) annotation (Line(
-      points={{-2,26.1},{12,26.1},{12,25.8},{35.6,25.8}},
+      points={{-4,18.1},{12,18.1},{12,26},{35.6,26}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(ramp.y, sinkP.in_p0) annotation (Line(
       points={{35,66},{40,66},{40,34.8}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(source_T.ThermalPortCell, flow1Dim.Wall_int) annotation (Line(
-      points={{-13.1,50.9},{-12,28},{-12,31}},
+  connect(flow1Dim.Wall_int, source_T.ThermalPortCell) annotation (Line(
+      points={{-14,23},{-14,36.95},{-14,50.9},{-13.1,50.9}},
       color={255,0,0},
       smooth=Smooth.None));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+    Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{
             100,100}}), graphics),
     experiment(StopTime=50, __Dymola_Algorithm="Dassl"),
     __Dymola_experimentSetupOutput);

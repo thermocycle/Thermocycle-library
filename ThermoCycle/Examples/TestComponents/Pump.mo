@@ -1,30 +1,25 @@
 within ThermoCycle.Examples.TestComponents;
 model Pump
-ThermoCycle.Components.Units.ExpandersAndPumps.Pump Pump
-    annotation (Placement(transformation(extent={{-26,-16},{4,14}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SourceP sourceP(p0=142000)
-    annotation (Placement(transformation(extent={{-78,-10},{-58,10}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(p0=2351000)
-    annotation (Placement(transformation(extent={{56,-10},{76,10}})));
-  Modelica.Blocks.Sources.Ramp f_pp(
-    duration=100,
-    offset=30,
-    startTime=400,
-    height=0)      annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={-18,58})));
+
+  Components.Units.ExpandersAndPumps.Pump pump
+    annotation (Placement(transformation(extent={{-16,-14},{10,12}})));
+  Components.FluidFlow.Reservoirs.SourceP sourceP(p0=115794)
+    annotation (Placement(transformation(extent={{-100,-16},{-80,4}})));
+  Components.FluidFlow.Reservoirs.SourceP sourceP1(p0=863885)
+    annotation (Placement(transformation(extent={{76,6},{56,26}})));
+  Modelica.Blocks.Sources.Constant const(k=34)
+    annotation (Placement(transformation(extent={{-70,46},{-50,66}})));
 equation
-  connect(sourceP.flange, Pump.InFlow) annotation (Line(
-      points={{-58.6,0},{-40.2,0},{-40.2,-0.25},{-21.8,-0.25}},
+  connect(sourceP.flange, pump.InFlow) annotation (Line(
+      points={{-80.6,-6},{-46,-6},{-46,-0.35},{-12.36,-0.35}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(Pump.OutFlow, sinkPFluid.flangeB) annotation (Line(
-      points={{-2.6,10.1},{26,10.1},{26,-0.2},{57.6,-0.2}},
+  connect(pump.OutFlow, sourceP1.flange) annotation (Line(
+      points={{4.28,8.62},{34,8.62},{34,16},{56.6,16}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(f_pp.y, Pump.flow_in) annotation (Line(
-      points={{-18,47},{-18,22},{-15.8,22},{-15.8,11}},
+  connect(const.y, pump.flow_in) annotation (Line(
+      points={{-49,56},{-7.16,56},{-7.16,9.4}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(graphics));

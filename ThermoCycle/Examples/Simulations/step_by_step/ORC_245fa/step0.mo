@@ -24,7 +24,7 @@ parameter Integer N=10;
     Tstart_inlet=323.15,
     Tstart_outlet=323.15)
     annotation (Placement(transformation(extent={{-16,-10},{4,10}})));
- ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,
@@ -56,7 +56,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(flow1Dim.OutFlow, sinkPFluid.flangeB) annotation (Line(
-      points={{2.33333,0.0833333},{44,0.0833333},{44,-0.2},{83.6,-0.2}},
+      points={{2.33333,0.0833333},{44,0.0833333},{44,0},{83.6,0}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(source_Cdot.flange, SecondaryFluid.flange_Cdot) annotation (Line(

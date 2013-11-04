@@ -47,5 +47,8 @@ equation
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={0,0,0},
-          fillPattern=FillPattern.Forward)}), Diagram(graphics));
+          fillPattern=FillPattern.Forward)}), Diagram(graphics),
+    Documentation(info="<HTML>
+<p><big> Model <b>CountCurr</b> is a mathematical model to twist the temperature and flux vector order. It is used to create a counter current heat exchanger.
+</html>"));
 end CountCurr;

@@ -174,7 +174,7 @@ equation
     Documentation(info="<html>         
 <p><big>Implementation of the Flow1Dim model with the limiter proposed in: </p>
 <p>Schulze et al., A limiter for Preventing Singularity in Simplified Finite Volume Methods</p>
-<p><big>It is obtained by connecting in series <b>N</b> Cell1Dim_limit component see (see <em><FONT COLOR=red> ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim_limit </FONT></em>).
+<p><big>It is obtained by connecting in series <b>N</b>  <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim_limit\">Cell1Dim_limit</a>.
 <p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:
            <ul><li> Enthalpy at each node
            <li>  Enthalpy at the center of each cell

@@ -10,6 +10,7 @@ public
     parameter Integer n;
     Modelica.SIunits.SpecificEnthalpy[n] h;
     Modelica.SIunits.SpecificEnthalpy[n+1] hnode;
+
     Modelica.SIunits.Density[n] rho;
     Modelica.SIunits.MassFlowRate[n+1] Mdot;
     Real[n] x;
@@ -163,7 +164,7 @@ equation
           extent={{-92,24},{88,-20}},
           lineColor={0,0,255},
           textString="%FLow1D")}),Documentation(info="<HTML>
-          <p><big>This model describes the flow of fluid through a discretized one dimentional tube. It is obtained by connecting in series <b>N</b> Cell1Dim component see (see <em><FONT COLOR=red> ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim </FONT></em>). The
+          <p><big>This model describes the flow of fluid through a discretized one dimentional tube. It is obtained by connecting in series <b>N</b>  <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>. The
           resulting discretization scheme is of the staggered type i.e. state variables are computed at the center of each cell and the node variables are calculated depending on the local discretization  (Upwind or Central difference). 
           <p><big> The <b>Modelling options</b> and the <b>Numerical options</b> are the same as the one presented in the Cell1D model documentation.
           

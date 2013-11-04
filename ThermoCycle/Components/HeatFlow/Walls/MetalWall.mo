@@ -66,5 +66,17 @@ if steadystate_T_wall then
           lineColor={135,135,135},
           fillColor={95,95,95},
           fillPattern=FillPattern.Solid,
-          textString="Ext")}));
+          textString="Ext")}),
+    Documentation(info="<HTML>
+<p><big> Model <b>MetalWall</b> represents a discretized 1-dimentional tube of solid material. The assumptions of the model are:
+<ul><li> Wall thermal resistance is neglected (i.e. No temperature gradient in the wall)
+<li> Longitudinal thermal energy conduction is neglected
+<li> Dynamic thermal energy capacity is accounted for.
+</u1>
+ <p><b><big>Modelling options</b></p>
+ <p><big> In the <b>Initialization</b> tab the following options are availabe:
+        <ul><li> steadystate_T_wall: If it sets to true, the derivative of temperature is sets to zero during <em>Initialization</em> 
+         </ul>
+ 
+</html>"));
 end MetalWall;

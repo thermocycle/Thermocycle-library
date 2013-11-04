@@ -40,7 +40,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(crossHX.Outlet_fl1, sinkP.flangeB) annotation (Line(
-      points={{33.22,14},{58.61,14},{58.61,21.8},{83.6,21.8}},
+      points={{33.22,14},{58.61,14},{58.61,22},{83.6,22}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sourceAir.flangeB, crossHX.Inlet_fl2) annotation (Line(
@@ -48,7 +48,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(crossHX.Outlet_fl2, sinkP1.flangeB) annotation (Line(
-      points={{-5.78,-24.4},{-5.78,-46.2},{9.6,-46.2}},
+      points={{-5.78,-24.4},{-5.78,-46},{9.6,-46}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(graphics));

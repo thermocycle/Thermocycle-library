@@ -104,7 +104,8 @@ equation
   annotation (Icon(graphics={Rectangle(extent={{-90,40},{90,-40}},
             lineColor={0,0,255})}), Diagram(graphics),Documentation(info="<HTML>
           
-         <p><big>This model describes the flow of a constant specific heat fluid through a single cell.  An overall flow model can be obtained by interconnecting several cells in series (see <em><FONT COLOR=red>ThermoCycle.Components.FluidFlow.Pipes.Flow1DConst</FONT></em>)
+         <p><big>Model <b>CellConst</b> describes the flow of a constant specific heat fluid through a single cell.  An overall flow model can be obtained by interconnecting several cells in series
+          (see <em><FONT COLOR=red><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1DConst\">Flow1DConst</a></FONT></em>)
          <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell. 
          The relation between the cell and node values depends on the discretization scheme selected.
          <p><big>The assumptions for this model are:
@@ -113,8 +114,11 @@ equation
          <li> Constant pressure is assumed in the cell
          <li> Constant heat capacity is assumed in the cell 
          <li> Axial thermal energy transfer is neglected
-         <li> Thermal energy transfer through the lateral surface is ensured by the <em>wall_int</em> connector. The actual heat flow is computed by the thermal energy model
+          <li> Thermal energy transfer through the lateral surface is ensured by the <em>wall_int</em> connector. The actual heat flow is computed by the thermal energy model
          </ul>
+  
+  <p><big> The thermal energy transfer  through the lateral surface is computed by the <em><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></em> model which is inerithed in the <em>CellConst</em> model.
+         
           <p><b><big>Modelling options</b></p>
         <p><big> In the <b>General</b> tab the following option is availabe:
         <ul>

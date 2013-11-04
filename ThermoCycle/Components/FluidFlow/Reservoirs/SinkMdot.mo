@@ -21,7 +21,11 @@ equation
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}),     graphics),
     Documentation(info="<HTML>
-<p><b>Modelling options</b></p>
+<p><big> Model <b>SinkMdot</b> sets the boundary mass flow of the fluid flowing from the port to the model (i.e. into the model).
+
+
+ 
+
 
 </html>"),
     conversion(noneFromVersion=""));

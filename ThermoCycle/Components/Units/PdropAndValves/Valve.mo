@@ -73,6 +73,7 @@ equation
   InFlow.h_outflow = inStream(OutFlow.h_outflow);
   inStream(InFlow.h_outflow) = OutFlow.h_outflow;
 initial equation
+
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             100}}), graphics={Text(extent={{-100,-40},{100,-74}}, textString=
@@ -80,7 +81,13 @@ initial equation
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}),     graphics),
     Documentation(info="<HTML>
-<p>This very simple model assumes a non-compressible flow for computing the pressure drop</p>
+<p><big> The <b>Valve<b> model represents the expansion of a fluid through a valve.
+ <p><big>The assumptions for this model are:
+         <ul><li> No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger).
+         <li> No thermal energy losses to the environment
+         <li> The expansion is assumed isenthalpic
+         <li> Incompressible flow for computing the pressure drop
+         </ul>
 </HTML>",
         uses(Modelica(version="3.2"))));
 end Valve;

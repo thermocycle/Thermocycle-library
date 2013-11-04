@@ -9,49 +9,76 @@ constant Real  pi = Modelica.Constants.pi;
 //FOCUS
 //parameter Boolean PTR "Choose type of collector";
 //parameter Boolean UVAC "Choose type of collector";
-// Optical Parameter Values give an eta_opt = 0.7263 //
-parameter Real eps1 = 0.9754 "HCE Shadowing";
-parameter Real eps2 = 0.994 "Tracking error";
-parameter Real eps3 = 0.98 "Geometry error";
-parameter Real rho_cl = 0.935 "Mirror reflectivity";
-parameter Real eps4 = 0.962566845 "Dirt on Mirrors";
-parameter Real eps5 = 0.981283422 "Dirt on HCE";
-parameter Real eps6 = 0.96 "Unaccounted FORSE DA LEVARE";
-// Parameter for coefficient of heat transfer air
-parameter Real Pr "Prandt number";
-parameter Modelica.SIunits.Pressure Patm "Atmosphere Pressure [Pa]";
-//GEOMETRIES
+/*********************** Optical Parameter Values give an eta_opt = 0.7263 ***********************/
+parameter Real eps1 = 0.9754 "HCE Shadowing"
+                                            annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real eps2 = 0.994 "Tracking error"
+                                            annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real eps3 = 0.98 "Geometry error"
+                                           annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real rho_cl = 0.935 "Mirror reflectivity"
+                                                   annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real eps4 = 0.962566845 "Dirt on Mirrors"
+                                                   annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real eps5 = 0.981283422 "Dirt on HCE"
+                                               annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real eps6 = 0.96 "Unaccounted FORSE DA LEVARE"
+                                                        annotation (Dialog(group="Optical Properties", tab="General"));
+
+/*****************General Geometries**************************/
 parameter Integer N = 2 "Number of cells";
 parameter Integer Nt = 1 "Number of tubes";
 parameter Modelica.SIunits.Length L "Length of tube";
+parameter Modelica.SIunits.Length A_P "Aperture of the parabola";
+
 final parameter Modelica.SIunits.Length D_int_t= Dext_t - 2*th_t
     "internal diameter of the metal tube";
-final parameter Modelica.SIunits.Area A_lateral= L*D_int_t*pi
+final parameter Modelica.SIunits.Area A_lateral= L*D_int_t*pi*Nt
     "Lateral internal surface of the metal tube";
-final parameter Modelica.SIunits.Volume V_tube_int = pi*D_int_t^2/4*L
+final parameter Modelica.SIunits.Volume V_tube_int = pi*D_int_t^2/4*L*Nt
     "Internal volume of the metal tube";
-parameter Modelica.SIunits.Length A_P "Aperture of the parabola";
-// GLASS PROPERTIES
-parameter Modelica.SIunits.Density rho_g "Glass density";
+
+/*********************** GLASS PROPERTIES ***********************/
+parameter Modelica.SIunits.Density rho_g "Glass density"
+                                                        annotation (Dialog(group="Properties of the glass envelope", tab="General"));
 parameter Modelica.SIunits.SpecificHeatCapacity Cp_g
-    "Specific heat capacity of the glass";
+    "Specific heat capacity of the glass"
+                                         annotation (Dialog(group="Properties of the glass envelope", tab="General"));
 parameter Modelica.SIunits.ThermalConductivity lambda_g
-    "Thermal conductivity of the glass";
-parameter Modelica.SIunits.Length Dext_g = 0.12 "External glass diameter";
-parameter Modelica.SIunits.Length th_g = 0.0025 "Glass thickness";
-// PRESSURE VACUUM
-parameter Modelica.SIunits.Pressure Pvacuum "Vacuum Pressure [Pa]";
-// TUBE PROPERTIES
-parameter Modelica.SIunits.Length Dext_t =  0.07 "External diameter tube";
+    "Thermal conductivity of the glass"
+                                       annotation (Dialog(group="Properties of the glass envelope", tab="General"));
+parameter Modelica.SIunits.Length Dext_g = 0.12 "External glass diameter"
+                                                                         annotation (Dialog(group="Properties of the glass envelope", tab="General"));
+parameter Modelica.SIunits.Length th_g = 0.0025 "Glass thickness"
+                                                                 annotation (Dialog(group="Properties of the glass envelope", tab="General"));
+
+/***********************  TUBE PROPERTIES ***********************/
+parameter Modelica.SIunits.Length Dext_t =  0.07 "External diameter tube"
+                                                                         annotation (Dialog(group="Properties of the metal envelope", tab="General"));
                               //if PTR then 0.07 elseif UVAC then 0.056 else 0.056
-parameter Modelica.SIunits.Length th_t =  0.002 "tube thickness";
+parameter Modelica.SIunits.Length th_t =  0.002 "tube thickness"
+                                                                annotation (Dialog(group="Properties of the metal envelope", tab="General"));
                       //if PTR then 0.0025 elseif UVAC then 0.003 else 0.003
-parameter Modelica.SIunits.Density rho_t "tube density";
+parameter Modelica.SIunits.Density rho_t "tube density"
+                                                       annotation (Dialog(group="Properties of the metal envelope", tab="General"));
 parameter Modelica.SIunits.SpecificHeatCapacity Cp_t
-    "Specific heat capacity of the tube";
+    "Specific heat capacity of the tube"
+                                        annotation (Dialog(group="Properties of the metal envelope", tab="General"));
 parameter Modelica.SIunits.ThermalConductivity lambda_t
-    "Thermal conductivity of the tube";
-//TEMPERATURE INITIALIZATION GLASS AND METAL WALL
+    "Thermal conductivity of the tube"
+                                      annotation (Dialog(group="Properties of the metal envelope", tab="General"));
+
+/*********************** PRESSURE VACUUM ***********************/
+parameter Modelica.SIunits.Pressure Pvacuum "Vacuum Pressure [Pa]"
+                                                                  annotation (Dialog(group="Vacuum properties: between metal and glass envelope", tab="General"));
+
+/*********************** Parameter for coefficient of heat transfer air ***********************/
+parameter Real Pr "Prandt number"
+                                 annotation (Dialog(group="Atmospheric characteristic", tab="General"));
+parameter Modelica.SIunits.Pressure Patm "Atmosphere Pressure [Pa]"
+                                                                   annotation (Dialog(group="Atmospheric characteristic", tab="General"));
+
+/*********************** TEMPERATURE INITIALIZATION GLASS AND METAL WALL ***********************/
 parameter Modelica.SIunits.Temperature T_g_start_in
     "Temperature at the inlet of the glass"
                                            annotation (Dialog(tab="Initialization"));
@@ -192,6 +219,27 @@ constrainedby
   Modelica.Blocks.Interfaces.RealInput DNI
     annotation (Placement(transformation(extent={{-84,-80},{-44,-40}}),
         iconTransformation(extent={{-72,-94},{-32,-54}})));
+public
+record SummaryBase
+  replaceable Arrays T_profile;
+  record Arrays
+   parameter Integer n;
+   Modelica.SIunits.Temperature[n] T_fluid;
+   Modelica.SIunits.Temperature[n] T_int_t;
+   Modelica.SIunits.Temperature[n] T_t;
+   Modelica.SIunits.Temperature[n] T_ext_t;
+   Modelica.SIunits.Temperature[n] T_int_g;
+   Modelica.SIunits.Temperature[n] T_g;
+   Modelica.SIunits.Temperature[n] T_ext_g;
+  end Arrays;
+  Real Eta_solarCollector "Total efficiency of solar collector";
+  Modelica.SIunits.HeatFlux Philoss "Heat Flux lost to the environment";
+  Modelica.SIunits.Power Q_htf
+      "Total heat through the termal heat transfer fluid flowing in the solar collector";
+end SummaryBase;
+replaceable record SummaryClass = SummaryBase;
+SummaryClass Summary( T_profile( n=N, T_fluid = flow1Dim.Cells[:].T,  T_int_t = solAbs.T_int_t[1:1:N],T_t = solAbs.T_t[1:1:N],T_ext_t = solAbs.T_ext_t[1:1:N],T_int_g = solAbs.T_int_g[1:1:N],T_g = solAbs.T_g[1:1:N],T_ext_g = solAbs.T_ext_g[1:1:N]),Eta_solarCollector= solAbs.Eta_TOT,Philoss = solAbs.Phi_loss,Q_htf = flow1Dim.Q_tot);
+
 equation
   connect(OutFlow, flow1Dim.OutFlow) annotation (Line(
       points={{0,102},{38,102},{38,104},{48.2375,104},{48.2375,30.4167}},
@@ -230,5 +278,11 @@ equation
           extent={{-40,100},{40,-100}},
           lineColor={0,0,0},
           fillColor={255,85,85},
-          fillPattern=FillPattern.Solid)}));
+          fillPattern=FillPattern.Solid), Text(
+          extent={{-28,18},{32,-18}},
+          lineColor={0,0,0},
+          fillColor={255,85,85},
+          fillPattern=FillPattern.Solid,
+          textString="Sol.Coll. 
+")}));
 end SolarCollector;

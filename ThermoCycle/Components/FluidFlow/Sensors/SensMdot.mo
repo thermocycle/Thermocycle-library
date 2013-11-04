@@ -5,18 +5,21 @@ model SensMdot "Mass Flowrate sensor for working fluid"
     Modelica.Media.Interfaces.PartialMedium "Medium Model" annotation (choicesAllMatching = true);
   Modelica.Blocks.Interfaces.RealOutput Mdot annotation (Placement(
         transformation(extent={{60,40},{100,80}}, rotation=0)));
-  Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium)
+  Interfaces.Fluid.FlangeA InFlow( m_flow(min=0),redeclare package Medium = Medium)
                 annotation (Placement(transformation(extent={{-50,-50},{-30,-30}}),
         iconTransformation(extent={{-50,-50},{-30,-30}})));
-  Interfaces.Fluid.FlangeB OutFlow( redeclare package Medium = Medium)
+  Interfaces.Fluid.FlangeB OutFlow(m_flow(min=0), redeclare package Medium = Medium)
                  annotation (Placement(transformation(extent={{30,-50},{50,-30}}),
         iconTransformation(extent={{30,-50},{50,-30}})));
 equation
   InFlow.m_flow + OutFlow.m_flow = 0 "Mass balance";
   // Boundary conditions
+  /* pressure */
   InFlow.p = OutFlow.p;
+  /* Enthalpy */
   InFlow.h_outflow = inStream(OutFlow.h_outflow);
   inStream(InFlow.h_outflow) = OutFlow.h_outflow;
+  /* MassFlow */
   Mdot = InFlow.m_flow;
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
@@ -33,7 +36,8 @@ equation
           thickness=1,
           smooth=Smooth.None)}),
     Documentation(info="<HTML>
-
+<p><big> Model <b>SensMdot</b> represents an ideal mass flow sensor.
+    
 </html>
 "));
 end SensMdot;

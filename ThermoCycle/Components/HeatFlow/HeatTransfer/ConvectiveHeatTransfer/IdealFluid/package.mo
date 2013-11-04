@@ -1,6 +1,6 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer;
 package IdealFluid 
-  import ThermoCycle;
+import ThermoCycle;
 
 
 extends Modelica.Icons.VariantsPackage;

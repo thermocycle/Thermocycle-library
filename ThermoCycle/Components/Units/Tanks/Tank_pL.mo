@@ -64,9 +64,9 @@ equation
   H = Vtot * (L * sat.dl * sat.hl + (1-L) * sat.dv * sat.hv);
  /* BOUNDARY CONDITION */
   /* Enthalpies */
-  h_su=  actualStream(InFlow.h_outflow);
+  h_su = if noEvent(M_dot_su <= 0) then h_ex else inStream(InFlow.h_outflow);
   InFlow.h_outflow = sat.hv;
-  OutFlow.h_outflow = h_ex;
+  OutFlow.h_outflow =   if noEvent(M_dot_ex >= 0) then h_ex else inStream(OutFlow.h_outflow);
   /*Mass Flow Rate */
   M_dot_su = InFlow.m_flow;
   -M_dot_ex = OutFlow.m_flow;
@@ -120,8 +120,25 @@ initial equation
           smooth=Smooth.None),
         Text(extent={{-100,52},{100,18}}, textString="%name")}),
     Documentation(info="<html>
-<p>This tank model uses L (the relative level) and p as state variables. </p>
-<p>It only requires one saturation call to the thermodynamic properties.</p>
+<p><big> Model <b>Tank_pL</b> represents a liquid receiver. It is assumed to be in thermodynamic equilibrium at all
+times, i.e. the vapor and liquid are saturated at the given pressure.
+It is modeled with a dynamic energy and mass balances.
+
+<p><big>The exhaust flow rate is defined as saturated liquid while the supply flow rate coming from the inlet can
+be either subcooled (in which case the receiver pressure is going to decrease), saturated (in which case the receiver pressure remains constant) or two-phase
+(in which case the receiver pressure is going to increase).
+<p><big> It uses  <b>L </b>, the relative level, and  <b>p</b>, pressure, as state variables
+<p><big>It only requires one saturation call to the thermodynamic properties.</p>
+
+<p><b><big>Modelling options</b></p>
+  <p><big> In the <b>Initialization</b> tab the following options are availabe:
+        <ul><li> impose_L: if  true, the level of the tank is imposed during <em>Initialization</em>
+         <li> impose_pressure: if  true, the pressure of the tank is imposed during <em>Initialization</em>
+         <li> SteadyState_p: if  true, the derivative of the pressure of the tank is set to zero during <em>Initialization</em>
+         <li> SteadyState_L: if  true, the derivative of the level of the tank is set to zero during <em>Initialization</em>
+         </ul>
+
+
 <p>Sylvain Quoilin, March 2013.</p>
 </html>"));
 end Tank_pL;

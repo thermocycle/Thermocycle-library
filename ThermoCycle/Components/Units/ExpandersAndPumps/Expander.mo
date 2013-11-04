@@ -1,6 +1,6 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps;
-model Expander "Generic expander model using efficiency curves"
- /* FLUID */
+model Expander "Generic expander model"
+ /****************************************** FLUID ******************************************/
 replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
  /*Ports */
@@ -15,12 +15,13 @@ Modelica.Mechanics.Rotational.Interfaces.Flange_b flange_elc "Flange of shaft"
   Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium =
                Medium)
     annotation (Placement(transformation(extent={{80,-70},{100,-50}})));
-/* SELECT TYPE OF EXPANDER */
+/****************************************** SELECT TYPE OF EXPANDER ******************************************/
   import ThermoCycle.Functions.Enumerations.ExpTypes;
 parameter ExpTypes ExpType=ExpTypes.UD;
 parameter Real epsilon_s=0.7 "Isentropic Efficiency"
     annotation (Dialog(enable=(ExpType == ExpTypes.UD)));
-  /* PARAMETERES */
+
+  /****************************************** PARAMETERES ******************************************/
   parameter Real FF_exp=1 "Filling factor"
     annotation (Dialog(enable=(ExpType == ExpTypes.UD)));
   parameter Modelica.SIunits.Volume V_s "Swept volume";
@@ -47,7 +48,8 @@ parameter Real epsilon_s=0.7 "Isentropic Efficiency"
   parameter Modelica.SIunits.Time t_init=10
     "if constinit is true, time during which the efficiencies are set to their start values"
     annotation (Dialog(group="Intialization options",tab="Initialization", enable=constinit));
-  /*VARIABLES */
+
+  /****************************************** VARIABLES ******************************************/
   Medium.ThermodynamicState steamIn
     "Thermodynamic state of the fluid at the inlet";
   Medium.ThermodynamicState steamOut
@@ -110,11 +112,11 @@ end if;
 
    //BOUNDARY CONDITIONS //
    /* Enthalpies */
-   h_su = inStream(InFlow.h_outflow);
-   h_su = InFlow.h_outflow;
-   //InFlow.h_outflow = inStream(OutFlow.h_outflow);
+  h_su = if noEvent(InFlow.m_flow <= 0) then h_ex else inStream(InFlow.h_outflow);
+  h_su = InFlow.h_outflow;
+  OutFlow.h_outflow = if noEvent(OutFlow.m_flow <= 0) then h_ex else inStream(
+    OutFlow.h_outflow);
 
-   OutFlow.h_outflow = h_ex;
    /*Mass flows */
    M_dot = InFlow.m_flow;
    OutFlow.m_flow = -M_dot;
@@ -126,6 +128,7 @@ end if;
   der(flange_elc.phi) = 2*N_rot*Modelica.Constants.pi;
   flange_elc.tau = W_dot/(2*N_rot*Modelica.Constants.pi)
   annotation (Diagram(graphics));
+
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
             -100},{100,100}}), graphics), Icon(coordinateSystem(
           preserveAspectRatio=false,extent={{-120,-120},{120,120}}), graphics={
@@ -140,5 +143,17 @@ end if;
           lineColor={0,0,255},
           smooth=Smooth.None,
           fillColor={0,0,255},
-          fillPattern=FillPattern.Solid)}));
+          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
+          
+         <p><big>The <b>Expander</b>  model represents the expansion of a fluid in a volumetric machine. It is a lumped model based on performance curves. It is characterized by two flow connector for the fluid inlet and outlet and by a mechanical connector for the connection with the generator.
+        <p><big>The assumptions for this model are:
+         <ul><li> No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger).
+         <li> No thermal energy losses to the environment
+         <li> Isentropic efficiency based on empirical performance curve
+         <li> Filling factor based on empirical performance curve
+         </ul>
+      <p><b><big>Modelling options</b></p>
+        <p><big> In the <b>General</b> tab the following option is availabe:
+        <ul><li>ExpType: it changes the performance curves for isentropic efficiency and filling factor. </ul> 
+        </HTML>"));
 end Expander;

@@ -15,7 +15,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-62,46},{-34,70}})));
 
-ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,
@@ -105,7 +105,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    condenser(
     Tstart_outlet_sf=296.36)
     annotation (Placement(transformation(extent={{32,-50},{8,-70}})));
 
-ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2  heat_sink(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(
     cp=4187,
     rho=1000,
     Mdot_0=4,

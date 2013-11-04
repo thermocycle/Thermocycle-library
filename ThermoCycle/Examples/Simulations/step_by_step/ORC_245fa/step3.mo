@@ -16,7 +16,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-30,-2},{2,36}})));
- ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
+ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,
@@ -36,8 +36,8 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     DELTAp_quad_nom=5150,
     use_rho_nom=false)
     annotation (Placement(transformation(extent={{24,-6},{44,14}})));
- ThermoCycle.Components.FluidFlow.Reservoirs.SinkVdot sinkVdot(
-    Vdot=1.889e-3,
+ThermoCycle.Components.FluidFlow.Reservoirs.SinkVdot  sinkVdot(
+    Vdot_0=1.889e-3,
     h_out=5.04E5,
     pstart=2357000)
     annotation (Placement(transformation(extent={{62,-6},{82,14}})));

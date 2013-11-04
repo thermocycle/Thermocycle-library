@@ -3,7 +3,8 @@ model Flow1DConst
 parameter Integer N = 5;
   Components.FluidFlow.Pipes.FlowConst flowConst(N=N)
     annotation (Placement(transformation(extent={{20,84},{-42,34}})));
-  Components.FluidFlow.Reservoirs.Source_Cdot3 source_Cdot(
+  ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot
+                                               source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,

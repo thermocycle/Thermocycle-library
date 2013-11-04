@@ -52,7 +52,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(flow1Dim.OutFlow, sinkP.flangeB) annotation (Line(
-      points={{-3.66667,26.0833},{12,26.0833},{12,25.8},{35.6,25.8}},
+      points={{-3.66667,26.0833},{12,26.0833},{12,26},{35.6,26}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(ramp.y, sinkP.in_p0) annotation (Line(

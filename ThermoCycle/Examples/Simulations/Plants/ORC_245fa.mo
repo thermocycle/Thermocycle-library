@@ -13,7 +13,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-62,46},{-34,70}})));
 
-ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,
@@ -102,7 +102,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{30,-50},{6,-70}})));
 
-ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 heat_sink(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(
     cp=4187,
     rho=1000,
     Mdot_0=4,
