@@ -19,7 +19,10 @@ model SinkVdot "Volumetric flow sink for current working fluid"
         transformation(
         extent={{20,-20},{-20,20}},
         rotation=90,
-        origin={-24,72})));
+        origin={-24,72}), iconTransformation(
+        extent={{20,-20},{-20,20}},
+        rotation=90,
+        origin={0,78})));
 equation
   Vdot = in_Vdot;
   h= inStream(flangeB.h_outflow);
@@ -34,11 +37,19 @@ equation
 
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}), graphics),
+            100}}), graphics={
+                   Text(extent={{-102,104},{-26,66}},
+          textString="Vdot",
+          lineColor={0,0,0})}),
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}),     graphics),
     Documentation(info="<HTML>
-<p><b>Modelling options</b></p>
+    <p><big> Model <b>SinkVdot</b> sets the boundary volume flow rate of the fluid flowing from the port to the model (i.e. into the model).
+
+  
+ <!-- <p><big>Note that boundary volume flow rate is imposed by the model only if the fluid is flowing into the model. If flow reversal happens (i.e. mass flow flowing out of <b>SinkVdot</b>) then the boundary enthalpy is imposed by the model. -->
+ <p><big> The volume flow rate can be set as a parameter or defined by the connector.
+ <p>
 
 </html>"),
     conversion(noneFromVersion=""));
