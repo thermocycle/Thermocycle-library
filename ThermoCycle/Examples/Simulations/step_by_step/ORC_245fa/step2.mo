@@ -2,7 +2,7 @@ within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step2
 
  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP  sinkPFluid(p0=2357000)
-    annotation (Placement(transformation(extent={{82,-10},{102,10}})));
+    annotation (Placement(transformation(extent={{78,-2},{98,18}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=0.2588,
     h_0=281455,
@@ -19,7 +19,7 @@ model step2
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-30,-2},{2,36}})));
-ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,
@@ -55,7 +55,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(dP.OutFlow, sinkPFluid.flangeB) annotation (Line(
-      points={{43,4},{64,4},{64,-0.2},{83.6,-0.2}},
+      points={{43,4},{64,4},{64,8},{79.6,8}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},

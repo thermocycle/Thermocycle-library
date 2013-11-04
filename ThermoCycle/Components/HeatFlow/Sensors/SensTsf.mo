@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow.Sensors;
-model SensTsf "Temperature sensor for secondary fluid"
+model SensTsf "Temperature sensor for  constant heat capacity fluid"
   extends ThermoCycle.Icons.Water.SensThrough;
   Modelica.Blocks.Interfaces.RealOutput T annotation (Placement(
         transformation(extent={{60,40},{100,80}}, rotation=0)));
@@ -22,6 +22,7 @@ equation
           lineColor={0,0,0},
           textString="T")}),
     Documentation(info="<HTML>
+    <p><big> Model <b>SensTsf</b> represents an ideal temperature sensor for a constant heat capacity fluid
 </html>
 "));
 end SensTsf;

@@ -14,5 +14,8 @@ replaceable package Medium2 = Media.R245faCool constrainedby
     annotation (Placement(transformation(extent={{88,50},{108,70}})));
   Interfaces.Fluid.FlangeB outlet_fl2( redeclare package Medium = Medium2)
     annotation (Placement(transformation(extent={{-108,48},{-88,68}})));
-  annotation (Diagram(graphics), Icon(graphics));
+  annotation (Diagram(graphics), Icon(graphics),
+    Documentation(info="<HTML>
+<p><big> Partial Model <b>BaseHx</b> defines the four fluid port for an heat exchanger model.
+</html>"));
 end BaseHx;

@@ -21,7 +21,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-46,28},{-12,60}})));
 
- ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,
@@ -110,7 +110,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(p0=153400)
     Tstart_outlet_sf=296.36)
     annotation (Placement(transformation(extent={{46,-66},{22,-86}})));
 
-ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 heat_sink(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(
     cp=4187,
     rho=1000,
     Mdot_0=4,
@@ -148,7 +148,7 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   connect(condenser.outletWf, sinkPFluid.flangeB) annotation (Line(
-      points={{22,-71},{0,-71},{0,-72},{-18,-72},{-18,-80.2},{-33.6,-80.2}},
+      points={{22,-71},{0,-71},{0,-72},{-18,-72},{-18,-80},{-33.6,-80}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.inlet_fl2, dp_lp.OutFlow) annotation (Line(

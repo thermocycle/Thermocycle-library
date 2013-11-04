@@ -186,7 +186,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(condenser.outlet_fl2, sink_htf1.flangeB) annotation (Line(
-      points={{27.0462,-64.4615},{42,-64.4615},{42,-74.12},{50.96,-74.12}},
+      points={{27.0462,-64.4615},{42,-64.4615},{42,-74},{50.96,-74}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.outlet_fl1, evaporator.inlet_fl1) annotation (Line(
@@ -202,7 +202,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(evaporator.outlet_fl2, sink_htf.flangeB) annotation (Line(
-      points={{-58.5538,61.3538},{-74,61.3538},{-74,73.88},{-84.96,73.88}},
+      points={{-58.5538,61.3538},{-74,61.3538},{-74,74},{-84.96,74}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},

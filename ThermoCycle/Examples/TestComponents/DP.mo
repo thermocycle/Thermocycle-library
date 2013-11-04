@@ -43,7 +43,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(dP.OutFlow, sinkPFluid.flangeB) annotation (Line(
-      points={{-11,42},{0,42},{0,36},{14,36},{14,41.8},{25.6,41.8}},
+      points={{-11,42},{0,42},{0,36},{14,36},{14,42},{25.6,42}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(graphics),

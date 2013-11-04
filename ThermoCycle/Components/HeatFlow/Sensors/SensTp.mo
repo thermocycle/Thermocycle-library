@@ -9,9 +9,9 @@ replaceable package Medium = Media.R245fa constrainedby
         transformation(extent={{-60,40},{-100,80}}, rotation=0)));
 Modelica.SIunits.SpecificEnthalpy h "Specific Enthalpy of the fluid";
 Medium.ThermodynamicState fluidState "Thermodynamic state of the fluid";
-  Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium)
+  Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium, m_flow(min= 0))
     annotation (Placement(transformation(extent={{-80,-58},{-60,-38}})));
-  Interfaces.Fluid.FlangeB OutFlow( redeclare package Medium = Medium)
+  Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium = Medium, m_flow(min= 0))
     annotation (Placement(transformation(extent={{60,-58},{80,-38}})));
 equation
   InFlow.m_flow + OutFlow.m_flow = 0 "Mass balance";
@@ -33,20 +33,6 @@ equation
           lineColor={0,0,0},
           textString="p,T"), Line(points={{-60,60},{-40,60}})}),
     Documentation(info="<HTML>
-<p>This component can be inserted in a hydraulic circuit to measure the temperature of the fluid flowing through it.
-<p>Flow reversal is supported.
-</HTML>",
-        revisions="<html>
-<ul>
-<li><i>16 Dec 2004</i>
-    by <a href=\"mailto:francesco.casella@polimi.it\">Francesco Casella</a>:<br>
-       Standard medium definition added.</li>
-<li><i>1 Jul 2004</i>
-    by <a href=\"mailto:francesco.casella@polimi.it\">Francesco Casella</a>:<br>
-       Adapted to Modelica.Media.</li>
-<li><i>1 Oct 2003</i>
-    by <a href=\"mailto:francesco.casella@polimi.it\">Francesco Casella</a>:<br>
-       First release.</li>
-</ul>
+<p><big> Model <b>SensTp</b> represents an temperature and pressure sensor.
 </html>"));
 end SensTp;

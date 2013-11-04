@@ -1,14 +1,18 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps;
 model Pump "Pump model useful for ORCNext"
+  /***************************************** FLUID *****************************************/
   replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
-  /* Define type of pump */
+
+  /****************************************** Define type of pump ******************************************/
   import ThermoCycle.Functions.Enumerations.PumpTypes;
   import ThermoCycle.Functions.Enumerations.PumpInputs;
   parameter PumpTypes PumpType=PumpTypes.UD;
   parameter PumpInputs PumpInput=PumpInputs.freq
     "Choose between f_pp or X_pp as input";
   extends ThermoCycle.Icons.Water.Pump;
+
+  /***************************************** PARAMETERS *****************************************/
   parameter Real f_pp0=30 "Pump frequency if not connected" annotation (Dialog(enable= (PumpInputs == "Frequency")));
   parameter Real X_pp0=0.7 "Pump Flow fraction if not connected"
                                                                 annotation (Dialog(enable= (PumpInputs == "Flow Fraction")));
@@ -23,6 +27,8 @@ model Pump "Pump model useful for ORCNext"
     "Maximum pump flow rate" annotation (Dialog(enable= not (PumpType == "ORCnext")));
   parameter Modelica.SIunits.MassFlowRate M_dot_start=0.25
     "Start value for the Mass flow rate"                                                        annotation (Dialog(tab="Initialization"));
+
+  /***************************************** VARIABLES *****************************************/
   Modelica.SIunits.MassFlowRate M_dot(start=M_dot_start) "Mass flow rate";
   /*Fluid Variables */
   Medium.ThermodynamicState fluidState;
@@ -93,10 +99,10 @@ equation
   end if;
   /*BOUNDARY CONDITIONS */
   /* Enthalpies */
-  h_su = inStream(InFlow.h_outflow);  //flangeA hBA
-  OutFlow.h_outflow = h_ex;
-  //Equation to close the balance. It is actually never used.
-  InFlow.h_outflow = OutFlow.h_outflow;
+  h_su = if noEvent(InFlow.m_flow <= 0) then h_ex else inStream(InFlow.h_outflow);
+  h_su = InFlow.h_outflow;
+  OutFlow.h_outflow = if noEvent(OutFlow.m_flow <= 0) then h_ex else inStream(
+    OutFlow.h_outflow);
   /* Mass flow */
   InFlow.m_flow = M_dot;
   OutFlow.m_flow = -M_dot "Flow rate is negative when leaving a component!";
@@ -106,5 +112,19 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}),
                          graphics), Diagram(coordinateSystem(
-          preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics));
+          preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics),Documentation(info="<HTML>
+          
+         <p><big>The <b>Pump</b>  model represents the compression of a fluid in a turbo or volumetric machine. It is a lumped model based on performance curves where pump speed is set as an input.
+        <p><big>The assumptions for this model are:
+         <ul><li> No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger).
+         <li> No thermal energy losses to the environment
+         <li> Isentropic efficiency based on empirical performance curve
+         <li> Mass flow rate based on empirical performance curve
+         </ul>
+      <p><b><big>Modelling options</b></p>
+        <p><big> In the <b>General</b> tab the following option is availabe:
+        <ul><li>PumpType: it changes the performance curves for isentropic efficiency and mass flow rate.
+         <li> PumpInput: it allows to switch the input between frequency and flow fraction
+         </ul> 
+        </HTML>"));
 end Pump;

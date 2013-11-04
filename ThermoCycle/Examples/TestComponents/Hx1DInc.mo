@@ -31,8 +31,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF1(
     annotation (Placement(transformation(extent={{40,-8},{60,12}})));
 equation
   connect(hx1DInc.outlet_fl1, sinkPFluid1.flangeB) annotation (Line(
-      points={{0.307692,13.6923},{16,13.6923},{16,12},{28,12},{28,1.8},{41.6,
-          1.8}},
+      points={{0.307692,13.6923},{16,13.6923},{16,12},{28,12},{28,2},{41.6,2}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(hx1DInc.inlet_fl2, sourceWF1.flangeB) annotation (Line(
@@ -40,7 +39,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(hx1DInc.outlet_fl2, sinkPFluid.flangeB) annotation (Line(
-      points={{-24.0615,29.4769},{-62,29.4769},{-62,73.8},{-48.4,73.8}},
+      points={{-24.0615,29.4769},{-62,29.4769},{-62,74},{-48.4,74}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sourceWF.flangeB, hx1DInc.inlet_fl1) annotation (Line(

@@ -26,7 +26,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(expander.OutFlow, sinkPFluid.flangeB) annotation (Line(
-      points={{-14.5,21},{-6,21},{-6,-0.2},{9.6,-0.2}},
+      points={{-14.5,21},{-6,21},{-6,0},{9.6,0}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(expander.flange_elc, generator.shaft) annotation (Line(

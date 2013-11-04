@@ -1,6 +1,6 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer;
 package ConvectiveHeatTransfer "A collection of heat transfer correlations for subcooled liquid"
-  import ThermoCycle;
+import ThermoCycle;
 
 
   extends Modelica.Icons.VariantsPackage;

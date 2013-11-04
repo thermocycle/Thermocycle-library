@@ -136,6 +136,7 @@ DELTAp_quad = 1/A_ok^2 /(2*rho)*Modelica.Fluid.Utilities.regSquare(Mdot,1e-4);
   inStream(InFlow.h_outflow) = OutFlow.h_outflow;
   //DELTAp = 38453.9*Mdot + 23282.7*Mdot^2;
 initial equation
+
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
             100}}), graphics={Text(extent={{-100,-40},{100,-74}}, textString=
@@ -147,7 +148,22 @@ initial equation
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}),     graphics),
     Documentation(info="<HTML>
-<p>This very simple model assumes a non-compressible flow for computing the pressure drop</p>
+<p><big> The <b>DP</b> model is a lumped model that computes the pressure drop of a fluid thorugh a tube.
+ <p><big>The assumptions for this model are:
+         <ul><li> Incompressible fluid for computing the pressure drop
+         <li> No thermal energy losses to the ambient
+         </ul>
+         <p><b><big>Modelling options</b></p>
+         <p><big> In the <b>General</b> tab the following options are availabe:
+        <ul><li>Medium: the user has the possibility to easly switch Medium.
+        <li> UseNom: If true, use the nominal conditions defined in the Nominal Conditions tab to compute the pressure drop characteristic</ul> 
+        <p><big> In the <b>Nominal condition</b> tab the following option is availabe:
+        <ul><li> use_rho_nom: If true, the density is considered constant and ugual to the nominal value.</ul>
+        <p><big> In the <b>Initialization</b> tab the following options are availabe:
+        <ul><li> constinit: If true, the pressure drop is considered constant at the beginning of the simulation to avoid oscillations.
+         <li> UseHomotopy: If true, the homotopy function is used to set the pressure drop to zero in the first initialization.
+         </ul>
+         
 </HTML>",
         uses(Modelica(version="3.2"))));
 end DP;

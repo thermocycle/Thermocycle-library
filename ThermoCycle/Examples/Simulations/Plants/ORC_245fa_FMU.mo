@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.Simulations.Plants;
 model ORC_245fa_FMU
+
  ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
     N=10,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
@@ -12,7 +13,7 @@ model ORC_245fa_FMU
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-92,46},{-64,70}})));
 
-ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,
@@ -94,12 +95,12 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{62,-50},{38,-70}})));
 
- ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 heat_sink(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(
     cp=4187,
     rho=1000,
     Mdot_0=4,
     T_0=293.15)
-    annotation (Placement(transformation(extent={{72,-96},{58,-82}})));
+    annotation (Placement(transformation(extent={{68,-98},{50,-80}})));
  ThermoCycle.Components.Units.ExpandersAndPumps.Pump pump(
     PumpType=ThermoCycle.Functions.Enumerations.PumpTypes.ORCNext,
     PumpInput=ThermoCycle.Functions.Enumerations.PumpInputs.freq,
@@ -147,10 +148,6 @@ ThermoCycle.Components.Units.Tanks.Tank_pL tank(
     annotation (Placement(transformation(extent={{136,-86},{110,-60}})));
   Modelica.Blocks.Interfaces.RealInput Tcool
     annotation (Placement(transformation(extent={{140,-116},{116,-92}})));
-  Modelica.Blocks.Routing.Multiplex2 multiplex2_1
-    annotation (Placement(transformation(extent={{-118,94},{-108,104}})));
-  Modelica.Blocks.Routing.Multiplex2 multiplex2_2
-    annotation (Placement(transformation(extent={{98,-94},{88,-84}})));
   Modelica.Blocks.Interfaces.RealInput Up
     annotation (Placement(transformation(extent={{-124,-20},{-98,6}})));
   Modelica.Blocks.Interfaces.RealInput Uexp
@@ -180,7 +177,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(heat_sink.flange,condenser. inletSf) annotation (Line(
-      points={{59.26,-89.07},{24,-89.07},{24,-65},{38,-65}},
+      points={{51.62,-89.09},{24,-89.09},{24,-65},{38,-65}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(tank.InFlow, condenser.outletWf) annotation (Line(
@@ -255,30 +252,6 @@ equation
       points={{-25.62,-65.76},{-13.81,-65.76},{-13.81,-66},{2,-66}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(Mheat, multiplex2_1.u1[1]) annotation (Line(
-      points={{-135,111},{-125.5,111},{-125.5,102},{-119,102}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(Theat, multiplex2_1.u2[1]) annotation (Line(
-      points={{-148,88},{-134,88},{-134,96},{-119,96}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(multiplex2_1.y, source_Cdot.source) annotation (Line(
-      points={{-107.5,99},{-98.75,99},{-98.75,99.9},{-91.1,99.9}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(multiplex2_2.y, heat_sink.source) annotation (Line(
-      points={{87.5,-89},{78.75,-89},{78.75,-89.07},{69.97,-89.07}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(Mcool, multiplex2_2.u1[1]) annotation (Line(
-      points={{123,-73},{111.5,-73},{111.5,-86},{99,-86}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(Tcool, multiplex2_2.u2[1]) annotation (Line(
-      points={{128,-104},{118,-104},{118,-96},{99,-96},{99,-92}},
-      color={0,0,127},
-      smooth=Smooth.None));
   connect(Up, pump.flow_in) annotation (Line(
       points={{-111,-7},{-111,-19.5},{-87.84,-19.5},{-87.84,-32.4}},
       color={0,0,127},
@@ -321,8 +294,24 @@ equation
       points={{64.4,109},{84.2,109},{84.2,114},{110,114}},
       color={0,0,127},
       smooth=Smooth.None));
+  connect(Mheat, source_Cdot.M_dot_source) annotation (Line(
+      points={{-135,111},{-114,111},{-114,101.8},{-91,101.8}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(Theat, source_Cdot.T_source) annotation (Line(
+      points={{-148,88},{-114,88},{-114,97.9},{-91.3,97.9}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(Mcool, heat_sink.M_dot_source) annotation (Line(
+      points={{123,-73},{90,-73},{90,-87.38},{65.3,-87.38}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(Tcool, heat_sink.T_source) annotation (Line(
+      points={{128,-104},{80,-104},{80,-90.89},{65.57,-90.89}},
+      color={0,0,127},
+      smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-160,-140},{140,140}},
-          preserveAspectRatio=false),
+          preserveAspectRatio=true),
                       graphics), Icon(coordinateSystem(extent={{-160,-140},
             {140,140}})),
     experiment(StopTime=1000),

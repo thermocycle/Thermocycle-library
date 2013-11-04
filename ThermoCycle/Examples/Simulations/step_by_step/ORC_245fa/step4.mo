@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step4
+
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=0.2588,
     h_0=281455,
@@ -16,7 +17,7 @@ model step4
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-40,30},{-8,68}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2   source_Cdot(
+ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot  source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,
@@ -85,7 +86,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(expander.OutFlow, sinkPFluid.flangeB) annotation (Line(
-      points={{68,8},{68,-5.8},{73.6,-5.8},{73.6,-16.2}},
+      points={{68,8},{68,-5.8},{73.6,-5.8},{73.6,-16}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},

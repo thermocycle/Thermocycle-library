@@ -17,7 +17,7 @@ model step5
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-46,28},{-12,60}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot2 source_Cdot(
+ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,
@@ -103,7 +103,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.outlet_fl2, sinkPFluid.flangeB) annotation (Line(
-      points={{11.7333,-45.0667},{11.7333,-66.2},{55.6,-66.2}},
+      points={{11.7333,-45.0667},{11.7333,-66},{55.6,-66}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.inlet_fl1, sourceWF.flangeB) annotation (Line(

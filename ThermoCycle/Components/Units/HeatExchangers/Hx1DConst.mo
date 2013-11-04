@@ -213,5 +213,20 @@ equation
               -50},{40,-30},{60,-50},{80,-30},{100,-50}},
           color={0,0,255},
           smooth=Smooth.None,
-          thickness=0.5)}));
+          thickness=0.5)}),
+    Documentation(info="<HTML>
+<p><big> Model <b>Hx1DConst</b> represent the model of a counter-current plate heat exchanger where one of the two fluid is a constant heat capacity fluid. It is based on the connection of different sub-components:
+<ul><li> A Flow1Dim component representing the flow of the fluid in one side of the exchanger
+<li> A Flow1DConst component representing the flow of the fluid in the other side of the exchanger
+<li> A MetalWall component representing the thermal energy accumulation in the metal wall
+<li> A CountCurr component that enables the possibility of parallel or countercurrent flow </ul>
+<p><b><big>Modelling options</b></p>
+  <p><big> In the <b>Initialization</b> tab the following options are availabe:
+        <ul><li> steadystate_T_sf: if  true, the derivative of temperature of the constant heat capacity fluid is set to zero during <em>Initialization</em> 
+         <li> steadystate_h_wf: if  true, the derivative of enthalpy of the working fluid is set to zero during <em>Initialization</em>
+         <li> steadystate_T_wall: if  true, the derivative of temperature of the metal wall is set to zero during <em>Initialization</em>
+         </ul>
+        <p><b><big>Numerical options</b></p>
+<p><big>The numerical options available for the <b>HxRec1DConst</b> are the one implemented in <b>Cell1Dim</b>  and <b>Cell1DimConst</b>
+</html>"));
 end Hx1DConst;

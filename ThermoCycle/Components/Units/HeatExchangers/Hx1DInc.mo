@@ -49,7 +49,7 @@ extends Components.Units.BaseUnits.BaseHx;
     pstart=pstart_sf,
     Tstart_inlet=Tstart_inlet_sf,
     Tstart_outlet=Tstart_outlet_sf,
-    steadystate=steadystate_h_sf,
+    steadystate=steadystate_T_sf,
     Discretization=Discretization)
     annotation (Placement(transformation(extent={{46,129},{-42,39}})));
 
@@ -114,7 +114,7 @@ parameter Modelica.SIunits.Temperature Tstart_inlet_sf = 418.15
 parameter Modelica.SIunits.Temperature Tstart_outlet_sf = 408.45
     "Initial value of secondary fluid temperature at the outlet"  annotation (Dialog(tab="Initialization"));
 /*steady state */
- parameter Boolean steadystate_h_sf=false
+ parameter Boolean steadystate_T_sf=false
     "if true, sets the derivative of T_sf (secondary fluids Temperature in each cell) to zero during Initialization"
     annotation (Dialog(group="Intialization options", tab="Initialization"));
 parameter Boolean steadystate_h_wf=false
@@ -144,6 +144,7 @@ parameter Boolean steadystate_T_wall=false
   parameter Modelica.SIunits.Time TT_wf=1
     "Integration time of the first-order filter"
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
+
 //Variables
 protected
 Modelica.SIunits.Power Q_sf_;
@@ -219,5 +220,20 @@ Q_wf_ = WorkingFluid.Q_tot;
               {20,-48},{40,-28},{60,-48},{80,-28},{100,-48}},
           color={0,0,255},
           smooth=Smooth.None,
-          thickness=0.5)}));
+          thickness=0.5)}),
+    Documentation(info="<HTML>
+<p><big> Model <b>Hx1DInc</b> represent the model of a counter-current plate heat exchanger where one of the two fluid is modeled as an incompressible fluid. It is based on the connection of different sub-components:
+<ul><li> A Flow1Dim component representing the flow of the fluid in one side of the exchanger
+<li> A Flow1DimInc component representing the flow of the fluid in the other side of the exchanger
+<li> A MetalWall component representing the thermal energy accumulation in the metal wall
+<li> A CountCurr component that enables the possibility of parallel or countercurrent flow </ul>
+<p><b><big>Modelling options</b></p>
+  <p><big> In the <b>Initialization</b> tab the following options are availabe:
+        <ul><li> steadystate_T_sf: if  true, the derivative of temperature of the incompressible fluid is set to zero during <em>Initialization</em> 
+         <li> steadystate_h_wf: if  true, the derivative of enthalpy of the working fluid is set to zero during <em>Initialization</em>
+         <li> steadystate_T_wall: if  true, the derivative of Temperature of the metal wall is set to zero during <em>Initialization</em>
+         </ul>
+        <p><b><big>Numerical options</b></p>
+<p><big>The numerical options available for the <b>HxRec1DInc</b> are the one implemented in <b>Cell1Dim</b> and <b>Cell1DimInc</b> (see  <em><FONT COLOR=red>ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim</FONT></em>)
+</html>"));
 end Hx1DInc;

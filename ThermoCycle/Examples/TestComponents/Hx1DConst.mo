@@ -18,7 +18,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind,
     SecondaryFluid(Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff))
     annotation (Placement(transformation(extent={{-30,-2},{2,36}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot3 source_Cdot(
+  ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot   source_Cdot(
     cp=1978,
     rho=928.2,
     Mdot_0=3,
@@ -32,7 +32,7 @@ equation
       smooth=Smooth.None));
   connect(hx1DConst.outletWf, sinkPFluid.flangeB)
                                                 annotation (Line(
-      points={{2,7.5},{22,7.5},{22,6},{36,6},{36,-2},{83.6,-2},{83.6,-0.2}},
+      points={{2,7.5},{22,7.5},{22,6},{36,6},{36,-2},{83.6,-2},{83.6,0}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(source_Cdot.flange, hx1DConst.inletSf)

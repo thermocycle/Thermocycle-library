@@ -51,5 +51,10 @@ if steadystate_T_wall then
           lineColor={135,135,135},
           fillColor={95,95,95},
           fillPattern=FillPattern.Solid,
-          textString="Ext")}));
+          textString="Ext")}),
+    Documentation(info="<HTML>
+<p><big> Model <b>MetalWallL</b> represents a lumped tube of solid material. The assumptions and options of the model are the same as the <b>MetalWall</b> model
+
+ 
+</html>"));
 end MetalWallL;
