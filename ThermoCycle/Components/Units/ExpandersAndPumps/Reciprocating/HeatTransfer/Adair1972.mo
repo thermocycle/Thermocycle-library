@@ -6,10 +6,10 @@ model Adair1972 "Recip compressor correlation of Adair 1972"
 
   import Modelica.Constants.pi;
   Modelica.SIunits.Length[n] De "Equivalent diameter 6V/A";
-  Modelica.SIunits.Velocity[n] omega "Angular crank velocity";
-  Modelica.SIunits.Velocity[n] omega_g "Swirl velocity";
-  Modelica.SIunits.Velocity[n] omega_g1 "Swirl velocity";
-  Modelica.SIunits.Velocity[n] omega_g2 "Swirl velocity";
+  Modelica.SIunits.AngularVelocity[n] omega "Angular crank velocity";
+  Modelica.SIunits.AngularVelocity[n] omega_g "Swirl velocity";
+  Modelica.SIunits.AngularVelocity[n] omega_g1 "Swirl velocity";
+  Modelica.SIunits.AngularVelocity[n] omega_g2 "Swirl velocity";
   Modelica.SIunits.Volume[n] volume "Cylinder volume";
   Modelica.SIunits.Angle[n] theta "Crankshaft angle";
   Modelica.SIunits.Length[n] position "Piston position from cyl. head";

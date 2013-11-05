@@ -5,6 +5,14 @@ partial model PartialCylinderHeatTransfer
     input Modelica.SIunits.Angle crankshaftAngle;
     input Modelica.SIunits.Area pistonCrossArea;
     input Modelica.SIunits.Length strokeLength;
+    Modelica.SIunits.CoefficientOfHeatTransfer[n] h;
+    Modelica.SIunits.HeatFlux[n] q_w "Heat flux from wall";
+equation
+for i in 1:n loop
+    // There is a small mistake in equation 19 of the paper, DeltaT goes in the numerator.
+    -q_w[i] = h[i] * (Ts[i] - heatPorts[i].T);
+    Q_flows[i] = surfaceAreas[i]*q_w[i];
+  end for;
   annotation (Documentation(info="<html>
 <p><h4><font color=\"#008000\">Heat Transfer Models</font></h4></p>
 <p>Base class for heat transfer correlations. The information available inside the subclasses are:</p>

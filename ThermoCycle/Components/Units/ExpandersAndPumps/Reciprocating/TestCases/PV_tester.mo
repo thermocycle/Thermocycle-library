@@ -1,5 +1,6 @@
-within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
+within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.TestCases;
 model PV_tester "Test model"
+
   Modelica.Mechanics.Rotational.Components.Inertia inertia(
     phi(fixed=true, start=0),
     J=2,

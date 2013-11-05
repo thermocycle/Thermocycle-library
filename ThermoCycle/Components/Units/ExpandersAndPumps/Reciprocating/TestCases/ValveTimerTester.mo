@@ -1,5 +1,6 @@
-within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
+within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.TestCases;
 model ValveTimerTester
+
   ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.ValveTimer
     valveTimer annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
   Modelica.Blocks.Sources.Sine sine(

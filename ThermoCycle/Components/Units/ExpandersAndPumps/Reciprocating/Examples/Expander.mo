@@ -1,5 +1,5 @@
-within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
-model ExampleSystem
+within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.Examples;
+model Expander
   "A combination of Cylinder model and a reciprocating machine and valves"
   Modelica.Mechanics.Rotational.Components.Inertia inertia(
     phi(fixed=true, start=0),
@@ -129,4 +129,4 @@ equation
           preserveAspectRatio=true),
                       graphics), Icon(coordinateSystem(extent={{-100,-100},{100,
             100}})));
-end ExampleSystem;
+end Expander;

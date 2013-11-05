@@ -1,6 +1,7 @@
-within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
+within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.TestCases;
 model Cylinder_tester
   "A combination of Cylinder model and a reciprocating machine"
+
   Modelica.Mechanics.Rotational.Components.Inertia inertia(
     phi(fixed=true, start=0),
     J=2,
