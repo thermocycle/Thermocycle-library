@@ -51,9 +51,5 @@ The interface between ThermoCycle and CoolProp is ensured by the <b>CoolProp2Mod
 </ul>
 
 
-<p><a href=\"modelica://ThermoCycle.Components.FluidFlow\">FluidFlow</a>
-
-<p><a href=\"modelica://Modelica.Blocks.Examples\">Ciaone2</a>
-
    </HTML>"));
 end ThermoCycle;

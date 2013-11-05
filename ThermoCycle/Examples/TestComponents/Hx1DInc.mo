@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.TestComponents;
 model Hx1DInc
+
 ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
       Medium =
         Media.Therminol66,
@@ -15,7 +16,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
  ThermoCycle.Components.Units.HeatExchangers.Hx1DInc        hx1DInc(
     redeclare package Medium1 = Media.R245faCool,
     redeclare package Medium2 = Media.Therminol66,
-    steadystate_h_sf=true,
+    steadystate_T_sf=true,
     Tstart_inlet_wf=300,
     Tstart_outlet_wf=300)
     annotation (Placement(transformation(extent={{-28,2},{4,40}})));
