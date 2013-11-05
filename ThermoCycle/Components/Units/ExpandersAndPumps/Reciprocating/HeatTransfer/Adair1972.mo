@@ -1,22 +1,15 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer;
-model Adair1972 "Recip correlation of Adair et al. 1972, changeable parameters"
+model Adair1972 "Recip compressor correlation of Adair 1972"
   extends
     ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.RePrHeatTransfer(
      final a = 0.053, final b = 0.800, final c = 0.600);
 
   import Modelica.Constants.pi;
   Modelica.SIunits.Length[n] De "Equivalent diameter 6V/A";
-  Modelica.SIunits.ReynoldsNumber[n] Re;
-  Modelica.SIunits.PrandtlNumber[n] Pr;
-  Modelica.SIunits.NusseltNumber[n] Nu;
-  Modelica.SIunits.CoefficientOfHeatTransfer[n] h;
-  Modelica.SIunits.ThermalConductivity[n] lambda;
-  Modelica.SIunits.DynamicViscosity[n] eta;
   Modelica.SIunits.Velocity[n] omega "Angular crank velocity";
   Modelica.SIunits.Velocity[n] omega_g "Swirl velocity";
   Modelica.SIunits.Velocity[n] omega_g1 "Swirl velocity";
   Modelica.SIunits.Velocity[n] omega_g2 "Swirl velocity";
-  Modelica.SIunits.HeatFlux[n] q_w "Heat flux from wall";
   Modelica.SIunits.Volume[n] volume "Cylinder volume";
   Modelica.SIunits.Angle[n] theta "Crankshaft angle";
   Modelica.SIunits.Length[n] position "Piston position from cyl. head";
@@ -61,9 +54,20 @@ equation
   end for;
 
   annotation(Documentation(info="<html>
-<p>Simple heat transfer correlation with two parameters. </p>
-<p>You can find the paper describing the correlation here: <a href=\"http://docs.lib.purdue.edu/icec/45/\">http://docs.lib.purdue.edu/icec/45/</a></p>
-<p><h4><font color=\"#008000\">IMPLEMENTATION:</font></h4></p>
-<p>Implemented in 2012 for Technical University of Denmark, DTU Mechanical Engineering, Kongens Lyngby, Denmark by Jorrit Wronski (jowr@mek.dtu.dk)</p>
-</html>"));
+<body>
+<h4>Reference: </h4>
+<dl>
+<dt><a name=\"Adair1972\">(Adair1972)</a></dt>
+<dd>Adair, R.P., Qvale, E.B. &amp; Pearson, J.T.</dd>
+<dd><i>Instantaneous Heat Transfer to the Cylinder Wall in Reciprocating Compressors</i></dd>
+<dd>Proceedings of the International Compressor Engineering Conference</dd>
+<dd><b>1972</b>(Paper 86), pp. 521-526</dd>
+</dl>
+<p>You can find the paper describing the correlation here: <a href=\"http://docs.lib.purdue.edu/icec/45/\">http://docs.lib.purdue.edu/icec/45</a></p>
+<h4>Implementation: </h4>
+<p>2013 for Technical University of Denmark, DTU Mechanical Engineering, Kongens Lyngby, Denmark by Jorrit Wronski (jowr@mek.dtu.dk) </p>
+</body>
+</html>
+
+"));
 end Adair1972;

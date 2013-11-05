@@ -1,9 +1,11 @@
 within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model Cylinder
   "SweptVolume from Modelica.Fluid with initialisation algorihtm and default Medium"
-  extends Modelica.Fluid.Machines.SweptVolume(final clearance=0,HeatTransfer(crankshaftAngle=angle_in_internal,pistonCrossArea = pistonCrossArea));
+  extends Modelica.Fluid.Machines.SweptVolume(final clearance=0,HeatTransfer(crankshaftAngle=angle_in_internal,pistonCrossArea = pistonCrossArea,strokeLength=stroke));
   parameter Boolean use_angle_in = false
     "Enable input connector for crankshaft angle"
+    annotation (Dialog(tab="Assumptions", group="Heat transfer"));
+  parameter Modelica.SIunits.Length stroke = 0 "Input for max. stroke"
     annotation (Dialog(tab="Assumptions", group="Heat transfer"));
 //     parameter Real stroke = 0
 //     "Assume a sine-like piston movement"

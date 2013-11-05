@@ -4,6 +4,7 @@ partial model PartialCylinderHeatTransfer
     Modelica.Fluid.Vessels.BaseClasses.HeatTransfer.PartialVesselHeatTransfer;
     input Modelica.SIunits.Angle crankshaftAngle;
     input Modelica.SIunits.Area pistonCrossArea;
+    input Modelica.SIunits.Length strokeLength;
   annotation (Documentation(info="<html>
 <p><h4><font color=\"#008000\">Heat Transfer Models</font></h4></p>
 <p>Base class for heat transfer correlations. The information available inside the subclasses are:</p>
@@ -13,5 +14,6 @@ partial model PartialCylinderHeatTransfer
 <p>Area <b>surfaceAreas[]</b>: Array with areas used for heat exchange. Note that there is probably only one element in this array. The actual area gets calculated from cylinder geometry and does NOT include the piston. Hence it expresses the area of the wall-to-fluid interface. Value from Modelica.Fluid.Machines.SweptVolume.</p>
 <p>Angle <b>crankshaftAngle</b>: Angle information from the crankshaft. Can be supplied via an input connector, set to 0 otherwise. </p>
 <p>Area <b>pistonCrossArea</b>: The surface area of the piston. Can be used to obtain the volume from surfaceAreas variable.</p>
+<p>Length <b>strokeLength</b>: The stroke of the machine. Can be used to obtain mean piston speed and alike.</p>
 </html>"));
 end PartialCylinderHeatTransfer;
