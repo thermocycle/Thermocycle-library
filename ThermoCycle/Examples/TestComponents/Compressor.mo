@@ -13,18 +13,19 @@ model Compressor
       p0=2000000)
     annotation (Placement(transformation(extent={{8,-10},{28,10}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
-    Mdot_0=0.2588,
     h_0=503925,
     redeclare package Medium =
         CoolProp2Modelica.Test.benchmark.fluids.propane_CP_TTSE,
     UseT=true,
+    Mdot_0=0.01,
     T_0=323.15)
     annotation (Placement(transformation(extent={{-92,40},{-72,60}})));
  ThermoCycle.Components.Units.ExpandersAndPumps.Generator generator
     annotation (Placement(transformation(extent={{16,28},{36,48}})));
   Components.Units.ExpandersAndPumps.Compressor compressor(redeclare package
-      Medium = CoolProp2Modelica.Test.benchmark.fluids.propane_CP_TTSE, V_s=
-        0.05) annotation (Placement(transformation(extent={{-46,4},{-4,44}})));
+      Medium = CoolProp2Modelica.Test.benchmark.fluids.propane_CP_TTSE,
+      T_su_start=373.15)
+    annotation (Placement(transformation(extent={{-46,4},{-4,44}})));
 equation
   connect(N_rot.y, generator.f) annotation (Line(
       points={{-7.5,77},{26.4,77},{26.4,47.4}},
