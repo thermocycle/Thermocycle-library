@@ -38,7 +38,7 @@ equation
     D_h[i] =  4 * volume[i] / pistonCrossArea "Hydraulic diameter";
     Gamma[i] = D_h[i];
     omega[i] = der(crankshaftAngle) "Use continuous input for derivative";
-    Lambda[i] = omega[i] "Angular velocity";
+    Lambda[i] = omega[i]/2/pi "Angular velocity";
     // Use transport properties to determine dimensionless numbers
     alpha_f[i]  = lambda[i] / (Medium.density(states[i]) * cp[i]);
     Pe[i] = (Lambda[i] * Gamma[i] * Gamma[i]) / (4*alpha_f[i]);

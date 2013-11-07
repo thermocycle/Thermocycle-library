@@ -5,10 +5,10 @@ model Annand1963 "Recip ICE correlation of Annand 1963"
      final a = 0.575, final b = 0.700, final c = 0.000);
 
   import Modelica.Constants.pi;
-  Modelica.SIunits.Velocity[n] c_m "Piston speed";
-  Modelica.SIunits.Angle[n]    theta "Crankshaft angle";
-  Modelica.SIunits.Velocity[n] omega "Angular crank velocity";
-  Modelica.SIunits.Length bore;
+  Modelica.SIunits.Velocity[n]        c_m "Piston speed";
+  Modelica.SIunits.Angle[n]           theta "Crankshaft angle";
+  Modelica.SIunits.AngularVelocity[n] omega "Angular crank velocity";
+  Modelica.SIunits.Length             bore;
 
 equation
   pistonCrossArea = pi*bore*bore/4 "Defines bore";
@@ -18,7 +18,7 @@ equation
     assert(noEvent(omega[i] > 1e-6), "Very low rotational speed, make sure connected the crank angle input properly.", level=  AssertionLevel.warning);
     assert(noEvent(strokeLength > 1e-6), "Very short stroke length, make sure you set the parameter in your cylinder model.", level=  AssertionLevel.warning);
 
-    c_m[i] = Modelica.SIunits.Conversions.to_rpm(omega[i])*Modelica.SIunits.Conversions.to_minute(60)*strokeLength;
+    c_m[i] = omega[i]/2/pi*strokeLength;
 
     Lambda[i] = c_m[i];
     Gamma[i]  = bore;
