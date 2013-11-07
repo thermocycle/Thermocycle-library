@@ -1,11 +1,14 @@
 within ThermoCycle.Examples.TestComponents;
 model Pump
 
-  Components.Units.ExpandersAndPumps.Pump pump
+  Components.Units.ExpandersAndPumps.Pump pump(redeclare package Medium =
+        ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{-16,-14},{10,12}})));
-  Components.FluidFlow.Reservoirs.SourceP sourceP(p0=115794)
+  Components.FluidFlow.Reservoirs.SourceP sourceP(redeclare package Medium =
+        ThermoCycle.Media.R245faCool, p0=115794)
     annotation (Placement(transformation(extent={{-100,-16},{-80,4}})));
-  Components.FluidFlow.Reservoirs.SourceP sourceP1(p0=863885)
+  Components.FluidFlow.Reservoirs.SourceP sourceP1(redeclare package Medium =
+        ThermoCycle.Media.R245faCool, p0=863885)
     annotation (Placement(transformation(extent={{76,6},{56,26}})));
   Modelica.Blocks.Sources.Constant const(k=34)
     annotation (Placement(transformation(extent={{-70,46},{-50,66}})));

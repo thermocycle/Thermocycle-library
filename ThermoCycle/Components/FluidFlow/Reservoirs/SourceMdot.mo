@@ -2,7 +2,7 @@ within ThermoCycle.Components.FluidFlow.Reservoirs;
 model SourceMdot "Flowrate source for fluid flows"
   //The pressure is defined by the next component!
   extends ThermoCycle.Icons.Water.SourceW;
-  replaceable package Medium = Media.R245faCool constrainedby
+  replaceable package Medium = Media.DummyFluid constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Modelica.SIunits.MassFlowRate Mdot_0=0
     "Mass flowrate if no connector";

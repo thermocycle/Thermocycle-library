@@ -14,7 +14,6 @@ extends Components.Units.BaseUnits.BaseHx;
     TT=TT_wf,
     Unom_l=Unom_l,
     Unom_tp=Unom_tp,
-    HTtype=HTtype_wf,
     Unom_v=Unom_v,
     steadystate=steadystate_h_wf,
     Tstart_inlet=Tstart_inlet_wf,
@@ -59,9 +58,6 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_sf = 369
     "Coefficient of heat transfer, secondary fluid" annotation (Dialog(group="Heat transfer", tab="General"));
 /*Working fluid*/
   import ThermoCycle.Functions.Enumerations.HTtypes;
-parameter HTtypes HTtype_wf=HTtypes.LiqVap
-    "Working fluid: Choose heat transfer coeff. type. Set LiqVap with Unom_l=Unom_tp=Unom_v to have a Const HT"
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l=300
     "if HTtype = LiqVap: heat transfer coeff, liquid zone." annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_tp=700

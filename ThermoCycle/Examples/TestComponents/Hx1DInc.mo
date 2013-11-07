@@ -10,6 +10,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
     Mdot_0=0.2588,
     h_0=281455,
     UseT=true,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p=2357000,
     T_0=353.15)
     annotation (Placement(transformation(extent={{-74,-18},{-54,2}})));
@@ -28,7 +29,8 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF1(
     p=100000,
     T_0=418.15)
     annotation (Placement(transformation(extent={{10,72},{30,92}})));
- ThermoCycle.Components.FluidFlow.Reservoirs.SinkP     sinkPFluid1(p0=2357000)
+ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP     sinkPFluid1(redeclare
+      package Medium = ThermoCycle.Media.R245faCool, p0=2357000)
     annotation (Placement(transformation(extent={{40,-8},{60,12}})));
 equation
   connect(hx1DInc.outlet_fl1, sinkPFluid1.flangeB) annotation (Line(

@@ -11,12 +11,14 @@ model Expander
  ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(redeclare
       package Medium = Media.R245faCool, V_s=1)
     annotation (Placement(transformation(extent={{-32,16},{-12,36}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(p0=153400)
+  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare
+      package Medium = ThermoCycle.Media.R245faCool, p0=153400)
     annotation (Placement(transformation(extent={{8,-10},{28,10}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=0.2588,
     UseT=false,
-    h_0=503925)
+    h_0=503925,
+    redeclare package Medium = ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{-62,40},{-42,60}})));
  ThermoCycle.Components.Units.ExpandersAndPumps.Generator generator
     annotation (Placement(transformation(extent={{16,28},{36,48}})));

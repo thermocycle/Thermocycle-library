@@ -3,16 +3,20 @@ model HxRec1D
 ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot   sourceWF(
     Mdot_0=0.25877,
     UseT=false,
-    h_0=250853)
+    h_0=250853,
+    redeclare package Medium = ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{-96,-62},{-76,-42}})));
- ThermoCycle.Components.FluidFlow.Reservoirs.SinkP    sinkPFluid(p0=2351190)
+ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP    sinkPFluid(redeclare
+      package Medium = ThermoCycle.Media.R245faCool, p0=2351190)
     annotation (Placement(transformation(extent={{74,-66},{94,-46}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot   sourceWF1(
     Mdot_0=0.25877,
     UseT=false,
-    h_0=470523)
+    h_0=470523,
+    redeclare package Medium = ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{96,52},{76,72}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP   sinkPFluid1(p0=153454)
+  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP   sinkPFluid1(redeclare
+      package Medium = ThermoCycle.Media.R245faCool, p0=153454)
     annotation (Placement(transformation(extent={{-68,64},{-88,84}})));
   ThermoCycle.Components.Units.HeatExchangers.HxRec1D hxRec1D(redeclare package
       Medium1 =

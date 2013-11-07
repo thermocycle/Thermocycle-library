@@ -9,15 +9,17 @@ model flow1D
     N=N,
     V=0.003,
     Mdotnom=0.3,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     pstart=500000,
     Tstart_inlet=323.15,
-    Tstart_outlet=373.15,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    Tstart_outlet=373.15)
     annotation (Placement(transformation(extent={{-32,8},{6,46}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot Source(
     Mdot_0=0.3,
     UseT=false,
     h_0=2E5,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p=500000,
     T_0=293.15)
     annotation (Placement(transformation(extent={{-84,10},{-50,44}})));
@@ -25,7 +27,8 @@ model flow1D
     annotation (Placement(transformation(extent={{-30,42},{4,64}})));
   Modelica.Blocks.Sources.Constant const(k=273.15 + 140)
     annotation (Placement(transformation(extent={{-62,64},{-54,72}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP Sink(h=0e5)
+  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP Sink(h=0e5, redeclare
+      package Medium = ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{18,14},{46,42}})));
   Modelica.Blocks.Sources.Ramp ramp(
     offset=5E5,
@@ -42,7 +45,7 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   connect(flow1Dim.OutFlow, Sink.flangeB)  annotation (Line(
-      points={{2.83333,27.1583},{12,27.1583},{12,27.72},{20.24,27.72}},
+      points={{2.83333,27.1583},{12,27.1583},{12,28},{20.24,28}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(ramp.y, Sink.in_p0)  annotation (Line(

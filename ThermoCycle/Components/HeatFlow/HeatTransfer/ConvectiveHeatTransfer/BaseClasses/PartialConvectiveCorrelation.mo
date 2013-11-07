@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses;
-model PartialConvectiveCorrelation
+partial model PartialConvectiveCorrelation
 
 extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClass.PartialHeatTransfer;
