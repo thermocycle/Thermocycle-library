@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClass;
-model PartialHeatTransfer
+partial model PartialHeatTransfer
 // Partial heat transfer model
 replaceable package Medium=Modelica.Media.Interfaces.PartialMedium
     "Medium in the component"

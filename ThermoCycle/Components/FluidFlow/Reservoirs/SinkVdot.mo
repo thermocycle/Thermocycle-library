@@ -1,7 +1,7 @@
 within ThermoCycle.Components.FluidFlow.Reservoirs;
 model SinkVdot "Volumetric flow sink for current working fluid"
   extends ThermoCycle.Icons.Water.SourceP;
-  replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+  replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model"  annotation (choicesAllMatching = true);
   parameter Modelica.SIunits.VolumeFlowRate Vdot_0=0.0017
     "Imposed volumetric flow rate";

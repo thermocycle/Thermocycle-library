@@ -2,10 +2,12 @@ within ThermoCycle.Examples.TestComponents;
 model DP
 ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=-0.5,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p=400000,
     T_0=298.15)
     annotation (Placement(transformation(extent={{-84,30},{-64,50}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(p0=400000)
+  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare
+      package Medium = ThermoCycle.Media.R245faCool, p0=400000)
     annotation (Placement(transformation(extent={{24,32},{44,52}})));
   ThermoCycle.Components.Units.PdropAndValves.DP dP(
     h=3,
@@ -15,6 +17,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_nom=0.5,
     UseNom=true,
     t_init=0.5,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p_nom=400000,
     T_nom=298.15,
     DELTAp_stat_nom=40000,

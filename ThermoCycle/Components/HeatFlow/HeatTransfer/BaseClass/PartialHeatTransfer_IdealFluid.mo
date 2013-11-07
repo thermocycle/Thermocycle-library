@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClass;
-model PartialHeatTransfer_IdealFluid
+partial model PartialHeatTransfer_IdealFluid
 // Partial heat transfer model
 
   parameter Integer n=1 "Number of heat transfer segments";

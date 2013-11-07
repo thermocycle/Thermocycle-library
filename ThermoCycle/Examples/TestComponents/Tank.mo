@@ -5,15 +5,18 @@ ThermoCycle.Components.Units.Tanks.Tank_pL tank(
     Vtot=0.01,
     impose_L=true,
     impose_pressure=false,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     pstart=228288)
     annotation (Placement(transformation(extent={{-22,6},{-2,26}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     UseT=false,
     h_0=2.4E5,
     Mdot_0=0.35,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p=228288) annotation (Placement(transformation(extent={{-44,46},{-24,66}})));
- ThermoCycle.Components.FluidFlow.Reservoirs.SinkVdot sinkVdot(Vdot_0=2e-4, pstart=
-        200000)
+ ThermoCycle.Components.FluidFlow.Reservoirs.SinkVdot sinkVdot(Vdot_0=2e-4,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    pstart=200000)
     annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
 equation
   connect(sourceWF.flangeB, tank.InFlow) annotation (Line(

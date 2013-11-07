@@ -40,6 +40,7 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
     V_s=1,
     constPinit=false,
     constinit=false,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p_su_start=2357000,
     p_ex_start=177800,
     T_su_start=413.15)
@@ -64,6 +65,9 @@ ThermoCycle.Components.Units.HeatExchangers.HxRec1D    recuperator(
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+
+    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
+    redeclare package Medium2 = ThermoCycle.Media.R245faCool,
     pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
@@ -75,6 +79,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP  dp_lp(
     Mdot_nom=0.2588,
     use_rho_nom=true,
     UseHomotopy=false,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p_nom=190000,
     T_nom=351.15,
     DELTAp_lin_nom=3000,
@@ -98,6 +103,8 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    condenser(
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+
+    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
@@ -115,7 +122,8 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(
     PumpType=ThermoCycle.Functions.Enumerations.PumpTypes.ORCNext,
     PumpInput=ThermoCycle.Functions.Enumerations.PumpInputs.freq,
     hstart=2.27e5,
-    M_dot_start=0.2588)
+    M_dot_start=0.2588,
+    redeclare package Medium = ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{-74,-54},{-50,-30}})));
   Modelica.Blocks.Sources.Ramp f_pp(
     offset=30,
@@ -130,6 +138,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(
     L_start=0.5,
     SteadyState_p=false,
     impose_pressure=true,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     pstart=135000)
     annotation (Placement(transformation(extent={{-42,-78},{-24,-60}})));
 equation

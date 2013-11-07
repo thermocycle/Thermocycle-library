@@ -1,12 +1,14 @@
 within ThermoCycle.Examples.Simulations.step_by_step.ORC_245fa;
 model step2
 
- ThermoCycle.Components.FluidFlow.Reservoirs.SinkP  sinkPFluid(p0=2357000)
+ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP  sinkPFluid(redeclare
+      package Medium = ThermoCycle.Media.R245faCool, p0=2357000)
     annotation (Placement(transformation(extent={{78,-2},{98,18}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=0.2588,
     h_0=281455,
     UseT=true,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p=2357000,
     T_0=353.15)
     annotation (Placement(transformation(extent={{-92,-10},{-72,10}})));
@@ -33,11 +35,11 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     redeclare package Medium = ThermoCycle.Media.R245faCool,
     constinit=false,
     UseHomotopy=false,
+    use_rho_nom=false,
     p_nom=2357000,
     T_nom=413.15,
     DELTAp_lin_nom=3000,
-    DELTAp_quad_nom=5150,
-    use_rho_nom=false)
+    DELTAp_quad_nom=5150)
     annotation (Placement(transformation(extent={{24,-6},{44,14}})));
 equation
   connect(sourceWF.flangeB, hx1DConst.inletWf)

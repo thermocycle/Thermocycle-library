@@ -3,10 +3,11 @@ model step6
 
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=0.2588,
-    p=2357000,
     UseT=false,
-    T_0=353.15,
-    h_0=2.49E5)
+    h_0=2.49E5,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    p=2357000,
+    T_0=353.15)
     annotation (Placement(transformation(extent={{-76,-70},{-56,-50}})));
 ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     N=10,
@@ -44,6 +45,7 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
     V_s=1,
     constPinit=false,
     constinit=false,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p_su_start=2357000,
     p_ex_start=153400,
     T_su_start=413.15)
@@ -58,7 +60,8 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
         origin={72,64})));
  ThermoCycle.Components.Units.ExpandersAndPumps.Generator generatorNext(Np=1)
     annotation (Placement(transformation(extent={{94,10},{114,30}})));
-ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(p0=153400)
+ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
+      Medium = ThermoCycle.Media.R245faCool, p0=153400)
     annotation (Placement(transformation(extent={{54,-76},{74,-56}})));
  ThermoCycle.Components.Units.HeatExchangers.HxRec1D    recuperator(
     N=10,
@@ -69,7 +72,10 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(p0=153400)
     redeclare model ColdSideHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant)
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+
+    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
+    redeclare package Medium2 = ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
         origin={1,-22})));
@@ -79,6 +85,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(p0=153400)
     A=(2*9.5*23282.7)^(-0.5),
     Mdot_nom=0.2588,
     use_rho_nom=true,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p_nom=190000,
     T_nom=351.15,
     DELTAp_lin_nom=3000,

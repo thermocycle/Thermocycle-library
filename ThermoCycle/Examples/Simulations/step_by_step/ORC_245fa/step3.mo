@@ -4,6 +4,7 @@ model step3
  Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(  Mdot_0=0.2588,
     h_0=281455,
     UseT=true,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p=2357000,
     T_0=353.15)
     annotation (Placement(transformation(extent={{-92,-10},{-72,10}})));
@@ -30,15 +31,16 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     redeclare package Medium = ThermoCycle.Media.R245faCool,
     constinit=false,
     UseHomotopy=false,
+    use_rho_nom=false,
     p_nom=2357000,
     T_nom=413.15,
     DELTAp_lin_nom=3000,
-    DELTAp_quad_nom=5150,
-    use_rho_nom=false)
+    DELTAp_quad_nom=5150)
     annotation (Placement(transformation(extent={{24,-6},{44,14}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.SinkVdot  sinkVdot(
     Vdot_0=1.889e-3,
     h_out=5.04E5,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     pstart=2357000)
     annotation (Placement(transformation(extent={{62,-6},{82,14}})));
 equation

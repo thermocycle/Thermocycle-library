@@ -1,7 +1,7 @@
 within ThermoCycle.Components.FluidFlow.Reservoirs;
 model SinkMdot "Mass sink for current working fluid"
   extends ThermoCycle.Icons.Water.SourceP;
-  replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+  replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model";
   parameter Modelica.SIunits.MassFlowRate Mdot_0=0
     "Imposed volumetric flow rate";

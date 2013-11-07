@@ -26,7 +26,6 @@ model Compressor
     use_HeatTransfer=true,
     redeclare model HeatTransfer =
         ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.Kornhauser1994,
-
     p_start=inlet.p,
     redeclare package Medium = Modelica.Media.Air.DryAirNasa,
     T_start=inlet.T)

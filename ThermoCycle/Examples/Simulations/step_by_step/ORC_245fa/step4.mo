@@ -5,6 +5,7 @@ model step4
     Mdot_0=0.2588,
     h_0=281455,
     UseT=true,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p=2357000,
     T_0=353.15)
     annotation (Placement(transformation(extent={{-102,22},{-82,42}})));
@@ -40,11 +41,12 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot  source_Cdot(
   ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
     ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.ORCNext,
     V_s=1,
+    constPinit=false,
+    constinit=false,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p_su_start=2357000,
     p_ex_start=153400,
-    T_su_start=413.15,
-    constPinit=false,
-    constinit=false)
+    T_su_start=413.15)
     annotation (Placement(transformation(extent={{40,0},{72,32}})));
   Modelica.Blocks.Sources.Ramp N_rot(
     startTime=50,
@@ -56,7 +58,8 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot  source_Cdot(
         origin={72,64})));
   ThermoCycle.Components.Units.ExpandersAndPumps.Generator generatorNext(Np=1)
     annotation (Placement(transformation(extent={{94,10},{114,30}})));
- ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(p0=153400)
+ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
+      Medium = ThermoCycle.Media.R245faCool, p0=153400)
     annotation (Placement(transformation(extent={{72,-26},{92,-6}})));
 equation
   connect(sourceWF.flangeB, hx1DConst.inletWf)

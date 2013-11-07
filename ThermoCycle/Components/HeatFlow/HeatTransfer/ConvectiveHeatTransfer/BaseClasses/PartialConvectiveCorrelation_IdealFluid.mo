@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses;
-model PartialConvectiveCorrelation_IdealFluid
+partial model PartialConvectiveCorrelation_IdealFluid
 
 extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClass.PartialHeatTransfer_IdealFluid;

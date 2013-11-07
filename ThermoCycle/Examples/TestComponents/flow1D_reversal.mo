@@ -9,15 +9,17 @@ model flow1D_reversal
     N=N,
     V=0.003,
     Mdotnom=0.3,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_smooth,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     pstart=500000,
     Tstart_inlet=323.15,
-    Tstart_outlet=373.15,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_smooth)
+    Tstart_outlet=373.15)
     annotation (Placement(transformation(extent={{-22,16},{-2,36}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
     Mdot_0=0.3,
     UseT=false,
     h_0=2E5,
+    redeclare package Medium = ThermoCycle.Media.R245faCool,
     p=500000,
     T_0=293.15)
     annotation (Placement(transformation(extent={{-80,16},{-60,36}})));
@@ -25,7 +27,8 @@ model flow1D_reversal
     annotation (Placement(transformation(extent={{-24,48},{-4,68}})));
   Modelica.Blocks.Sources.Constant const(k=273.15 + 140)
     annotation (Placement(transformation(extent={{-66,72},{-46,92}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP(h=4e5)
+  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP(h=4e5, redeclare
+      package Medium = ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{34,16},{54,36}})));
   Modelica.Blocks.Sources.Ramp ramp(
     offset=5E5,
