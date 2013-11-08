@@ -36,7 +36,7 @@ model DP "Lumped, 3-terms pressure drop model"
   parameter Modelica.SIunits.Pressure   DELTAp_start=DELTAp_stat_nom + DELTAp_lin_nom + DELTAp_quad_nom
     "Start Value for the pressure drop"                                                         annotation (Dialog(tab="Initialization"));
   parameter Boolean   use_rho_nom=false
-    "Use the nominal density for the computation of the pressure drop (i.e it depends only the flow rate)"
+    "Use the nominal density for the computation of the pressure drop (i.e it depends only on the flow rate)"
                            annotation (Dialog(tab="Nominal Conditions"));
   // Fluid variables
   //Medium.ThermodynamicState fluidstate;
