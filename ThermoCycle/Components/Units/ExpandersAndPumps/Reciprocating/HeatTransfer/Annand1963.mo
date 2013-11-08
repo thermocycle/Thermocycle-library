@@ -4,25 +4,10 @@ model Annand1963 "Recip ICE correlation of Annand 1963"
     ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.RePrHeatTransfer(
      final a = 0.575, final b = 0.700, final c = 0.000);
 
-  import Modelica.Constants.pi;
-  Modelica.SIunits.Velocity[n]        c_m "Piston speed";
-  Modelica.SIunits.Angle[n]           theta "Crankshaft angle";
-  Modelica.SIunits.AngularVelocity[n] omega "Angular crank velocity";
-  Modelica.SIunits.Length             bore;
-
 equation
-  pistonCrossArea = pi*bore*bore/4 "Defines bore";
   for i in 1:n loop
-    theta[i] = mod(crankshaftAngle,2*pi) "Promote input to array";
-    omega[i] = der(crankshaftAngle) "Use continuous input for derivative";
-    assert(noEvent(omega[i] > 1e-6), "Very low rotational speed, make sure connected the crank angle input properly.", level=  AssertionLevel.warning);
-    assert(noEvent(strokeLength > 1e-6), "Very short stroke length, make sure you set the parameter in your cylinder model.", level=  AssertionLevel.warning);
-
-    c_m[i] = omega[i]/2/pi*strokeLength;
-
-    Lambda[i] = c_m[i];
+    Lambda[i] = c_m;
     Gamma[i]  = bore;
-
   end for;
 
   annotation(Documentation(info="<html>

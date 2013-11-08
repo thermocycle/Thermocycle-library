@@ -14,9 +14,7 @@ model Kornhauser1994 "Recip compressor correlation of Kornhauser 1994"
   Modelica.SIunits.PecletNumber[n] Pe(min=0);
   Modelica.SIunits.SpecificHeatCapacityAtConstantPressure[n] cp;
   Modelica.SIunits.Volume[n] volume "Cylinder volume";
-  Modelica.SIunits.Length[n] position "Piston position from cyl. head";
   Modelica.SIunits.Length[n] D_h "Hydraulic diameter";
-  Modelica.SIunits.AngularVelocity[n] omega "Angular crank velocity";
   Modelica.SIunits.ThermalDiffusivity[n] alpha_f "Thermal diffusivity";
 
   Modelica.SIunits.NusseltNumber[n] Nu(min=0);
@@ -32,13 +30,10 @@ equation
     cp[i] = Medium.specificHeatCapacityCp(states[i]);
     assert(cp[i] > 0, "Invalid heat capacity, make sure that your are not in the two-phase region.");
     // Find characteristic values
-    surfaceAreas[i] = pistonCrossArea + 2 * sqrt(pistonCrossArea*pi)*position[i]
-      "Defines position";
     volume[i] = pistonCrossArea * position[i] "Get volumes";
     D_h[i] =  4 * volume[i] / pistonCrossArea "Hydraulic diameter";
     Gamma[i] = D_h[i];
-    omega[i] = der(crankshaftAngle) "Use continuous input for derivative";
-    Lambda[i] = omega[i]/2/pi "Angular velocity";
+    Lambda[i] = omega_c/2/pi "Angular velocity";
     // Use transport properties to determine dimensionless numbers
     alpha_f[i]  = lambda[i] / (Medium.density(states[i]) * cp[i]);
     Pe[i] = (Lambda[i] * Gamma[i] * Gamma[i]) / (4*alpha_f[i]);

@@ -9,11 +9,8 @@ model Adair1972 "Recip compressor correlation of Adair 1972"
 
   import Modelica.Constants.pi;
   Modelica.SIunits.Length[n]          De "Equivalent diameter 6V/A";
-  Modelica.SIunits.AngularVelocity[n] omega "Angular crank velocity";
   Modelica.SIunits.AngularVelocity[n] omega_g "Swirl velocity";
   Modelica.SIunits.Volume[n]          volume "Cylinder volume";
-  Modelica.SIunits.Angle[n]           theta "Crankshaft angle";
-  Modelica.SIunits.Length[n]          position "Piston position from cyl. head";
   Real tFactor[n];
   Real tFactor1[n];
   Real tFactor2[n] "Transition factor";
@@ -32,10 +29,6 @@ algorithm
 equation
   deltaTheta = 0.05*pi "9 degrees crankshaft angle";
   for i in 1:n loop
-    theta[i] = mod(crankshaftAngle+thetaCorr,2*pi)
-      "Promote input to array, convert TDC and BDC settings";
-    omega[i] = der(crankshaftAngle) "Use continuous input for derivative";
-    assert(noEvent(omega[i] > 1e-6), "Very low rotational speed, make sure connected the crank angle input properly.", level=  AssertionLevel.warning);
     // Equation 15 from Adair et al.
     //omega_g1[i] = 2*omega[i]*(1.04+cos(2*theta[i]));
     //omega_g2[i] = 2*omega[i]*1/2*(1.04+cos(2*theta[i]));
@@ -47,16 +40,13 @@ equation
     //  omega_g[i] = omega_g2[i];
     //end if;
     tFactor1[i] = ThermoCycle.Functions.transition_factor(
-       start=1/2*pi-0.5*deltaTheta,stop=1/2*pi+0.5*deltaTheta,position=theta[i])
+       start=1/2*pi-0.5*deltaTheta,stop=1/2*pi+0.5*deltaTheta,position=theta)
       "Switch from omega_g1 to omega_g2";
     tFactor2[i] = ThermoCycle.Functions.transition_factor(
-       start=3/2*pi-0.5*deltaTheta,stop=3/2*pi+0.5*deltaTheta,position=theta[i])
+       start=3/2*pi-0.5*deltaTheta,stop=3/2*pi+0.5*deltaTheta,position=theta)
       "Switch back from omega_g2 to omega_g1";
     tFactor[i] = tFactor1[i] - tFactor2[i];
-    omega_g[i] = (1-(tFactor[i]*0.5))*2*omega[i]/2/pi*(1.04+cos(2*theta[i]));
-
-    surfaceAreas[i] = pistonCrossArea + 2 * sqrt(pistonCrossArea*pi)*position[i]
-      "Defines position";
+    omega_g[i] = (1-(tFactor[i]*0.5))*2*omega_c/2/pi*(1.04+cos(2*theta));
     volume[i] = pistonCrossArea * position[i] "Get volumes";
     De[i] = 6 / pistonCrossArea * volume[i];
 
