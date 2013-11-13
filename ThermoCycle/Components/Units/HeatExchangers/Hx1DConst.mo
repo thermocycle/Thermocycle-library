@@ -203,8 +203,8 @@ equation
           fillPattern=FillPattern.Solid,
           lineThickness=0.5),
         Line(
-          points={{-98,48},{-78,68},{-58,48},{-38,68},{-18,48},{2,68},{22,48},{42,
-              68},{62,48},{82,68},{102,48}},
+          points={{-98,50},{-78,30},{-58,50},{-38,30},{-18,50},{2,30},{22,50},{
+              42,30},{62,50},{82,30},{102,50}},
           color={255,0,0},
           smooth=Smooth.None,
           thickness=0.5),
@@ -212,6 +212,28 @@ equation
           points={{-100,-50},{-78,-30},{-60,-50},{-40,-30},{-20,-50},{0,-30},{20,
               -50},{40,-30},{60,-50},{80,-30},{100,-50}},
           color={0,0,255},
+          smooth=Smooth.None,
+          thickness=0.5),
+        Line(
+          points={{-22,-74},{30,-74}},
+          color={0,0,0},
+          smooth=Smooth.None,
+          thickness=0.5),
+        Polygon(
+          points={{26,-64},{26,-84},{40,-74},{26,-64}},
+          lineColor={0,0,0},
+          smooth=Smooth.None,
+          fillColor={0,0,0},
+          fillPattern=FillPattern.Solid),
+        Polygon(
+          points={{-10,90},{-10,70},{-24,80},{-10,90}},
+          lineColor={0,0,0},
+          smooth=Smooth.None,
+          fillColor={0,0,0},
+          fillPattern=FillPattern.Solid),
+        Line(
+          points={{40,80},{-12,80}},
+          color={0,0,0},
           smooth=Smooth.None,
           thickness=0.5)}),
     Documentation(info="<HTML>

@@ -56,7 +56,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot  source_Cdot(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={72,64})));
-  ThermoCycle.Components.Units.ExpandersAndPumps.Generator generatorNext(Np=1)
+  ThermoCycle.Components.Units.ExpandersAndPumps.ElectricDrive generatorNext(Np=1)
     annotation (Placement(transformation(extent={{94,10},{114,30}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
       Medium = ThermoCycle.Media.R245faCool, p0=153400)

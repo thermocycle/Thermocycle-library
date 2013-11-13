@@ -1,6 +1,7 @@
 within ThermoCycle.Examples.Simulations.Plants;
 model SQThesisModel
   "Non-regenerative ORC with double-PID control system and variable Tev"
+
  ThermoCycle.Components.Units.Tanks.Tank tank(
     level_start=0.5,
     hstart=2.32e5,
@@ -43,7 +44,7 @@ model SQThesisModel
     Tstart_inlet_sf=473.15,
     Tstart_outlet_sf=325.41)
     annotation (Placement(transformation(extent={{-42,36},{-22,56}})));
-ThermoCycle.Components.Units.ExpandersAndPumps.Generator generator(Np=1)
+ThermoCycle.Components.Units.ExpandersAndPumps.ElectricDrive generator(Np=1)
     annotation (Placement(transformation(extent={{82,4},{104,26}})));
 ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
     epsilon_s=0.69,

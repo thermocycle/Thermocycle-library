@@ -1,6 +1,6 @@
 within ThermoCycle.Components.FluidFlow.Pipes;
 model Cell1DimInc "1-D incompressible fluid flow model"
-replaceable package Medium = Media.Therminol66 constrainedby
+replaceable package Medium = Media.DummyFluid constrainedby
     Modelica.Media.Interfaces.PartialMedium
     "Medium model - Incompressible Fluid" annotation (choicesAllMatching = true);
 

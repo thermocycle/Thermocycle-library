@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.Simulations.Plants;
 model ORC_245faInc
+
 ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     N=10,
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
@@ -41,7 +42,8 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
         extent={{-5,-5},{5,5}},
         rotation=0,
         origin={65,67})));
- ThermoCycle.Components.Units.ExpandersAndPumps.Generator generatorNext(Np=1)
+ ThermoCycle.Components.Units.ExpandersAndPumps.ElectricDrive
+                                                          generatorNext(Np=1)
     annotation (Placement(transformation(extent={{70,20},{98,48}})));
  ThermoCycle.Components.Units.HeatExchangers.HxRec1D recuperator(
     N=10,

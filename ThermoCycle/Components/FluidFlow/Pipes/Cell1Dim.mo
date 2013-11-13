@@ -1,6 +1,6 @@
 within ThermoCycle.Components.FluidFlow.Pipes;
 model Cell1Dim "1-D lumped fluid flow model (Real fluid model)"
-replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
 

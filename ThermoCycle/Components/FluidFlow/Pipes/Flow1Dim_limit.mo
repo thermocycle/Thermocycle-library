@@ -1,7 +1,7 @@
 within ThermoCycle.Components.FluidFlow.Pipes;
 model Flow1Dim_limit
   "1-D fluid flow model (finite volume discretization - real fluid model). Based on the cell component with limited node enthalpy"
-replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
 
