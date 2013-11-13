@@ -3,10 +3,10 @@ model CountCurr
 parameter Integer N=2 "Number of cells";
   parameter Boolean counterCurrent = true
     "Swap temperature and flux vector order";
-  Interfaces.HeatTransfer.ThermalPort side1(N=N)
+  Interfaces.HeatTransfer.ThermalPort side1(final N=N)
     annotation (Placement(transformation(extent={{-40,20},{40,40}}),
         iconTransformation(extent={{-40,20},{40,40}})));
-  Interfaces.HeatTransfer.ThermalPort side2(N=N)
+  Interfaces.HeatTransfer.ThermalPort side2(final N=N)
     annotation (Placement(transformation(extent={{-40,-40},{40,-20}}),
         iconTransformation(extent={{-40,-40},{40,-20}})));
 equation
