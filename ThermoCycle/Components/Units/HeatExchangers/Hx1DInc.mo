@@ -200,8 +200,8 @@ Q_wf_ = WorkingFluid.Q_tot;
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{
             -130,-130},{130,130}}),
-                      graphics), Icon(coordinateSystem(preserveAspectRatio=
-            true, extent={{-130,-130},{130,130}}),
+                      graphics), Icon(coordinateSystem(preserveAspectRatio=false,
+                  extent={{-130,-130},{130,130}}),
                                       graphics={
         Rectangle(
           extent={{-100,100},{100,-100}},
@@ -210,8 +210,8 @@ Q_wf_ = WorkingFluid.Q_tot;
           fillPattern=FillPattern.Solid,
           lineThickness=0.5),
         Line(
-          points={{-100,56},{-80,76},{-60,56},{-40,76},{-20,56},{0,76},{20,
-              56},{40,76},{60,56},{80,76},{100,56}},
+          points={{-100,58},{-80,38},{-60,58},{-40,38},{-20,58},{0,38},{20,58},
+              {40,38},{60,58},{80,38},{100,58}},
           color={255,0,0},
           smooth=Smooth.None,
           thickness=0.5),
@@ -220,7 +220,29 @@ Q_wf_ = WorkingFluid.Q_tot;
               {20,-48},{40,-28},{60,-48},{80,-28},{100,-48}},
           color={0,0,255},
           smooth=Smooth.None,
-          thickness=0.5)}),
+          thickness=0.5),
+        Polygon(
+          points={{22,-68},{22,-88},{36,-78},{22,-68}},
+          lineColor={0,0,0},
+          smooth=Smooth.None,
+          fillColor={0,0,0},
+          fillPattern=FillPattern.Solid),
+        Line(
+          points={{-28,-78},{24,-78}},
+          color={0,0,0},
+          smooth=Smooth.None,
+          thickness=0.5),
+        Line(
+          points={{30,76},{-22,76}},
+          color={0,0,0},
+          smooth=Smooth.None,
+          thickness=0.5),
+        Polygon(
+          points={{-20,86},{-20,66},{-34,76},{-20,86}},
+          lineColor={0,0,0},
+          smooth=Smooth.None,
+          fillColor={0,0,0},
+          fillPattern=FillPattern.Solid)}),
     Documentation(info="<HTML>
 <p><big> Model <b>Hx1DInc</b> represent the model of a counter-current plate heat exchanger where one of the two fluid is modeled as an incompressible fluid. It is based on the connection of different sub-components:
 <ul><li> A Flow1Dim component representing the flow of the fluid in one side of the exchanger

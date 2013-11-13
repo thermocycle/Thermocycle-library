@@ -1,7 +1,7 @@
 within ThermoCycle.Components.FluidFlow.Pipes;
 model Flow1DimInc
   "1-D fluid flow model (finite volume discretization - incompressible fluid model). Based on the Cell component"
-replaceable package Medium = ThermoCycle.Media.Therminol66 constrainedby
+replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
     Modelica.Media.Interfaces.PartialMedium
     "Medium model - Incompressible Fluid" annotation (choicesAllMatching = true);
 public

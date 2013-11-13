@@ -42,7 +42,7 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
     p_ex_start=177800,
     T_su_start=413.15)
     annotation (Placement(transformation(extent={{24,20},{56,52}})));
- ThermoCycle.Components.Units.ExpandersAndPumps.Generator generatorNext(Np=1)
+ ThermoCycle.Components.Units.ExpandersAndPumps.ElectricDrive generatorNext(Np=1)
     annotation (Placement(transformation(extent={{70,20},{98,48}})));
  ThermoCycle.Components.Units.HeatExchangers.HxRec1D recuperator(
     N=10,

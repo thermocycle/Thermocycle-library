@@ -60,7 +60,7 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={72,64})));
- ThermoCycle.Components.Units.ExpandersAndPumps.Generator generatorNext(Np=1)
+ ThermoCycle.Components.Units.ExpandersAndPumps.ElectricDrive generatorNext(Np=1)
     annotation (Placement(transformation(extent={{94,10},{114,30}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
       Medium = ThermoCycle.Media.R245faCool, p0=153400)
@@ -75,7 +75,6 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     redeclare package Medium2 = ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},

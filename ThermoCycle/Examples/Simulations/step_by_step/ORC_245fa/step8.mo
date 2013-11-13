@@ -53,7 +53,7 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander  expander(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={72,64})));
- ThermoCycle.Components.Units.ExpandersAndPumps.Generator generatorNext(Np=1)
+ ThermoCycle.Components.Units.ExpandersAndPumps.ElectricDrive generatorNext(Np=1)
     annotation (Placement(transformation(extent={{94,10},{114,30}})));
 ThermoCycle.Components.Units.HeatExchangers.HxRec1D    recuperator(
     N=10,
@@ -65,7 +65,6 @@ ThermoCycle.Components.Units.HeatExchangers.HxRec1D    recuperator(
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     redeclare package Medium2 = ThermoCycle.Media.R245faCool,
     pstart_hot=177800)
@@ -102,7 +101,6 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
-
     redeclare package Medium1 = ThermoCycle.Media.R245faCool,
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
