@@ -250,5 +250,11 @@ equation
           fillColor={255,85,85},
           fillPattern=FillPattern.Solid,
           textString="Sol.Coll. 
- Inc.")}));
+ Inc.")}),Documentation(info="<HTML>
+
+<p><big>The <b>SolarCollectorInc</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarCollector\">SolarCollector</a> model.
+<p><big> The heat transfer fluid in this case is considered incompressible and so the  <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc\">Flow1DimInc</a> is used.
+ 
+
+</HTML>"));
 end SolarCollectorInc;

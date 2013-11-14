@@ -10,31 +10,29 @@ model flow1D
     V=0.003,
     Mdotnom=0.3,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
-    pstart=500000,
+    pstart=1000000,
     Tstart_inlet=323.15,
     Tstart_outlet=373.15)
     annotation (Placement(transformation(extent={{-32,8},{6,46}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot Source(
     Mdot_0=0.3,
-    UseT=false,
     h_0=2E5,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    UseT=true,
     p=500000,
-    T_0=293.15)
+    T_0=323.15)
     annotation (Placement(transformation(extent={{-84,10},{-50,44}})));
   ThermoCycle.Components.HeatFlow.Sources.Source_T source_T(N=N)
     annotation (Placement(transformation(extent={{-30,42},{4,64}})));
   Modelica.Blocks.Sources.Constant const(k=273.15 + 140)
     annotation (Placement(transformation(extent={{-62,64},{-54,72}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP Sink(h=0e5, redeclare
-      package Medium = ThermoCycle.Media.R245faCool)
+  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP Sink(h=0e5, p0=500000)
     annotation (Placement(transformation(extent={{18,14},{46,42}})));
   Modelica.Blocks.Sources.Ramp ramp(
-    offset=5E5,
     duration=5,
     startTime=5,
-    height=9E5) annotation (Placement(transformation(extent={{10,62},{20,72}})));
+    height=9E5,
+    offset=10E5)
+                annotation (Placement(transformation(extent={{10,62},{20,72}})));
 equation
   connect(Source.flangeB, flow1Dim.InFlow)     annotation (Line(
       points={{-51.7,27},{-28.8333,27}},
@@ -48,16 +46,12 @@ equation
       points={{2.83333,27.1583},{12,27.1583},{12,28},{20.24,28}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(ramp.y, Sink.in_p0)  annotation (Line(
-      points={{20.5,67},{26.4,67},{26.4,40.32}},
-      color={0,0,127},
-      smooth=Smooth.None));
   connect(const.y, source_T.Temperature) annotation (Line(
       points={{-53.6,68},{-13,68},{-13,57.4}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+    Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{
             100,100}}), graphics={Text(
           extent={{-62,56},{-26,50}},
           lineColor={0,0,0},

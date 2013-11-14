@@ -10,4 +10,5 @@ Modelica.SIunits.Temperature T;
 equation
 
   T = Medium.temperature_ph(P,h);
+
 end Test_Properties;

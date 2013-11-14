@@ -1,5 +1,5 @@
 within ThermoCycle.Components.Units.Solar;
-model SolarCollector
+model SolarCollector "Solar Collector Model"
 replaceable package Medium1 = Media.R245fa constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
 
@@ -177,7 +177,7 @@ constrainedby
     th_g=th_g,
     Dext_t=Dext_t,
     th_t=th_t)
-    annotation (Placement(transformation(extent={{-22,-24},{12,30}})));
+    annotation (Placement(transformation(extent={{-26,-20},{8,34}})));
   Components.FluidFlow.Pipes.Flow1Dim flow1Dim(redeclare package Medium = Medium1,
   redeclare final model Flow1DimHeatTransferModel = FluidHeatTransferModel,
     N=N,
@@ -200,24 +200,24 @@ constrainedby
                                   annotation (Placement(transformation(
         extent={{-27.5,-31.5},{27.5,31.5}},
         rotation=90,
-        origin={48.5,7.5})));
+        origin={34.5,7.5})));
   Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium1)
-    annotation (Placement(transformation(extent={{-10,-110},{10,-90}}),
-        iconTransformation(extent={{-10,-110},{10,-90}})));
+    annotation (Placement(transformation(extent={{-10,-86},{10,-66}}),
+        iconTransformation(extent={{-10,-86},{10,-66}})));
   Interfaces.Fluid.FlangeB OutFlow( redeclare package Medium = Medium1)
-    annotation (Placement(transformation(extent={{-10,92},{10,112}}),
-        iconTransformation(extent={{-10,92},{10,112}})));
+    annotation (Placement(transformation(extent={{-12,66},{8,86}}),
+        iconTransformation(extent={{-12,66},{8,86}})));
   Modelica.Blocks.Interfaces.RealInput v_wind
-    annotation (Placement(transformation(extent={{-88,60},{-48,100}}),
+    annotation (Placement(transformation(extent={{-90,38},{-50,78}}),
         iconTransformation(extent={{-72,60},{-32,100}})));
   Modelica.Blocks.Interfaces.RealInput Theta
-    annotation (Placement(transformation(extent={{-84,10},{-44,50}}),
+    annotation (Placement(transformation(extent={{-90,4},{-50,44}}),
         iconTransformation(extent={{-72,10},{-32,50}})));
   Modelica.Blocks.Interfaces.RealInput Tamb
-    annotation (Placement(transformation(extent={{-80,-22},{-40,18}}),
+    annotation (Placement(transformation(extent={{-90,-38},{-50,2}}),
         iconTransformation(extent={{-72,-38},{-32,2}})));
   Modelica.Blocks.Interfaces.RealInput DNI
-    annotation (Placement(transformation(extent={{-84,-80},{-44,-40}}),
+    annotation (Placement(transformation(extent={{-90,-76},{-50,-36}}),
         iconTransformation(extent={{-72,-94},{-32,-54}})));
 public
 record SummaryBase
@@ -241,39 +241,39 @@ replaceable record SummaryClass = SummaryBase;
 SummaryClass Summary( T_profile( n=N, T_fluid = flow1Dim.Cells[:].T,  T_int_t = solAbs.T_int_t[1:1:N],T_t = solAbs.T_t[1:1:N],T_ext_t = solAbs.T_ext_t[1:1:N],T_int_g = solAbs.T_int_g[1:1:N],T_g = solAbs.T_g[1:1:N],T_ext_g = solAbs.T_ext_g[1:1:N]),Eta_solarCollector= solAbs.Eta_TOT,Philoss = solAbs.Phi_loss,Q_htf = flow1Dim.Q_tot);
 
 equation
-  connect(OutFlow, flow1Dim.OutFlow) annotation (Line(
-      points={{0,102},{38,102},{38,104},{48.2375,104},{48.2375,30.4167}},
-      color={0,0,255},
-      smooth=Smooth.None));
   connect(InFlow, flow1Dim.InFlow) annotation (Line(
-      points={{0,-100},{48.5,-100},{48.5,-15.4167}},
+      points={{0,-76},{34.5,-76},{34.5,-15.4167}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(solAbs.wall_int, flow1Dim.Wall_int) annotation (Line(
-      points={{10.3,3},{20.45,3},{20.45,7.5},{35.375,7.5}},
+      points={{6.3,7},{20.45,7},{20.45,7.5},{21.375,7.5}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(DNI, solAbs.DNI) annotation (Line(
-      points={{-64,-60},{-28,-60},{-28,-17.52},{-19.96,-17.52}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(Tamb, solAbs.Tamb) annotation (Line(
-      points={{-60,-2},{-19.62,-2},{-19.62,-4.02}},
+      points={{-70,-56},{-36,-56},{-36,-13.52},{-23.96,-13.52}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Theta, solAbs.Theta) annotation (Line(
-      points={{-64,30},{-44,30},{-44,12},{-19.62,12},{-19.62,8.94}},
+      points={{-70,24},{-38,24},{-38,12},{-23.62,12},{-23.62,12.94}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(v_wind, solAbs.v_wind) annotation (Line(
-      points={{-68,80},{-28,80},{-28,25.68},{-19.62,25.68}},
+      points={{-70,58},{-34,58},{-34,29.68},{-23.62,29.68}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(OutFlow, flow1Dim.OutFlow) annotation (Line(
+      points={{-2,76},{34.2375,76},{34.2375,30.4167}},
+      color={0,0,255},
+      smooth=Smooth.None));
+  connect(Tamb, solAbs.Tamb) annotation (Line(
+      points={{-70,-18},{-46,-18},{-46,-0.02},{-23.62,-0.02}},
       color={0,0,127},
       smooth=Smooth.None));
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),
-              Diagram(coordinateSystem(extent={{-40,-100},{40,100}},
+              Diagram(coordinateSystem(extent={{-80,-100},{60,100}},
           preserveAspectRatio=true),
-                      graphics), Icon(coordinateSystem(extent={{-40,-100},{
-            40,100}}, preserveAspectRatio=true),
+                      graphics), Icon(coordinateSystem(extent={{-80,-100},{60,100}},
+                      preserveAspectRatio=true),
                                       graphics={Rectangle(
           extent={{-40,100},{40,-100}},
           lineColor={0,0,0},
@@ -284,5 +284,17 @@ equation
           fillColor={255,85,85},
           fillPattern=FillPattern.Solid,
           textString="Sol.Coll. 
-")}));
+")}),Documentation(info="<HTML>
+
+<p><big>The <b>SolarCollector</b> model represents the solar field, composed by
+  a single loop of parabolic collectors connected in series. The large ratio between diameter and length allows a 1-D discretization of the absorber tube.
+   The model is composed by two sub-components: the <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> and the <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolAbs\">SolAbs</a> components. 
+They are connected together through a thermal port.
+
+
+<img src=\"modelica://ThermoCycle/Resources/Images/SolarCollectorModel.png\">
+
+<p><big>The <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> models the Heat transfer fluid flow in the heat collector element.
+<p><big>The <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolAbs\">SolAbs</a> represents the dynamic one-dimensional radial energy balance around the heat collector element.
+</HTML>"));
 end SolarCollector;

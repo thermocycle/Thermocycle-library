@@ -28,7 +28,6 @@ annotation (choicesAllMatching = true);
     "if HTtype = LiqVap : heat transfer coefficient, two-phase zone";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v
     "if HTtype = LiqVap : heat transfer coefficient, vapor zone";
-
  /************ FLUID INITIAL VALUES ***************/
 parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                      annotation (Dialog(tab="Initialization"));
@@ -82,6 +81,7 @@ final FluidState={fluidState})
 
 /***************  VARIABLES ******************/
   Medium.ThermodynamicState  fluidState;
+ // Medium.ThermodynamicState State1;
   Medium.SaturationProperties sat;
   Medium.AbsolutePressure p(start=pstart);
   Modelica.SIunits.MassFlowRate M_dot_su(start=Mdotnom);
@@ -136,6 +136,8 @@ equation
   fluidState = Medium.setState_ph(p,h);
   T = Medium.temperature(fluidState);
   rho = Medium.density(fluidState);
+ // State1 = Medium.setState_ph(p,h,1);
+ // phase = State1.phase;
   if max_der then
       drdp = min(max_drhodt/10^5, Medium.density_derp_h(fluidState));
       drdh = max(max_drhodt/(-4000), Medium.density_derh_p(fluidState));

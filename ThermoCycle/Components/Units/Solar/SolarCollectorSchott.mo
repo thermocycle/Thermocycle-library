@@ -224,5 +224,9 @@ equation
           lineColor={0,0,0},
           fillColor={255,85,85},
           fillPattern=FillPattern.Solid,
-          textString="Schott")}));
+          textString="Schott")}),Documentation(info="<HTML>
+
+<p><big>The <b>SolarCollectorSchott</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarCollector\">SolarCollector</a> model.
+ <p><big>The dynamic one-dimensional radial energy balance around the heat collector element is based on the Schott test analysis using the  <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.AbsorberSchott\">AbsorberSchott</a> model.
+ </HTML>"));
 end SolarCollectorSchott;

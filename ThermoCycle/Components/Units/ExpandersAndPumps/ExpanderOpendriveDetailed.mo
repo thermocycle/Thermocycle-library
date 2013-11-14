@@ -381,5 +381,11 @@ initial equation
           lineColor={0,0,255},
           smooth=Smooth.None,
           fillColor={0,0,255},
-          fillPattern=FillPattern.Solid)}));
+          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML> 
+                    <p><big> Model <b>ExpanderOpenDriveDetailed</b> represents the expanson of fluid in a volumetric machine. The evolution of the refrigerant through the expander is decomposed into six
+                    thermodynamic processes:
+                    
+                    
+                    
+                    </HTML>"));
 end ExpanderOpendriveDetailed;

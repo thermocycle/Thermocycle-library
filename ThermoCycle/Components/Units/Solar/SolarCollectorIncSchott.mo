@@ -187,5 +187,10 @@ equation
           fillColor={255,85,85},
           fillPattern=FillPattern.Solid,
           textString="Schott-
-Inc")}));
+Inc")}),Documentation(info="<HTML>
+
+<p><big>The <b>SolarCollectorIncSchott</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarCollector\">SolarCollector</a> model.
+<p><big> The dynamic one-dimensional radial energy balance around the heat collector element is based on the Schott test analysis using the  <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.AbsorberSchott\">AbsorberSchott</a> model.
+<p><big> The heat transfer fluid in this case is considered incompressible and so the  <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc\">Flow1DimInc</a> is used.
+ </HTML>"));
 end SolarCollectorIncSchott;
