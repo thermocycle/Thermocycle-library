@@ -10,3 +10,4 @@ ConstantHeatTransfer
 IdealHeatTransfer
 HX_base
 HX_full
+GnielinskiHeatTransfer
