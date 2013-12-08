@@ -10,45 +10,46 @@ model flow1D
     V=0.003,
     Mdotnom=0.3,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+    redeclare package Medium = CoolProp2Modelica.Media.SES36_CP,
     pstart=1000000,
     Tstart_inlet=323.15,
-    Tstart_outlet=373.15)
-    annotation (Placement(transformation(extent={{-32,8},{6,46}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot Source(
-    Mdot_0=0.3,
-    h_0=2E5,
-    UseT=true,
-    p=500000,
-    T_0=323.15)
-    annotation (Placement(transformation(extent={{-84,10},{-50,44}})));
+    Tstart_outlet=373.15,
+    redeclare model Flow1DimHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant)
+    annotation (Placement(transformation(extent={{-40,-4},{-2,34}})));
   ThermoCycle.Components.HeatFlow.Sources.Source_T source_T(N=N)
     annotation (Placement(transformation(extent={{-30,42},{4,64}})));
   Modelica.Blocks.Sources.Constant const(k=273.15 + 140)
     annotation (Placement(transformation(extent={{-62,64},{-54,72}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP Sink(h=0e5, p0=500000)
-    annotation (Placement(transformation(extent={{18,14},{46,42}})));
-  Modelica.Blocks.Sources.Ramp ramp(
-    duration=5,
-    startTime=5,
-    height=9E5,
-    offset=10E5)
-                annotation (Placement(transformation(extent={{10,62},{20,72}})));
+  Components.FluidFlow.Reservoirs.SourceMdot             sourceMdot1(
+    redeclare package Medium = CoolProp2Modelica.Media.SES36_CP,
+    Mdot_0=0.3335,
+    UseT=false,
+    h_0=84867,
+    p=888343,
+    T_0=356.26)
+    annotation (Placement(transformation(extent={{-86,12},{-60,38}})));
+  Components.FluidFlow.Reservoirs.SinkP             sinkP(redeclare package
+      Medium = CoolProp2Modelica.Media.SES36_CP,
+    h=254381,
+    p0=866735)
+    annotation (Placement(transformation(extent={{50,14},{70,34}})));
 equation
-  connect(Source.flangeB, flow1Dim.InFlow)     annotation (Line(
-      points={{-51.7,27},{-28.8333,27}},
-      color={0,0,255},
-      smooth=Smooth.None));
   connect(source_T.thermalPort, flow1Dim.Wall_int) annotation (Line(
-      points={{-13.17,48.49},{-13.17,43.95},{-13,43.95},{-13,34.9167}},
+      points={{-13.17,48.49},{-13.17,43.95},{-21,43.95},{-21,22.9167}},
       color={255,0,0},
-      smooth=Smooth.None));
-  connect(flow1Dim.OutFlow, Sink.flangeB)  annotation (Line(
-      points={{2.83333,27.1583},{12,27.1583},{12,28},{20.24,28}},
-      color={0,0,255},
       smooth=Smooth.None));
   connect(const.y, source_T.Temperature) annotation (Line(
       points={{-53.6,68},{-13,68},{-13,57.4}},
       color={0,0,127},
+      smooth=Smooth.None));
+  connect(sourceMdot1.flangeB, flow1Dim.InFlow) annotation (Line(
+      points={{-61.3,25},{-52,25},{-52,15},{-36.8333,15}},
+      color={0,0,255},
+      smooth=Smooth.None));
+  connect(flow1Dim.OutFlow, sinkP.flangeB) annotation (Line(
+      points={{-5.16667,15.1583},{18,15.1583},{18,24},{51.6,24}},
+      color={0,0,255},
       smooth=Smooth.None));
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{

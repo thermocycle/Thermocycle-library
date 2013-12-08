@@ -35,7 +35,7 @@ extends BaseUnits.BaseHxConst;
     Tstart_wall_end=(Tstart_outlet_wf + Tstart_inlet_sf)/2,
     steadystate_T_wall=steadystate_T_wall)
     annotation (Placement(transformation(extent={{-40,-50},{46,14}})));
-  Components.HeatFlow.Walls.CountCurr countCurr(N=N)
+  Components.HeatFlow.Walls.CountCurr countCurr(N=N,counterCurrent=counterCurrent)
   annotation (Placement(transformation(extent={{-42,3},{40,48}})));
  ThermoCycle.Components.FluidFlow.Pipes.Flow1DConst    SecondaryFluid(
    redeclare final model Flow1DConstHeatTransferModel =
@@ -59,7 +59,8 @@ parameter Modelica.SIunits.Area A_sf = 16.18 "Area secondary fluid";
 parameter Modelica.SIunits.Area A_wf = 16.18 "Area primary fluid";
 
 /****************************** HEAT TRANSFER *************************************/
-
+parameter Boolean counterCurrent = true
+    "Swap temperature and flux vector order";
 /*Secondary fluid*/
 replaceable model Medium2HeatTransferModel =
   ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence
@@ -249,6 +250,6 @@ equation
          <li> steadystate_T_wall: if  true, the derivative of temperature of the metal wall is set to zero during <em>Initialization</em>
          </ul>
         <p><b><big>Numerical options</b></p>
-<p><big>The numerical options available for the <b>HxRec1DConst</b> are the one implemented in <b>Cell1Dim</b>  and <b>Cell1DimConst</b>
+<p><big>The numerical options available for the <b>HxRec1DConst</b> are the one implemented in <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>. and <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.CellConst\">CellConst</a>.
 </html>"));
 end Hx1DConst;

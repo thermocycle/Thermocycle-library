@@ -177,7 +177,7 @@ constrainedby
     th_g=th_g,
     Dext_t=Dext_t,
     th_t=th_t)
-    annotation (Placement(transformation(extent={{-26,-20},{8,34}})));
+    annotation (Placement(transformation(extent={{-30,-16},{14,34}})));
   Components.FluidFlow.Pipes.Flow1Dim flow1Dim(redeclare package Medium = Medium1,
   redeclare final model Flow1DimHeatTransferModel = FluidHeatTransferModel,
     N=N,
@@ -246,19 +246,19 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(solAbs.wall_int, flow1Dim.Wall_int) annotation (Line(
-      points={{6.3,7},{20.45,7},{20.45,7.5},{21.375,7.5}},
+      points={{11.8,9},{20.45,9},{20.45,7.5},{21.375,7.5}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(DNI, solAbs.DNI) annotation (Line(
-      points={{-70,-56},{-36,-56},{-36,-13.52},{-23.96,-13.52}},
+      points={{-70,-56},{-36,-56},{-36,-10},{-27.36,-10}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Theta, solAbs.Theta) annotation (Line(
-      points={{-70,24},{-38,24},{-38,12},{-23.62,12},{-23.62,12.94}},
+      points={{-70,24},{-38,24},{-38,12},{-26.92,12},{-26.92,14.5}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(v_wind, solAbs.v_wind) annotation (Line(
-      points={{-70,58},{-34,58},{-34,29.68},{-23.62,29.68}},
+      points={{-70,58},{-34,58},{-34,30},{-26.92,30}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(OutFlow, flow1Dim.OutFlow) annotation (Line(
@@ -266,7 +266,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(Tamb, solAbs.Tamb) annotation (Line(
-      points={{-70,-18},{-46,-18},{-46,-0.02},{-23.62,-0.02}},
+      points={{-70,-18},{-46,-18},{-46,2.5},{-26.92,2.5}},
       color={0,0,127},
       smooth=Smooth.None));
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),

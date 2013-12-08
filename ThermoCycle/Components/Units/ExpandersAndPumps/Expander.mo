@@ -95,8 +95,9 @@ if (ExpType == ExpTypes.ODExp) then
           log_rp=log(p_su/p_ex),
           N_rot=rpm);
 elseif (ExpType == ExpTypes.ORCNext) then
-  FF= ThermoCycle.Functions.ORCNext.correlation_screw_FFVs(p_su_exp= p_su,rho_su_exp= rho_su,rpm=N_rot*60);  // V_s has to be set ugual to 1 [m3]
-    epsilon = ThermoCycle.Functions.ORCNext.correlation_screwORCNext(
+  FF= ThermoCycle.Functions.TestRig.GenericScrewExpander_FillingFactor(
+                                                           p_su_exp= p_su,rho_su_exp= rho_su,rpm=N_rot*60);  // V_s has to be set ugual to 1 [m3]
+    epsilon = ThermoCycle.Functions.TestRig.GenericScrewExpander_IsentropicEfficiency(
           rp=p_su/p_ex,
           rpm=N_rot*60,
           p=p_su);

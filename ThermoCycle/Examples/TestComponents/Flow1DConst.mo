@@ -2,7 +2,7 @@ within ThermoCycle.Examples.TestComponents;
 model Flow1DConst
 parameter Integer N = 5;
 ThermoCycle.Components.FluidFlow.Pipes.Flow1DConst flowConst(N=N)
-    annotation (Placement(transformation(extent={{20,84},{-42,34}})));
+    annotation (Placement(transformation(extent={{20,94},{-42,44}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot
                                                source_Cdot(
     cp=1978,
@@ -16,7 +16,7 @@ ThermoCycle.Components.FluidFlow.Pipes.Flow1DConst flowConst(N=N)
     annotation (Placement(transformation(extent={{-90,4},{-70,24}})));
 equation
   connect(source_Cdot.flange, flowConst.flange_Cdot) annotation (Line(
-      points={{68.2,77.9},{74,77.9},{74,59},{20,59}},
+      points={{68.2,77.9},{74,77.9},{74,69},{20,69}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(const.y,source_T. Temperature) annotation (Line(
@@ -24,8 +24,10 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(source_T.thermalPort, flowConst.Wall_int) annotation (Line(
-      points={{-42.1,1.9},{-42.1,-12},{-11,-12},{-11,46.5}},
+      points={{-42.1,1.9},{-42.1,-10},{-11,-10},{-11,56.5}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(graphics));
+  annotation (Diagram(graphics),
+    experiment(StopTime=100),
+    __Dymola_experimentSetupOutput);
 end Flow1DConst;

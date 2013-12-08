@@ -82,9 +82,11 @@ equation
   W_dot = M_dot*(h_ex - h_su);
   eta = eta_in*eta_em;
   if (PumpType == PumpTypes.ORCNext) then
-    eta_in = ThermoCycle.Functions.ORCNext.correlation_pumpORCNext(f_pp=
+    eta_in = ThermoCycle.Functions.TestRig.GenericCentrifugalPump_IsentropicEfficiency(
+                                                                   f_pp=
       f_pp, r_p=p_ex/p_su);
-  M_dot = ThermoCycle.Functions.ORCNext.correlation_MdotORCNext(f_pp=f_pp);
+  M_dot = ThermoCycle.Functions.TestRig.GenericCentrifugalPump_MassFlowRate(
+                                                                f_pp=f_pp);
   V_dot = 1;
     //end if;
   elseif (PumpType == PumpTypes.SQThesis) then

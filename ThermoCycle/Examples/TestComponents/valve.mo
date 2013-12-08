@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.TestComponents;
 model valve
+
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare
       package Medium = ThermoCycle.Media.R245faCool, p0=400000)
     annotation (Placement(transformation(extent={{24,32},{44,52}})));

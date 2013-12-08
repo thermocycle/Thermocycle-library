@@ -1,6 +1,7 @@
 within ThermoCycle.Obsolete;
 model ORC_DetailedExpander_130627
   "Non-regenerative ORC with double-PID control system and variable Tev, detailed expander model"
+
 ThermoCycle.Components.Units.Tanks.Tank tank(
     level_start=0.5,
     hstart=2.32e5,
@@ -9,7 +10,8 @@ ThermoCycle.Components.Units.Tanks.Tank tank(
     Vtot=0.015,
     pstart=148400)
     annotation (Placement(transformation(extent={{-44,-32},{-24,-12}})));
- ThermoCycle.Components.Units.ExpandersAndPumps.Pump Pump(
+ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Pump
+                                                     Pump(
     X_pp0=0.5539,
     hstart=1.76e5,
     eta_em=0.7,
@@ -43,7 +45,8 @@ ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     Tstart_inlet_sf=473.15,
     Tstart_outlet_sf=325.41)
     annotation (Placement(transformation(extent={{-42,36},{-22,56}})));
-ThermoCycle.Components.Units.ExpandersAndPumps.Generator generator(Np=1)
+ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Generator
+                                                         generator(Np=1)
     annotation (Placement(transformation(extent={{82,4},{104,26}})));
 ThermoCycle.Components.Units.HeatExchangers.Hx  Condenser(
     N=20,
@@ -127,7 +130,8 @@ ThermoCycle.Components.Units.PdropAndValves.DP DP_cd(
     T_nom=382.15,
     DELTAp_quad_nom=10814)
     annotation (Placement(transformation(extent={{-16,34},{-2,48}})));
-ThermoCycle.Components.Units.ExpandersAndPumps.ExpanderOpendriveDetailed expanderOpendriveDetailed(
+ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ExpanderOpendriveDetailed
+                                                                         expanderOpendriveDetailed(
     HeatCapacity=true,
     V_s=1.1e-4,
     d_su=1.15e-2,

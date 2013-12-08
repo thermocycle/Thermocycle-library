@@ -10,7 +10,8 @@ model SQThesisModel
     Vtot=0.015,
     pstart=148400)
     annotation (Placement(transformation(extent={{-44,-32},{-24,-12}})));
- ThermoCycle.Components.Units.ExpandersAndPumps.Pump Pump(
+ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Pump
+                                                     Pump(
     X_pp0=0.5539,
     hstart=1.76e5,
     eta_em=0.7,
@@ -21,7 +22,7 @@ model SQThesisModel
     annotation (Placement(transformation(extent={{-66,10},{-86,30}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     annotation (Placement(transformation(extent={{-38,64},{-22,80}})));
- ThermoCycle.Components.Units.HeatExchangers.Hx  Evaporator(
+ThermoCycle.Obsolete.Hx_06122013 Evaporator(
     N=20,
     V_sf=0.003324,
     M_wall=13,
@@ -44,9 +45,11 @@ model SQThesisModel
     Tstart_inlet_sf=473.15,
     Tstart_outlet_sf=325.41)
     annotation (Placement(transformation(extent={{-42,36},{-22,56}})));
-ThermoCycle.Components.Units.ExpandersAndPumps.ElectricDrive generator(Np=1)
+ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
+                                                             generator(Np=1)
     annotation (Placement(transformation(extent={{82,4},{104,26}})));
-ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
+ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
+                                                        expander(
     epsilon_s=0.69,
     FF_exp=1.016,
     V_s=1.1e-4,
@@ -60,7 +63,7 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
     p_ex_start=178000,
     T_su_start=382.55)
     annotation (Placement(transformation(extent={{54,2},{78,26}})));
-ThermoCycle.Components.Units.HeatExchangers.Hx  Condenser(
+ThermoCycle.Obsolete.Hx_06122013  Condenser(
     N=20,
     V_sf=0.009562,
     M_wall=30,

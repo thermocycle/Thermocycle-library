@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.TestComponents;
 model Expander
+
   Modelica.Blocks.Sources.Ramp N_rot(
     duration=100,
     startTime=400,
@@ -8,7 +9,8 @@ model Expander
         extent={{-5,-5},{5,5}},
         rotation=0,
         origin={-13,77})));
- ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(redeclare
+ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
+                                                         expander(redeclare
       package Medium = Media.R245faCool, V_s=1)
     annotation (Placement(transformation(extent={{-32,16},{-12,36}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare
@@ -20,7 +22,8 @@ model Expander
     h_0=503925,
     redeclare package Medium = ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{-62,40},{-42,60}})));
- ThermoCycle.Components.Units.ExpandersAndPumps.Generator generator
+ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
+                                                          generator
     annotation (Placement(transformation(extent={{16,28},{36,48}})));
 equation
   connect(sourceWF.flangeB, expander.InFlow) annotation (Line(

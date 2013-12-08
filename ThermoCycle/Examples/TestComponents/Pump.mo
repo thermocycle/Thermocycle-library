@@ -1,7 +1,8 @@
 within ThermoCycle.Examples.TestComponents;
 model Pump
 
-  Components.Units.ExpandersAndPumps.Pump pump(redeclare package Medium =
+  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Pump
+                                          pump(redeclare package Medium =
         ThermoCycle.Media.R245faCool)
     annotation (Placement(transformation(extent={{-16,-14},{10,12}})));
   Components.FluidFlow.Reservoirs.SourceP sourceP(redeclare package Medium =

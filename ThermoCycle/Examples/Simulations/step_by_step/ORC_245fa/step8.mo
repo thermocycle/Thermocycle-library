@@ -35,7 +35,8 @@ ThermoCycle.Components.Units.PdropAndValves.DP  dp_hp(
     DELTAp_lin_nom=3000,
     DELTAp_quad_nom=5150)
     annotation (Placement(transformation(extent={{14,26},{34,46}})));
-ThermoCycle.Components.Units.ExpandersAndPumps.Expander  expander(
+ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
+                                                         expander(
     ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.ORCNext,
     V_s=1,
     constPinit=false,
@@ -53,9 +54,10 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander  expander(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={72,64})));
- ThermoCycle.Components.Units.ExpandersAndPumps.ElectricDrive generatorNext(Np=1)
+ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
+                                                              generatorNext(Np=1)
     annotation (Placement(transformation(extent={{94,10},{114,30}})));
-ThermoCycle.Components.Units.HeatExchangers.HxRec1D    recuperator(
+ThermoCycle.Components.Units.HeatExchangers.Hx1D       recuperator(
     N=10,
     steadystate_h_cold=true,
     steadystate_h_hot=true,
@@ -115,7 +117,8 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     Mdot_0=4,
     T_0=293.15)
     annotation (Placement(transformation(extent={{48,-98},{34,-84}})));
-ThermoCycle.Components.Units.ExpandersAndPumps.Pump   pump(
+ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Pump
+                                                      pump(
     PumpType=ThermoCycle.Functions.Enumerations.PumpTypes.ORCNext,
     PumpInput=ThermoCycle.Functions.Enumerations.PumpInputs.freq,
     hstart=2.27e5,
