@@ -558,9 +558,9 @@ package ExpansionAndCompressionMachines
          <li> Mixing between suction flow and leakage flow (ex,2 --> ex,1)
          <li> Exhaust cooling-down or heating-up (ex,1 --> ex)
          </ul>
-                    
+        <p>            
       <img src=\"modelica://ThermoCycle/Resources/Images/OpenScrollExpander2.png\">
-              
+         </p>     
                     
                     </HTML>"));
   end ExpanderOpendriveDetailed;

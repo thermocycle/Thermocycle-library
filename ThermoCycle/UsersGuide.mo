@@ -648,8 +648,9 @@ The finite volume approach is selected as general method to simulate fluid flow 
 The basic fluid flow component is a cell in which the energy and mass conservation equations are
 applied.
 </p>
+<p>
  <img src=\"modelica://ThermoCycle/Resources/Images/DiscretizedFlowModel.png\">
- 
+</p>
 <p><big>
 Two types of variables can be identified: cell variables and node variables. Node variables are distinguished by the su (supply) and ex (exhaust)
 subscripts, and correspond to the inlet and outlet nodes of each cell (Fig. \ref{fig:cells}).
@@ -660,9 +661,9 @@ For the central difference scheme, h_su is expressed by the following equation (
 </p>
  
  
- 
+<p> 
  <img src=\"modelica://ThermoCycle/Resources/Images/h_suEquation.png\">
-
+</p>
 
 <p><big>
 where the flow rates are defined as positive when the

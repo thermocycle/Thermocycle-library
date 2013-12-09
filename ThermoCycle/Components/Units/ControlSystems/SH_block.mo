@@ -12,6 +12,15 @@ annotation (choicesAllMatching = true);
   Modelica.Blocks.Interfaces.RealOutput DeltaT
     annotation (Placement(transformation(extent={{96,-10},{116,10}}),
         iconTransformation(extent={{96,-10},{126,20}})));
+
+//Modelica.SIunits.Temperature Tsat "saturation temperature at the measured pressure";
+ Medium.SaturationProperties sat;
+
+equation
+  sat = Medium.setSat_p(p_measured);
+
+  DeltaT = T_measured - sat.Tsat;
+
   annotation (Diagram(graphics={Rectangle(extent={{-100,100},{100,-100}},
             lineColor={0,0,255})}), Icon(graphics={
         Text(
@@ -27,13 +36,4 @@ annotation (choicesAllMatching = true);
           lineColor={0,0,255},
           textString="DELTA_T"),
         Rectangle(extent={{-100,100},{100,-100}}, lineColor={0,0,255})}));
-
-//Modelica.SIunits.Temperature Tsat "saturation temperature at the measured pressure";
- Medium.SaturationProperties sat;
-
-equation
-  sat = Medium.setSat_p(p_measured);
-
-  DeltaT = T_measured - sat.Tsat;
-
 end SH_block;

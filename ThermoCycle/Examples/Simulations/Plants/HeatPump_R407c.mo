@@ -193,7 +193,6 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
 
-
   connect(DELTAT_SP.y, PID_valve.SP) annotation (Line(
       points={{54.3,19},{57.15,19},{57.15,22.2},{60,22.2}},
       color={0,0,127},

@@ -290,10 +290,10 @@ equation
   a single loop of parabolic collectors connected in series. The large ratio between diameter and length allows a 1-D discretization of the absorber tube.
    The model is composed by two sub-components: the <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> and the <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolAbs\">SolAbs</a> components. 
 They are connected together through a thermal port.
-
-
+</p>
+<p>
 <img src=\"modelica://ThermoCycle/Resources/Images/SolarCollectorModel.png\">
-
+</p>
 <p><big>The <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> models the Heat transfer fluid flow in the heat collector element.
 <p><big>The <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolAbs\">SolAbs</a> represents the dynamic one-dimensional radial energy balance around the heat collector element.
 </HTML>"));
