@@ -2,7 +2,7 @@ within ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating;
 model RecipMachine
   "A combination of cylinder model and a reciprocating mechanism."
 
-  RecipMachine_Flange recipFlange(redeclare StrokeBoreGeometry geometry)
+  RecipMachine_Flange recipFlange
     annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
   Cylinder cylinder(
     pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
@@ -37,6 +37,7 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.HeatTransfer.Consta
     ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses.PartialCylinderHeatTransfer
     "Wall heat transfer"
     annotation (choicesAllMatching=true);
+
 
   Modelica.Mechanics.Rotational.Interfaces.Flange_a flange_a annotation (
       Placement(transformation(extent={{-190,-100},{-170,-80}}),

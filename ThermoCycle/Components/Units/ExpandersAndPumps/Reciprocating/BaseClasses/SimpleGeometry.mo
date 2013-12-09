@@ -4,8 +4,8 @@ partial record SimpleGeometry "Simple geometry"
     ThermoCycle.Components.Units.ExpandersAndPumps.Reciprocating.BaseClasses.BaseGeometry(
     final d_ppin=0,
     final r_crank=0.5*stroke,
-    final r_piston=0.5*bore,
-    final h_piston=bore);
+    final r_piston=bore,
+    final h_piston=0.5*bore);
   parameter Modelica.SIunits.Length l_conrod(displayUnit="mm")
     "Length of connection rod";
   parameter Modelica.SIunits.Length stroke(displayUnit="mm") "Stroke length";
