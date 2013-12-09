@@ -1,7 +1,7 @@
 within ThermoCycle.Obsolete;
 model Hx1DConst_1808
 extends Components.Units.BaseUnits.BaseHxConst;
-  Components.FluidFlow.Pipes.Flow1Dim WorkingFluid(
+ ThermoCycle.Obsolete.Flow1Dim_1808  WorkingFluid(
     redeclare package Medium = Medium1,
     N=N,
     A=A_wf,
@@ -32,7 +32,7 @@ extends Components.Units.BaseUnits.BaseHxConst;
     annotation (Placement(transformation(extent={{-40,-50},{46,14}})));
   Components.HeatFlow.Walls.CountCurr countCurr(N=N)
   annotation (Placement(transformation(extent={{-42,3},{40,48}})));
-  Components.FluidFlow.Pipes.FlowConst SecondaryFluid(
+ ThermoCycle.Obsolete.FlowConst_041113  SecondaryFluid(
     N=N,
     A=A_sf,
     V=V_sf,

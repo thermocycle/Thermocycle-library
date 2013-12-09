@@ -11,7 +11,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst evaporator(
     Unom_sf=335,
     max_drhodt_wf=40,
     filter_dMdt_wf=false,
-    max_der_wf=true)
+    max_der_wf=false)
     annotation (Placement(transformation(extent={{-62,46},{-34,70}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,

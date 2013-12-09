@@ -14,7 +14,6 @@ extends Components.Units.BaseUnits.BaseHx;
     TT=TT_wf,
     Unom_l=Unom_l,
     Unom_tp=Unom_tp,
-    HTtype=HTtype_wf,
     Unom_v=Unom_v,
     steadystate=steadystate_h_wf,
     Tstart_inlet=Tstart_inlet_wf,

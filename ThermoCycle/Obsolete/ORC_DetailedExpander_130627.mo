@@ -22,7 +22,7 @@ ThermoCycle.Components.Units.Tanks.Tank tank(
     annotation (Placement(transformation(extent={{-66,10},{-86,30}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     annotation (Placement(transformation(extent={{-38,64},{-22,80}})));
- ThermoCycle.Components.Units.HeatExchangers.Hx  Evaporator(
+ ThermoCycle.Obsolete.Hx_06122013  Evaporator(
     N=20,
     V_sf=0.003324,
     M_wall=13,
@@ -45,10 +45,10 @@ ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     Tstart_inlet_sf=473.15,
     Tstart_outlet_sf=325.41)
     annotation (Placement(transformation(extent={{-42,36},{-22,56}})));
-ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Generator
+ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                          generator(Np=1)
     annotation (Placement(transformation(extent={{82,4},{104,26}})));
-ThermoCycle.Components.Units.HeatExchangers.Hx  Condenser(
+ ThermoCycle.Obsolete.Hx_06122013 Condenser(
     N=20,
     V_sf=0.009562,
     M_wall=30,
@@ -177,7 +177,7 @@ equation
       pattern=LinePattern.Dot,
       smooth=Smooth.None));
   connect(control_unit1.CS_Xpp, Pump.flow_in) annotation (Line(
-      points={{59.28,63.6},{70,63.6},{70,32},{-71.8,32},{-71.8,27.6}},
+      points={{59.28,63.6},{70,63.6},{70,32},{-72.8,32},{-72.8,28}},
       color={0,0,127},
       pattern=LinePattern.Dot,
       smooth=Smooth.None));
