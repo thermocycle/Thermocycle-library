@@ -3,7 +3,6 @@ model HeatPump_R407c
   "Heat pump model using R407c and a basic PI controller for the valve"
 
   ThermoCycle.Components.Units.HeatExchangers.Hx1DInc condenser(
-    redeclare package Medium1 = ex5.R407c,
     redeclare package Medium2 = ThermoCycle.Media.StandardWater,
     N=10,
     redeclare model Medium1HeatTransferModel =
@@ -16,12 +15,13 @@ model HeatPump_R407c
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     V_sf=0.002,
     V_wf=0.002,
+    steadystate_h_wf=true,
+    redeclare package Medium1 = ThermoCycle.Media.R407c,
     pstart_wf=1650000,
     Tstart_inlet_wf=345.15,
     Tstart_outlet_wf=308.15,
     Tstart_inlet_sf=303.15,
-    Tstart_outlet_sf=303.15,
-    steadystate_h_wf=true)
+    Tstart_outlet_sf=303.15)
     annotation (Placement(transformation(extent={{10,16},{-16,42}})));
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot1(
@@ -33,16 +33,16 @@ model HeatPump_R407c
       Medium = ThermoCycle.Media.StandardWater)
     annotation (Placement(transformation(extent={{34,32},{52,48}})));
   ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
-    redeclare package Medium = ex5.R407c,
     Vtot=0.004,
+    redeclare package Medium = ThermoCycle.Media.R407c,
     pstart=1650000)
     annotation (Placement(transformation(extent={{-40,-4},{-20,16}})));
   ThermoCycle.Components.Units.PdropAndValves.Valve valve(
-    redeclare package Medium = ex5.R407c,
     Mdot_nom=0.044,
     UseNom=false,
     Afull=15e-7,
     Xopen=0.45,
+    redeclare package Medium = ThermoCycle.Media.R407c,
     p_nom=1650000,
     T_nom=308.15,
     DELTAp_nom=1200000)
@@ -50,7 +50,6 @@ model HeatPump_R407c
         rotation=90,
         origin={-30,-26})));
   ThermoCycle.Components.Units.HeatExchangers.Hx1DInc evaporator(
-    redeclare package Medium1 = ex5.R407c,
     N=10,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
@@ -65,6 +64,7 @@ model HeatPump_R407c
     Unom_sf=100,
     Mdotnom_sf=0.76,
     steadystate_h_wf=true,
+    redeclare package Medium1 = ThermoCycle.Media.R407c,
     pstart_wf=500000,
     Tstart_inlet_wf=263.15,
     Tstart_outlet_wf=277.15,
@@ -82,8 +82,8 @@ model HeatPump_R407c
     annotation (Placement(transformation(extent={{-24,-78},{-38,-64}})));
   ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Compressor compressor(
     epsilon_v=0.9,
-    redeclare package Medium = ex5.R407c,
     V_s=85e-6,
+    redeclare package Medium = ThermoCycle.Media.R407c,
     p_su_start=380000,
     p_ex_start=1650000,
     T_su_start=278.15) annotation (Placement(transformation(
@@ -93,17 +93,17 @@ model HeatPump_R407c
   ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive electricDrive
     annotation (Placement(transformation(extent={{28,-22},{4,2}})));
   ThermoCycle.Components.Units.PdropAndValves.DP dp_ev(
-    redeclare package Medium = ex5.R407c,
     UseNom=true,
     Mdot_nom=0.044,
+    redeclare package Medium = ThermoCycle.Media.R407c,
     p_nom=380000,
     T_nom=283.15,
     DELTAp_quad_nom=20000)
     annotation (Placement(transformation(extent={{30,-62},{50,-42}})));
   ThermoCycle.Components.Units.PdropAndValves.DP dp_cd(
-    redeclare package Medium = ex5.R407c,
     UseNom=true,
     Mdot_nom=0.044,
+    redeclare package Medium = ThermoCycle.Media.R407c,
     p_nom=1650000,
     T_nom=345.15,
     DELTAp_quad_nom=20000)
@@ -116,8 +116,6 @@ model HeatPump_R407c
   ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp(redeclare package
       Medium = ThermoCycle.Media.R407c)
     annotation (Placement(transformation(extent={{56,-56},{72,-40}})));
-  ex6.SH sH
-        annotation (Placement(transformation(extent={{32,-42},{40,-30}})));
   ThermoCycle.Components.Units.ControlSystems.PID PID_valve(
     CSmax=1,
     PVmax=25,
@@ -128,9 +126,12 @@ model HeatPump_R407c
     PVstart=2,
     Ti=1000,
     Kp=-0.001)
-    annotation (Placement(transformation(extent={{62,32},{80,18}})));
+    annotation (Placement(transformation(extent={{60,32},{78,18}})));
   Modelica.Blocks.Sources.Constant DELTAT_SP(k=5)
     annotation (Placement(transformation(extent={{48,16},{54,22}})));
+  Components.Units.ControlSystems.SH_block sH_block(redeclare package Medium =
+        ThermoCycle.Media.R407c)
+    annotation (Placement(transformation(extent={{44,-38},{54,-28}})));
 equation
   connect(sourceMdot1.flangeB, condenser.inlet_fl2)
                                                   annotation (Line(
@@ -164,7 +165,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(electricDrive.shaft, compressor.flange_elc) annotation (Line(
-      points={{26.32,-10},{46.3333,-10}},
+      points={{26.32,-10},{36.3267,-10},{36.3267,-10},{46.3333,-10}},
       color={0,0,0},
       smooth=Smooth.None));
   connect(evaporator.outlet_fl1, dp_ev.InFlow) annotation (Line(
@@ -192,34 +193,31 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
 
-  connect(sensTp.T, sH.T) annotation (Line(
-      points={{70.4,-43.2},{74,-43.2},{74,-30},{22,-30},{22,-33.6},{32,-33.6}},
-      color={0,0,127},
-      smooth=Smooth.None,
-      pattern=LinePattern.Dot));
 
-  connect(sensTp.p, sH.P) annotation (Line(
-      points={{57.6,-43.2},{22,-43.2},{22,-38.4},{32,-38.4}},
-      color={0,0,127},
-      smooth=Smooth.None,
-      pattern=LinePattern.Dot));
-  connect(sH.DELTAT, PID_valve.PV) annotation (Line(
-      points={{40,-36},{60,-36},{60,-36},{78,-36},{78,12},{44,12},{44,27.8},{
-          62,27.8}},
-      color={0,0,127},
-      smooth=Smooth.None,
-      pattern=LinePattern.Dot));
   connect(DELTAT_SP.y, PID_valve.SP) annotation (Line(
-      points={{54.3,19},{57.15,19},{57.15,22.2},{62,22.2}},
+      points={{54.3,19},{57.15,19},{57.15,22.2},{60,22.2}},
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
   connect(PID_valve.CS, valve.cmd) annotation (Line(
-      points={{80.54,25},{84,25},{84,52},{-46,52},{-46,-26},{-38,-26}},
+      points={{78.54,25},{84,25},{84,52},{-46,52},{-46,-26},{-38,-26}},
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+  connect(sensTp.p, sH_block.p_measured) annotation (Line(
+      points={{57.6,-43.2},{40,-43.2},{40,-35},{43.9,-35}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(sensTp.T, sH_block.T_measured) annotation (Line(
+      points={{70.4,-43.2},{74,-43.2},{74,-32},{60,-32},{60,-22},{36,-22},{36,
+          -30.5},{43.7,-30.5}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(sH_block.DeltaT, PID_valve.PV) annotation (Line(
+      points={{54.55,-32.75},{96,-32.75},{96,6},{44,6},{44,27.8},{60,27.8}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
             -100},{100,100}}),      graphics),
     experiment(StopTime=100),
     __Dymola_experimentSetupOutput);
