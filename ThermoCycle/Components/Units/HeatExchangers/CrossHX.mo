@@ -250,6 +250,6 @@ equation
          <li> UseHomotopy_sf: if true, it uses homotopy to set the pressure drop to zero during <em>Initialization</em>
          </ul>
         <p><b><big>Numerical options</b></p>
-<p><big>The numerical options available for the <b>CrossHX</b> are the one implemented in <b>Cell1Dim</b> (see  <em><FONT COLOR=red>ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim</FONT></em>)
+<p><big>The numerical options available for the <b>CrossHX</b> are the one implemented in <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>.
 </html>"));
 end CrossHX;

@@ -1,5 +1,5 @@
-within ThermoCycle.Components.Units.HeatExchangers;
-model Hx "Simplified heat exchanger model. Not object-oriented"
+within ThermoCycle.Obsolete;
+model Hx_06122013 "Simplified heat exchanger model. Not object-oriented"
  extends ThermoCycle.Components.Units.BaseUnits.BaseHxConst;
  replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model";
@@ -272,4 +272,4 @@ initial equation
           thickness=0.5)}),                                         Diagram(
         coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}),
                     graphics));
-end Hx;
+end Hx_06122013;

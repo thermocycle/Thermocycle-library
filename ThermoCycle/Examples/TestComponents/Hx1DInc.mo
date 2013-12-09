@@ -1,58 +1,66 @@
 within ThermoCycle.Examples.TestComponents;
 model Hx1DInc
-
-ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
-      Medium =
-        Media.Therminol66,
-      p0=100000)
-    annotation (Placement(transformation(extent={{-50,64},{-30,84}})));
- ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
-    Mdot_0=0.2588,
-    h_0=281455,
-    UseT=true,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
-    p=2357000,
-    T_0=353.15)
-    annotation (Placement(transformation(extent={{-74,-18},{-54,2}})));
- ThermoCycle.Components.Units.HeatExchangers.Hx1DInc        hx1DInc(
-    redeclare package Medium1 = Media.R245faCool,
-    redeclare package Medium2 = Media.Therminol66,
-    steadystate_T_sf=true,
-    Tstart_inlet_wf=300,
-    Tstart_outlet_wf=300)
-    annotation (Placement(transformation(extent={{-28,2},{4,40}})));
-ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF1(
-    redeclare package Medium = Media.Therminol66,
-    h_0=281455,
-    UseT=true,
-    Mdot_0=-3,
+  ThermoCycle.Components.Units.HeatExchangers.Hx1DInc hx1DInc(
+    Mdotnom_sf=3.148,
+    redeclare package Medium1 = CoolProp2Modelica.Media.SES36_CP,
+    redeclare package Medium2 = ThermoCycle.Media.Therminol66,
+    Mdotnom_wf=0.3335,
+    steadystate_h_wf=true,
+    N=10,
+    Unom_sf=900,
+    Mdotconst_wf=false,
+    max_der_wf=false,
+    Unom_l=3000,
+    Unom_tp=3600,
+    Unom_v=3000,
+    pstart_sf=100000,
+    pstart_wf=888343,
+    Tstart_inlet_wf=356.26,
+    Tstart_outlet_wf=397.75,
+    Tstart_inlet_sf=398.15,
+    Tstart_outlet_sf=389.45)
+    annotation (Placement(transformation(extent={{-38,-24},{24,38}})));
+  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
+    redeclare package Medium = CoolProp2Modelica.Media.SES36_CP,
+    Mdot_0=0.3335,
+    UseT=false,
+    p=888343,
+    T_0=356.26,
+    h_0=84867)
+    annotation (Placement(transformation(extent={{-90,-28},{-70,-8}})));
+  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP(redeclare package
+      Medium = CoolProp2Modelica.Media.SES36_CP,
+    h=254381,
+    p0=888343)
+    annotation (Placement(transformation(extent={{68,-48},{88,-28}})));
+  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot1(
+    redeclare package Medium = ThermoCycle.Media.Therminol66,
+    Mdot_0=3.148,
     p=100000,
-    T_0=418.15)
-    annotation (Placement(transformation(extent={{10,72},{30,92}})));
- ThermoCycle.Components.FluidFlow.Reservoirs.SinkP     sinkPFluid1(redeclare
-      package Medium = ThermoCycle.Media.R245faCool, p0=2357000)
-    annotation (Placement(transformation(extent={{40,-8},{60,12}})));
+    T_0=398.15)
+    annotation (Placement(transformation(extent={{26,70},{46,90}})));
+  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP1(redeclare package
+      Medium =         ThermoCycle.Media.Therminol66, p0=100000)
+    annotation (Placement(transformation(extent={{-54,72},{-36,90}})));
 equation
-  connect(hx1DInc.outlet_fl1, sinkPFluid1.flangeB) annotation (Line(
-      points={{0.307692,13.6923},{16,13.6923},{16,12},{28,12},{28,2},{41.6,2}},
+  connect(hx1DInc.outlet_fl1, sinkP.flangeB) annotation (Line(
+      points={{16.8462,-4.92308},{40,-4.92308},{40,-38},{69.6,-38}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(hx1DInc.inlet_fl2, sourceWF1.flangeB) annotation (Line(
-      points={{0.0615385,29.7692},{29,29.7692},{29,82}},
+  connect(sourceMdot1.flangeB, hx1DInc.inlet_fl2) annotation (Line(
+      points={{45,80},{60,80},{60,21.3077},{16.3692,21.3077}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(hx1DInc.outlet_fl2, sinkPFluid.flangeB) annotation (Line(
-      points={{-24.0615,29.4769},{-62,29.4769},{-62,74},{-48.4,74}},
+  connect(sinkP1.flangeB, hx1DInc.outlet_fl2) annotation (Line(
+      points={{-52.56,81},{-80,81},{-80,20.8308},{-30.3692,20.8308}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(sourceWF.flangeB, hx1DInc.inlet_fl1) annotation (Line(
-      points={{-55,-8},{-44,-8},{-44,13.6923},{-24.3077,13.6923}},
+
+  connect(sourceMdot.flangeB, hx1DInc.inlet_fl1) annotation (Line(
+      points={{-71,-18},{-44,-18},{-44,-4.92308},{-30.8462,-4.92308}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=true),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},
-            {100,100}})),
+  annotation (Diagram(graphics),
     experiment(StopTime=1000),
     __Dymola_experimentSetupOutput);
 end Hx1DInc;

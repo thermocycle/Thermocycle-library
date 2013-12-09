@@ -27,11 +27,11 @@ model Pdrop "Valve assuming a linear dependency between Mdot and DELTAp"
 equation
   InFlow.m_flow + OutFlow.m_flow = 0 "Mass balance";
     if (DPtype == PressureDrops.ORCnextHP) then
-    DELTAp = ThermoCycle.Functions.ORCNext.correlation_valveORCNextHP(
+    DELTAp = ThermoCycle.Functions.TestRig.PressureDropCorrelation_HP(
       M_flow=Mdot);
     DELTAp = InFlow.p - OutFlow.p;
     elseif (DPtype == PressureDrops.ORCnextLP) then
-    DELTAp = ThermoCycle.Functions.ORCNext.correlation_valveORCNextLP(
+    DELTAp = ThermoCycle.Functions.TestRig.PressureDropCorrelation_LP(
       M_flow=Mdot);
     DELTAp = InFlow.p - OutFlow.p;
     else
@@ -43,6 +43,7 @@ equation
   InFlow.h_outflow = inStream(OutFlow.h_outflow);
   inStream(InFlow.h_outflow) = OutFlow.h_outflow;
 initial equation
+
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-120,-120},{
             120,120}}),

@@ -96,8 +96,8 @@ equation
   InFlow.p = p_su;
   OutFlow.p = p_ex;
 
-  annotation (Diagram(graphics));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+  annotation (Diagram(graphics),
+              Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics), Icon(coordinateSystem(
           preserveAspectRatio=false,extent={{-120,-120},{120,120}}), graphics={
           Text(
@@ -124,5 +124,4 @@ equation
         <p><big> In the <b>General</b> tab the following option is availabe:
         <ul><li>ExpType: it changes the performance curves for isentropic efficiency and filling factor. </ul> 
         </HTML>"));
-
 end Compressor_EN12900;

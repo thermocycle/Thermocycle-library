@@ -1,6 +1,7 @@
 within ThermoCycle.Obsolete;
 model ORC_DetailedExpander_130627
   "Non-regenerative ORC with double-PID control system and variable Tev, detailed expander model"
+
 ThermoCycle.Components.Units.Tanks.Tank tank(
     level_start=0.5,
     hstart=2.32e5,
@@ -9,7 +10,8 @@ ThermoCycle.Components.Units.Tanks.Tank tank(
     Vtot=0.015,
     pstart=148400)
     annotation (Placement(transformation(extent={{-44,-32},{-24,-12}})));
- ThermoCycle.Components.Units.ExpandersAndPumps.Pump Pump(
+ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Pump
+                                                     Pump(
     X_pp0=0.5539,
     hstart=1.76e5,
     eta_em=0.7,
@@ -20,7 +22,7 @@ ThermoCycle.Components.Units.Tanks.Tank tank(
     annotation (Placement(transformation(extent={{-66,10},{-86,30}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     annotation (Placement(transformation(extent={{-38,64},{-22,80}})));
- ThermoCycle.Components.Units.HeatExchangers.Hx  Evaporator(
+ ThermoCycle.Obsolete.Hx_06122013  Evaporator(
     N=20,
     V_sf=0.003324,
     M_wall=13,
@@ -43,9 +45,10 @@ ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     Tstart_inlet_sf=473.15,
     Tstart_outlet_sf=325.41)
     annotation (Placement(transformation(extent={{-42,36},{-22,56}})));
-ThermoCycle.Components.Units.ExpandersAndPumps.Generator generator(Np=1)
+ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
+                                                         generator(Np=1)
     annotation (Placement(transformation(extent={{82,4},{104,26}})));
-ThermoCycle.Components.Units.HeatExchangers.Hx  Condenser(
+ ThermoCycle.Obsolete.Hx_06122013 Condenser(
     N=20,
     V_sf=0.009562,
     M_wall=30,
@@ -127,7 +130,8 @@ ThermoCycle.Components.Units.PdropAndValves.DP DP_cd(
     T_nom=382.15,
     DELTAp_quad_nom=10814)
     annotation (Placement(transformation(extent={{-16,34},{-2,48}})));
-ThermoCycle.Components.Units.ExpandersAndPumps.ExpanderOpendriveDetailed expanderOpendriveDetailed(
+ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ExpanderOpendriveDetailed
+                                                                         expanderOpendriveDetailed(
     HeatCapacity=true,
     V_s=1.1e-4,
     d_su=1.15e-2,
@@ -173,7 +177,7 @@ equation
       pattern=LinePattern.Dot,
       smooth=Smooth.None));
   connect(control_unit1.CS_Xpp, Pump.flow_in) annotation (Line(
-      points={{59.28,63.6},{70,63.6},{70,32},{-71.8,32},{-71.8,27.6}},
+      points={{59.28,63.6},{70,63.6},{70,32},{-72.8,32},{-72.8,28}},
       color={0,0,127},
       pattern=LinePattern.Dot,
       smooth=Smooth.None));

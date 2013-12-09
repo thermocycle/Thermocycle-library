@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.TestComponents;
 model Compressor
+
   Modelica.Blocks.Sources.Ramp N_rot(
     duration=100,
     startTime=400,
@@ -9,7 +10,8 @@ model Compressor
         rotation=0,
         origin={-13,77})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare
-      package Medium = CoolProp2Modelica.Test.benchmark.fluids.propane_CP_TTSE,
+      package Medium =
+        CoolProp2Modelica.Test.benchmark.fluids.propane_CP_TTSE,
       p0=2000000)
     annotation (Placement(transformation(extent={{8,-10},{28,10}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
@@ -20,9 +22,11 @@ model Compressor
     Mdot_0=0.01,
     T_0=323.15)
     annotation (Placement(transformation(extent={{-92,40},{-72,60}})));
- ThermoCycle.Components.Units.ExpandersAndPumps.Generator generator
+ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
+                                                          generator
     annotation (Placement(transformation(extent={{16,28},{36,48}})));
-  Components.Units.ExpandersAndPumps.Compressor compressor(redeclare package
+  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Compressor
+                                                compressor(redeclare package
       Medium = CoolProp2Modelica.Test.benchmark.fluids.propane_CP_TTSE,
       T_su_start=373.15)
     annotation (Placement(transformation(extent={{-46,4},{-4,44}})));

@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.TestComponents;
 model Hx1DConst
+
 ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
       Medium = ThermoCycle.Media.R245faCool, p0=2357000)
     annotation (Placement(transformation(extent={{82,-10},{102,10}})));
@@ -18,7 +19,8 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     steadystate_T_wall=true,
     N=10,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind,
-    SecondaryFluid(Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff))
+    SecondaryFluid(Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff),
+    counterCurrent=false)
     annotation (Placement(transformation(extent={{-30,-2},{2,36}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot   source_Cdot(
     cp=1978,

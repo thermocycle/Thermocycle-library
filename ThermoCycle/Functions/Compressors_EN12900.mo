@@ -1,7 +1,8 @@
 within ThermoCycle.Functions;
 package Compressors_EN12900
   "Computation of the Compressor performance according to standard EN 12900"
-
+extends Modelica.Icons.Package;
+extends Icons.Functions;
 function EN12900_polynom
   input Real T_cd;
   input Real T_ev;

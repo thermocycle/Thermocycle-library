@@ -1,5 +1,5 @@
-within ThermoCycle.Components.Units.HeatExchangers;
-model HxRec
+within ThermoCycle.Obsolete;
+model HxRec_06122013
 replaceable package MediumHot = ThermoCycle.Media.R245faCool constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model";
 replaceable package MediumCold = ThermoCycle.Media.R245faCool
@@ -278,4 +278,4 @@ initial equation
         Rectangle(extent={{-100,-44},{100,-24}}, lineColor={255,0,0})}),
                             Diagram(coordinateSystem(preserveAspectRatio=false,
           extent={{-100,-100},{100,100}}), graphics));
-end HxRec;
+end HxRec_06122013;

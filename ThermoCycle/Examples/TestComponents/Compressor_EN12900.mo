@@ -11,7 +11,8 @@ model Compressor_EN12900
     redeclare package Medium = ThermoCycle.Media.R407c,
     T_0=323.15)
     annotation (Placement(transformation(extent={{-96,38},{-76,58}})));
-  Components.Units.ExpandersAndPumps.Compressor_EN12900 compressor(redeclare
+  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Compressor_EN12900
+                                                        compressor(redeclare
       package Medium = ThermoCycle.Media.R407c, redeclare function CPmodel =
         ThermoCycle.Functions.Compressors_EN12900.ZRD42KCE_TFD)
     annotation (Placement(transformation(extent={{-46,4},{-4,44}})));

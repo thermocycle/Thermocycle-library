@@ -99,7 +99,7 @@ initial equation
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}),     graphics),
     Documentation(info="<HTML>
-<p><big> The <b>Valve<b> model represents the expansion of a fluid through a valve.
+<p><big> The <b>Valve</b> model represents the expansion of a fluid through a valve.
  <p><big>The assumptions for this model are:
          <ul><li> No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger).
          <li> No thermal energy losses to the environment

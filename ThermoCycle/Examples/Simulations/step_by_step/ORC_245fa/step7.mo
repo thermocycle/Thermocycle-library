@@ -42,7 +42,8 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     DELTAp_quad_nom=5150,
     use_rho_nom=true)
     annotation (Placement(transformation(extent={{14,26},{34,46}})));
-ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
+ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
+                                                        expander(
     ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.ORCNext,
     V_s=1,
     constPinit=false,
@@ -60,12 +61,13 @@ ThermoCycle.Components.Units.ExpandersAndPumps.Expander expander(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={72,64})));
- ThermoCycle.Components.Units.ExpandersAndPumps.ElectricDrive generatorNext(Np=1)
+ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
+                                                              generatorNext(Np=1)
     annotation (Placement(transformation(extent={{94,10},{114,30}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
       Medium = ThermoCycle.Media.R245faCool, p0=153400)
     annotation (Placement(transformation(extent={{-32,-90},{-52,-70}})));
- ThermoCycle.Components.Units.HeatExchangers.HxRec1D    recuperator(
+ ThermoCycle.Components.Units.HeatExchangers.Hx1D       recuperator(
     N=10,
     steadystate_h_cold=true,
     steadystate_T_wall=true,
