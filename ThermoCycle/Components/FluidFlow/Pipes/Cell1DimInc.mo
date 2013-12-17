@@ -3,7 +3,6 @@ model Cell1DimInc "1-D incompressible fluid flow model"
 replaceable package Medium = Media.DummyFluid constrainedby
     Modelica.Media.Interfaces.PartialMedium
     "Medium model - Incompressible Fluid" annotation (choicesAllMatching = true);
-
 /************ Thermal and fluid ports ***********/
  ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
         Medium)
@@ -16,7 +15,6 @@ replaceable package Medium = Media.DummyFluid constrainedby
 ThermoCycle.Interfaces.HeatTransfer.ThermalPortL  Wall_int
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
-
 /************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
@@ -24,13 +22,11 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL  Wall_int
   parameter Modelica.SIunits.MassFlowRate Mdotnom "Nominal fluid flow rate";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "Nominal Heat transfer coefficient ";
-
   /************ FLUID INITIAL VALUES ***************/
 parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                      annotation (Dialog(tab="Initialization"));
   parameter Medium.SpecificEnthalpy hstart=1E5 "Start value of enthalpy"
     annotation (Dialog(tab="Initialization"));
-
 /****************** NUMERICAL OPTIONS  ***********************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
@@ -38,7 +34,6 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
     annotation (Dialog(group="Intialization options", tab="Initialization"));
-
 /********************************* HEAT TRANSFER MODEL ********************************/
 /* Heat transfer Model */
 replaceable model HeatTransfer =
@@ -57,7 +52,6 @@ final x = 0,
 final FluidState={fluidState})
                           annotation (Placement(transformation(extent={{-12,-14},
             {8,6}})));
-
 /***************  VARIABLES ******************/
   Medium.ThermodynamicState  fluidState;
   Medium.AbsolutePressure p(start=pstart);
@@ -76,9 +70,7 @@ final FluidState={fluidState})
 //     "Heat transfer coefficient between wall and working fluid";
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
-
 /***********************************  EQUATIONS ************************************/
-
 equation
   /* Fluid Properties */
   fluidState = Medium.setState_ph(p, h);
@@ -86,10 +78,8 @@ equation
   rho = Medium.density(fluidState);
   /* ENERGY BALANCE */
   Vi*rho*der(h) + M_dot*(hnode_ex - hnode_su) = Ai*qdot "Energy balance";
-
   Q_tot = Ai*qdot "Total heat flow through the thermal port";
   M_tot = Vi*rho;
-
 qdot = heatTransfer.q_dot[1];
   if (Discretization == Discretizations.centr_diff) then
     hnode_su = inStream(InFlow.h_outflow);
@@ -115,7 +105,6 @@ qdot = heatTransfer.q_dot[1];
     hnode_ex = if M_dot >= 0 then h else inStream(OutFlow.h_outflow);
     hnode_su = if M_dot <= 0 then h else inStream(InFlow.h_outflow);
   end if;
-
 //* BOUNDARY CONDITIONS *//
  /* Enthalpies */
   hnode_su = InFlow.h_outflow;
@@ -128,12 +117,10 @@ qdot = heatTransfer.q_dot[1];
   OutFlow.m_flow = -M_dot;
   InFlow.Xi_outflow = inStream(OutFlow.Xi_outflow);
   OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
-
 initial equation
   if steadystate then
     der(h) = 0;
       end if;
-
 equation
   connect(heatTransfer.thermalPortL[1], Wall_int) annotation (Line(
       points={{-2.2,2.6},{-2.2,25.3},{2,25.3},{2,50}},

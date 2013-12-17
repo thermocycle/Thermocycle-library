@@ -3,7 +3,6 @@ model AirCell "Constant specific heat fluid"
 replaceable package Medium = Modelica.Media.Air.SimpleAir constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
-
 /************ Thermal and fluid ports ***********/
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
         Medium)
@@ -23,7 +22,6 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_ext
   parameter Modelica.SIunits.MassFlowRate Mdotnom "Nominal fluid flow rate";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "Constant heat transfer coefficient";
-
 /*****************HEAT TRANSFER MODEL************************/
 replaceable model HeatTransfer =
       ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
@@ -40,7 +38,6 @@ final M_dot = Mdot,
 final x = 0,
 final FluidState={fluidState})
    annotation (Placement(transformation(extent={{-8,-16},{12,4}})));
-
 /********************* VARIABLES *********************/
   Medium.ThermodynamicState  fluidState;
   Modelica.SIunits.MassFlowRate Mdot;
@@ -51,7 +48,6 @@ final FluidState={fluidState})
   Modelica.SIunits.HeatFlux qdot "heat flux at each cell";
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
-
 equation
   T_su = Medium.temperature(Medium.setState_ph(InFlow.p,InFlow.h_outflow));
   /* Fluid Properties */
@@ -63,7 +59,6 @@ equation
 Q_tot = Ai*qdot "Total heat flow through the thermal port";
 qdot = ConvectiveHeatTransfer.q_dot[1];
 M_tot = Vi*rho;
-
 //* BOUNDARY CONDITIONS *//
  /* Enthalpies */
  inStream(InFlow.h_outflow) = Medium.specificEnthalpy(Medium.setState_pT(InFlow.p,T_su));

@@ -4,7 +4,6 @@ model Cell1Dim_limit
 replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
-
 /************ Thermal and fluid ports ***********/
  ThermoCycle.Interfaces.Fluid.FlangeA_limit InFlow(redeclare package Medium =
         Medium)
@@ -28,13 +27,11 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL  Wall_int
     "if HTtype = LiqVap : heat transfer coefficient, two-phase zone";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v
     "if HTtype = LiqVap : heat transfer coefficient, vapor zone";
-
   /************ FLUID INITIAL VALUES ***************/
 parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                      annotation (Dialog(tab="Initialization"));
   parameter Medium.SpecificEnthalpy hstart=1E5 "Start value of enthalpy"
     annotation (Dialog(tab="Initialization"));
-
 /****************** NUMERICAL OPTIONS  ***********************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal
@@ -61,7 +58,6 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
     annotation (Dialog(group="Intialization options", tab="Initialization"));
-
 /********************************* HEAT TRANSFER MODEL ********************************/
 /* Heat transfer Model */
 replaceable model HeatTransfer =
@@ -80,7 +76,6 @@ final x = x,
 final FluidState={fluidState})
                           annotation (Placement(transformation(extent={{-12,-14},
             {8,6}})));
-
 /***************  VARIABLES ******************/
   Medium.ThermodynamicState  fluidState;
   Medium.SaturationProperties sat;
@@ -125,7 +120,6 @@ equation
       drdp = Medium.density_derp_h(fluidState);
       drdh = Medium.density_derh_p(fluidState);
   end if;
-
   /* ENERGY BALANCE */
     Vi*rho*der(h) + M_dot_ex*(hnode_ex - h) - M_dot_su*(hnode_su - h) - Vi*der(p) = Ai*qdot
     "Energy balance";
@@ -134,7 +128,6 @@ equation
 Q_tot = Ai*qdot "Total heat flow through the thermal port";
 qdot = heatTransfer.q_dot[1];
 M_tot = Vi*rho;
-
   /* MASS BALANCE */
   if filter_dMdt then
       der(dMdt) = (Vi*(drdh*der(h) + drdp*der(p)) - dMdt)/TT
@@ -180,7 +173,6 @@ else
     InFlow.h_limit = h + yLimit*rho/drdh;
     OutFlow.h_limit = InFlow.h_limit;
 end if;
-
 /* pressures */
  p = OutFlow.p;
  InFlow.p = p;
@@ -193,7 +185,6 @@ end if;
  end if;
 InFlow.Xi_outflow = inStream(OutFlow.Xi_outflow);
 OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
-
 initial equation
   if steadystate then
     der(h) = 0;
@@ -201,7 +192,6 @@ initial equation
   if filter_dMdt then
     der(dMdt) = 0;
     end if;
-
 equation
   connect(heatTransfer.thermalPortL[1], Wall_int) annotation (Line(
       points={{-2.2,2.6},{-2.2,23.3},{2,23.3},{2,50}},
