@@ -4,6 +4,7 @@ Flow1DConst
 flow1D
 flow1D_reversal
 flow1D_reverse
+flow1D_smoothed
 DP
 Expander
 Hx1DConst

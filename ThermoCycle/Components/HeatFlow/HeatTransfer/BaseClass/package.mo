@@ -1,5 +1,6 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer;
 package BaseClass 
-extends Modelica.Icons.VariantsPackage;
+extends Modelica.Icons.BasesPackage;
+
 
 end BaseClass;

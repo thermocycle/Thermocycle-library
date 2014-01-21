@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer;
-model Ideal "Cylinder heat transfer without thermal resistance"
+model Ideal "Ideal: Heat transfer without thermal resistance"
 
   extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation;

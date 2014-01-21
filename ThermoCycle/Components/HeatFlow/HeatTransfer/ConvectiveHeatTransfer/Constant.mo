@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer;
-model Constant "ConstantHeatTransfer: Constant heat transfer coefficient"
+model Constant "Constant: Constant heat transfer coefficient"
   extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation;
   Modelica.SIunits.CoefficientOfHeatTransfer U_0 "heat transfer coefficient";
