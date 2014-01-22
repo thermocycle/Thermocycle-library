@@ -1,6 +1,6 @@
 within ThermoCycle.Components.Units.Tanks;
 model Tank
-replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Modelica.SIunits.Volume Vtot=0.002 "Volume of the tank";
   parameter Modelica.SIunits.Pressure p_gas = 0

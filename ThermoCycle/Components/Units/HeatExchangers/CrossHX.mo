@@ -1,7 +1,7 @@
 within ThermoCycle.Components.Units.HeatExchangers;
 model CrossHX
 parameter Integer N(min=1) = 5 "Number of cells";
- replaceable package Medium1 =ThermoCycle.Media.R245faCool constrainedby
+ replaceable package Medium1 =ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Working fluid" annotation (choicesAllMatching=true);
  replaceable package Medium2 =Modelica.Media.Air.SimpleAir constrainedby
     Modelica.Media.Interfaces.PartialMedium "Secondary fluid fluid" annotation (choicesAllMatching = true);

@@ -11,16 +11,17 @@ model Expander
         origin={-13,77})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
                                                          expander(redeclare
-      package Medium = Media.R245faCool, V_s=1)
+      package Medium = ThermoCycle.Media.R245fa_CP,
+                                         V_s=1)
     annotation (Placement(transformation(extent={{-32,16},{-12,36}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare
-      package Medium = ThermoCycle.Media.R245faCool, p0=153400)
+      package Medium = ThermoCycle.Media.R245fa_CP,  p0=153400)
     annotation (Placement(transformation(extent={{8,-10},{28,10}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=0.2588,
     UseT=false,
     h_0=503925,
-    redeclare package Medium = ThermoCycle.Media.R245faCool)
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{-62,40},{-42,60}})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                           generator

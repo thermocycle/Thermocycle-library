@@ -22,7 +22,7 @@ model CrossHx
     annotation (Placement(transformation(extent={{-44,-26},{34,54}})));
  Components.FluidFlow.Reservoirs.SourceMdot             sourceR245faCool(Mdot_0=0.19
                                                     /12,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     T_0=323.15)
     annotation (Placement(transformation(extent={{-90,4},{-70,24}})));
  Components.FluidFlow.Reservoirs.SourceMdot             sourceAir(
@@ -31,7 +31,7 @@ model CrossHx
     T_0=303.81)
     annotation (Placement(transformation(extent={{-10,76},{10,96}})));
  Components.FluidFlow.Reservoirs.SinkP             sinkP(redeclare package
-      Medium = ThermoCycle.Media.R245faCool, p0=211000)
+      Medium = ThermoCycle.Media.R245fa_CP,  p0=211000)
     annotation (Placement(transformation(extent={{82,12},{102,32}})));
  Components.FluidFlow.Reservoirs.SinkP             sinkP1(redeclare package
       Medium =

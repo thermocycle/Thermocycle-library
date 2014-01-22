@@ -1,6 +1,7 @@
 within ThermoCycle.Components.Units.Solar;
 model SolarCollectorSchott
-replaceable package Medium1 = Media.R245fa constrainedby
+replaceable package Medium1 = ThermoCycle.Media.R245fa_CPRP
+                                           constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
 
 /********************* PARAMETERS *******************************************************************/

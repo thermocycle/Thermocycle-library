@@ -1,7 +1,7 @@
 within ThermoCycle.Obsolete;
 model Flow1Dim_1808
   "1-D fluid flow model (finite volume discretization - real fluid model). Based on the cell component"
-replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
   import ThermoCycle.Functions.Enumerations.HTtypes;

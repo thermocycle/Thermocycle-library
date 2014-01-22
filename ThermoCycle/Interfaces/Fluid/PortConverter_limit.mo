@@ -1,7 +1,7 @@
 within ThermoCycle.Interfaces.Fluid;
 model PortConverter_limit
   "Conversion between the standard Modelica fluid port and the limited port proposed in Cell1Dim_limit"
-replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
   ThermoCycle.Interfaces.Fluid.FlangeA Classical(redeclare package Medium = Medium)

@@ -16,7 +16,7 @@ model HeatPump_R407c
     V_sf=0.002,
     V_wf=0.002,
     steadystate_h_wf=true,
-    redeclare package Medium1 = ThermoCycle.Media.R407c,
+    redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
     pstart_wf=1650000,
     Tstart_inlet_wf=345.15,
     Tstart_outlet_wf=308.15,
@@ -34,7 +34,7 @@ model HeatPump_R407c
     annotation (Placement(transformation(extent={{34,32},{52,48}})));
   ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
     Vtot=0.004,
-    redeclare package Medium = ThermoCycle.Media.R407c,
+    redeclare package Medium = ThermoCycle.Media.R407c_CP,
     pstart=1650000)
     annotation (Placement(transformation(extent={{-40,-4},{-20,16}})));
   ThermoCycle.Components.Units.PdropAndValves.Valve valve(
@@ -42,7 +42,7 @@ model HeatPump_R407c
     UseNom=false,
     Afull=15e-7,
     Xopen=0.45,
-    redeclare package Medium = ThermoCycle.Media.R407c,
+    redeclare package Medium = ThermoCycle.Media.R407c_CP,
     p_nom=1650000,
     T_nom=308.15,
     DELTAp_nom=1200000)
@@ -64,7 +64,7 @@ model HeatPump_R407c
     Unom_sf=100,
     Mdotnom_sf=0.76,
     steadystate_h_wf=true,
-    redeclare package Medium1 = ThermoCycle.Media.R407c,
+    redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
     pstart_wf=500000,
     Tstart_inlet_wf=263.15,
     Tstart_outlet_wf=277.15,
@@ -83,7 +83,7 @@ model HeatPump_R407c
   ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Compressor compressor(
     epsilon_v=0.9,
     V_s=85e-6,
-    redeclare package Medium = ThermoCycle.Media.R407c,
+    redeclare package Medium = ThermoCycle.Media.R407c_CP,
     p_su_start=380000,
     p_ex_start=1650000,
     T_su_start=278.15) annotation (Placement(transformation(
@@ -95,7 +95,7 @@ model HeatPump_R407c
   ThermoCycle.Components.Units.PdropAndValves.DP dp_ev(
     UseNom=true,
     Mdot_nom=0.044,
-    redeclare package Medium = ThermoCycle.Media.R407c,
+    redeclare package Medium = ThermoCycle.Media.R407c_CP,
     p_nom=380000,
     T_nom=283.15,
     DELTAp_quad_nom=20000)
@@ -103,7 +103,7 @@ model HeatPump_R407c
   ThermoCycle.Components.Units.PdropAndValves.DP dp_cd(
     UseNom=true,
     Mdot_nom=0.044,
-    redeclare package Medium = ThermoCycle.Media.R407c,
+    redeclare package Medium = ThermoCycle.Media.R407c_CP,
     p_nom=1650000,
     T_nom=345.15,
     DELTAp_quad_nom=20000)
@@ -114,7 +114,7 @@ model HeatPump_R407c
     duration=0)
     annotation (Placement(transformation(extent={{-12,0},{-2,10}})));
   ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp(redeclare package
-      Medium = ThermoCycle.Media.R407c)
+      Medium = ThermoCycle.Media.R407c_CP)
     annotation (Placement(transformation(extent={{56,-56},{72,-40}})));
   ThermoCycle.Components.Units.ControlSystems.PID PID_valve(
     CSmax=1,
@@ -130,7 +130,7 @@ model HeatPump_R407c
   Modelica.Blocks.Sources.Constant DELTAT_SP(k=5)
     annotation (Placement(transformation(extent={{48,16},{54,22}})));
   Components.Units.ControlSystems.SH_block sH_block(redeclare package Medium =
-        ThermoCycle.Media.R407c)
+        ThermoCycle.Media.R407c_CP)
     annotation (Placement(transformation(extent={{44,-38},{54,-28}})));
 equation
   connect(sourceMdot1.flangeB, condenser.inlet_fl2)

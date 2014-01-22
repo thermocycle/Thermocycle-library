@@ -4,7 +4,7 @@ model Chattering
   Modelica.SIunits.Mass m_wf "Total mass of the working fluid in the cycle";
 ThermoCycle.Components.Units.HeatExchangers.Hx1DConst evaporator(
     N=10,
-    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     steadystate_T_sf=false,
     steadystate_h_wf=false,
     steadystate_T_wall=false,
@@ -24,7 +24,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     k=11857.8*137,
     Mdot_nom=0.2588,
     t_init=500,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     constinit=false,
     use_rho_nom=true,
     p_nom=2357000,

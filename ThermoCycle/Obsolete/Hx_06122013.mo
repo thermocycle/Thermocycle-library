@@ -1,7 +1,7 @@
 within ThermoCycle.Obsolete;
 model Hx_06122013 "Simplified heat exchanger model. Not object-oriented"
  extends ThermoCycle.Components.Units.BaseUnits.BaseHxConst;
- replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+ replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model";
 public
  record SummaryBase

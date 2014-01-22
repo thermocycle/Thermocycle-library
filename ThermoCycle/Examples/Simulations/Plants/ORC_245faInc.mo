@@ -3,7 +3,7 @@ model ORC_245faInc
 
 ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     N=10,
-    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     Unom_sf=335,
     redeclare package Medium2 = ThermoCycle.Media.Therminol66,
     redeclare model Medium1HeatTransferModel =
@@ -16,7 +16,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     k=11857.8*137,
     Mdot_nom=0.2588,
     t_init=500,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     constinit=false,
     use_rho_nom=true,
     UseHomotopy=false,
@@ -53,8 +53,8 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     Mdotconst_cold=true,
     Mdotconst_hot=true,
     steadystate_T_wall=true,
-    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
-    redeclare package Medium2 = ThermoCycle.Media.R245faCool,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
+    redeclare package Medium2 = ThermoCycle.Media.R245fa_CP,
     redeclare model ColdSideHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
@@ -71,7 +71,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     Mdot_nom=0.2588,
     use_rho_nom=true,
     UseHomotopy=false,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     p_nom=190000,
     T_nom=351.15,
     DELTAp_lin_nom=3000,
@@ -107,7 +107,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     PumpInput=ThermoCycle.Functions.Enumerations.PumpInputs.freq,
     hstart=2.27e5,
     M_dot_start=0.2588,
-    redeclare package Medium = ThermoCycle.Media.R245faCool)
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{-74,-54},{-50,-30}})));
   Modelica.Blocks.Sources.Ramp f_pp(
     offset=30,
@@ -122,7 +122,7 @@ ThermoCycle.Components.Units.Tanks.Tank_pL tank(
     L_start=0.5,
     SteadyState_p=false,
     impose_pressure=true,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     pstart=135000)
     annotation (Placement(transformation(extent={{-42,-78},{-24,-60}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot source_htf(

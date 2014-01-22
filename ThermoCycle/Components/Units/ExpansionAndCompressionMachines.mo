@@ -4,7 +4,7 @@ package ExpansionAndCompressionMachines
 
   model Expander "Generic expander model"
    /****************************************** FLUID ******************************************/
-  replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+  replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
       Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
    /*Ports */
   public
@@ -170,7 +170,7 @@ package ExpansionAndCompressionMachines
       "Flange of shaft"
       annotation (Placement(transformation(extent={{64,-8},{100,28}},  rotation=0),
           iconTransformation(extent={{68,-2},{92,22}})));
-  replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+  replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
       Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
     Medium.ThermodynamicState  fluid_su(p(start=p_su_start),T(start=T_su_start));
     Medium.ThermodynamicState  fluid_su1(p(start=p_su1_start),T(start=T_su1_start));
@@ -1154,7 +1154,7 @@ The frequency in the electrical connector is the e.m.f. of generator.
 
   model Pump "Pump model useful for ORCNext"
     /***************************************** FLUID *****************************************/
-    replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+    replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
       Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
 
     /****************************************** Define type of pump ******************************************/
@@ -2093,7 +2093,8 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
 
       model Compressor
         "A combination of Cylinder model, a reciprocating machine and check valves"
-        replaceable package WorkingFluid = ThermoCycle.Media.R134aCP constrainedby
+        replaceable package WorkingFluid = ThermoCycle.Media.R134a_CP
+                                                                     constrainedby
           Modelica.Media.Interfaces.PartialMedium;
 
         Modelica.Mechanics.Rotational.Components.Inertia inertia(
@@ -2104,7 +2105,7 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
             displayUnit="rpm"))
           annotation (Placement(transformation(extent={{-50,-80},{-30,-60}})));
         inner Modelica.Fluid.System system(
-          p_start(displayUnit="Pa") = ThermoCycle.Media.R134aCP.saturationPressure(
+          p_start(displayUnit="Pa") = ThermoCycle.Media.R134a_CP.saturationPressure(
             system.T_start) - 5,
           dp_small(displayUnit="Pa"),
           T_start=373.15)
@@ -2762,7 +2763,7 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
 
       model HX_full
         "A combination of Cylinder model and a reciprocating machine"
-        replaceable package WorkingFluid = ThermoCycle.Media.R134aCP;
+        replaceable package WorkingFluid = ThermoCycle.Media.R134a_CP;
         //ThermoCycle.Media.R134aCP;
         //ThermoCycle.Media.AirCP;
         //CoolProp2Modelica.Media.R601_CP;

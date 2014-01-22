@@ -2,7 +2,7 @@ within ThermoCycle.Examples.TestComponents;
 model valve
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare
-      package Medium = ThermoCycle.Media.R245faCool, p0=400000)
+      package Medium = ThermoCycle.Media.R245fa_CP,  p0=400000)
     annotation (Placement(transformation(extent={{24,32},{44,52}})));
   Modelica.Blocks.Sources.Ramp ramp(
     duration=2,
@@ -26,7 +26,7 @@ model valve
     annotation (Placement(transformation(extent={{-38,74},{-18,94}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid1(
                                                                redeclare
-      package Medium = ThermoCycle.Media.R245faCool, p0=400000)
+      package Medium = ThermoCycle.Media.R245fa_CP,  p0=400000)
     annotation (Placement(transformation(extent={{-66,30},{-86,50}})));
 equation
   y = ThermoCycle.Functions.weightingfactor(

@@ -2,7 +2,7 @@ within ThermoCycle.Components.Units.PdropAndValves;
 model DP "Lumped, 3-terms pressure drop model"
   extends ThermoCycle.Icons.Water.PressDrop;
   //Ports
-  replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+  replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Boolean UseNom=false
     "Use Nominal conditions to compute pressure drop characteristics";

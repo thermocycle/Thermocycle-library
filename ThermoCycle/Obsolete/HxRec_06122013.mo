@@ -1,8 +1,8 @@
 within ThermoCycle.Obsolete;
 model HxRec_06122013
-replaceable package MediumHot = ThermoCycle.Media.R245faCool constrainedby
+replaceable package MediumHot = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model";
-replaceable package MediumCold = ThermoCycle.Media.R245faCool
+replaceable package MediumCold = ThermoCycle.Media.R245fa_CP
     constrainedby Modelica.Media.Interfaces.PartialMedium "Medium model";
   // Heat exchanger characteristics:
   parameter Integer N(min=1)=5 "Number of cells";

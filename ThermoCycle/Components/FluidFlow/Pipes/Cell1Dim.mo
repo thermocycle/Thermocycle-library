@@ -3,6 +3,7 @@ model Cell1Dim "1-D lumped fluid flow model (Real fluid model)"
 replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
+
 /************ Thermal and fluid ports ***********/
  ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
         Medium)
@@ -15,6 +16,7 @@ annotation (choicesAllMatching = true);
  ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_int
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
+
 /************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
@@ -31,6 +33,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
                                      annotation (Dialog(tab="Initialization"));
   parameter Medium.SpecificEnthalpy hstart=1E5 "Start value of enthalpy"
     annotation (Dialog(tab="Initialization"));
+
 /****************** NUMERICAL OPTIONS  ***********************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
@@ -64,6 +67,7 @@ ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDepe
 constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
     "Convective heat transfer"                                                         annotation (choicesAllMatching = true);
+
 HeatTransfer heatTransfer( redeclare final package Medium = Medium,
 final n=1,
 final Mdotnom = Mdotnom,
@@ -75,6 +79,7 @@ final x = x,
 final FluidState={fluidState})
                           annotation (Placement(transformation(extent={{-12,-14},
             {8,6}})));
+
 /***************  VARIABLES ******************/
   Medium.ThermodynamicState  fluidState;
  // Medium.ThermodynamicState State1;
@@ -124,12 +129,14 @@ equation
     sat.psat = sat_in[13];
     sat.Tsat = sat_in[14];
   end if;
+
   h_v = Medium.dewEnthalpy(sat);
   h_l = Medium.bubbleEnthalpy(sat);
   //T_sat = Medium.temperature(sat);
   /* Fluid Properties */
   fluidState = Medium.setState_ph(p,h);
   T = Medium.temperature(fluidState);
+  //T = heatTransfer.T_fluid[1];
   rho = Medium.density(fluidState);
  // State1 = Medium.setState_ph(p,h,1);
  // phase = State1.phase;
@@ -140,14 +147,16 @@ equation
       drdp = Medium.density_derp_h(fluidState);
       drdh = Medium.density_derh_p(fluidState);
   end if;
-  /* ENERGY BALANCE */
+
+/* ENERGY BALANCE */
     Vi*rho*der(h) + M_dot_ex*(hnode_ex - h) - M_dot_su*(hnode_su - h) - Vi*der(p) = Ai*qdot
     "Energy balance";
- // qdot = U*(T_wall - T);
+
   x = (h - h_l)/(h_v - h_l);
   qdot = heatTransfer.q_dot[1];
   Q_tot = Ai*qdot;
   M_tot = Vi*rho;
+
   /* MASS BALANCE */
   if filter_dMdt then
       der(dMdt) = (Vi*(drdh*der(h) + drdp*der(p)) - dMdt)/TT
@@ -190,10 +199,12 @@ end if;
     hnode_ex = homotopy(inStream(OutFlow.h_outflow) + ThermoCycle.Functions.transition_factor(-Mdotnom/10,0,M_dot_ex,1) * (h - inStream(OutFlow.h_outflow)),h);
     hnode_su = homotopy(h + ThermoCycle.Functions.transition_factor(-Mdotnom/10,Mdotnom/10,M_dot_su,1) * (inStream(InFlow.h_outflow) - h), inStream(InFlow.h_outflow));
   end if;
+
 //* BOUNDARY CONDITIONS *//
  /* Enthalpies */
   InFlow.h_outflow = hnode_su;
   OutFlow.h_outflow = hnode_ex;
+
 /* pressures */
  p = OutFlow.p;
  InFlow.p = p;
@@ -206,6 +217,7 @@ end if;
  end if;
 InFlow.Xi_outflow = inStream(OutFlow.Xi_outflow);
 OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
+
 initial equation
   if steadystate then
     der(h) = 0;
@@ -213,6 +225,7 @@ initial equation
   if filter_dMdt then
     der(dMdt) = 0;
     end if;
+
 equation
   connect(heatTransfer.thermalPortL[1], Wall_int) annotation (Line(
       points={{-2.2,2.6},{-2.2,28.3},{2,28.3},{2,50}},

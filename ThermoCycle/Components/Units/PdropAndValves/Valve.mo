@@ -7,7 +7,7 @@ model Valve
         origin={0,80},
         extent={{-20,-20},{20,20}},
         rotation=270)));
-replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Boolean UseNom=false
     "Use Nominal conditions to compute pressure drop characteristics";

@@ -1,7 +1,7 @@
 within ThermoCycle.Components.Units.Tanks;
 model Tank_pL
   "Fully-mixed two-phase tank model with pressure and level as state variables"
-replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Modelica.SIunits.Volume Vtot=0.002 "Volume of the tank";
   parameter Modelica.SIunits.Pressure p_ng = 0
@@ -118,7 +118,9 @@ initial equation
           color={0,0,255},
           thickness=0.5,
           smooth=Smooth.None),
-        Text(extent={{-100,52},{100,18}}, textString="%name")}),
+        Text(extent={{-100,52},{100,18}},
+          textString="%name",
+          lineColor={0,0,0})}),
     Documentation(info="<html>
 <p><big> Model <b>Tank_pL</b> represents a liquid receiver. It is assumed to be in thermodynamic equilibrium at all
 times, i.e. the vapor and liquid are saturated at the given pressure.

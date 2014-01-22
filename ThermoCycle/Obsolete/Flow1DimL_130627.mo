@@ -1,6 +1,6 @@
 within ThermoCycle.Obsolete;
 model Flow1DimL_130627 "1-D fluid flow model ( Lumped - real fluid model)"
-replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
 //Modelica.Media.Interfaces.PartialTwoPhaseMedium

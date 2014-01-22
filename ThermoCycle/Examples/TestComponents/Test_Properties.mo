@@ -1,6 +1,6 @@
 within ThermoCycle.Examples.TestComponents;
 model Test_Properties
-replaceable package Medium = ThermoCycle.Media.R245faCool;
+replaceable package Medium = ThermoCycle.Media.R245fa_CP;
 
 parameter Modelica.SIunits.Pressure P = 211000 "pressure in Pa";
 

@@ -3,7 +3,7 @@ model step9
 
 ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     N=10,
-    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     steadystate_T_sf=false,
     Unom_sf=335,
     steadystate_h_wf=true,
@@ -26,7 +26,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     k=11857.8*137,
     Mdot_nom=0.2588,
     t_init=500,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     constinit=false,
     use_rho_nom=true,
     p_nom=2357000,
@@ -41,7 +41,7 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     V_s=1,
     constPinit=false,
     constinit=false,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     p_su_start=2357000,
     p_ex_start=177800,
     T_su_start=413.15)
@@ -67,8 +67,8 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1D       recuperator(
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
-    redeclare package Medium2 = ThermoCycle.Media.R245faCool,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
+    redeclare package Medium2 = ThermoCycle.Media.R245fa_CP,
     pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
@@ -80,7 +80,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP  dp_lp(
     Mdot_nom=0.2588,
     use_rho_nom=true,
     UseHomotopy=false,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     p_nom=190000,
     T_nom=351.15,
     DELTAp_lin_nom=3000,
@@ -104,7 +104,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    condenser(
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
-    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
@@ -124,7 +124,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(
     PumpInput=ThermoCycle.Functions.Enumerations.PumpInputs.freq,
     hstart=2.27e5,
     M_dot_start=0.2588,
-    redeclare package Medium = ThermoCycle.Media.R245faCool)
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{-74,-54},{-50,-30}})));
   Modelica.Blocks.Sources.Ramp f_pp(
     offset=30,
@@ -139,7 +139,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(
     L_start=0.5,
     SteadyState_p=false,
     impose_pressure=true,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     pstart=135000)
     annotation (Placement(transformation(extent={{-42,-78},{-24,-60}})));
 equation

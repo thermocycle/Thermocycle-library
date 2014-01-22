@@ -1,7 +1,8 @@
 within ThermoCycle.Obsolete;
 model SourcePOld_041113 "Pressure source for water/steam flows"
   extends ThermoCycle.Icons.Water.SourceP;
-  replaceable package Medium = Media.R245faCool constrainedby
+  replaceable package Medium = ThermoCycle.Media.R245fa_CP
+                                                constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Modelica.SIunits.Pressure p0=1.01325e5 "Nominal pressure";
   parameter Modelica.SIunits.SpecificEnthalpy h=1e5 "Nominal specific enthalpy";

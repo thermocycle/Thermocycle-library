@@ -2,7 +2,7 @@ within ThermoCycle.Obsolete;
 model Hx_130627
   "Simplified heat exchanger model, useful for the ORCNext project"
  extends ThermoCycle.Components.Units.BaseUnits.BaseHxConst;
- replaceable package Medium = ThermoCycle.Media.R245faCool constrainedby
+ replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model";
   // Heat exchanger geometric characteristics:
   parameter Integer N(min=1) = 5 "Number of cells";

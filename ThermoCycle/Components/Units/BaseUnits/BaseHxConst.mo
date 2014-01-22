@@ -1,6 +1,7 @@
 within ThermoCycle.Components.Units.BaseUnits;
 partial model BaseHxConst
-replaceable package Medium1 = Media.R245faCool constrainedby
+replaceable package Medium1 = ThermoCycle.Media.R245fa_CP
+                                               constrainedby
     Modelica.Media.Interfaces.PartialMedium   annotation (choicesAllMatching = true);
   Interfaces.Fluid.Flange_Cdot inletSf
     annotation (Placement(transformation(extent={{88,40},{108,60}}),

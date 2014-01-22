@@ -1,7 +1,7 @@
 within ThermoCycle.Components.Units.PdropAndValves;
 model Pdrop "Valve assuming a linear dependency between Mdot and DELTAp"
   extends ThermoCycle.Icons.Water.PressDrop;
-    replaceable package Medium = ThermoCycle.Media.R245faCool
+    replaceable package Medium = ThermoCycle.Media.R245fa_CP
     constrainedby Modelica.Media.Interfaces.PartialMedium "Medium model"
                                                            annotation (choicesAllMatching = true);
    /* Define the type of pressure drop */

@@ -5,13 +5,13 @@ model step5
     Mdot_0=0.2588,
     UseT=false,
     h_0=2.49E5,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     p=2357000,
     T_0=353.15)
     annotation (Placement(transformation(extent={{-76,-70},{-56,-50}})));
   ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
     N=10,
-    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     steadystate_T_sf=false,
     steadystate_h_wf=false,
     steadystate_T_wall=false,
@@ -29,7 +29,7 @@ model step5
     k=11857.8*137,
     Mdot_nom=0.2588,
     t_init=500,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     constinit=false,
     UseHomotopy=false,
     use_rho_nom=false,
@@ -44,7 +44,7 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     V_s=1,
     constPinit=false,
     constinit=false,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     p_su_start=2357000,
     p_ex_start=153400,
     T_su_start=413.15)
@@ -61,7 +61,7 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
                                                               generatorNext(Np=1)
     annotation (Placement(transformation(extent={{94,10},{114,30}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
-      Medium = ThermoCycle.Media.R245faCool, p0=153400)
+      Medium = ThermoCycle.Media.R245fa_CP,  p0=153400)
     annotation (Placement(transformation(extent={{54,-76},{74,-56}})));
 ThermoCycle.Components.Units.HeatExchangers.Hx1D    recuperator(
     N=10,
@@ -73,8 +73,8 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1D    recuperator(
     redeclare model HotSideSideHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
-    redeclare package Medium1 = ThermoCycle.Media.R245faCool,
-    redeclare package Medium2 = ThermoCycle.Media.R245faCool)
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
+    redeclare package Medium2 = ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{-20,20},{20,-20}},
         rotation=90,
         origin={4,-32})));

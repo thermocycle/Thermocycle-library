@@ -5,7 +5,7 @@ model SourceP "Pressure source for water/steam flows"
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Modelica.SIunits.Pressure p0=1.01325e5 "Nominal pressure";
   parameter Modelica.SIunits.SpecificEnthalpy h_0=1e5
-    "Enthalpy if no connector";
+    "Enthalpy if no connector" annotation (Dialog(enable=not UseT));
   parameter Modelica.SIunits.Temperature T_0= 273.15+25
     "Temperature of fluid going out if no connector";
   parameter Boolean UseT=true "Use temperature as input instead of enthalpy";

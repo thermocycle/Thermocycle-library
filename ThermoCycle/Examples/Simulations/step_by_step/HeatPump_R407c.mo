@@ -9,7 +9,7 @@ extends Modelica.Icons.Package;
           ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
       A=4,
       V=0.002,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       pstart=1650000,
       Tstart_inlet=345.15,
       Tstart_outlet=305.15)
@@ -17,12 +17,13 @@ extends Modelica.Icons.Package;
 
     ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
       Mdot_0=0.044,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       p=1600000,
       T_0=345.15)
       annotation (Placement(transformation(extent={{68,14},{48,34}})));
     ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP(redeclare package
-        Medium = ThermoCycle.Media.R407c, p0=1650000)
+        Medium = ThermoCycle.Media.R407c_CP,
+                                          p0=1650000)
       annotation (Placement(transformation(extent={{-54,14},{-74,34}})));
     ThermoCycle.Components.HeatFlow.Sources.Source_T source_T(N=10)
       annotation (Placement(transformation(extent={{-10,52},{10,72}})));
@@ -53,17 +54,17 @@ extends Modelica.Icons.Package;
 
     ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
       Mdot_0=0.044,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       p=1600000,
       T_0=345.15)
       annotation (Placement(transformation(extent={{68,14},{48,34}})));
     ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP(redeclare package
-        Medium = ThermoCycle.Media.R407c,
+        Medium = ThermoCycle.Media.R407c_CP,
       h=4E5,
       p0=1650000)
       annotation (Placement(transformation(extent={{-52,14},{-72,34}})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc hx1DInc(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       redeclare package Medium2 = ThermoCycle.Media.StandardWater,
       N=10,
       redeclare model Medium1HeatTransferModel =
@@ -118,17 +119,17 @@ extends Modelica.Icons.Package;
 
     ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
       Mdot_0=0.044,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       p=1600000,
       T_0=345.15)
       annotation (Placement(transformation(extent={{68,14},{48,34}})));
     ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP(redeclare package
-        Medium = ThermoCycle.Media.R407c,
+        Medium = ThermoCycle.Media.R407c_CP,
       h=4E5,
       p0=1650000)
       annotation (Placement(transformation(extent={{-50,-42},{-70,-22}})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc hx1DInc(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       redeclare package Medium2 = ThermoCycle.Media.StandardWater,
       N=10,
       redeclare model Medium1HeatTransferModel =
@@ -157,7 +158,7 @@ extends Modelica.Icons.Package;
         Medium = ThermoCycle.Media.StandardWater)
       annotation (Placement(transformation(extent={{36,44},{56,64}})));
     ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Vtot=0.004,
       pstart=1650000)
       annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
@@ -192,12 +193,12 @@ extends Modelica.Icons.Package;
 
     ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
       Mdot_0=0.044,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       p=1600000,
       T_0=345.15)
       annotation (Placement(transformation(extent={{68,14},{48,34}})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc hx1DInc(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       redeclare package Medium2 = ThermoCycle.Media.StandardWater,
       N=10,
       redeclare model Medium1HeatTransferModel =
@@ -226,12 +227,12 @@ extends Modelica.Icons.Package;
         Medium = ThermoCycle.Media.StandardWater)
       annotation (Placement(transformation(extent={{36,44},{56,64}})));
     ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Vtot=0.004,
       pstart=1650000)
       annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
     ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot2(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Mdot_0=-0.044,
       p=1600000,
       T_0=345.15)
@@ -267,12 +268,12 @@ extends Modelica.Icons.Package;
 
     ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
       Mdot_0=0.044,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       p=1600000,
       T_0=345.15)
       annotation (Placement(transformation(extent={{68,14},{48,34}})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc hx1DInc(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       redeclare package Medium2 = ThermoCycle.Media.StandardWater,
       N=10,
       redeclare model Medium1HeatTransferModel =
@@ -301,12 +302,12 @@ extends Modelica.Icons.Package;
         Medium = ThermoCycle.Media.StandardWater)
       annotation (Placement(transformation(extent={{36,44},{56,64}})));
     ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Vtot=0.004,
       pstart=1650000)
       annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
     ThermoCycle.Components.Units.PdropAndValves.Valve valve(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Mdot_nom=0.044,
       UseNom=false,
       Afull=15e-7,
@@ -318,7 +319,8 @@ extends Modelica.Icons.Package;
           rotation=90,
           origin={-40,-26})));
     ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP2(redeclare package
-        Medium = ThermoCycle.Media.R407c, p0=380000)
+        Medium = ThermoCycle.Media.R407c_CP,
+                                          p0=380000)
       annotation (Placement(transformation(extent={{-2,-50},{18,-30}})));
   equation
     connect(sourceMdot.flangeB, hx1DInc.inlet_fl1) annotation (Line(
@@ -355,12 +357,12 @@ extends Modelica.Icons.Package;
 
     ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
       Mdot_0=0.044,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       p=1600000,
       T_0=345.15)
       annotation (Placement(transformation(extent={{68,14},{48,34}})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc condenser(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       redeclare package Medium2 = ThermoCycle.Media.StandardWater,
       N=10,
       redeclare model Medium1HeatTransferModel =
@@ -389,12 +391,12 @@ extends Modelica.Icons.Package;
         Medium = ThermoCycle.Media.StandardWater)
       annotation (Placement(transformation(extent={{36,44},{56,64}})));
     ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Vtot=0.004,
       pstart=1650000)
       annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
     ThermoCycle.Components.Units.PdropAndValves.Valve valve(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Mdot_nom=0.044,
       UseNom=false,
       Afull=15e-7,
@@ -409,7 +411,7 @@ extends Modelica.Icons.Package;
         Medium = ex5.R407c, p0=380000)
       annotation (Placement(transformation(extent={{42,-62},{62,-42}})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc evaporator(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       N=10,
       redeclare model Medium1HeatTransferModel =
           ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
@@ -489,12 +491,12 @@ extends Modelica.Icons.Package;
 
     ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
       Mdot_0=0.044,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       p=1600000,
       T_0=345.15)
       annotation (Placement(transformation(extent={{68,14},{48,34}})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc condenser(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       redeclare package Medium2 = ThermoCycle.Media.StandardWater,
       N=10,
       redeclare model Medium1HeatTransferModel =
@@ -523,12 +525,12 @@ extends Modelica.Icons.Package;
         Medium = ThermoCycle.Media.StandardWater)
       annotation (Placement(transformation(extent={{36,44},{56,64}})));
     ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Vtot=0.004,
       pstart=1650000)
       annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
     ThermoCycle.Components.Units.PdropAndValves.Valve valve(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Mdot_nom=0.044,
       UseNom=false,
       Afull=15e-7,
@@ -540,10 +542,11 @@ extends Modelica.Icons.Package;
           rotation=90,
           origin={-40,-26})));
     ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP2(redeclare package
-        Medium = ThermoCycle.Media.R407c, p0=1650000)
+        Medium = ThermoCycle.Media.R407c_CP,
+                                          p0=1650000)
       annotation (Placement(transformation(extent={{66,-10},{86,10}})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc evaporator(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       N=10,
       redeclare model Medium1HeatTransferModel =
           ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
@@ -576,7 +579,7 @@ extends Modelica.Icons.Package;
                                                               compressor(
       epsilon_v=0.9,
       V_s=50e-6,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       p_su_start=380000,
       p_ex_start=1650000,
       T_su_start=278.15) annotation (Placement(transformation(
@@ -650,7 +653,7 @@ extends Modelica.Icons.Package;
   model step8
 
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc condenser(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       redeclare package Medium2 = ThermoCycle.Media.StandardWater,
       N=10,
       redeclare model Medium1HeatTransferModel =
@@ -679,12 +682,12 @@ extends Modelica.Icons.Package;
         Medium = ThermoCycle.Media.StandardWater)
       annotation (Placement(transformation(extent={{36,44},{56,64}})));
     ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Vtot=0.004,
       pstart=1650000)
       annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
     ThermoCycle.Components.Units.PdropAndValves.Valve valve(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Mdot_nom=0.044,
       UseNom=false,
       Afull=15e-7,
@@ -696,7 +699,7 @@ extends Modelica.Icons.Package;
           rotation=90,
           origin={-40,-26})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc evaporator(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       N=10,
       redeclare model Medium1HeatTransferModel =
           ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
@@ -728,7 +731,7 @@ extends Modelica.Icons.Package;
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Compressor
                                                               compressor(
       epsilon_v=0.9,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       V_s=85e-6,
       p_su_start=380000,
       p_ex_start=1650000,
@@ -798,7 +801,7 @@ extends Modelica.Icons.Package;
   model step9
 
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc condenser(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       redeclare package Medium2 = ThermoCycle.Media.StandardWater,
       N=10,
       redeclare model Medium1HeatTransferModel =
@@ -827,12 +830,12 @@ extends Modelica.Icons.Package;
         Medium = ThermoCycle.Media.StandardWater)
       annotation (Placement(transformation(extent={{36,44},{56,64}})));
     ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Vtot=0.004,
       pstart=1650000)
       annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
     ThermoCycle.Components.Units.PdropAndValves.Valve valve(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Mdot_nom=0.044,
       UseNom=false,
       Afull=15e-7,
@@ -844,7 +847,7 @@ extends Modelica.Icons.Package;
           rotation=90,
           origin={-40,-26})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc evaporator(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       N=10,
       redeclare model Medium1HeatTransferModel =
           ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
@@ -876,7 +879,7 @@ extends Modelica.Icons.Package;
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Compressor
                                                               compressor(
       epsilon_v=0.9,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       V_s=85e-6,
       p_su_start=380000,
       p_ex_start=1650000,
@@ -890,7 +893,7 @@ extends Modelica.Icons.Package;
     Modelica.Blocks.Sources.Ramp ramp(offset=50)
       annotation (Placement(transformation(extent={{-14,-2},{-4,8}})));
     ThermoCycle.Components.Units.PdropAndValves.DP dp_ev(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       UseNom=true,
       Mdot_nom=0.044,
       use_rho_nom=true,
@@ -899,7 +902,7 @@ extends Modelica.Icons.Package;
       DELTAp_quad_nom=20000)
       annotation (Placement(transformation(extent={{30,-62},{50,-42}})));
     ThermoCycle.Components.Units.PdropAndValves.DP dp_cd(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       UseNom=true,
       Mdot_nom=0.044,
       use_rho_nom=true,
@@ -972,7 +975,7 @@ extends Modelica.Icons.Package;
   model step10
 
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc condenser(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       redeclare package Medium2 = ThermoCycle.Media.StandardWater,
       N=10,
       redeclare model Medium1HeatTransferModel =
@@ -1002,12 +1005,12 @@ extends Modelica.Icons.Package;
         Medium = ThermoCycle.Media.StandardWater)
       annotation (Placement(transformation(extent={{36,44},{56,64}})));
     ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Vtot=0.004,
       pstart=1650000)
       annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
     ThermoCycle.Components.Units.PdropAndValves.Valve valve(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       Mdot_nom=0.044,
       UseNom=false,
       Afull=15e-7,
@@ -1019,7 +1022,7 @@ extends Modelica.Icons.Package;
           rotation=90,
           origin={-40,-26})));
     ThermoCycle.Components.Units.HeatExchangers.Hx1DInc evaporator(
-      redeclare package Medium1 = ThermoCycle.Media.R407c,
+      redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
       N=10,
       redeclare model Medium1HeatTransferModel =
           ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
@@ -1052,7 +1055,7 @@ extends Modelica.Icons.Package;
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Compressor
                                                               compressor(
       epsilon_v=0.9,
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       V_s=85e-6,
       p_su_start=380000,
       p_ex_start=1650000,
@@ -1064,7 +1067,7 @@ extends Modelica.Icons.Package;
                                                                  electricDrive
       annotation (Placement(transformation(extent={{28,-26},{8,-6}})));
     ThermoCycle.Components.Units.PdropAndValves.DP dp_ev(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       UseNom=true,
       Mdot_nom=0.044,
       p_nom=380000,
@@ -1072,7 +1075,7 @@ extends Modelica.Icons.Package;
       DELTAp_quad_nom=20000)
       annotation (Placement(transformation(extent={{30,-62},{50,-42}})));
     ThermoCycle.Components.Units.PdropAndValves.DP dp_cd(
-      redeclare package Medium = ThermoCycle.Media.R407c,
+      redeclare package Medium = ThermoCycle.Media.R407c_CP,
       UseNom=true,
       Mdot_nom=0.044,
       p_nom=1650000,

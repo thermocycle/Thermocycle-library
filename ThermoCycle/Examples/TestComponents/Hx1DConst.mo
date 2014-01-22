@@ -2,18 +2,18 @@ within ThermoCycle.Examples.TestComponents;
 model Hx1DConst
 
 ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
-      Medium = ThermoCycle.Media.R245faCool, p0=2357000)
+      Medium = ThermoCycle.Media.R245fa_CP,  p0=2357000)
     annotation (Placement(transformation(extent={{82,-10},{102,10}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=0.2588,
     h_0=281455,
     UseT=true,
-    redeclare package Medium = ThermoCycle.Media.R245faCool,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     p=2357000,
     T_0=353.15)
     annotation (Placement(transformation(extent={{-92,-10},{-72,10}})));
  ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
-    redeclare package Medium1 = Media.R245faCool,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     steadystate_T_sf=true,
     steadystate_h_wf=true,
     steadystate_T_wall=true,

@@ -1,6 +1,6 @@
 within ThermoCycle.Examples.TestFluid;
 model TestCP
-  replaceable package Medium2 = ThermoCycle.Media.PropaneCP;
+  replaceable package Medium2 = ThermoCycle.Media.Propane_CP;
   CoolProp2Modelica.Test.TestMedium.GenericModels.CompleteBaseProperties
     mediumRP(                 redeclare package Medium = Medium2)
     "Varying pressure, constant enthalpy";
