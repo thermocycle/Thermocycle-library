@@ -1,7 +1,7 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations;
 model DittusBoelter
   "The Dittus-Boelter correlation for turbulent single phase flow"
-  extends BaseClasses.PartialRePrCorrelation(final a=0.023,final b=0.8,final c=n);
+  extends BaseClasses.PartialTPRePrCorrelation(final a=0.023,final b=0.8,final c=n);
 
   parameter Modelica.SIunits.Length d_hyd(min=0) "Hydraulic diameter";
   parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_hyd^2 / 4

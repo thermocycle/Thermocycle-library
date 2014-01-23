@@ -5,25 +5,28 @@ model flow1D_smoothed
   constrainedby Modelica.Media.Interfaces.PartialMedium;
   ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim flow1Dim(
     A=2,
-    Unom_tp=1000,
     N=N,
     V=0.003,
     Mdotnom=0.3,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare package Medium = Medium,
-    Unom_l=800,
-    Unom_v=600,
+    Unom_tp=1200,
+    Unom_l=1200,
+    Unom_v=1200,
     pstart=500000,
     Tstart_inlet=273.15,
     Tstart_outlet=383.15,
     redeclare model Flow1DimHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SmoothedInit
         (
-        t_start=5,
         redeclare model LiquidCorrelation =
             ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
             (d_hyd=0.02),
-        U_cor_tp=flow1Dim.Unom_tp))
+        U_cor_tp=1200,
+        smoothingRange=0.75,
+        massFlowExp=0.0,
+        t_start=5,
+        t_init=5))
     annotation (Placement(transformation(extent={{-40,-4},{-2,34}})));
   ThermoCycle.Components.HeatFlow.Sources.Source_T source_T(N=N)
     annotation (Placement(transformation(extent={{-30,42},{4,64}})));
@@ -60,11 +63,14 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}}), graphics={Text(
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+            100}}),     graphics={Text(
           extent={{-62,56},{-26,50}},
           lineColor={0,0,0},
           textString="Thermal port")}),
-    experiment(StopTime=50, __Dymola_Algorithm="Dassl"),
+    experiment(
+      StopTime=30,
+      __Dymola_NumberOfIntervals=1000,
+      __Dymola_Algorithm="Dassl"),
     __Dymola_experimentSetupOutput);
 end flow1D_smoothed;

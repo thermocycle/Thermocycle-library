@@ -2,4 +2,5 @@ PartialConvectiveCorrelation
 PartialConvectiveCorrelation_IdealFluid
 PartialConvectiveSmoothed
 PartialSinglePhaseCorrelation
-PartialRePrCorrelation
+PartialTPRePrCorrelation
+PartialTwoPhaseCorrelation
