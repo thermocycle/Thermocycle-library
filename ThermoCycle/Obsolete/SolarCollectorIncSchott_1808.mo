@@ -1,6 +1,7 @@
 within ThermoCycle.Obsolete;
 model SolarCollectorIncSchott_1808
-replaceable package Medium1 = Media.Therminol66 constrainedby
+replaceable package Medium1 =
+      ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66                         constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
 // PARAMETERS //
 constant Real  pi = Modelica.Constants.pi;
@@ -71,7 +72,7 @@ parameter Modelica.SIunits.Pressure pstart
     annotation (Placement(transformation(extent={{-27,-21},{27,21}},
         rotation=90,
         origin={47,21})));
-  Components.HeatFlow.Walls.AbsorberSchott absorberSchott(
+ ThermoCycle.Obsolete.AbsorberSchott_24_01_2014 absorberSchott(
     eps1=eps1,
     eps2=eps2,
     eps3=eps3,

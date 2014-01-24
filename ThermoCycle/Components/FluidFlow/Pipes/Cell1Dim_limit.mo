@@ -17,6 +17,7 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL  Wall_int
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
 /************ Geometric characteristics **************/
+  parameter Integer Nt(min=1)=1 "Number of cells in parallel";
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
   parameter Modelica.SIunits.Area Ai "Lateral surface of a single cell";
@@ -81,8 +82,8 @@ final FluidState={fluidState})
   Medium.SaturationProperties sat;
   //Medium.Temperature T_sat "Saturation temperature";
   Medium.AbsolutePressure p(start=pstart);
-  Modelica.SIunits.MassFlowRate M_dot_su(start=Mdotnom);
-  Modelica.SIunits.MassFlowRate M_dot_ex(start=Mdotnom);
+  Modelica.SIunits.MassFlowRate M_dot_su(start=Mdotnom/Nt);
+  Modelica.SIunits.MassFlowRate M_dot_ex(start=Mdotnom/Nt);
   Medium.SpecificEnthalpy h(start=hstart)
     "Fluid specific enthalpy at the cells";
   Medium.Temperature T "Fluid temperature";
@@ -177,11 +178,11 @@ end if;
  p = OutFlow.p;
  InFlow.p = p;
 /*Mass Flow*/
- M_dot_su = InFlow.m_flow;
+ M_dot_su = InFlow.m_flow/Nt;
  if Mdotconst then
-   OutFlow.m_flow = - M_dot_su;
+   OutFlow.m_flow/Nt = - M_dot_su;
  else
-   OutFlow.m_flow = -M_dot_ex;
+   OutFlow.m_flow/Nt = -M_dot_ex;
  end if;
 InFlow.Xi_outflow = inStream(OutFlow.Xi_outflow);
 OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
@@ -192,6 +193,7 @@ initial equation
   if filter_dMdt then
     der(dMdt) = 0;
     end if;
+
 equation
   connect(heatTransfer.thermalPortL[1], Wall_int) annotation (Line(
       points={{-2.2,2.6},{-2.2,23.3},{2,23.3},{2,50}},

@@ -33,6 +33,7 @@ public
       Medium = Medium)
     annotation (Placement(transformation(extent={{66,-34},{46,-14}})));
 /************ Geometric characteristics **************/
+  parameter Integer Nt(min=1)=1 "Number of cells in parallel";
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1)=10 "Number of cells";
   parameter Modelica.SIunits.Area A = 16.18
@@ -96,6 +97,7 @@ constrainedby
     redeclare each final model HeatTransfer = Flow1Dim_limitHeatTransferModel,
     each Vi=V/N,
     each Ai=A/N,
+    each Nt=Nt,
     each Mdotnom=Mdotnom,
     each Unom_l=Unom_l,
     each Unom_tp=Unom_tp,

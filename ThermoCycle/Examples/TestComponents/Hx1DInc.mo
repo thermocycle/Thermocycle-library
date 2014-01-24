@@ -3,7 +3,6 @@ model Hx1DInc
   ThermoCycle.Components.Units.HeatExchangers.Hx1DInc hx1DInc(
     Mdotnom_sf=3.148,
     redeclare package Medium1 = CoolProp2Modelica.Media.SES36_CP,
-    redeclare package Medium2 = ThermoCycle.Media.Therminol66,
     Mdotnom_wf=0.3335,
     steadystate_h_wf=true,
     N=10,
@@ -13,6 +12,8 @@ model Hx1DInc
     Unom_l=3000,
     Unom_tp=3600,
     Unom_v=3000,
+    redeclare package Medium2 =
+        ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66,
     pstart_sf=100000,
     pstart_wf=888343,
     Tstart_inlet_wf=356.26,
@@ -24,9 +25,9 @@ model Hx1DInc
     redeclare package Medium = CoolProp2Modelica.Media.SES36_CP,
     Mdot_0=0.3335,
     UseT=false,
+    h_0=84867,
     p=888343,
-    T_0=356.26,
-    h_0=84867)
+    T_0=356.26)
     annotation (Placement(transformation(extent={{-90,-28},{-70,-8}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP(redeclare package
       Medium = CoolProp2Modelica.Media.SES36_CP,
@@ -34,13 +35,16 @@ model Hx1DInc
     p0=888343)
     annotation (Placement(transformation(extent={{68,-48},{88,-28}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot1(
-    redeclare package Medium = ThermoCycle.Media.Therminol66,
     Mdot_0=3.148,
+    redeclare package Medium =
+        ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66,
     p=100000,
     T_0=398.15)
     annotation (Placement(transformation(extent={{26,70},{46,90}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP1(redeclare package
-      Medium =         ThermoCycle.Media.Therminol66, p0=100000)
+      Medium =
+        ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66, p0=
+        100000)
     annotation (Placement(transformation(extent={{-54,72},{-36,90}})));
 equation
   connect(hx1DInc.outlet_fl1, sinkP.flangeB) annotation (Line(

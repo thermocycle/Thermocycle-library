@@ -2,60 +2,10 @@ within ThermoCycle.Components.Units.HeatExchangers;
 model Hx1DInc
 extends Components.Units.BaseUnits.BaseHx;
 
-/******************************* COMPONENTS ***********************************/
-
-  ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim
-                                         WorkingFluid(redeclare package Medium
-      =                                                                          Medium1,
-  redeclare final model Flow1DimHeatTransferModel =
-        Medium1HeatTransferModel,
-    N=N,
-    A=A_wf,
-    V=V_wf,
-    pstart=pstart_wf,
-    Mdotnom=Mdotnom_wf,
-    Mdotconst=Mdotconst_wf,
-    max_der=max_der_wf,
-    filter_dMdt=filter_dMdt_wf,
-    max_drhodt=max_drhodt_wf,
-    TT=TT_wf,
-    Unom_l=Unom_l,
-    Unom_tp=Unom_tp,
-    Unom_v=Unom_v,
-    steadystate=steadystate_h_wf,
-    Tstart_inlet=Tstart_inlet_wf,
-    Tstart_outlet=Tstart_outlet_wf,
-    Discretization=Discretization)
-    annotation (Placement(transformation(extent={{-50,-118},{40,-32}})));
-  Components.HeatFlow.Walls.MetalWall metalWall(M_wall=M_wall, c_wall=c_wall,
-    Aext=A_wf,
-    Aint=A_sf,
-    N=N,
-    Tstart_wall_1=(Tstart_inlet_wf + Tstart_outlet_sf)/2,
-    Tstart_wall_end=(Tstart_outlet_wf + Tstart_inlet_sf)/2,
-    steadystate_T_wall=steadystate_T_wall)
-    annotation (Placement(transformation(extent={{-47,-44},{39,20}})));
-  Components.HeatFlow.Walls.CountCurr countCurr(N=N,counterCurrent=counterCurrent)
-  annotation (Placement(transformation(extent={{-45,50},{37,5}})));
- ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc   SecondaryFluid(
-    redeclare package Medium = Medium2,
-    redeclare final model Flow1DimIncHeatTransferModel =
-        Medium2HeatTransferModel,
-    N=N,
-    A=A_sf,
-    V=V_sf,
-    Mdotnom=Mdotnom_sf,
-    Unom=Unom_sf,
-    pstart=pstart_sf,
-    Tstart_inlet=Tstart_inlet_sf,
-    Tstart_outlet=Tstart_outlet_sf,
-    steadystate=steadystate_T_sf,
-    Discretization=Discretization)
-    annotation (Placement(transformation(extent={{46,129},{-42,39}})));
-
 /******************************** GEOMETRIES ***********************************/
 
 parameter Integer N=5 "Number of nodes for the heat exchanger";
+parameter Integer Nt=1 "Number of tubes in parallel";
 parameter Modelica.SIunits.Volume V_sf= 0.03781 "Volume secondary fluid";
 parameter Modelica.SIunits.Volume V_wf= 0.03781 "Volume primary fluid";
 parameter Modelica.SIunits.Area A_sf = 16.18 "Area secondary fluid";
@@ -146,8 +96,61 @@ parameter Boolean steadystate_T_wall=false
   parameter Modelica.SIunits.Time TT_wf=1
     "Integration time of the first-order filter"
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
+/******************************* COMPONENTS ***********************************/
 
-//Variables
+  ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim
+                                         WorkingFluid(redeclare package Medium
+      =                                                                          Medium1,
+  redeclare final model Flow1DimHeatTransferModel =
+        Medium1HeatTransferModel,
+    N=N,
+    Nt=Nt,
+    A=A_wf,
+    V=V_wf,
+    pstart=pstart_wf,
+    Mdotnom=Mdotnom_wf,
+    Mdotconst=Mdotconst_wf,
+    max_der=max_der_wf,
+    filter_dMdt=filter_dMdt_wf,
+    max_drhodt=max_drhodt_wf,
+    TT=TT_wf,
+    Unom_l=Unom_l,
+    Unom_tp=Unom_tp,
+    Unom_v=Unom_v,
+    steadystate=steadystate_h_wf,
+    Tstart_inlet=Tstart_inlet_wf,
+    Tstart_outlet=Tstart_outlet_wf,
+    Discretization=Discretization)
+    annotation (Placement(transformation(extent={{-50,-118},{40,-32}})));
+  Components.HeatFlow.Walls.MetalWall metalWall(M_wall=M_wall, c_wall=c_wall,
+    Aext=A_wf,
+    Aint=A_sf,
+    N=N,
+    Tstart_wall_1=(Tstart_inlet_wf + Tstart_outlet_sf)/2,
+    Tstart_wall_end=(Tstart_outlet_wf + Tstart_inlet_sf)/2,
+    steadystate_T_wall=steadystate_T_wall)
+    annotation (Placement(transformation(extent={{-47,-44},{39,20}})));
+  Components.HeatFlow.Walls.CountCurr countCurr(N=N,counterCurrent=counterCurrent)
+  annotation (Placement(transformation(extent={{-45,50},{37,5}})));
+ ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc   SecondaryFluid(
+    redeclare package Medium = Medium2,
+    redeclare final model Flow1DimIncHeatTransferModel =
+        Medium2HeatTransferModel,
+    N=N,
+    Nt=Nt,
+    A=A_sf,
+    V=V_sf,
+    Mdotnom=Mdotnom_sf,
+    Unom=Unom_sf,
+    pstart=pstart_sf,
+    Tstart_inlet=Tstart_inlet_sf,
+    Tstart_outlet=Tstart_outlet_sf,
+    steadystate=steadystate_T_sf,
+    Discretization=Discretization)
+    annotation (Placement(transformation(extent={{46,129},{-42,39}})));
+
+/******************************* SUMMARY ***********************************/
+
 protected
 Modelica.SIunits.Power Q_sf_;
 Modelica.SIunits.Power Q_wf_;

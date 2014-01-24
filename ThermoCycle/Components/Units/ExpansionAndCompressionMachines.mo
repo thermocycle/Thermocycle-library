@@ -1540,8 +1540,7 @@ The frequency in the electrical connector is the e.m.f. of generator.
             thickness=0.5,
             smooth=Smooth.None));
         connect(pistonPin.frame_a, conrod.frame_b) annotation (Line(
-            points={{10,55},{15,55},{15,40},{9.18485e-016,40},{9.18485e-016,
-                30}},
+            points={{10,55},{15,55},{15,40},{9.18485e-016,40},{9.18485e-016,30}},
             color={95,95,95},
             thickness=0.5,
             smooth=Smooth.None));
@@ -2034,11 +2033,11 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
             color={0,0,0},
             smooth=Smooth.None));
         connect(cylinder.flange, recipFlange.flange_a)    annotation (Line(
-            points={{-20,20},{-20,-1.11022e-15}},
+            points={{-20,20},{-20,0}},
             color={0,127,0},
             smooth=Smooth.None));
         connect(recipFlange.crankShaft_a, angleSensor.flange) annotation (Line(
-            points={{-1.11022e-15,-30},{10,-30}},
+            points={{0,-30},{10,-30}},
             color={0,0,0},
             smooth=Smooth.None));
         connect(angleSensor.phi, exhaustTimer.angle_in) annotation (Line(
@@ -2050,7 +2049,7 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
             color={0,0,127},
             smooth=Smooth.None));
         connect(exhaustTimer.y, exhaustValve.opening) annotation (Line(
-            points={{61,-10},{66,-10},{66,70},{6.66134e-16,70},{6.66134e-16,58}},
+            points={{61,-10},{66,-10},{66,70},{0,70},{0,58}},
             color={0,0,127},
             smooth=Smooth.None));
         connect(injectionTimer.y, injectionValve.opening) annotation (Line(
@@ -2093,8 +2092,7 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
 
       model Compressor
         "A combination of Cylinder model, a reciprocating machine and check valves"
-        replaceable package WorkingFluid = ThermoCycle.Media.R134a_CP
-                                                                     constrainedby
+        replaceable package WorkingFluid = ThermoCycle.Media.R134a_CP constrainedby
           Modelica.Media.Interfaces.PartialMedium;
 
         Modelica.Mechanics.Rotational.Components.Inertia inertia(
@@ -2245,19 +2243,20 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
             color={0,127,255},
             smooth=Smooth.None));
         connect(dpInlet.p_rel, gainIn.u) annotation (Line(
-            points={{-20,81},{-20,72}},
+            points={{-20,81},{-20,76.5},{-20,72},{-20,72}},
             color={0,0,127},
             smooth=Smooth.None));
         connect(gainIn.y, limitIn.u) annotation (Line(
-            points={{-20,49},{-20,42}},
+            points={{-20,49},{-20,47.25},{-20,47.25},{-20,45.5},{-20,42},{-20,
+                42}},
             color={0,0,127},
             smooth=Smooth.None));
         connect(dpOutlet.p_rel, gainOut.u) annotation (Line(
-            points={{20,81},{20,72}},
+            points={{20,81},{20,76.5},{20,72},{20,72}},
             color={0,0,127},
             smooth=Smooth.None));
         connect(gainOut.y, limitOut.u) annotation (Line(
-            points={{20,49},{20,42}},
+            points={{20,49},{20,47.25},{20,47.25},{20,45.5},{20,42},{20,42}},
             color={0,0,127},
             smooth=Smooth.None));
         connect(constantTorque.flange, inertia.flange_a) annotation (Line(
@@ -2265,11 +2264,11 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
             color={0,0,0},
             smooth=Smooth.None));
         connect(limitIn.y, suctionValve.opening) annotation (Line(
-            points={{-20,19},{-20,8}},
+            points={{-20,19},{-20,13.5},{-20,13.5},{-20,8}},
             color={0,0,127},
             smooth=Smooth.None));
         connect(limitOut.y, exhaustValve.opening) annotation (Line(
-            points={{20,19},{20,8}},
+            points={{20,19},{20,13.5},{20,13.5},{20,8}},
             color={0,0,127},
             smooth=Smooth.None));
         annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
@@ -3113,7 +3112,7 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
         annotation (Placement(transformation(extent={{-10,170},{10,190}})));
     equation
       connect(flange_a, slider.axis) annotation (Line(
-          points={{5.55112e-16,180},{0,180},{0,168},{40,168},{40,123},{9,123}},
+          points={{0,180},{0,180},{0,168},{40,168},{40,123},{9,123}},
           color={0,127,0},
           smooth=Smooth.None));
       annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-180,-180},
@@ -3546,11 +3545,11 @@ Parameter TorqueDirection chooses whether direction of torque is the same in bot
         annotation (Placement(transformation(extent={{-10,170},{10,190}})));
     equation
       connect(cylinder.flange, recipFlange.flange_a)    annotation (Line(
-          points={{-20,20},{-20,-1.11022e-15}},
+          points={{-20,20},{-20,0}},
           color={0,127,0},
           smooth=Smooth.None));
       connect(recipFlange.crankShaft_a, angleSensor.flange) annotation (Line(
-          points={{-1.11022e-15,-30},{12,-30},{12,-10},{20,-10}},
+          points={{0,-30},{12,-30},{12,-10},{20,-10}},
           color={0,0,0},
           smooth=Smooth.None));
       connect(angleSensor.phi, cylinder.angle_in) annotation (Line(
@@ -3566,7 +3565,7 @@ Parameter TorqueDirection chooses whether direction of torque is the same in bot
           color={0,127,255},
           smooth=Smooth.None));
       connect(recipFlange.crankShaft_a, flange_b) annotation (Line(
-          points={{-8.88178e-16,-30},{90,-30},{90,-90},{180,-90}},
+          points={{0,-30},{90,-30},{90,-90},{180,-90}},
           color={0,0,0},
           smooth=Smooth.None));
       connect(recipFlange.crankShaft_b, flange_a) annotation (Line(
@@ -3578,7 +3577,7 @@ Parameter TorqueDirection chooses whether direction of torque is the same in bot
           color={0,0,0},
           smooth=Smooth.None));
       connect(cylinder.heatPort, port_a1) annotation (Line(
-          points={{-30,30},{-36,30},{-36,180},{4.44089e-16,180}},
+          points={{-30,30},{-36,30},{-36,180},{0,180}},
           color={191,0,0},
           smooth=Smooth.None));
       annotation (Diagram(coordinateSystem(extent={{-180,-180},{180,180}},

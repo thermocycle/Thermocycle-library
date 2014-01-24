@@ -10,6 +10,7 @@ extends BaseUnits.BaseHxConst;
     redeclare final model Flow1DimHeatTransferModel =
         Medium1HeatTransferModel,
     N=N,
+    Nt=Nt,
     A=A_wf,
     V=V_wf,
     pstart=pstart_wf,
@@ -41,6 +42,7 @@ extends BaseUnits.BaseHxConst;
    redeclare final model Flow1DConstHeatTransferModel =
         Medium2HeatTransferModel,
     N=N,
+    Nt=Nt,
     A=A_sf,
     V=V_sf,
     Mdotnom=Mdotnom_sf,
@@ -53,6 +55,7 @@ extends BaseUnits.BaseHxConst;
 
 /***************************** GEOMETRIES ***************************************************/
 parameter Integer N=5 "Number of nodes for the heat exchanger";
+parameter Integer Nt=1 "Number of tubes in parallel";
 parameter Modelica.SIunits.Volume V_sf= 0.03781 "Volume secondary fluid";
 parameter Modelica.SIunits.Volume V_wf= 0.03781 "Volume primary fluid";
 parameter Modelica.SIunits.Area A_sf = 16.18 "Area secondary fluid";

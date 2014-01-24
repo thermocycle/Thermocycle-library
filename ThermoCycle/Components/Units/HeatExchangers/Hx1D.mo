@@ -2,68 +2,9 @@ within ThermoCycle.Components.Units.HeatExchangers;
 model Hx1D
 extends ThermoCycle.Components.Units.BaseUnits.BaseHx;
 
-/******************************* COMPONENTS ***********************************/
-  ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim
-                                         Hotside(
-    redeclare package Medium = Medium2,
-    redeclare final model Flow1DimHeatTransferModel =
-        HotSideSideHeatTransferModel,
-    N=N,
-    A=Ahot,
-    V=Vhot,
-    Mdotnom=MdotNom_Hot,
-    pstart=pstart_hot,
-    Tstart_inlet=Tstart_inlet_hot,
-    Tstart_outlet=Tstart_outlet_hot,
-    Mdotconst=Mdotconst_hot,
-    max_der=max_der_hot,
-    filter_dMdt=filter_dMdt_hot,
-    max_drhodt=max_drhodt_hot,
-    TT=TT_hot,
-    steadystate=steadystate_h_hot,
-    Unom_l=Unom_l_hot,
-    Unom_tp=Unom_tp_hot,
-    Unom_v=Unom_v_hot,
-    Discretization=Discretization)
-    annotation (Placement(transformation(extent={{38,134},{-36,74}})));
-  Components.HeatFlow.Walls.CountCurr countCurr(N=N, counterCurrent=counterCurrent)
-    annotation (Placement(transformation(extent={{62,58},{-58,-8}})));
-  Components.HeatFlow.Walls.MetalWall metalWall(
-    N=N,
-    Aext=Ahot,
-    Aint=Acold,
-    c_wall=c_wall,
-    M_wall=M_wall,
-    Tstart_wall_1=(Tstart_inlet_cold + Tstart_outlet_hot)/2,
-    steadystate_T_wall=steadystate_T_wall,
-    Tstart_wall_end=(Tstart_inlet_hot + Tstart_outlet_cold)/2)
-    annotation (Placement(transformation(extent={{-40,-56},{34,0}})));
-  ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim
-                                         Coldside(
-    redeclare package Medium = Medium1,
-    redeclare final model Flow1DimHeatTransferModel =
-        ColdSideHeatTransferModel,
-    N=N,
-    A=Acold,
-    V=Vcold,
-    Mdotnom=MdotNom_Cold,
-    pstart=pstart_cold,
-    Tstart_inlet=Tstart_inlet_cold,
-    Tstart_outlet=Tstart_outlet_cold,
-    steadystate=steadystate_h_cold,
-    Mdotconst=Mdotconst_cold,
-    max_der=max_der_cold,
-    filter_dMdt=filter_dMdt_cold,
-    max_drhodt=max_drhodt_cold,
-    TT=TT_cold,
-    Unom_l=Unom_l_cold,
-    Unom_tp=Unom_tp_cold,
-    Unom_v=Unom_v_cold,
-    Discretization=Discretization)
-    annotation (Placement(transformation(extent={{-44,-158},{40,-74}})));
-
 /******************************** GEOMETRIES ***********************************/
 parameter Integer N=5 "Number of nodes for the heat exchanger";
+parameter Integer Nt=5 "Number of tube in parallel";
 parameter Modelica.SIunits.Volume Vhot = 0.03781 "Volume hot fluid";
 parameter Modelica.SIunits.Volume Vcold= 0.03781 "Volume cold fluid";
 parameter Modelica.SIunits.Area Ahot = 16.18 "Area hot fluid";
@@ -173,7 +114,70 @@ parameter Boolean steadystate_T_wall=false
   parameter Modelica.SIunits.Time TT_hot=1
     "Integration time of the first-order filter"
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
-//Variables
+/******************************* COMPONENTS ***********************************/
+  ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim
+                                         Hotside(
+    redeclare package Medium = Medium2,
+    redeclare final model Flow1DimHeatTransferModel =
+        HotSideSideHeatTransferModel,
+    N=N,
+    Nt=Nt,
+    A=Ahot,
+    V=Vhot,
+    Mdotnom=MdotNom_Hot,
+    pstart=pstart_hot,
+    Tstart_inlet=Tstart_inlet_hot,
+    Tstart_outlet=Tstart_outlet_hot,
+    Mdotconst=Mdotconst_hot,
+    max_der=max_der_hot,
+    filter_dMdt=filter_dMdt_hot,
+    max_drhodt=max_drhodt_hot,
+    TT=TT_hot,
+    steadystate=steadystate_h_hot,
+    Unom_l=Unom_l_hot,
+    Unom_tp=Unom_tp_hot,
+    Unom_v=Unom_v_hot,
+    Discretization=Discretization)
+    annotation (Placement(transformation(extent={{38,134},{-36,74}})));
+  Components.HeatFlow.Walls.CountCurr countCurr(N=N, counterCurrent=counterCurrent)
+    annotation (Placement(transformation(extent={{62,58},{-58,-8}})));
+  Components.HeatFlow.Walls.MetalWall metalWall(
+    N=N,
+    Aext=Ahot,
+    Aint=Acold,
+    c_wall=c_wall,
+    M_wall=M_wall,
+    Tstart_wall_1=(Tstart_inlet_cold + Tstart_outlet_hot)/2,
+    steadystate_T_wall=steadystate_T_wall,
+    Tstart_wall_end=(Tstart_inlet_hot + Tstart_outlet_cold)/2)
+    annotation (Placement(transformation(extent={{-40,-56},{34,0}})));
+  ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim
+                                         Coldside(
+    redeclare package Medium = Medium1,
+    redeclare final model Flow1DimHeatTransferModel =
+        ColdSideHeatTransferModel,
+    N=N,
+    Nt=Nt,
+    A=Acold,
+    V=Vcold,
+    Mdotnom=MdotNom_Cold,
+    pstart=pstart_cold,
+    Tstart_inlet=Tstart_inlet_cold,
+    Tstart_outlet=Tstart_outlet_cold,
+    steadystate=steadystate_h_cold,
+    Mdotconst=Mdotconst_cold,
+    max_der=max_der_cold,
+    filter_dMdt=filter_dMdt_cold,
+    max_drhodt=max_drhodt_cold,
+    TT=TT_cold,
+    Unom_l=Unom_l_cold,
+    Unom_tp=Unom_tp_cold,
+    Unom_v=Unom_v_cold,
+    Discretization=Discretization)
+    annotation (Placement(transformation(extent={{-44,-158},{40,-74}})));
+
+/******************************* SUMMARY ***********************************/
+
 protected
 Modelica.SIunits.Power Q_hot_;
 Modelica.SIunits.Power Q_cold_;

@@ -26,6 +26,7 @@ end SummaryClass;
 /************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1) = 10 "Number of cells";
+  parameter Integer Nt(min=1)=1 "Number of cells in parallel";
   parameter Modelica.SIunits.Area A= 16.18
     "Lateral surface of the tube: heat exchange area";
   parameter Modelica.SIunits.Volume V = 0.03781 "Volume of the tube";
@@ -73,6 +74,7 @@ Modelica.SIunits.Temperature Tnode_[N+1]
   ThermoCycle.Components.FluidFlow.Pipes.CellConst
         Cells[N](
     redeclare each final model HeatTransfer = Flow1DConstHeatTransferModel,
+    each Nt=Nt,
     each Vi=V/N,
     each Ai=A/N,
     each Mdotnom=Mdotnom,

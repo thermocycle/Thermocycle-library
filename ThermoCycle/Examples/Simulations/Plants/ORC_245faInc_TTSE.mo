@@ -1,11 +1,12 @@
 within ThermoCycle.Examples.Simulations.Plants;
 model ORC_245faInc_TTSE
-replaceable package OrganicMedium = Media.R245faCoolSmooth;
+replaceable package OrganicMedium = ThermoCycle.Media.R245fa_CP_DerSmooth;
 ThermoCycle.Components.Units.HeatExchangers.Hx1DInc                  evaporator(
     N=10,
     redeclare package Medium1 = OrganicMedium,
     Unom_sf=335,
-    redeclare package Medium2 = ThermoCycle.Media.Therminol66,
+    redeclare package Medium2 =
+        ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
@@ -126,12 +127,13 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc                 condenser(
     pstart=135000)
     annotation (Placement(transformation(extent={{-42,-78},{-24,-60}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot source_htf(
-    redeclare package Medium = ThermoCycle.Media.Therminol66,
+    redeclare package Medium =
+        ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66,
     Mdot_0=3,
     T_0=418.15) annotation (Placement(transformation(extent={{2,66},{-18,86}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sink_htf(redeclare package
       Medium =
-        ThermoCycle.Media.Therminol66)
+        ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66)
     annotation (Placement(transformation(extent={{-84,68},{-96,80}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot source_cf(
     redeclare package Medium =

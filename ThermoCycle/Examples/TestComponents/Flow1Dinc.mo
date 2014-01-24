@@ -2,7 +2,8 @@ within ThermoCycle.Examples.TestComponents;
 model Flow1Dinc
 parameter Integer N = 10;
   Obsolete.Flow1DimInc_130702            HotFluid(
-    redeclare package Medium = Media.Therminol66,
+    redeclare package Medium =
+        ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66,
     A=16.18,
     V=0.03781,
     Unom=30.21797814,
@@ -19,15 +20,19 @@ parameter Integer N = 10;
     //Tstart_inlet=353.82,
     //Tstart_outlet=316.91)
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot
-           sourceWF1(redeclare package Medium = Media.Therminol66,
+           sourceWF1(
     h_0=470523,
     Mdot_0=3,
     UseT=true,
+    redeclare package Medium =
+        ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66,
     p=100000,
     T_0=418.15)
     annotation (Placement(transformation(extent={{-90,62},{-70,82}})));
-  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP      sinkPFluid1(
-      redeclare package Medium = ThermoCycle.Media.Therminol66, p0=100000)
+  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP      sinkPFluid1(redeclare
+      package Medium =
+        ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66, p0=
+        100000)
     annotation (Placement(transformation(extent={{74,50},{94,70}})));
   ThermoCycle.Components.HeatFlow.Sources.Source_T source_T(N=N)
     annotation (Placement(transformation(extent={{-54,10},{-34,30}})));

@@ -14,6 +14,7 @@ model CellConst
         iconTransformation(extent={{-40,40},{40,60}})));
 
   /************ Geometric characteristics **************/
+  parameter Integer Nt(min=1)=1 "Number of cells in parallel";
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
   parameter Modelica.SIunits.Area Ai "Lateral surface of a single cell";
   parameter Modelica.SIunits.MassFlowRate Mdotnom= 3
@@ -79,8 +80,8 @@ M_tot = Vi * rho_su;
 
 //* BOUNDARY CONDITIONS *//
 /*Mass Flow*/
-  Mdot = InFlow.Mdot;
-  OutFlow.Mdot = Mdot;
+  Mdot = InFlow.Mdot/Nt;
+  OutFlow.Mdot/Nt = Mdot;
 /*Specific heat capacity */
   cp = InFlow.cp;
   OutFlow.cp = cp;

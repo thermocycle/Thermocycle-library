@@ -7,6 +7,7 @@ annotation (choicesAllMatching = true);
 public
  record SummaryClass
     parameter Integer n;
+    Modelica.SIunits.Temperature[n] T;
     Modelica.SIunits.SpecificEnthalpy[n] h;
     Modelica.SIunits.SpecificEnthalpy[n+1] hnode;
     Modelica.SIunits.Density[n] rho;
@@ -14,7 +15,7 @@ public
     Real[n] x;
    Modelica.SIunits.Pressure p;
  end SummaryClass;
- SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
+ SummaryClass Summary(  n=N,T = Cells[:].T, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, Mdot = Mdot_, x=Cells.x, p = Cells[1].p);
 /************ Thermal and fluid ports ***********/
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
@@ -27,6 +28,7 @@ public
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
 /************ Geometric characteristics **************/
+parameter Integer Nt(min=1)=1 "Number of cells in parallel";
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1)=10 "Number of cells";
   parameter Modelica.SIunits.Area A = 16.18
@@ -92,6 +94,7 @@ constrainedby
     redeclare each final model HeatTransfer = Flow1DimHeatTransferModel,
     each Vi=V/N,
     each Ai=A/N,
+    each Nt=Nt,
     each Mdotnom=Mdotnom,
     each Unom_l=Unom_l,
     each Unom_tp=Unom_tp,

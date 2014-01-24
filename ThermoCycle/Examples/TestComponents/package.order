@@ -12,8 +12,10 @@ Hx1D
 Hx1DInc
 CrossHx
 Pump
-SolarCollectorSchott
+Solar_SolaFieldSchott
 Tank_pL
+OpenTank
+ExpansionTank
 Compressor
 Compressor_EN12900
 valve

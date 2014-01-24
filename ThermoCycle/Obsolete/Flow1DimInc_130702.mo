@@ -1,7 +1,8 @@
 within ThermoCycle.Obsolete;
 model Flow1DimInc_130702
   "1-D fluid flow model (finite volume discretization - incompressible fluid model)"
-replaceable package Medium = Media.Therminol66 constrainedby
+replaceable package Medium =
+      ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66                            constrainedby
     Modelica.Media.Interfaces.PartialMedium
     "Medium model - Incompressible Fluid" annotation (choicesAllMatching = true);
 //* Select heat transfer coefficient */

@@ -24,7 +24,10 @@ Modelica.SIunits.CoefficientOfHeatTransfer    U_nom_LTP;
 Modelica.SIunits.CoefficientOfHeatTransfer    U_nom_TPV;
 Modelica.SIunits.CoefficientOfHeatTransfer    U_nom;
 
-Real LTP(min=0,max=1),TPV(min=0,max=1),LV(min=0,max=1),massFlowFactor(min=0);
+Real LTP(min=0,max=1);
+  Real TPV(min=0, max=1);
+  Real LV(min=0, max=1);
+  Real massFlowFactor(min=0);
 
 equation
   LTP = ThermoCycle.Functions.transition_factor(start=  0-smoothingRange/2, stop=  0+smoothingRange/2, position=  x);
