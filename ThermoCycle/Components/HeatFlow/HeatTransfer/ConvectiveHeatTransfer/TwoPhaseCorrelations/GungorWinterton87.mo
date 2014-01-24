@@ -3,7 +3,8 @@ model GungorWinterton87
   "The simplified Gungor-Winterton correlation for turbulent two phase flow"
   extends BaseClasses.PartialTwoPhaseCorrelation;
 
-  parameter Modelica.SIunits.Length d_hyd(min=0) "Hydraulic diameter";
+  parameter Modelica.SIunits.Length d_hyd(min=0)
+    "Hydraulic diameter (2*V/A_lateral)";
   parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_hyd^2 / 4
     "Hydraulic diameter";
 

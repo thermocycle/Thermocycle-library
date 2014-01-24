@@ -4,72 +4,108 @@ model flow1D_smoothed
   replaceable package Medium = CoolProp2Modelica.Media.R134a_CP(substanceNames={"R134a|calc_transport=1|enable_TTSE=0"})
   constrainedby Modelica.Media.Interfaces.PartialMedium;
   ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim flow1Dim(
-    A=2,
     N=N,
-    V=0.003,
-    Mdotnom=0.3,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare package Medium = Medium,
-    Unom_tp=1200,
-    Unom_l=1200,
-    Unom_v=1200,
+    Mdotnom=0.2,
+    A=0.25,
+    V=0.002,
+    Unom_tp=3000,
+    filter_dMdt=true,
+    max_der=true,
+    Unom_l=1500,
+    Unom_v=1500,
     pstart=500000,
-    Tstart_inlet=273.15,
-    Tstart_outlet=383.15,
+    Tstart_inlet=218.15,
+    Tstart_outlet=328.15,
     redeclare model Flow1DimHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SmoothedInit
         (
+        max_dUdt=0,
+        redeclare model TwoPhaseCorrelation =
+            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations.Constant,
+
         redeclare model LiquidCorrelation =
             ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
-            (d_hyd=0.02),
-        U_cor_tp=1200,
-        smoothingRange=0.75,
-        massFlowExp=0.0,
-        t_start=5,
-        t_init=5))
-    annotation (Placement(transformation(extent={{-40,-4},{-2,34}})));
-  ThermoCycle.Components.HeatFlow.Sources.Source_T source_T(N=N)
-    annotation (Placement(transformation(extent={{-30,42},{4,64}})));
-  Modelica.Blocks.Sources.Constant const(k=273.15 + 140)
-    annotation (Placement(transformation(extent={{-62,64},{-54,72}})));
+            (d_hyd=2*flow1Dim.V/flow1Dim.A),
+        redeclare model VapourCorrelation =
+            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
+            (d_hyd=2*flow1Dim.V/flow1Dim.A)))
+    annotation (Placement(transformation(extent={{-20,-20},{20,20}})));
+
   Components.FluidFlow.Reservoirs.SourceMdot             sourceMdot1(
     redeclare package Medium = Medium,
-    Mdot_0=0.3335,
     UseT=false,
+    h_0=1.3e5,
+    Mdot_0=0.15,
     p=500000,
-    T_0=356.26,
-    h_0=1.3e5)
-    annotation (Placement(transformation(extent={{-86,12},{-60,38}})));
+    T_0=356.26)
+    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
   Components.FluidFlow.Reservoirs.SinkP             sinkP(redeclare package
       Medium = Medium,
     h=254381,
     p0=500000)
-    annotation (Placement(transformation(extent={{50,14},{70,34}})));
+    annotation (Placement(transformation(extent={{60,-10},{80,10}})));
+  Components.FluidFlow.Sources.SourceMdot2 sourceMdot2_1
+    annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
+  Interfaces.HeatTransfer.HeatPortConverter heatPortConverter annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=-90,
+        origin={0,76})));
+  Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow fixedHeatFlow(
+    alpha=50,
+    Q_flow=50000,
+    T_ref=403.15)
+    annotation (Placement(transformation(extent={{-60,70},{-40,90}})));
+  Components.HeatFlow.Walls.MetalWall metalWall(
+    N=N,
+    Aext=1.5*flow1Dim.A,
+    Aint=flow1Dim.A,
+    M_wall=1,
+    c_wall=500,
+    Tstart_wall_1=fixedHeatFlow.T_ref,
+    Tstart_wall_end=fixedHeatFlow.T_ref,
+    steadystate_T_wall=false)
+    annotation (Placement(transformation(extent={{-20,48},{20,8}})));
+  Interfaces.HeatTransfer.ThermalPortMultiplier thermalPortMultiplier(N=N)
+    annotation (Placement(transformation(extent={{-10,60},{10,40}})));
 equation
-  connect(source_T.thermalPort, flow1Dim.Wall_int) annotation (Line(
-      points={{-13.17,48.49},{-13.17,43.95},{-21,43.95},{-21,22.9167}},
-      color={255,0,0},
-      smooth=Smooth.None));
-  connect(const.y, source_T.Temperature) annotation (Line(
-      points={{-53.6,68},{-13,68},{-13,57.4}},
-      color={0,0,127},
-      smooth=Smooth.None));
   connect(sourceMdot1.flangeB, flow1Dim.InFlow) annotation (Line(
-      points={{-61.3,25},{-52,25},{-52,15},{-36.8333,15}},
+      points={{-61,6.66134e-16},{-52,6.66134e-16},{-52,-8.88178e-16},{-16.6667,
+          -8.88178e-16}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(flow1Dim.OutFlow, sinkP.flangeB) annotation (Line(
-      points={{-5.16667,15.1583},{18,15.1583},{18,24},{51.6,24}},
+      points={{16.6667,0.166667},{18,0.166667},{18,4.44089e-16},{61.6,
+          4.44089e-16}},
       color={0,0,255},
       smooth=Smooth.None));
+  connect(sourceMdot2_1.y, sourceMdot1.in_Mdot) annotation (Line(
+      points={{-81,31},{-76,31},{-76,6}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(fixedHeatFlow.port, heatPortConverter.heatPort) annotation (Line(
+      points={{-40,80},{-20,80},{-20,86},{2.44249e-15,86}},
+      color={191,0,0},
+      smooth=Smooth.None));
+  connect(metalWall.Wall_int, flow1Dim.Wall_int) annotation (Line(
+      points={{0,22},{0,8.33333}},
+      color={255,0,0},
+      smooth=Smooth.None));
+  connect(heatPortConverter.thermalPortL, thermalPortMultiplier.single)
+    annotation (Line(
+      points={{0,66},{0,54.1}},
+      color={255,0,0},
+      smooth=Smooth.None));
+  connect(thermalPortMultiplier.multi, metalWall.Wall_ext) annotation (Line(
+      points={{0,46.5},{0,34},{-0.4,34}},
+      color={255,0,0},
+      smooth=Smooth.None));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}),     graphics={Text(
-          extent={{-62,56},{-26,50}},
-          lineColor={0,0,0},
-          textString="Thermal port")}),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+            100,100}}), graphics),
     experiment(
-      StopTime=30,
+      StopTime=500,
       __Dymola_NumberOfIntervals=1000,
       __Dymola_Algorithm="Dassl"),
     __Dymola_experimentSetupOutput);
