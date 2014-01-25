@@ -1343,8 +1343,8 @@ The frequency in the electrical connector is the e.m.f. of generator.
         theta           = mod(crankshaftAngle,2*pi);
         omega_c         = der(crankshaftAngle)
           "Use continuous input for derivative";
-        assert(noEvent(omega_c > 1e-6), "Very low rotational speed, make sure connected the crank angle input properly.", level=  AssertionLevel.warning);
-        assert(noEvent(strokeLength > 1e-6), "Very short stroke length, make sure you set the parameter in your cylinder model.", level=  AssertionLevel.warning);
+        //assert(noEvent(omega_c > 1e-6), "Very low rotational speed, make sure connected the crank angle input properly.", level=  AssertionLevel.warning);
+        //assert(noEvent(strokeLength > 1e-6), "Very short stroke length, make sure you set the parameter in your cylinder model.", level=  AssertionLevel.warning);
         if time>0 then
           omega_m       = crankshaftAngle/time
             "Use continuous input for derivative";
@@ -1365,7 +1365,7 @@ The frequency in the electrical connector is the e.m.f. of generator.
            // Low heat transfer coefficient
            HTC_gain =            ThermoCycle.Functions.transition_factor(start=0.05,stop=0.1,position=time);
          else
-           assert(false, "Please define initialization as 0, 1 or 2.", level=AssertionLevel.error);
+           assert(false, "Please define initialization as 0, 1 or 2.");
            HTC_gain = 1.;
          end if;
 
@@ -1960,6 +1960,7 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
     extends Modelica.Icons.ExamplesPackage;
       model Expander
         "A combination of Cylinder model and a reciprocating machine and valves"
+
         Modelica.Mechanics.Rotational.Components.Inertia inertia(
           phi(fixed=true, start=0),
           J=2,
@@ -2589,7 +2590,7 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
       equation
         for i in 1:n loop
           states_w[i] = Medium.setState_pTX(Medium.pressure(states[i]),heatPorts[i].T,{1});//,states[i].X);
-          assert(false, "Concentration is neglected heat transfer model Irimescu2013", AssertionLevel.warning);
+          //assert(false, "Concentration is neglected heat transfer model Irimescu2013", AssertionLevel.warning);
 
           eta_w[i]    = Medium.dynamicViscosity(states_w[i]);
           assert(eta_w[i] > 0, "Invalid viscosity, make sure transport properties are calculated.");
@@ -2712,6 +2713,7 @@ of the cylinder. If this assumption is not fulfilled, an error occurs.
 
       model HX_base
         "A combination of Cylinder model and a reciprocating machine"
+
         Modelica.Mechanics.Rotational.Components.Inertia inertia(
           phi(fixed=true, start=0),
           J=2,

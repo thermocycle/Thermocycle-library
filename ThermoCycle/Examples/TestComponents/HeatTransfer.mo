@@ -1,5 +1,5 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer;
-model TestHeatTransfer
+within ThermoCycle.Examples.TestComponents;
+model HeatTransfer
   extends Modelica.Icons.Example;
 
 model InputSelector
@@ -112,7 +112,6 @@ end InputSelector;
         (
         redeclare model TwoPhaseCorrelation =
             ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations.Constant,
-
         filterConstant=0.01,
         max_dUdt=0,
         redeclare model LiquidCorrelation =
@@ -124,9 +123,9 @@ end InputSelector;
             ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
             (d_hyd=0.1),
         smoothingRange=0.1),
-    p_start=500000,
-    m_dot_start=3)
+    m_dot_start=3,
+    p_start=500000)
     annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
 
   annotation (experiment(StopTime=10));
-end TestHeatTransfer;
+end HeatTransfer;

@@ -23,7 +23,6 @@ model flow1D_smoothed
         max_dUdt=0,
         redeclare model TwoPhaseCorrelation =
             ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations.Constant,
-
         redeclare model LiquidCorrelation =
             ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
             (d_hyd=2*flow1Dim.V/flow1Dim.A),
