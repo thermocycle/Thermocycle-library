@@ -3,14 +3,6 @@ package HeatPump_R407c "5th exercice class: step-by-step resolution"
 extends Modelica.Icons.Package;
 
 
-
-
-
-
-
-
-
-
   annotation (Documentation(info="<HTML>
   <p><big> This package allows the user to build a basic heat pump system by following a step-by-step procedure.
   The complete heat pump model is composed by the following components: a compressor (scroll-type), two plate heat exchangers

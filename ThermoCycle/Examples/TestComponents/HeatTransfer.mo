@@ -30,7 +30,8 @@ Real x "Vapor quality";
 Real y "Relative position";
 Modelica.SIunits.Time c = 10;
 
-Medium.ThermodynamicState bubbleState(h(start=0)), dewState(h(start=0));
+Medium.ThermodynamicState bubbleState(h(start=0));
+    Medium.ThermodynamicState dewState(h(start=0));
 
 replaceable model HeatTransfer =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence

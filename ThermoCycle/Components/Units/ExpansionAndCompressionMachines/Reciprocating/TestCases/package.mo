@@ -2,8 +2,4 @@ within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocatin
 package TestCases "Some models to test basic features"
   extends Modelica.Icons.BasesPackage;
 
-
-
-
-
 end TestCases;

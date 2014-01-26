@@ -3,19 +3,6 @@ package Reciprocating "A reciprocating machine with different connectors"
   extends Modelica.Icons.Package;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   annotation (Documentation(info="<html>
 <p><h4><font color=\"#008000\">Reciprocating Machines</font></h4></p>
 <p>A package that provides some basic models for dynamic modelling of reciprocating machines. 

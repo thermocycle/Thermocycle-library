@@ -102,11 +102,12 @@ Eta_tot =sum(Eta_tot_N)/N;
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
          graphics),Documentation(info="<HTML> 
     
-    <p><big>It solves the 1D radial energy balance around the Heat Collector Element of a solar collector based on the Schott test analysis
-     (see <em>NREL Heat loss Testing of Schott's 2008 PTR70 Parabolic Trough Receiver</em> )
+    <p><big>It solves the 1D radial energy balance around the Heat Collector Element of the Soltigua PTMx parabolic trough solar collector based on the Soltigua data sheet
+     (see <a href=\"http://www.soltigua.com/prodotti/ptm/\">http://www.soltigua.com</a>.)
     
-    
-    
-    
+    <p><b><big>Modelling options</b></p>
+    <p><big><ul><li>Geometry: It allows to choose one of the different PTMx model. 
+     
+    </ul>
     </HTML>"));
 end AbsSoltigua;

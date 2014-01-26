@@ -2,6 +2,7 @@ within ThermoCycle.UsersGuide;
 package GettingStarted 
 extends Modelica.Icons.Information;
 
+
 annotation (Documentation(info="<html>
 
 <p><big>

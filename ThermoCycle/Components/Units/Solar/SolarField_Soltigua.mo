@@ -1,5 +1,5 @@
 within ThermoCycle.Components.Units.Solar;
-model SolarField_Soltigua
+model SolarField_Soltigua "Solar field model with Soltigua collector"
 replaceable package Medium1 = ThermoCycle.Media.R245fa_CPRP
                                            constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
@@ -321,7 +321,7 @@ end for;
           textString="V_winD [m/s]")}),
                                  Documentation(info="<HTML>
 
-<p><big>The <b>SolarCollectorSchott</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarCollector\">SolarCollector</a> model.
- <p><big>The dynamic one-dimensional radial energy balance around the heat collector element is based on the Schott test analysis using the  <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber\">AbsorberSchott</a> model.
+<p><big>The <b>SolarField_Soltigua</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarField_Forristal\">SolarField_Forristal</a> model.
+ <p><big>The dynamic one-dimensional radial energy balance around the heat collector element is calculated with the    <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSoltigua\">AbsSoltigua</a> model.
  </HTML>"));
 end SolarField_Soltigua;

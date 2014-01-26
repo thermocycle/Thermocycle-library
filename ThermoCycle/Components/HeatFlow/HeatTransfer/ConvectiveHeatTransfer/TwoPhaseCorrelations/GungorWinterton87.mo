@@ -24,10 +24,13 @@ model GungorWinterton87
   Real G(unit="kg/(s.m.m)") "Mass flux";
   Modelica.SIunits.FroudeNumber Fr_l;
   Real Bo(unit="1") "Boiling number";
-  Real Term1,Term2 "Boiling enhancement terms";
+  Real Term1;
+  Real Term2 "Boiling enhancement terms";
 
-  Medium.Density rho_l,rho_v;
-  Medium.SpecificEnthalpy h_l,h_v;
+  Medium.Density rho_l;
+  Medium.Density rho_v;
+  Medium.SpecificEnthalpy h_l;
+  Medium.SpecificEnthalpy h_v;
 
 equation
   rho_l = Medium.density(bubbleState);

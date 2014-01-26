@@ -1,5 +1,13 @@
-within ;
+﻿within ;
 package ThermoCycle "A library for the simulation of thermal systems"
+
+
+
+
+
+
+
+
   annotation (uses(Modelica(version="3.2"),CoolProp2Modelica,
     TILMedia(version="2.1.4")),                               Documentation(info="<HTML>
  <p><big>  The <b>ThermoCycle</b> library is an <b>open-source</b> library for dynamic modelling of ORC
@@ -9,10 +17,20 @@ systems developed in the Modelica language. The library aims at providing a robu
 <img src=\"modelica://ThermoCycle/Resources/Images/ThermoCycleLibrary.png\">
 </p> 
 <p><big> Thermodynamic properties of organic fluids require complex equations of state available only in external libraries such as FluidProp, Refprop or CoolProp. 
-  Thermodynamic properties in the ThermoCycle library are coomputed using the open-source library <b>CoolProp</b>. 
-The interface between ThermoCycle and CoolProp is ensured by the <b>CoolProp2Modelica</b> library, which is based on a modified version of the External Media library.</p>
+  Thermodynamic properties in the ThermoCycle library are computed using the open-source library <b>CoolProp</b>. 
+The interface between ThermoCycle and CoolProp on the Modelica level is ensured by the <b>CoolProp2Modelica</b> library, which is based on a modified version of the External Media library.</p>
+</p>
+<p><big><b>HOW TO HAVE THERMOCYCLE AND COOLPROP2MODELICA WORKING PROPERLY ON YOUR SYSTEM?</b></big></p>
+<p><big>The CoolProp2Modelica library is the interface between Modelica and CoolProp.</p>
 
+<p><big>The library requires the CoolProp Modelica wrapper to be installed on the target system. This wrapper can be downloaded and compiled from the  CoolProp website <a href=\"http://coolprop.sourceforge.net/HowGetIt.html\">http://www.http://coolprop.sourceforge.net/</a>. Pre-compiled versions using VisualStudio2010 and VisualStudio2008 
+have also been made available. 
 
+Once downloaded the CoolPropLib.lib file has to be copied in the “Dymola\bin\lib\” folder of the Dymola installation, usually in C:\Program Files\ .
+
+</p>
+<p></p>
+<p><big><b>LIBRARY STRUCTURE</b></big></p>
 <p><big>The library is composed by 7 top-level package which are listed below:
 <ul>
         <li><em><strong>Components

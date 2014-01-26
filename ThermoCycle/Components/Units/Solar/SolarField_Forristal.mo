@@ -1,5 +1,6 @@
 within ThermoCycle.Components.Units.Solar;
-model SolarField_Forristal "Solar Collector Model"
+model SolarField_Forristal
+  "Solar field model with collectors based on Forristal model"
 replaceable package Medium1 = ThermoCycle.Media.R245fa_CPRP
                                            constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
@@ -436,15 +437,22 @@ connect(InFlow, flow1Dim[1].InFlow);
           textString="v_wind [m/s]")}),
      Documentation(info="<HTML>
 
-<p><big>The <b>SolarCollector</b> model represents the solar field, composed by
-  a single loop of parabolic collectors connected in series. The large ratio between diameter and length allows a 1-D discretization of the absorber tube.
-   The model is composed by two sub-components: the <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> and the <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolAbs\">SolAbs</a> components. 
+<p><big>The <b>SolarField_Forristal</b> model represents the solar field, composed by
+  a loop of parabolic collectors, based on the Forristal model, that can be connected in series and in parallel. The large ratio between diameter and length allows a 1-D discretization of the absorber tube.
+   The model is composed by two sub-components: the <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> and the <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.SolAbsForristal\">SolAbsForristal</a> components. 
 They are connected together through a thermal port.
 </p>
-<p>
-<img src=\"modelica://ThermoCycle/Resources/Images/SolarCollectorModel.png\">
-</p>
+
 <p><big>The <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> models the Heat transfer fluid flow in the heat collector element.
 <p><big>The <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolAbs\">SolAbs</a> represents the dynamic one-dimensional radial energy balance around the heat collector element.
+
+<p><big> The inputs to the model representing the ambient conditions are:</p>
+<p><big><ul><li>DNI: Direct Normal Radiation [W/m2]
+ <li>Theta: Incidence angle [rad]
+ <li>T_amb: ambient temperature [K]
+ <li>v_wind: wind velocity [m/s]
+</ul>
+
+
 </HTML>"));
 end SolarField_Forristal;

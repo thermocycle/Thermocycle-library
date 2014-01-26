@@ -1,5 +1,6 @@
 within ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber;
 model SolAbsForristal
+  " 1D radial energy balance around the Heat Transfer Element based on the Forristal"
 // It solves the 1D radial energy balance around the Heat Transfer Element based on the Forristal model see Forristal NREL 2003.
 /*********************** INPUTS ***********************/
   Modelica.Blocks.Interfaces.RealInput DNI
@@ -341,8 +342,10 @@ Eta_TOT = Eta_th*eta_opt_t;
              Diagram(graphics),
     Icon(graphics),Documentation(info="<HTML>
           
-         <p><big>Model <b>SolAbs</b>  represents the one-dimensional radial energy balance between the the Heat Collector Element (HCE) and the atmosphere.
-          The terms in the energy balance depends on the collector type, the HCE condition, the optical properties and the ambient condition.
+         <p><big>Model <b>SolAbsForristal</b>  represents the one-dimensional radial energy balance between the Heat Collector Element (HCE) and the atmosphere based on the Forristal model.
+         <p><big><em>R. Forristall Heat transfer analysis and modeling of a parabolic trough solar receiver implemented in Engineering Equation Solver NREL October 2003</em> 
+         
+         <p><big> The terms in the energy balance depends on the collector type, the HCE condition, the optical properties and the ambient condition.
          
          <p><big>The phenomena represented by the model are:
          <ul><li>Convection in the heat transfer fluid.

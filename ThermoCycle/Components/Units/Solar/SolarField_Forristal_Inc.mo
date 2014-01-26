@@ -1,5 +1,6 @@
 within ThermoCycle.Components.Units.Solar;
-model SolarField_Forristal_Inc "Solar Collector Model"
+model SolarField_Forristal_Inc
+  "Solar field model with collectors based on Forristal model for incompressible fluids"
 replaceable package Medium1 = ThermoCycle.Media.R245fa_CPRP
                                            constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
@@ -409,15 +410,7 @@ connect(InFlow, flow1DimInc[1].InFlow);
           textString="v_wind [m/s]")}),
      Documentation(info="<HTML>
 
-<p><big>The <b>SolarCollector</b> model represents the solar field, composed by
-  a single loop of parabolic collectors connected in series. The large ratio between diameter and length allows a 1-D discretization of the absorber tube.
-   The model is composed by two sub-components: the <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.flow1DimInc\">Flow1Dim</a> and the <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolAbs\">SolAbs</a> components. 
-They are connected together through a thermal port.
-</p>
-<p>
-<img src=\"modelica://ThermoCycle/Resources/Images/SolarCollectorModel.png\">
-</p>
-<p><big>The <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.flow1DimInc\">Flow1Dim</a> models the Heat transfer fluid flow in the heat collector element.
-<p><big>The <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolAbs\">SolAbs</a> represents the dynamic one-dimensional radial energy balance around the heat collector element.
+<p><big>The <b>SolarField_Forristal_Inc</b> is the same model of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarField_Forristal\">SolarField_Forristal</a> except that the heat transfer fluid flowing
+in the collectors is modeled as an incompressible fluids.
 </HTML>"));
 end SolarField_Forristal_Inc;

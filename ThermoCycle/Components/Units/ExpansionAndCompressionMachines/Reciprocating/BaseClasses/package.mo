@@ -2,7 +2,4 @@ within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocatin
 package BaseClasses 
   extends Modelica.Icons.BasesPackage;
 
-
-
-
 end BaseClasses;
