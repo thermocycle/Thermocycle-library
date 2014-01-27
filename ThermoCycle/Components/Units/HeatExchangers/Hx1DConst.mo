@@ -54,8 +54,8 @@ extends BaseUnits.BaseHxConst;
     annotation (Placement(transformation(extent={{44,126},{-44,32}})));
 
 /***************************** GEOMETRIES ***************************************************/
-parameter Integer N=5 "Number of nodes for the heat exchanger";
-parameter Integer Nt=1 "Number of tubes in parallel";
+parameter Integer N(min=1)=5 "Number of nodes for the heat exchanger";
+parameter Integer Nt(min=1)=1 "Number of tubes in parallel";
 parameter Modelica.SIunits.Volume V_sf= 0.03781 "Volume secondary fluid";
 parameter Modelica.SIunits.Volume V_wf= 0.03781 "Volume primary fluid";
 parameter Modelica.SIunits.Area A_sf = 16.18 "Area secondary fluid";

@@ -33,8 +33,10 @@ supply.p = exhaust.p;
 C_dot_min = supply.m_flow*(inlet.cp + outlet.cp)/2;
 NTU = AU/C_dot_min;
 epsilon = 1-exp(-NTU); //Efficacité de l'échangeur
-if supply.m_flow > 0 then Q_dot = epsilon*C_dot_min*(inlet.T - T_iso);
-else Q_dot = epsilon*C_dot_min*(outlet.T - T_iso);
+if supply.m_flow > 0 then
+                          Q_dot = epsilon*C_dot_min*(inlet.T - T_iso);
+else
+     Q_dot = epsilon*C_dot_min*(outlet.T - T_iso);
 end if;
 
 //On considère le cas où le débit est négatif, pour la forme

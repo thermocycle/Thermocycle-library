@@ -2,8 +2,6 @@ within ThermoCycle.Components.Units.ExpansionAndCompressionMachines;
 package ScrollCompressor
   "Detailed, semi-empirical model of a scroll compressor"
 
-
-
   package R22
     extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
     mediumName="R22",
@@ -181,12 +179,6 @@ package ScrollCompressor
             thickness=0.5)}));
   end Nozzle;
 
-
-
-
-
-
-
   model Isothermal_wall
   Modelica.SIunits.TemperatureSlope der_T(start=0);
   parameter Modelica.SIunits.HeatCapacity C = 400;
@@ -227,8 +219,6 @@ package ScrollCompressor
             textString="Fictitious isothermal wall")}), Diagram(coordinateSystem(
             preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics));
   end Isothermal_wall;
-
-
 
   model Volumetric_compression
     "Model of a volumetric compression including swept volume and under and over-expansion losses"
@@ -331,8 +321,6 @@ package ScrollCompressor
             rotation=0,
             textString="V=Cst")}));
   end Volumetric_compression;
-
-
 
   model Mechanical_losses
     "Computes the Mechanical losses as a sum of different contributions (constant losses, proportional losses, friction torque)"
@@ -769,7 +757,6 @@ package ScrollCompressor
 <p>website : www.labothap.ulg.ac.be</p>
 </html>"));
   end ScrollCompressor;
-
 
   model test_ScrollCompressor
     "Semi-empirical model of hermetic scroll compressor"

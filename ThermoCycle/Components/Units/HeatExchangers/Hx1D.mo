@@ -3,8 +3,8 @@ model Hx1D
 extends ThermoCycle.Components.Units.BaseUnits.BaseHx;
 
 /******************************** GEOMETRIES ***********************************/
-parameter Integer N=5 "Number of nodes for the heat exchanger";
-parameter Integer Nt=5 "Number of tube in parallel";
+parameter Integer N(min=1)=5 "Number of nodes for the heat exchanger";
+parameter Integer Nt(min=1)=1 "Number of tube in parallel";
 parameter Modelica.SIunits.Volume Vhot = 0.03781 "Volume hot fluid";
 parameter Modelica.SIunits.Volume Vcold= 0.03781 "Volume cold fluid";
 parameter Modelica.SIunits.Area Ahot = 16.18 "Area hot fluid";

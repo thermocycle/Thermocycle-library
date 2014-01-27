@@ -5,7 +5,7 @@ extends Components.Units.BaseUnits.BaseHx;
 /******************************** GEOMETRIES ***********************************/
 
 parameter Integer N=5 "Number of nodes for the heat exchanger";
-parameter Integer Nt=1 "Number of tubes in parallel";
+parameter Integer Nt(min=1)=1 "Number of tubes in parallel";
 parameter Modelica.SIunits.Volume V_sf= 0.03781 "Volume secondary fluid";
 parameter Modelica.SIunits.Volume V_wf= 0.03781 "Volume primary fluid";
 parameter Modelica.SIunits.Area A_sf = 16.18 "Area secondary fluid";
