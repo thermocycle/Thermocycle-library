@@ -415,6 +415,45 @@ dhdt_SH = (1/2)*( dhdp_VS*der(p) + der(h_EX));
 /*******  WallEnergyBalance SUPER-HEATED **********/
 (c_wall*M_tot/L)*( L_SH*der(TwSH) + (TwB -TwSH)*(der(L_SB)+ der(L_TP)))  = Qsf_SH - Q_SH;
 
+/******************************* SUMMARY ***********************************/
+
+protected
+parameter Integer N = 3;
+Modelica.SIunits.Temperature[N] T_fluid_;
+Modelica.SIunits.Temperature[N] T_wall_;
+Modelica.SIunits.Temperature[N] T_sf_;
+public
+record SummaryBase
+  replaceable Arrays T_profile;
+  record Arrays
+   parameter Integer n;
+   Modelica.SIunits.Temperature[n] Twf;
+   Modelica.SIunits.Temperature[n] Twall;
+   Modelica.SIunits.Temperature[n] Tsf;
+  end Arrays;
+  //Modelica.SIunits.Pressure p_sf;
+  Modelica.SIunits.Pressure p_wf;
+  //Modelica.SIunits.Power Q_sf;
+  //Modelica.SIunits.Power Q_wf;
+end SummaryBase;
+replaceable record SummaryClass = SummaryBase;
+SummaryClass Summary( T_profile( n=N, Twf = T_fluid_[:],Twall=T_wall_[:],Tsf=T_sf_[:]),p_wf=p);
+equation
+/* Fluid temperature */
+T_fluid_[1] = T_SU;
+T_fluid_[2] = T_TP;
+T_fluid_[3] = T_out;
+
+/* Wall temperature */
+T_wall_[1] = TwSB;
+T_wall_[2] = TwTP;
+T_wall_[3]=TwSH;
+
+/* Secondary fluid temperature */
+T_sf_[1]=Tsf_SU;
+T_sf_[2]=Tsf_TP;
+T_sf_[3]=Tsf_EX;
+
   annotation (Diagram(graphics), Icon(graphics={
         Rectangle(
           extent={{-100,-20},{-32,-100}},
@@ -520,6 +559,31 @@ dhdt_SH = (1/2)*( dhdp_VS*der(p) + der(h_EX));
           extent={{36,-62},{42,-68}},
           lineColor={0,128,255},
           fillColor={0,128,255},
-          fillPattern=FillPattern.Solid)}));
-
+          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
+          
+         <p><big>Model <b>MBeva</b> is a moving boundaries heat exchanger model for evaporators.
+         The model considers a fictitius heat transfer channel split up into three different section based on the phase state of the working fluid:
+         <ul><li> Sub-cooled zone (SB)
+         <li> Two-phase zone (TP)
+         <li> SuperHeated zone (SH)
+         </ul>
+          <p><big><b>Pressure</b> and <b>enthalpy</b> are selected as state variables for each of the three zones. 
+          
+        <p><big>  The name moving boundary is derived from the fact that the interfaces between these sections do not
+have a fixed spatial position but merely a fixed thermodynamic location depending
+on the presence of liquid and gaseous fluid, respectively. The actual existence of
+a certain section and its length are determined based on the fluid state resulting
+in variable sectioning. A fixed total length superimposes the required boundary
+condition to calculate the length of each section.
+ 
+ <p><big>The assumptions for this model are:
+         <ul><li> The tube is cylindrical with a constant cross sectional area
+         <li> The velocity of the fluid is uniform on the cross sectional area
+         <li> The enthalpy of the fluid is linear in each region of the tube (sub-cooled, two-phase, super-heated)
+         <li> Pressure is considered constant
+         <li> Thermal energy accumulation in the metal wall is taken into account
+         <li> The secondary fluid is treated as a constant heat capacity fluid
+         <li> The heat transfer between the secondary fluid and the metal wall and between the metal wall and the primary fluid is computed using the epsilon-NTU method
+         </ul>
+        </HTML>"));
 end MBeva;

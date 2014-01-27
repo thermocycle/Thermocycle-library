@@ -132,6 +132,7 @@ parameter Boolean steadystate_T_wall=true
   parameter Modelica.SIunits.Time TT_wf=1
     "Integration time of the first-order filter"
     annotation (Dialog(enable=max_der_wf, tab="Numerical options"));
+
   ThermoCycle.Components.FluidFlow.Pipes.MultiFlow1D    multiFlow1D_DP(
     redeclare package Medium = Medium2,
     redeclare final model MultiFlow1DimHeatTransferModel =
