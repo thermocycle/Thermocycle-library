@@ -1,5 +1,5 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines;
-model Pump "Pump model useful for ORCNext"
+model Pump "Pump model"
   /***************************************** FLUID *****************************************/
   replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
