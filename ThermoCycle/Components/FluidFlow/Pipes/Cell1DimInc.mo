@@ -85,9 +85,6 @@ qdot = heatTransfer.q_dot[1];
   if (Discretization == Discretizations.centr_diff) then
     hnode_su = inStream(InFlow.h_outflow);
     hnode_ex = 2*h - hnode_su;
-  elseif (Discretization == Discretizations.centr_diff_robust) then     //no robustness method implemented for incompressible flow
-    hnode_su = inStream(InFlow.h_outflow);
-    hnode_ex = 2*h - hnode_su;
   elseif (Discretization == Discretizations.centr_diff_AllowFlowReversal) then
     if M_dot >= 0 then       // Flow is going the right way
       hnode_su = inStream(InFlow.h_outflow);

@@ -145,10 +145,6 @@ end if;
     hnode_ex = 0;
     hnode_su = 0;
     assert(h>1E20,"Flow1dim with limiter cannot be used yet with the central differences discretization scheme");
-  elseif (Discretization == Discretizations.centr_diff_robust) then   //dummy values since this canno by used
-    hnode_ex = 0;
-    hnode_su = 0;
-    assert(h>1E20,"Flow1dim with limiter cannot be used yet with the central differences discretization scheme");
   elseif (Discretization == Discretizations.centr_diff_AllowFlowReversal) then   //dummy values since this canno by used
     hnode_ex = 0;
     hnode_su = 0;

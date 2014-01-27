@@ -66,8 +66,7 @@ equation
      //Energy balance
     Vi*cp*rho_su*der(T) + Mdot*cp*(Tnode_ex - Tnode_su) = Ai*qdot;
 
-    if (Discretization == Discretizations.centr_diff or Discretization ==
-        Discretizations.centr_diff_robust or Discretization == Discretizations.centr_diff_AllowFlowReversal) then
+    if (Discretization == Discretizations.centr_diff or Discretization == Discretizations.centr_diff_AllowFlowReversal) then
       T = (Tnode_su + Tnode_ex)/2;
     else         // Upwind schemes
       Tnode_ex = T;

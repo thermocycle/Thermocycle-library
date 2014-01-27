@@ -1,8 +1,6 @@
 within ThermoCycle.Functions.Enumerations;
 type Discretizations = enumeration(
     centr_diff "Central Difference Scheme - Basic",
-    centr_diff_robust
-      "Central Difference Scheme - Robust (in case of null flow)",
     centr_diff_AllowFlowReversal
       "Central Difference Scheme - Allows Reverse Flow (but not yet zero flow)",
 

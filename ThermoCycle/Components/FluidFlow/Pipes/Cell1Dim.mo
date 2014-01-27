@@ -173,9 +173,6 @@ end if;
   if (Discretization == Discretizations.centr_diff) then
     hnode_su = inStream(InFlow.h_outflow);
     hnode_ex = 2*h - hnode_su;
-  elseif (Discretization == Discretizations.centr_diff_robust) then
-    hnode_su = if M_dot_su <= 0 then h else inStream(InFlow.h_outflow);
-    hnode_ex = if M_dot_ex >= 0 then 2*h - hnode_su else h;    //h is taken to nullify the convection term when there is a flow reversal on M_dot_ex
   elseif (Discretization == Discretizations.centr_diff_AllowFlowReversal) then
     if M_dot_su >= 0 and M_dot_ex >= 0 then       // Flow is going the right way
       hnode_su = inStream(InFlow.h_outflow);
