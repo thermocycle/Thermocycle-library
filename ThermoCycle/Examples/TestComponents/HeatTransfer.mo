@@ -126,7 +126,7 @@ end InputSelector;
         smoothingRange=0.1),
     m_dot_start=3,
     p_start=500000)
-    annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
+    annotation (Placement(transformation(extent={{-2,28},{18,48}})));
 
   annotation (experiment(StopTime=10));
 end HeatTransfer;

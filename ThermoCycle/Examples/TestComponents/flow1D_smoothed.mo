@@ -45,7 +45,7 @@ model flow1D_smoothed
     p0=500000)
     annotation (Placement(transformation(extent={{60,-10},{80,10}})));
   Components.FluidFlow.Sources.SourceMdot2 sourceMdot2_1
-    annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
+    annotation (Placement(transformation(extent={{-98,12},{-78,32}})));
   Interfaces.HeatTransfer.HeatPortConverter heatPortConverter annotation (
       Placement(transformation(
         extent={{-10,-10},{10,10}},
@@ -70,21 +70,19 @@ model flow1D_smoothed
     annotation (Placement(transformation(extent={{-10,60},{10,40}})));
 equation
   connect(sourceMdot1.flangeB, flow1Dim.InFlow) annotation (Line(
-      points={{-61,6.66134e-16},{-52,6.66134e-16},{-52,-8.88178e-16},{-16.6667,
-          -8.88178e-16}},
+      points={{-61,0},{-16.6667,0}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(flow1Dim.OutFlow, sinkP.flangeB) annotation (Line(
-      points={{16.6667,0.166667},{18,0.166667},{18,4.44089e-16},{61.6,
-          4.44089e-16}},
+      points={{16.6667,0.166667},{18,0.166667},{18,0},{61.6,0}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sourceMdot2_1.y, sourceMdot1.in_Mdot) annotation (Line(
-      points={{-81,31},{-76,31},{-76,6}},
+      points={{-79,23},{-76,23},{-76,6}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(fixedHeatFlow.port, heatPortConverter.heatPort) annotation (Line(
-      points={{-40,80},{-20,80},{-20,86},{2.44249e-15,86}},
+      points={{-40,80},{-20,80},{-20,86},{1.83697e-015,86}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(metalWall.Wall_int, flow1Dim.Wall_int) annotation (Line(
@@ -93,7 +91,7 @@ equation
       smooth=Smooth.None));
   connect(heatPortConverter.thermalPortL, thermalPortMultiplier.single)
     annotation (Line(
-      points={{0,66},{0,54.1}},
+      points={{-1.83697e-015,66},{-1.83697e-015,60.05},{0,60.05},{0,54.1}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(thermalPortMultiplier.multi, metalWall.Wall_ext) annotation (Line(
