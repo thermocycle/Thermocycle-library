@@ -11,8 +11,8 @@ annotation (choicesAllMatching = true);
   Modelica.Blocks.Interfaces.RealOutput Level
     annotation (Placement(transformation(extent={{90,-10},{110,10}}),
         iconTransformation(extent={{90,-10},{110,10}})));
-  ThermoCycle.Interfaces.HeatTransfer.ThermalPortL TankWall
-    annotation (Placement(transformation(extent={{-100,-30},{-84,44}})));
+ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL TankWall
+   annotation (Placement(transformation(extent={{-100,-30},{-84,44}})));
 
 /************ Constants  ************/
 constant Real g=Modelica.Constants.g_n;
@@ -62,27 +62,28 @@ final parameter Modelica.SIunits.Volume V_lstart = A_cross*L_lstart;
 final parameter Real pV_gas = pstart*V_tank*(1 - L_lstart) "Initial value of ";
 
 /********************************* HEAT TRANSFER WITH EXTERNAL AMBIENT ********************************/
-/* Heat transfer Model */
-replaceable model HeatTransfer =
-ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Ideal
-constrainedby
+ /* Heat transfer Model */
+ replaceable model HeatTransfer =
+ ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Ideal
+ constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-    "Convective heat transfer for the fluid"                                                         annotation (choicesAllMatching = true);
-HeatTransfer heatTransfer( redeclare final package Medium = Medium,
-final n=1,
-final Mdotnom = Mdotnom,
-final Unom_l = Unom,
-final Unom_tp = Unom,
-final Unom_v = Unom,
-final M_dot = M_dot,
-final x = 0,
-final FluidState={fluidState})
-                          annotation (Placement(transformation(extent={{-4,-24},
-            {16,-4}})));
+    "Convective heat transfer for the fluid"                                                          annotation (choicesAllMatching = true);
+ HeatTransfer heatTransfer( redeclare final package Medium = Medium,
+ final n=1,
+ final Mdotnom = Mdotnom,
+ final Unom_l = Unom,
+ final Unom_tp = Unom,
+ final Unom_v = Unom,
+ final M_dot = M_dot,
+ final x = 0,
+ final FluidState={fluidState})
+                           annotation (Placement(transformation(extent={{-4,-24},
+             {16,-4}})));
 
 /********** Variables ****************/
 Medium.ThermodynamicState  fluidState;
 Medium.AbsolutePressure p(start=pstart);
+Medium.AbsolutePressure p_fl "Water pressure at the bottom of the tank";
 Modelica.SIunits.Volume V_l(start= V_tank*L_lstart) "Volume of the liquid";
 Modelica.SIunits.Length L_l(start= L_lstart,min=0,max=0.5)
     "Height of the liquid";
@@ -117,10 +118,12 @@ V_tank = V_l + V_gas;
 /* Boyle's law */
 p_gas*V_gas = pV_gas;
 
-p - p_gas = g*V_l/A_cross*rho;
+p = p_gas;
+
+p_fl - p_gas = g*V_l/A_cross*rho;
 
 /* Energy Balance */
-dMdt*h + der(h)*M_l - der(p)*V_l - p*der(V_l) = h_su*M_dot - Atot_tank*qdot;
+dMdt*h + der(h)*M_l - der(p)*V_l - p*der(V_l) = h_su*M_dot- Atot_tank*qdot;
 
 qdot = heatTransfer.q_dot[1];
 
@@ -136,15 +139,15 @@ dMdt = rho*der(V_l) + V_l*drdh*der(h);
 h_su = if noEvent(M_dot <= 0) then h else inStream(InFlow.h_outflow);
 
 /* pressures */
- InFlow.p = p;
+ InFlow.p = p_fl;
 
 /*Mass Flow*/
  M_dot = InFlow.m_flow;
-
-  connect(heatTransfer.thermalPortL[1], TankWall) annotation (Line(
-      points={{5.8,-7.4},{5.8,7},{-92,7}},
-      color={255,0,0},
-      smooth=Smooth.None));
+//
+   connect(heatTransfer.thermalPortL[1], TankWall) annotation (Line(
+       points={{5.8,-7.4},{5.8,7},{-92,7}},
+       color={255,0,0},
+       smooth=Smooth.None));
   annotation (Diagram(graphics), Icon(graphics={
         Rectangle(
           extent={{-100,100},{-98,-100}},

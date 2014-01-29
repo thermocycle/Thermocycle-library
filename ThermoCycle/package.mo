@@ -21,7 +21,7 @@ The interface between ThermoCycle and CoolProp on the Modelica level is ensured 
 <p><big>The library requires the CoolProp Modelica wrapper to be installed on the target system. This wrapper can be downloaded and compiled from the  CoolProp website <a href=\"http://coolprop.sourceforge.net/HowGetIt.html\">http://www.http://coolprop.sourceforge.net/</a>. Pre-compiled versions using VisualStudio2010 and VisualStudio2008 
 have also been made available. 
 
-Once downloaded the CoolPropLib.lib file has to be copied in the “Dymola\bin\lib\” folder of the Dymola installation, usually in C:\Program Files\ .
+Once downloaded the CoolPropLib.lib file has to be copied in the “Dymola \ bin\lib\” folder of the Dymola installation, usually in C:\Program Files\ .
 
 </p>
 <p></p>
