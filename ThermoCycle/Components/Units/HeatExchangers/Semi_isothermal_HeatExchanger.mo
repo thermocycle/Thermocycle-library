@@ -90,5 +90,8 @@ port_th.Q_flow = -Q_dot;
           origin={20,6},
           rotation=90),
         Line(points={{10,20},{20,38}},   color={191,0,0}),
-        Line(points={{20,38},{30,20}},   color={191,0,0})}));
+        Line(points={{20,38},{30,20}},   color={191,0,0})}),
+    Documentation(info="<html>
+<p>Steady-state model of a semi-isothermal heat exchanger using the well-know epsilon-NTU method.</p>
+</html>"));
 end Semi_isothermal_HeatExchanger;

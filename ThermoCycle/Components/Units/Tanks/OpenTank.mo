@@ -153,24 +153,23 @@ h_su = if noEvent(M_dot <= 0) then h else inStream(InFlow.h_outflow);
           points={{-6,8},{2,8},{-6,8}},
           color={0,0,255},
           thickness=0.5,
-          smooth=Smooth.None)}),     Diagram(graphics),Documentation(info="<HTML>
-          
-         <p><big>Model <b>OpenTank</b> describes the storage of fluid in liquid phase in an open tank.
-         
-          <p><big><b>Pressure</b> and <b>enthalpy</b> are selected as state variables.  
- <p><big>The assumptions for this model are:
- <ul>
-         <li> The model is based on dynamic mass and energy balances and on a static momentum balance
-         <li>  Constant external pressure
-         <li> Pressure of the fluid exiting the tank is calculated with Stevin's law
-         <li> Thermal energy transfer with the ambient is neglected
-         <li> Minimum liquid level with respect to tank height= 0
-         <li> Maximum liquid level with respect to tank height= 1
-         </ul>
- <p><big>The model is characterized by one flow connector. 
-         <p><b><big>Modelling options</b></p>
-        <p><big> In the <b>General</b> tab the following options are availabe:
-        <ul><li>Medium: the user has the possibility to easly switch Medium.
- <p><big> 
-        </HTML>"));
+          smooth=Smooth.None)}),     Diagram(graphics),Documentation(info="<html>
+<p>The model <b>OpenTank</b> describes the storage of fluid in liquid phase in an open tank. </p>
+<p><b>Pressure</b> and <b>enthalpy</b> are selected as state variables. </p>
+<p>The assumptions for this model are: </p>
+<p><ul>
+<li>The model is based on dynamic mass and energy</li>
+<li>Constant external pressure </li>
+<li>The static pressure head due to the liquid level is taken into account</li>
+<li>The thermal energy transfer with the ambient is neglected </li>
+<li>Minimum liquid level with respect to tank height= 0 </li>
+<li>Maximum liquid level with respect to tank height= 1 </li>
+</ul></p>
+<p>The model comprises one single flow connector. </p>
+<p><b>Modelling options</b> </p>
+<p>In the <b>General</b> tab the following options are available: </p>
+<p><ul>
+<li>Medium: the user has the possibility to easily switch Medium. </li>
+</ul></p>
+</html>"));
 end OpenTank;

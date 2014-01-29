@@ -114,19 +114,21 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}),
                          graphics), Diagram(coordinateSystem(
-          preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics),Documentation(info="<HTML>
-          
-         <p><big>The <b>Pump</b>  model represents the compression of a fluid in a turbo or volumetric machine. It is a lumped model based on performance curves where pump speed is set as an input.
-        <p><big>The assumptions for this model are:
-         <ul><li> No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger).
-         <li> No thermal energy losses to the environment
-         <li> Isentropic efficiency based on empirical performance curve
-         <li> Mass flow rate based on empirical performance curve
-         </ul>
-      <p><b><big>Modelling options</b></p>
-        <p><big> In the <b>General</b> tab the following options are availabe:
-        <ul><li>PumpType: it changes the performance curves for isentropic efficiency and mass flow rate.
-         <li> PumpInput: it allows to switch the input between frequency and flow fraction
-         </ul> 
-        </HTML>"));
+          preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics),Documentation(info="<html>
+<p><b>Information</b></p>
+<p>The Pump model represents the compression of a fluid in a turbo or volumetric machine. It is a lumped model based on performance curves where pump speed is set as an input.</p>
+<p>The assumptions for this model are:</p>
+<p><ul>
+<li>No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger).</li>
+<li>No thermal energy losses to the environment</li>
+<li>Isentropic efficiency based on empirical performance curve</li>
+<li>Mass flow rate based on empirical performance curve</li>
+</ul></p>
+<p><b>Modelling options</b></p>
+<p>In the General tab the following options are available:</p>
+<p><ul>
+<li>PumpType: select between different performance curves for isentropic and volumetric efficiencies.</li>
+<li>PumpInput: switch the input between frequency and flow fraction</li>
+</ul></p>
+</html>"));
 end Pump;

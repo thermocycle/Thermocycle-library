@@ -147,23 +147,31 @@ initial equation
           thickness=0.5)}),
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}),     graphics),
-    Documentation(info="<HTML>
-<p><big> The <b>DP</b> model is a lumped model that computes the pressure drop of a fluid thorugh a tube.
- <p><big>The assumptions for this model are:
-         <ul><li> Incompressible fluid for computing the pressure drop
-         <li> No thermal energy losses to the ambient
-         </ul>
-         <p><b><big>Modelling options</b></p>
-         <p><big> In the <b>General</b> tab the following options are availabe:
-        <ul><li>Medium: the user has the possibility to easly switch Medium.
-        <li> UseNom: If true, use the nominal conditions defined in the Nominal Conditions tab to compute the pressure drop characteristic</ul> 
-        <p><big> In the <b>Nominal condition</b> tab the following option is availabe:
-        <ul><li> use_rho_nom: If true, the density is considered constant and ugual to the nominal value.</ul>
-        <p><big> In the <b>Initialization</b> tab the following options are availabe:
-        <ul><li> constinit: If true, the pressure drop is considered constant at the beginning of the simulation to avoid oscillations.
-         <li> UseHomotopy: If true, the homotopy function is used to set the pressure drop to zero in the first initialization.
-         </ul>
-         
-</HTML>",
+    Documentation(info="<html>
+<p>The <b>DP</b> model is a lumped model that computes a punctual pressure drop. </p>
+<p>The assumptions for this model are: </p>
+<p><ul>
+<li>Incompressible fluid for computing the pressure drop </li>
+<li>No thermal energy losses to the ambient </li>
+</ul></p>
+<p><br/>The total pressure drop is computed as the sum of three different terms: a constant pressure difference (e.g. due to the static pressure head), a linear pressure drop (e.g. due to friction in a laminar flow) and a quadratic pressure drop (typical of turbulent flow):</p>
+<p><img src=\"modelica://ThermoCycle/Resources/Images/DELTAp.png\"/></p>
+<p><b>Modelling options</b> </p>
+<p>In the <b>General</b> tab the following options are availabe: </p>
+<p><ul>
+<li>Medium: the user has the possibility to easly switch Medium. </li>
+<li>UseNom: If true, use the nominal conditions defined in the Nominal Conditions tab to compute the pressure drop characteristic (i.e. the parameters h, K and A)</li>
+</ul></p>
+<p>In the <b>Nominal condition</b> tab the following option is availabe: </p>
+<p><ul>
+<li>use_rho_nom: If true, the density is considered constant during the whole simulation and equal to the nominal value. </li>
+</ul></p>
+<p>In the <b>Initialization</b> tab the following options are availabe: </p>
+<p><ul>
+<li>constinit: If true, the pressure drop is considered constant at the beginning of the simulation to avoid oscillations. </li>
+<li>UseHomotopy: If true, the homotopy function is used to set the pressure drop to zero in the first initialization. </li>
+</ul></p>
+<p><br/>The parameter DELTAp_0 defines a limitation of the pressure drop below which the quadratic expression is replaced by a third order polynomial expression to avoid the non-physical infinite derivative at DELTAp=0.</p>
+</html>",
         uses(Modelica(version="3.2"))));
 end DP;

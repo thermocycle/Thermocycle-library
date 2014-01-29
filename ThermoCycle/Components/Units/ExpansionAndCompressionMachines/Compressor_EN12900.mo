@@ -111,19 +111,22 @@ equation
           lineColor={0,0,255},
           smooth=Smooth.None,
           fillColor={0,0,255},
-          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
-          
-         <p><big>The <b>Compressor_EN12900</b>  model represents the compression of a fluid in a scroll compressor according to standard EN12900. It is a lumped model.
-          It is characterized by two flow connector for the fluid inlet and outlet 
-         and by a mechanical connector for the connection with the electric driver.
-        <p><big>The assumptions for this model are:
-         <ul><li> No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger).
-         <li> No thermal energy losses to the environment
-         <li> Mass flow and consumed power are calculated with a polynoms as a function of the saturation temperature of the corresponding inlet and outlet temperature
-         </ul>
-         <p><b><big>Modelling options</b></p>
-         <p><big> In the <b>General</b> tab the following option is availabe:
-        <ul><li><p><big> CPmodel: it allows to select one of the different available scroll compressor characteristics.
-         </ul>
-          </HTML>"));
+          fillPattern=FillPattern.Solid)}),Documentation(info="<html>
+<p>The <b>Compressor_EN12900</b> model represents the compression of a fluid in a scroll compressor according to standard EN12900. It is a lumped model. It is characterized by two flow connector for the fluid inlet and outlet and by a mechanical connector for the connection with the electric driver. </p>
+<p>The assumptions for this model are: </p>
+<p><ul>
+<li>No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger). </li>
+<li>No thermal energy losses to the environment </li>
+<li>Mass flow and consumed power are calculated with a polynoms as a function of the saturation temperature of the corresponding inlet and outlet temperature </li>
+</ul></p>
+<p><b>Modelling options</b> </p>
+<p>In the <b>General</b> tab the following option is availabe: </p>
+<p><ul>
+<li>CPmodel: it allows to select one of the different available scroll compressor characteristics. </li>
+<li></li>
+</ul></p>
+<p><b>Polynomial expression</b></p>
+<p>In the EN12900 standard, the compressor consumption and the mass flow rate are expressed as a function of the evaporation and condensation temperatures with the following equations:</p>
+<p><img src=\"modelica://ThermoCycle/Resources/Images/EN12900.png\"/></p>
+</html>"));
 end Compressor_EN12900;

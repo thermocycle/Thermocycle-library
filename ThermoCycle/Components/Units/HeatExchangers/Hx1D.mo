@@ -261,18 +261,21 @@ Q_cold_ = -Coldside.Q_tot;
              Smooth.None),
         Line(points={{80,86},{-80,86},{-62,96},{-80,86},{-64,74}}, smooth=
               Smooth.None)}),
-    Documentation(info="<HTML>
-<p><big> Model <b>HxRec1D</b> represent the model of a counter-current plate heat exchanger. It is based on the connection of different sub-components:
-<ul><li> Two Flow1Dim components representing the flow of the fluid in the two sides of the exchanger
-<li> A MetalWall components representing the thermal energy accumulation in the metal wall
-<li> A CountCurr component that enables the possibility of parallel or countercurrent flow </ul>
-<p><b><big>Modelling options</b></p>
-  <p><big> In the <b>Initialization</b> tab the following options are availabe:
-        <ul><li> steadystate_h_cold: if  true, the derivative of enthalpy of the cold side is set to zero during <em>Initialization</em> 
-         <li> steadystate_h_hot: if  true, the derivative of enthalpy of the hot side is set to zero during <em>Initialization</em>
-         <li> steadystate_T_wall: if  true, the derivative of Temperature of the metal wall is set to zero during <em>Initialization</em>
-         </ul>
-        <p><b><big>Numerical options</b></p>
-<p><big>The numerical options available for the <b>HxRec1D</b> are the one implemented in <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>.
+    Documentation(info="<html>
+<p>Model <b>Hx1D</b> represent the model of a counter-current plate heat exchanger. It is based on the connection of different sub-components: </p>
+<p><ul>
+<li>Two Flow1Dim components representing the flow of the fluid in the two sides of the exchanger </li>
+<li>A MetalWall components representing the thermal energy accumulation in the metal wall </li>
+<li>A CountCurr component that enables the possibility of parallel or countercurrent flow </li>
+</ul></p>
+<p><b>Modelling options</b> </p>
+<p>In the <b>Initialization</b> tab the following options are availabe: </p>
+<p><ul>
+<li>steadystate_h_cold: if true, the derivative of enthalpy of the cold side is set to zero during <i>Initialization</i> </li>
+<li>steadystate_h_hot: if true, the derivative of enthalpy of the hot side is set to zero during <i>Initialization</i> </li>
+<li>steadystate_T_wall: if true, the derivative of Temperature of the metal wall is set to zero during <i>Initialization</i> </li>
+</ul></p>
+<p><b>Numerical options</b></p>
+<p>The numerical options available for the <b>HxRec1D</b> are the one implemented in <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>. </p>
 </html>"));
 end Hx1D;

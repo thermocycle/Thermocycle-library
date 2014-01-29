@@ -98,14 +98,15 @@ initial equation
               "%name")}),
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}),     graphics),
-    Documentation(info="<HTML>
-<p><big> The <b>Valve</b> model represents the expansion of a fluid through a valve.
- <p><big>The assumptions for this model are:
-         <ul><li> No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger).
-         <li> No thermal energy losses to the environment
-         <li> The expansion is assumed isenthalpic
-         <li> Incompressible flow for computing the pressure drop
-         </ul>
-</HTML>",
+    Documentation(info="<html>
+<p>The <b>Valve</b> model represents the expansion of a fluid through a valve. </p>
+<p>The assumptions for this model are: </p>
+<p><ul>
+<li>No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger). </li>
+<li>No ambient heat losses (the expansion is assumed isenthalpic) </li>
+<li>Incompressible flow for computing the pressure drop </li>
+<li>Quadratic pressure drop (turbulent flow)</li>
+</ul></p>
+</html>",
         uses(Modelica(version="3.2"))));
 end Valve;

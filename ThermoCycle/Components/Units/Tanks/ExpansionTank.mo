@@ -185,29 +185,26 @@ h_su = if noEvent(M_dot <= 0) then h else inStream(InFlow.h_outflow);
         Rectangle(
           extent={{-100,100},{100,98}},
           lineColor={0,0,0},
-          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
-          
-         <p><big>Model <b>ExpansionTank</b> describes the storage of fluid in liquid phase in a closed volume filled with gas.
-         
-          <p><big><b>Pressure</b> and <b>enthalpy</b> are selected as state variables.  
- <p><big>The assumptions for this model are:
- <ul>
-         <li> The gas is considered ideal and using the Boyle's law: p_gas*V_gas = Const = pstart*V_gas 
-         <li> The gas is considered at the same temmperature of the fluid
-         <li> The model is based on dynamic mass and energy balances of the fluid
-         <li> Pressure of the fluid exiting the tank is calculated with Stevin's law
-         <li> Thermal energy transfer due to extarnal air convection through the tank surface (lateral+top+bottom) is ensured by the <em>TankWall</em> connector. The actual heat flow is computed by the thermal energy model
-         <li> Minimum liquid level with respect to tank height= 0
-         <li> Maximum liquid level with respect to tank height= 0.5
-         </ul>
- <p><big>The model is characterized by one flow connector.
- <p><big> The thermal energy transfer  through the Tank surface is computed by the <em><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></em> model which is inerithed in the <em>ExpansionTank</em> model 
-        
-        <p><b><big>Modelling options</b></p>
-        <p><big> In the <b>General</b> tab the following options are availabe:
-        <ul><li>Medium: the user has the possibility to easly switch Medium.
-        <li> HeatTransfer: the user can choose the thermal energy model he prefers </ul> 
-     
- <p><big> 
-        </HTML>"));
+          fillPattern=FillPattern.Solid)}),Documentation(info="<html>
+<p>Model <b>ExpansionTank</b> describes the storage of fluid in liquid phase in a closed volume filled with gas. </p>
+<p><b>Pressure</b> and <b>enthalpy</b> are selected as state variables. </p>
+<p>The assumptions for this model are: </p>
+<p><ul>
+<li>The gas is considered ideal and using Boyle&apos;s law: p_gas*V_gas = Const = pstart*V_gas </li>
+<li>The gas is considered at the same temperature of the fluid </li>
+<li>The model is based on dynamic mass and energy balances of the fluid </li>
+<li>The static pressure head due to the liquid level is taken into account </li>
+<li>Thermal energy transfer due to external air convection through the tank surface (lateral+top+bottom) is ensured by the <i>TankWall</i> connector. The actual heat flow is computed by the thermal energy model </li>
+<li>Minimum liquid level with respect to tank height= 0 </li>
+<li>Maximum liquid level with respect to tank height= 0.5 </li>
+</ul></p>
+<p>The model is characterized by one flow connector. </p>
+<p>The thermal energy transfer through the Tank surface is computed by the <i><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></i> model which is inerithed in the <i>ExpansionTank</i> model </p>
+<p><b>Modelling options</b> </p>
+<p>In the <b>General</b> tab the following options are availabe: </p>
+<p><ul>
+<li>Medium: the user has the possibility to easly switch Medium. </li>
+<li>HeatTransfer: selection between the different heat transfer models available in ThermoCycle</li>
+</ul></p>
+</html>"));
 end ExpansionTank;

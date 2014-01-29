@@ -238,19 +238,22 @@ equation
               Smooth.None,
           origin={-2,-1},
           rotation=-90)}),
-    Documentation(info="<HTML>
-<p><big> Model <b>CrossHX</b> represent the model of a cross flow plate heat exchanger where air is used as secondary fluid. Pressure drop is taken into account in the air side. It is based on the connection of different sub-components:
-<ul><li> A Flow1Dim component representing the flow of the fluid in one side of the exchanger
-<li> A MultiFlow1D component representing the flow of air in the other side of the exchanger
-<li> A MetalWall component representing the thermal energy accumulation in the metal wall
-<p><b><big>Modelling options</b></p>
-  <p><big> In the <b>Initialization</b> tab the following options are availabe:
-        <ul><li> steadystate_wf: if  true, the derivative of enthalpy of the working fluid is set to zero during <em>Initialization</em> 
-         <li> steadystate_T_wall: if  true, the derivative of temperature of the metal wall is set to zero during <em>Initialization</em>
-         <li> constinit_sf: if true, the pressure drop in the air side is set to a constant value during <em>Initialization</em>
-         <li> UseHomotopy_sf: if true, it uses homotopy to set the pressure drop to zero during <em>Initialization</em>
-         </ul>
-        <p><b><big>Numerical options</b></p>
-<p><big>The numerical options available for the <b>CrossHX</b> are the one implemented in <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>.
+    Documentation(info="<html>
+<p>Model <b>CrossHX</b> represent the model of a cross flow plate heat exchanger where air is used as secondary fluid. Pressure drop is taken into account in the air side. It is based on the connection of different sub-components: </p>
+<p><ul>
+<li>A Flow1Dim component representing the flow of the fluid in one side of the exchanger </li>
+<li>A MultiFlow1D component representing the flow of air in the other side of the exchanger </li>
+<li>A MetalWall component representing the thermal energy accumulation in the metal wall </li>
+</ul></p>
+<p><b>Modelling options</b> </p>
+<p>In the <b>Initialization</b> tab the following options are availabe: </p>
+<p><ul>
+<li>steadystate_wf: if true, the derivative of enthalpy of the working fluid is set to zero during <i>Initialization</i> </li>
+<li>steadystate_T_wall: if true, the derivative of temperature of the metal wall is set to zero during <i>Initialization</i> </li>
+<li>constinit_sf: if true, the pressure drop in the air side is set to a constant value during <i>Initialization</i> </li>
+<li>UseHomotopy_sf: if true, it uses homotopy to set the pressure drop to zero during <i>Initialization</i> </li>
+</ul></p>
+<p><b>Numerical options</b></p>
+<p>The numerical options available for the <b>CrossHX</b> are the one implemented in <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>. </p>
 </html>"));
 end CrossHX;

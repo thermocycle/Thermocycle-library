@@ -1,5 +1,6 @@
 within ThermoCycle.Components.Units.Tanks;
-package HeatStorageWaterHeater "Water Tank with an internal heat exchanger"
+package HeatStorageWaterHeater
+  "Stratified tank with an internal heat exchanger and ambient heat losses (nodal model)"
   model Heat_storage_hx
     "Stratified tank with an internal heat exchanger and ambient heat losses (nodal model)"
 
@@ -243,7 +244,16 @@ package HeatStorageWaterHeater "Water Tank with an internal heat exchanger"
           Line(
             points={{-40,66},{40,66}},
             color={0,0,0},
-            smooth=Smooth.None)}));
+            smooth=Smooth.None)}),
+      Documentation(info="<html>
+<p>Nodal model of a stratified tank, with the following hypotheses:</p>
+<p><ul>
+<li>No heat transfer between the different nodes</li>
+<li>The internal heat exchanger is discretized in the same way as the tank: each cell of the heat exchanger corresponds to one cell of the tank and exchanges heat with that cell only.</li>
+<li>Incompressible fluid in both the tank and the heat exchanger</li>
+</ul></p>
+<p><br/>The tank is discretized using a modified version of the incompressible Cell1Dim model adding an additional heat port. The heat exchanger is modeled using the Flow1Dim component and a wall component.</p>
+</html>"));
   end Heat_storage_hx;
 
   model Cell1DimInc_2ports
@@ -550,5 +560,14 @@ package HeatStorageWaterHeater "Water Tank with an internal heat exchanger"
           points={{-42,58},{38,58}},
           color={0,0,0},
           smooth=Smooth.None)}), Diagram(coordinateSystem(preserveAspectRatio=
-            false, extent={{-100,-100},{100,100}}), graphics));
+            false, extent={{-100,-100},{100,100}}), graphics),
+    Documentation(info="<html>
+<p>Nodal model of a stratified tank, with the following hypotheses:</p>
+<p><ul>
+<li>No heat transfer between the different nodes</li>
+<li>The internal heat exchanger is discretized in the same way as the tank: each cell of the heat exchanger corresponds to one cell of the tank and exchanges heat with that cell only.</li>
+<li>Incompressible fluid in both the tank and the heat exchanger</li>
+</ul></p>
+<p><br/>The tank is discretized using a modified version of the incompressible Cell1Dim model adding an additional heat port. The heat exchanger is modeled using the Flow1Dim component and a wall component.</p>
+</html>"));
 end HeatStorageWaterHeater;

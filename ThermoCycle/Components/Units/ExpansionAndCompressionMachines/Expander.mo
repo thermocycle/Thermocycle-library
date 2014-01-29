@@ -144,17 +144,16 @@ end if;
           lineColor={0,0,255},
           smooth=Smooth.None,
           fillColor={0,0,255},
-          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
-          
-         <p><big>The <b>Expander</b>  model represents the expansion of a fluid in a volumetric machine. It is a lumped model based on performance curves. It is characterized by two flow connector for the fluid inlet and outlet and by a mechanical connector for the connection with the generator.
-        <p><big>The assumptions for this model are:
-         <ul><li> No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger).
-         <li> No thermal energy losses to the environment
-         <li> Isentropic efficiency based on empirical performance curve
-         <li> Filling factor based on empirical performance curve
-         </ul>
-      <p><b><big>Modelling options</b></p>
-        <p><big> In the <b>General</b> tab the following option is availabe:
-        <ul><li>ExpType: it changes the performance curves for isentropic efficiency and filling factor. </ul> 
-        </HTML>"));
+          fillPattern=FillPattern.Solid)}),Documentation(info="<html>
+<p>The Expander model represents the expansion of a fluid in a volumetric machine. It is a lumped model based on performance curves. It is characterized by two flow connector for the fluid inlet and outlet and by a mechanical connector for the connection with the generator. </p>
+<p>The assumptions for this model are: </p>
+<p><ul>
+<li>No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger). </li>
+<li>No thermal energy losses to the environment </li>
+<li>Isentropic efficiency based on empirical performance curve </li>
+<li>Filling factor based on empirical performance curve </li>
+</ul></p>
+<p><b>Modelling options</b> </p>
+<p>In this model, the user has the choice of providing constant isentropic and volumetric efficiencies, or providing performance curves in the form of a Modelica function. The performance curves can be selected from the General tab with the ExpType enumeration variable.</p>
+</html>"));
 end Expander;

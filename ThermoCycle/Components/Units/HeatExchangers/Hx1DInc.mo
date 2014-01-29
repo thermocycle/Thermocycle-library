@@ -248,19 +248,22 @@ Q_wf_ = WorkingFluid.Q_tot;
           smooth=Smooth.None,
           fillColor={0,0,0},
           fillPattern=FillPattern.Solid)}),
-    Documentation(info="<HTML>
-<p><big> Model <b>Hx1DInc</b> represent the model of a counter-current plate heat exchanger where one of the two fluid is modeled as an incompressible fluid. It is based on the connection of different sub-components:
-<ul><li> A Flow1Dim component representing the flow of the fluid in one side of the exchanger
-<li> A Flow1DimInc component representing the flow of the fluid in the other side of the exchanger
-<li> A MetalWall component representing the thermal energy accumulation in the metal wall
-<li> A CountCurr component that enables the possibility of parallel or countercurrent flow </ul>
-<p><b><big>Modelling options</b></p>
-  <p><big> In the <b>Initialization</b> tab the following options are availabe:
-        <ul><li> steadystate_T_sf: if  true, the derivative of temperature of the incompressible fluid is set to zero during <em>Initialization</em> 
-         <li> steadystate_h_wf: if  true, the derivative of enthalpy of the working fluid is set to zero during <em>Initialization</em>
-         <li> steadystate_T_wall: if  true, the derivative of Temperature of the metal wall is set to zero during <em>Initialization</em>
-         </ul>
-        <p><b><big>Numerical options</b></p>
-<p><big>The numerical options available for the <b>HxRec1DInc</b> are the one implemented in <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>.
+    Documentation(info="<html>
+<p>Model <b>Hx1DInc</b> represent the model of a counter-current plate heat exchanger where one of the two fluid is modeled as an incompressible fluid. It is based on the connection of different sub-components: </p>
+<p><ul>
+<li>A Flow1Dim component representing the flow of the fluid in one side of the exchanger </li>
+<li>A Flow1DimInc component representing the secondary fluid flow</li>
+<li>A MetalWall component representing the thermal energy accumulation in the metal wall </li>
+<li>A CountCurr component that enables the possibility of parallel or countercurrent flow </li>
+</ul></p>
+<p><b>Modelling options</b> </p>
+<p>In the <b>Initialization</b> tab the following options are availabe: </p>
+<p><ul>
+<li>steadystate_T_sf: if true, the derivative of temperature of the incompressible fluid is set to zero during <i>Initialization</i> </li>
+<li>steadystate_h_wf: if true, the derivative of enthalpy of the working fluid is set to zero during <i>Initialization</i> </li>
+<li>steadystate_T_wall: if true, the derivative of Temperature of the metal wall is set to zero during <i>Initialization</i> </li>
+</ul></p>
+<p><b>Numerical options</b></p>
+<p>The numerical options available for the <b>HxRec1DInc</b> are the one implemented in <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>. </p>
 </html>"));
 end Hx1DInc;
