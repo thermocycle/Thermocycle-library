@@ -216,5 +216,16 @@ equation
                       graphics), Icon(coordinateSystem(extent={{-100,-100},
             {100,100}})),
     experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+    __Dymola_experimentSetupOutput,
+    Documentation(info="<html>
+<p>Dynamic model of an Organic Rankine Cycle with recuperator and R245fa as working fluid.</p>
+<p><h4><font color=\"#008000\">Modeling assumptions</font></h4></p>
+<p><ul>
+<li> The pressure drops are lumped into two punctual pressure drop components in the vapor lines</li>
+<li> No control of the cycle is implemented</li>
+<li> The properties of R245fa are calculated using CoolProp</li>
+<li> The centrifugal pump and the screw expander are modeled using efficiency curves derived from experimental data</li>
+</ul></p>
+<p><br/>NB: A second version of this model is also provided, in which the properties of R245fa are computed in CoolProp with the TTSE method, which dramatically increases the simulation speed.</p>
+</html>"));
 end ORC_245faInc;

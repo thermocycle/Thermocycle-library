@@ -1,4 +1,4 @@
-within ThermoCycle.Examples.Simulations.Plants;
+﻿within ThermoCycle.Examples.Simulations.Plants;
 model SQThesisModel
   "Non-regenerative ORC with double-PID control system and variable Tev"
 
@@ -147,7 +147,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP DP_ev(
     annotation (Placement(transformation(extent={{-16,34},{-2,48}})));
 equation
   connect(expander.flange_elc,generator. shaft) annotation (Line(
-      points={{74,15},{76,15},{76,15},{83.54,15}},
+      points={{74,15},{83.54,15}},
       color={0,0,0},
       smooth=Smooth.None,
       thickness=0.5));
@@ -252,5 +252,18 @@ equation
             -100},{100,100}}),
                       graphics),
     experiment(StopTime=1669),
-    __Dymola_experimentSetupOutput(equdistant=false));
+    __Dymola_experimentSetupOutput(equdistant=false),
+    Documentation(info="<html>
+<p>Dynamic model of a non-recuperative Organic Rankine Cycle with its control system.</p>
+<p><h4><font color=\"#008000\">Modeling assumptions</font></h4></p>
+<p><ul>
+<li>The pressure drops are lumped into two punctual pressure drop components in the vapor lines</li>
+<li>The control is performed using two PI controllers</li>
+<li>The superheating is controlled with the pump speed and the evaporation temperature is controlled with the expander speed.</li>
+<li>The properties of R245fa are calculated using CoolProp</li>
+<li>The volumetric pump and the scroll expander are modeled using efficiency curves derived from experimental data</li>
+</ul></p>
+<p><h4><font color=\"#008000\">Reference</font></h4></p>
+<p>Quoilin, S. (2011). <a href=\"http://hdl.handle.net/2268/96436\">Sustainable energy conversion through the use of Organic Rankine Cycles for waste heat recovery and solar applications</a>. Doctoral thesis, University of Li&egrave;ge, ​Li&egrave;ge, ​​Belgium.</p>
+</html>"));
 end SQThesisModel;
