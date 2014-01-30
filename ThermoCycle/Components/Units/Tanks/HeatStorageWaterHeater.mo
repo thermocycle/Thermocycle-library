@@ -18,7 +18,6 @@ package HeatStorageWaterHeater
       "Height of the top of the heat exchanger";
 
     parameter Integer N=15 "Total number of cells";
-
     parameter Integer N1=integer(h1*N/htot)
       "Cell corresponding to the bottom of the heat exchanger";
     parameter Integer N2=integer(h2*N/htot)

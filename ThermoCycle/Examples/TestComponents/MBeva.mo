@@ -6,12 +6,12 @@ model MBeva
     Mdot_0=0.05,
     redeclare package Medium = ThermoCycle.Media.Water,
     p=6000000)
-    annotation (Placement(transformation(extent={{-86,-52},{-66,-32}})));
+    annotation (Placement(transformation(extent={{-84,-54},{-64,-34}})));
   Modelica.Blocks.Sources.Constant Hin(k=852540)
     annotation (Placement(transformation(extent={{-100,-16},{-80,4}},
           rotation=0)));
   Modelica.Blocks.Sources.Constant Pout(k=1e5)
-    annotation (Placement(transformation(extent={{128,12},{108,32}},
+    annotation (Placement(transformation(extent={{130,10},{110,30}},
                                                                    rotation=
            0)));
  ThermoCycle.Components.Units.HeatExchangers.MBeva MB_eva(
@@ -58,11 +58,11 @@ model MBeva
     annotation (Placement(transformation(extent={{54,-64},{74,-44}})));
 equation
   connect(Hin.y, sourceMdot.in_h) annotation (Line(
-      points={{-79,-6},{-70,-6},{-70,-36}},
+      points={{-79,-6},{-68,-6},{-68,-38}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Pout.y, sinkP.in_p0) annotation (Line(
-      points={{107,22},{94,22},{94,-27.2}},
+      points={{109,20},{94,20},{94,-27.2}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(sourceCdot.flange, MB_eva.InFlow_sf) annotation (Line(
@@ -70,7 +70,7 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   connect(sourceMdot.flangeB, MB_eva.InFlow) annotation (Line(
-      points={{-67,-42},{-58,-42},{-58,-40},{-50,-40},{-50,-29.36},{-25.52,
+      points={{-65,-44},{-58,-44},{-58,-40},{-50,-40},{-50,-29.36},{-25.52,
           -29.36}},
       color={0,0,255},
       smooth=Smooth.None));
