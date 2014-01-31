@@ -8,6 +8,6 @@ Gnielinski2010
 RePrHeatTransfer
 ConstantHeatTransfer
 IdealHeatTransfer
+GnielinskiHeatTransfer
 HX_base
 HX_full
-GnielinskiHeatTransfer
