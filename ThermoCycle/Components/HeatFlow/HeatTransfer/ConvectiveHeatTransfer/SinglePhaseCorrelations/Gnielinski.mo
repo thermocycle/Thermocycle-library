@@ -88,5 +88,17 @@ equation
 
   annotation(Documentation(info="<html>
 <p>Base class. </p>
+
+<dl>
+<dt>inbook<a name=\"Gnielinski2010\">(Gnielinski2010)</a></dt>
+<dd>Gnielinski, V.</dd>
+<dd><i>VDI Heat Atlas</i></dd>
+<dd>Stephan, P. <i>(ed.)</i></dd>
+<dd>Chapter G1 Heat Transfer in Pipe Flow</dd>
+<dd>Springer, <b>2010</b>, pp. 691-700</dd>
+
+</dl>
+
+
 </html>"));
 end Gnielinski;

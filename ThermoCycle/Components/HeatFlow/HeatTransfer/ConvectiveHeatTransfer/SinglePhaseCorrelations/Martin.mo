@@ -120,4 +120,18 @@ equation
   Hg  = xi / 2 * Re^2 "Eq. 18 and 23";
   Nu  = c_q * Pr^(1/3) * (eta/eta_f_w)^(1/6) * (2 * Hg * sin(2*phi))^q "Eq. 25";
 
+  annotation (Documentation(info="<html>
+
+<dl>
+<dt>inbook<a name=\"Martin2010\">(Martin2010)</a></dt>
+<dd>Martin, H.</dd>
+<dd><i>VDI Heat Atlas</i></dd>
+<dd>Stephan, P. <i>(ed.)</i></dd>
+<dd>Chapter N6 Pressure Drop and Heat Transfer in Plate Heat Exchangers</dd>
+<dd>Springer, <b>2010</b>, pp. 1515-1522</dd>
+
+</dl>
+
+
+</html>"));
 end Martin;

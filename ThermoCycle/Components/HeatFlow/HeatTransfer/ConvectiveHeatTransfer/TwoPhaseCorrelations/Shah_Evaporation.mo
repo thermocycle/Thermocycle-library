@@ -116,4 +116,16 @@ equation
 
   htc_TP = U;
 
+  annotation (Documentation(info="<html>
+
+
+<dl>
+<dt>article<a name=\"Shah1982\">(Shah1982)</a></dt>
+<dd>Shah, M.M.</dd>
+<dd><i>Chart Correlation For Saturated Boiling Heat Transfer: Equations And Further Study</i></dd>
+<dd>ASHRAE Transactions, <b>1982</b>, Vol. 88, pp. 185-196</dd>
+
+</dl>
+
+</html>"));
 end Shah_Evaporation;

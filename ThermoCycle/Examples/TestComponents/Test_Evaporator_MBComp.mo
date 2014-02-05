@@ -19,7 +19,6 @@ model Test_Evaporator_MBComp
     Unom_sf=20000,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-
     Unom_l=3000,
     Unom_tp=10000,
     Unom_v=3000,
@@ -33,6 +32,7 @@ model Test_Evaporator_MBComp
     pstart_wf=6000000,
     Tstart_outlet_sf=625.15)
     annotation (Placement(transformation(extent={{-28,0},{8,38}})));
+
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
     Mdot_0=0.05,
     redeclare package Medium = ThermoCycle.Media.Water,
