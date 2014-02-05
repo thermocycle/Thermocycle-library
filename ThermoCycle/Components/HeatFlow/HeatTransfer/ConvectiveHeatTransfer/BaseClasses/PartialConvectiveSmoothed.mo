@@ -28,7 +28,10 @@ parameter Real    massFlowExp(min=0,max=1) = 0.8
   Real TPV(min=0, max=1);
   Real LV(min=0, max=1);
   Real massFlowFactor(min=0);
-  Real x_L,x_LTP,x_TPV,x_V "Vapor quality";
+  Real x_L;
+  Real x_LTP;
+  Real x_TPV;
+  Real x_V "Vapor quality";
 
   Real divisor = 10;
 

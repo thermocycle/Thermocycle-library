@@ -581,6 +581,7 @@ condition to calculate the length of each section.
          <li> The velocity of the fluid is uniform on the cross sectional area
          <li> The enthalpy of the fluid is linear in each region of the tube (sub-cooled, two-phase, super-heated)
          <li> Pressure is considered constant
+         <li> Constant void fraction
          <li> Thermal energy accumulation in the metal wall is taken into account
          <li> The secondary fluid is treated as a constant heat capacity fluid
          <li> The heat transfer between the secondary fluid and the metal wall and between the metal wall and the primary fluid is computed using the epsilon-NTU method

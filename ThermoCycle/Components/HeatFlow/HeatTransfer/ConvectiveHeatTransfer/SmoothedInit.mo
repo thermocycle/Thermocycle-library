@@ -58,13 +58,23 @@ model SmoothedInit
   Modelica.SIunits.CoefficientOfHeatTransfer    U_cor;
 
   //Define filtered states to avoid spikes at phase boundary
-  Medium.ThermodynamicState state, state_L, state_TP, state_V
-    "the different states";
+  Medium.ThermodynamicState state;
+  Medium.ThermodynamicState state_L;
+  Medium.ThermodynamicState state_TP;
+  Medium.ThermodynamicState state_V "the different states";
 
-  Medium.SpecificEnthalpy h_bub_TP, h_dew_TP, h_bub_L, h_dew_V, delta_h, h_bub, h_dew
-    "Changed bubble and dew state enthalpies";
+  Medium.SpecificEnthalpy h_bub_TP;
+  Medium.SpecificEnthalpy h_dew_TP;
+  Medium.SpecificEnthalpy h_bub_L;
+  Medium.SpecificEnthalpy h_dew_V;
+  Medium.SpecificEnthalpy delta_h;
+  Medium.SpecificEnthalpy h_bub;
+  Medium.SpecificEnthalpy h_dew "Changed bubble and dew state enthalpies";
   Medium.AbsolutePressure p;
-  Medium.SpecificEnthalpy h, h_L, h_V, h_TP;
+  Medium.SpecificEnthalpy h;
+  Medium.SpecificEnthalpy h_L;
+  Medium.SpecificEnthalpy h_V;
+  Medium.SpecificEnthalpy h_TP;
 
 initial algorithm
   U_filtered := U_nom;

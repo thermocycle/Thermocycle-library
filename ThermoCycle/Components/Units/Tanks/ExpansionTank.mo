@@ -12,7 +12,7 @@ annotation (choicesAllMatching = true);
     annotation (Placement(transformation(extent={{90,-10},{110,10}}),
         iconTransformation(extent={{90,-10},{110,10}})));
  ThermoCycle.Interfaces.HeatTransfer.ThermalPortL TankWall
-   annotation (Placement(transformation(extent={{-100,-30},{-84,44}})));
+   annotation (Placement(transformation(extent={{-100,-36},{-84,38}})));
 
 /************ Constants  ************/
 constant Real g=Modelica.Constants.g_n;
@@ -26,15 +26,17 @@ final parameter Modelica.SIunits.Length   r_int = ((V_tank/(H_D)*4/pi)^(1/3))/2
     "Internal tank radius ";
 final parameter Modelica.SIunits.Length   D_int = r_int*2
     "Internal tank Diameter ";
-final parameter Modelica.SIunits.Length   H = sqrt( V_tank/(pi*r_int))
-    "Tank Height ";
+final parameter Modelica.SIunits.Length   H = V_tank/A_cross "Tank Height ";
 final parameter Modelica.SIunits.Area A_lateral=pi*H*D_int
     "Lateral External Area ";
 final parameter Modelica.SIunits.Area A_cross= pi*r_int^2
     "Cross section of the tank External Area ";
-final parameter Modelica.SIunits.Area Atot_tank= A_lateral + 2*pi*r_int^2
+final parameter Modelica.SIunits.Area Atot_tank= A_lateral + 2*A_cross
     "Total External Area (lateral + bottom + top)";
 
+parameter Boolean p_const = false "Impose a constant pressure to the tank";
+parameter Modelica.SIunits.Pressure p_ext = 1e5 "Constant pressure value"
+                                                                         annotation (Dialog(enable=p_const));
  /************ FLUID INITIAL VALUES ***************/
   parameter Modelica.SIunits.Temperature Tstart "Initial temperature"
     annotation (Dialog(tab="Initialization"));
@@ -77,8 +79,8 @@ final parameter Real pV_gas = pstart*V_tank*(1 - L_lstart) "Initial value of ";
  final M_dot = M_dot,
  final x = 0,
  final FluidState={fluidState})
-                           annotation (Placement(transformation(extent={{-4,-24},
-             {16,-4}})));
+                           annotation (Placement(transformation(extent={{16,-32},
+            {36,-12}})));
 
 /********** Variables ****************/
 Medium.ThermodynamicState  fluidState;
@@ -113,17 +115,26 @@ M_l = rho*V_l;
 
 L_l = Level;
 L_l = V_l/V_tank;
-V_tank = V_l + V_gas;
 
+//V_tank = V_l + V_gas;
+/* Boyle's law */
+//p_gas*V_gas = pV_gas;
+
+if p_const then
+p_gas = 0;
+V_gas = 0;
+  p = p_ext;
+  p_fl - p = g*V_l/A_cross*rho;
+else
+  V_tank = V_l + V_gas;
 /* Boyle's law */
 p_gas*V_gas = pV_gas;
-
 p = p_gas;
-
 p_fl - p_gas = g*V_l/A_cross*rho;
+end if;
 
 /* Energy Balance */
-dMdt*h + der(h)*M_l - der(p)*V_l - p*der(V_l) = h_su*M_dot- Atot_tank*qdot;
+dMdt*h + der(h)*M_l - der(p)*V_l - p*der(V_l) = (h_su-h)*M_dot- Atot_tank*qdot;
 
 qdot = heatTransfer.q_dot[1];
 
@@ -144,10 +155,10 @@ h_su = if noEvent(M_dot <= 0) then h else inStream(InFlow.h_outflow);
 /*Mass Flow*/
  M_dot = InFlow.m_flow;
 //
-   connect(heatTransfer.thermalPortL[1], TankWall) annotation (Line(
-       points={{5.8,-7.4},{5.8,7},{-92,7}},
-       color={255,0,0},
-       smooth=Smooth.None));
+  connect(TankWall, heatTransfer.thermalPortL[1]) annotation (Line(
+      points={{-92,1},{-46,1},{-46,0},{25.8,0},{25.8,-15.4}},
+      color={255,0,0},
+      smooth=Smooth.None));
   annotation (Diagram(graphics), Icon(graphics={
         Rectangle(
           extent={{-100,100},{-98,-100}},
@@ -193,7 +204,7 @@ h_su = if noEvent(M_dot <= 0) then h else inStream(InFlow.h_outflow);
 <p><b>Pressure</b> and <b>enthalpy</b> are selected as state variables. </p>
 <p>The assumptions for this model are: </p>
 <p><ul>
-<li>The gas is considered ideal and using Boyle&apos;s law: p_gas*V_gas = Const = pstart*V_gas </li>
+<li>The gas is considered ideal and using Boyle's law: p_gas*V_gas = Const = pstart*V_gas </li>
 <li>The gas is considered at the same temperature of the fluid </li>
 <li>The model is based on dynamic mass and energy balances of the fluid </li>
 <li>The static pressure head due to the liquid level is taken into account </li>
@@ -202,11 +213,12 @@ h_su = if noEvent(M_dot <= 0) then h else inStream(InFlow.h_outflow);
 <li>Maximum liquid level with respect to tank height= 0.5 </li>
 </ul></p>
 <p>The model is characterized by one flow connector. </p>
-<p>The thermal energy transfer through the Tank surface is computed by the <i><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></i> model which is inerithed in the <i>ExpansionTank</i> model </p>
+<p>The thermal energy transfer through the tank surface is computed by the <i><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></i> model which is inerithed in the <i>ExpansionTank</i> model </p>
 <p><b>Modelling options</b> </p>
 <p>In the <b>General</b> tab the following options are availabe: </p>
 <p><ul>
 <li>Medium: the user has the possibility to easly switch Medium. </li>
+<li>p_const:If true an user defined constant pressure is imposed to the fluid volume --> closed tank at constant pressure</li>
 <li>HeatTransfer: selection between the different heat transfer models available in ThermoCycle</li>
 </ul></p>
 </html>"));

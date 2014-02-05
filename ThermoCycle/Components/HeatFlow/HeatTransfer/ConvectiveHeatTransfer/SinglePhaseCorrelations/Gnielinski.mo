@@ -13,7 +13,9 @@ model Gnielinski "Gnielinski pipe equations"
   parameter Modelica.SIunits.Length l(min=0) =   0.250 "Pipe or plate length";
   parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_i^2 / 4
     "Cross section area";
-  Modelica.SIunits.ReynoldsNumber Re(min=0),Re_tur(min=0),Re_lam(min=0);
+  Modelica.SIunits.ReynoldsNumber Re(min=0);
+  Modelica.SIunits.ReynoldsNumber Re_tur(min=0);
+  Modelica.SIunits.ReynoldsNumber Re_lam(min=0);
   Modelica.SIunits.PrandtlNumber Pr(min=0);
 
   // Fluid properties

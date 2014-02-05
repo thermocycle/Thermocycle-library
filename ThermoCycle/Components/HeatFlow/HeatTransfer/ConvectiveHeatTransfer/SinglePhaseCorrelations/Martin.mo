@@ -50,8 +50,12 @@ model Martin
   Modelica.SIunits.NusseltNumber Nu(min=0);
   Real Hg(min=0) "Hagen number";
   Real xi(min=0) "Friction factor";
-  Real xi_0(min=0),xi_0_lam(min=0),xi_0_tur(min=0) "Friction factor, 0 deg";
-  Real xi_1(min=0),xi_1_lam(min=0),xi_1_tur(min=0) "Friction factor, 90 deg";
+  Real xi_0(min=0);
+  Real xi_0_lam(min=0);
+  Real xi_0_tur(min=0) "Friction factor, 0 deg";
+  Real xi_1(min=0);
+  Real xi_1_lam(min=0);
+  Real xi_1_tur(min=0) "Friction factor, 90 deg";
   Real lamTurb(min=0,max=1,nominal=0.5) "Laminar or turbulent flow";
   Modelica.SIunits.Velocity w "Fluid velocity";
   Modelica.SIunits.Area A_0(min=0) "Plate projection";
@@ -68,7 +72,8 @@ model Martin
   //Modelica.SIunits.HeatFlowRate Q_dot "Heat flow";
   Modelica.SIunits.CoefficientOfHeatTransfer alpha;
 
-  Real part1, part2;
+  Real part1;
+  Real part2;
 
 equation
   // Get the required thermophysical properties

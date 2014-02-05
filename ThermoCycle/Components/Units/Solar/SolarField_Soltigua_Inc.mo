@@ -295,8 +295,7 @@ end for;
           textString="V_winD [m/s]")}),
                                  Documentation(info="<HTML>
 
-<p><big>The <b>SolarField_Soltigua_Inc</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarField_Forristal_Inc\">SolarField_Forristal_Inc</a> model.
- <p><big>The dynamic one-dimensional radial energy balance around the heat collector element is derived using the  <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSoltigua\">AbsSoltigua</a> model.
-  <p><big>The model allows to defocusing the collectors based on the Internal focusing signal. TRUE Defocusing = 0, FALSE Defocusing =1
+<p><big>The <b>SolarField_Soltigua_Inc</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarField_Soltigua\">SolarField_Soltigua</a> model.
+ <p><big> In this case the fluid flow through the solar collector is modeled as an incompressible fluid.
  </HTML>"));
 end SolarField_Soltigua_Inc;

@@ -276,7 +276,7 @@ end for;
           textString="V_winD [m/s]")}),
                                  Documentation(info="<HTML>
 
-<p><big>The <b>SolarField_SchottSopo_Inc</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarField_Forristal_Inc\">SolarField_Forristal_Inc</a> model.
- <p><big>The dynamic one-dimensional radial energy balance around the heat collector element is based on the Schott test analysis using the  <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSchottSopo\">AbsSchottSopo</a> model.
+<p><big>The <b>SolarField_SchottSopo_Inc</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarField_SchottSopo\">SolarField_SchottSopo</a> model.
+In this case the fluid flow through the solar collector is modeled as an incompressible fluid.
  </HTML>"));
 end SolarField_SchottSopo_Inc;

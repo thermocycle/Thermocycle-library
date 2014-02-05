@@ -322,7 +322,11 @@ end for;
                                  Documentation(info="<HTML>
 
 <p><big>The <b>SolarField_Soltigua</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarField_Forristal\">SolarField_Forristal</a> model.
- <p><big>The dynamic one-dimensional radial energy balance around the heat collector element is calculated with the    <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSoltigua\">AbsSoltigua</a> model.
+ <p><big>The dynamic one-dimensional radial energy balance around the heat collector element is represented by the    <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSoltigua\">AbsSoltigua</a> model.
+<p><big>In this model the dimensions of the collectors are fixed and the user can choose the configuration of the solar field:
+ <ul><li> Nt: Number of collectors in series
+ <li> Ns: Number of collectors in parallel
+ </ul>
   <p><big>The model allows to defocusing the collectors based on the Internal focusing signal. TRUE Defocusing = 0, FALSE Defocusing =1
   
  

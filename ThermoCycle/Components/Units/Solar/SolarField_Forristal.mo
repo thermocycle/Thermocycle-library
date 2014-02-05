@@ -438,12 +438,13 @@ connect(InFlow, flow1Dim[1].InFlow);
      Documentation(info="<HTML>
 
 <p><big>The <b>SolarField_Forristal</b> model represents the solar field, composed by
-  a loop of parabolic collectors, based on the Forristal model, that can be connected in series and in parallel. The large ratio between diameter and length allows a 1-D discretization of the absorber tube.
+  a loop of parabolic collectors, based on <a href=\"http://www.nrel.gov/csp/troughnet/pdfs/34169.pdf\">Forristal model</a>. The large ratio between diameter 
+  and length allows a 1-D discretization of the absorber tube.
    The model is composed by two sub-components: the <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> and the <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.SolAbsForristal\">SolAbsForristal</a> components. 
 They are connected together through a thermal port.
 </p>
 
-<p><big>The <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> models the Heat transfer fluid flow in the heat collector element.
+<p><big>The <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> models the fluid flow in the heat collector element.
 <p><big>The <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolAbs\">SolAbs</a> represents the dynamic one-dimensional radial energy balance around the heat collector element.
 
 <p><big> The inputs to the model representing the ambient conditions are:</p>

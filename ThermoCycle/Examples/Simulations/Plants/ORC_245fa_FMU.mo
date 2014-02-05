@@ -27,11 +27,11 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_hp(
     redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     constinit=false,
     use_rho_nom=true,
+    UseHomotopy=false,
     p_nom=2357000,
     T_nom=413.15,
     DELTAp_lin_nom=3000,
-    DELTAp_quad_nom=5150,
-    UseHomotopy=false)
+    DELTAp_quad_nom=5150)
     annotation (Placement(transformation(extent={{-22,42},{-2,62}})));
 ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
                                                         expander(
@@ -68,11 +68,11 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     A=(2*9.5*23282.7)^(-0.5),
     Mdot_nom=0.2588,
     use_rho_nom=true,
+    UseHomotopy=false,
     p_nom=190000,
     T_nom=351.15,
     DELTAp_lin_nom=3000,
-    DELTAp_quad_nom=5150,
-    UseHomotopy=false)
+    DELTAp_quad_nom=5150)
     annotation (Placement(transformation(extent={{32,0},{12,20}})));
 ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
     Unom_l=500,
@@ -89,12 +89,12 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
     Unom_sf=335,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
     Tstart_inlet_sf=293.15,
-    Tstart_outlet_sf=296.36,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    Tstart_outlet_sf=296.36)
     annotation (Placement(transformation(extent={{62,-50},{38,-70}})));
 
 ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(

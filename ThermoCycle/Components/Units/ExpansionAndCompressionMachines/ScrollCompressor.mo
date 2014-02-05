@@ -245,6 +245,7 @@ package ScrollCompressor
   Modelica.SIunits.Power W_dot_in;
   Modelica.SIunits.AngularVelocity omega_m
       "Angular velocity of the shaft [rad/s] ";
+
     ThermoCycle.Interfaces.Fluid.FlangeA su(
       redeclare package Medium =
           ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ScrollCompressor.R22)
@@ -265,6 +266,7 @@ package ScrollCompressor
   //Thermodynamic states
   inlet = Medium.setState_ph(su.p,inStream(su.h_outflow));
   outlet = Medium.setState_ph(ex.p,ex.h_outflow);
+
   //Using preferably functions for which the derivative is defined:
   rho_su = Medium.density_ph(su.p,inStream(su.h_outflow));
 
@@ -284,6 +286,7 @@ package ScrollCompressor
 
   //Isentropic compression
   w_1 = (h_s-inlet.h);
+
   //Constant-volume compression
   w_2 = (ex.p - P_ad) / inside.d;
 

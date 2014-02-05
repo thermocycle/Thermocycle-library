@@ -330,6 +330,10 @@ end for;
                                  Documentation(info="<HTML>
 
 <p><big>The <b>SolarField_SchottSopo</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarField_Forristal\">SolarField_Forristal</a> model.
- <p><big>The dynamic one-dimensional radial energy balance around the heat collector element is based on the Schott test analysis using the  <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSchottSopo\">AbsSchottSopo</a> model.
+ <p><big>In this model the dimensions of the collectors are fixed and the user can choose the configuration of the solar field:
+ <ul><li> Nt: Number of collectors in series
+ <li> Ns: Number of collectors in parallel
+ </ul>
+ The dynamic one-dimensional radial energy balance around the heat collector element is based on the Schott test analysis using the  <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSchottSopo\">AbsSchottSopo</a> model.
  </HTML>"));
 end SolarField_SchottSopo;

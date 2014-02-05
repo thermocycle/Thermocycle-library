@@ -205,7 +205,7 @@ package HeatStorageWaterHeater
         points={{-0.4,-12.26},{-0.4,-9.445},{-0.08,-9.445},{-0.08,-6.63},{2.32,
             -6.63},{2.32,-1.5}},
         color={255,0,0},
-        smooth=Smooth.None), Diagram(coordinateSystem(preserveAspectRatio=false,
+        smooth=Smooth.None), Diagram(coordinateSystem(preserveAspectRatio=true,
             extent={{-100,-100},{100,100}}), graphics),
       experiment(StopTime=5000),
       __Dymola_experimentSetupOutput,

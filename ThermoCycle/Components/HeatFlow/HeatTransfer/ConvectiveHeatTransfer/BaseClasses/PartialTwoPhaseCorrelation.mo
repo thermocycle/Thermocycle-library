@@ -12,14 +12,18 @@ partial model PartialTwoPhaseCorrelation
 
   Modelica.SIunits.CoefficientOfHeatTransfer U;
 
-  Medium.ThermodynamicState bubbleState, bubbleState_TP "Thermodynamic state";
-  Medium.ThermodynamicState dewState,    dewState_TP "Thermodynamic state";
+  Medium.ThermodynamicState bubbleState;
+  Medium.ThermodynamicState bubbleState_TP "Thermodynamic state";
+  Medium.ThermodynamicState dewState;
+  Medium.ThermodynamicState dewState_TP "Thermodynamic state";
   Medium.ThermodynamicState filteredState "Thermodynamic state";
   Modelica.SIunits.QualityFactor x "Vapour quality";
   Real deltaX = 1e-5;
 
-  Medium.SpecificEnthalpy h_bub_TP, h_dew_TP, h_bub_L, h_dew_V
-    "Changed bubble and dew state enthalpies";
+  Medium.SpecificEnthalpy h_bub_TP;
+  Medium.SpecificEnthalpy h_dew_TP;
+  Medium.SpecificEnthalpy h_bub_L;
+  Medium.SpecificEnthalpy h_dew_V "Changed bubble and dew state enthalpies";
   Medium.AbsolutePressure p;
 
 equation

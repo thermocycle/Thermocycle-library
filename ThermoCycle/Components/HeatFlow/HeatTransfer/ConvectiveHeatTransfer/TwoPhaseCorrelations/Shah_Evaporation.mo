@@ -24,23 +24,46 @@ model Shah_Evaporation "Shah correlation for evaporation"
 
   Real G(unit="kg/(s.m.m)") "Mass flux";
   Modelica.SIunits.FroudeNumber Fr_l;
-  Modelica.SIunits.CoefficientOfHeatTransfer htc_l,htc_TP;
+  Modelica.SIunits.CoefficientOfHeatTransfer htc_l;
+  Modelica.SIunits.CoefficientOfHeatTransfer htc_TP;
   Real Bo(unit="1") "Boiling number";
 
   // Constants and factors
   Real Co(unit="1");
-  Real F_hi(unit="1"), F_lo(unit="1"), F_trans(unit="1"), F(unit="1");
-  Real N_hi(unit="1"), N_lo(unit="1"), N_trans(unit="1"), N(unit="1");
-  Real Fr_l_start(unit="1"), Fr_l_stop(unit="1");
+  Real F_hi(unit="1");
+  Real F_lo(unit="1");
+  Real F_trans(unit="1");
+  Real F(unit="1");
+  Real N_hi(unit="1");
+  Real N_lo(unit="1");
+  Real N_trans(unit="1");
+  Real N(unit="1");
+  Real Fr_l_start(unit="1");
+  Real Fr_l_stop(unit="1");
 
   //Boiling enhancement terms
-  Real psi_nb_hi(unit="1"),psi_nb_lo(unit="1");
-  Real psi_nb_trans(unit="1"),psi_nb(unit="1"),psi_cb(unit="1"),psi_N10(unit="1");
-  Real psi_nbbs(unit="1"),psi_N05(unit="1");
-  Real psi_bs(unit="1"),psi_N01(unit="1");
-  Real psi_0105_trans(unit="1"),psi_0105_hi(unit="1"),psi_0105_lo(unit="1"),psi_0105(unit="1");
-  Real psi_0510_trans(unit="1"),psi_0510_hi(unit="1"),psi_0510_lo(unit="1"),psi_0510(unit="1");
-  Real psi_trans(unit="1"),psi_hi(unit="1"),psi_lo(unit="1"),psi(unit="1");
+  Real psi_nb_hi(unit="1");
+  Real psi_nb_lo(unit="1");
+  Real psi_nb_trans(unit="1");
+  Real psi_nb(unit="1");
+  Real psi_cb(unit="1");
+  Real psi_N10(unit="1");
+  Real psi_nbbs(unit="1");
+  Real psi_N05(unit="1");
+  Real psi_bs(unit="1");
+  Real psi_N01(unit="1");
+  Real psi_0105_trans(unit="1");
+  Real psi_0105_hi(unit="1");
+  Real psi_0105_lo(unit="1");
+  Real psi_0105(unit="1");
+  Real psi_0510_trans(unit="1");
+  Real psi_0510_hi(unit="1");
+  Real psi_0510_lo(unit="1");
+  Real psi_0510(unit="1");
+  Real psi_trans(unit="1");
+  Real psi_hi(unit="1");
+  Real psi_lo(unit="1");
+  Real psi(unit="1");
 
   Medium.Density rho_l;
   Medium.Density rho_v;
