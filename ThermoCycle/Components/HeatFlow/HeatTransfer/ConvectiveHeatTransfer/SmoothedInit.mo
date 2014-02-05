@@ -1,7 +1,10 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer;
 model SmoothedInit
   "SmoothedInit: Smooth transitions between the different flow regimes including an initialisation and a filtering"
-  extends BaseClasses.PartialConvectiveSmoothed;
+  extends BaseClasses.PartialConvectiveSmoothed(
+  redeclare replaceable package Medium =
+        Modelica.Media.Interfaces.PartialTwoPhaseMedium
+  constrainedby Modelica.Media.Interfaces.PartialTwoPhaseMedium);
 
   parameter Modelica.SIunits.Time t_start=5 "Start of initialization"
     annotation(Dialog(tab="Initialization"));
@@ -46,24 +49,54 @@ model SmoothedInit
     "correlated heat transfer coefficient vapour side" annotation (Dialog(group=
          "Correlations"), choicesAllMatching=true);
 
-  LiquidCorrelation   liquidCorrelation(  redeclare final package Medium = Medium, state = FluidState[1], m_dot = M_dot, q_dot = q_dot[1]);
-  TwoPhaseCorrelation twoPhaseCorrelation(redeclare final package Medium = Medium, state = FluidState[1], m_dot = M_dot, q_dot = q_dot[1]);
-  VapourCorrelation   vapourCorrelation(  redeclare final package Medium = Medium, state = FluidState[1], m_dot = M_dot, q_dot = q_dot[1]);
+  LiquidCorrelation   liquidCorrelation(  redeclare final package Medium = Medium, state = state_L,  m_dot = M_dot, q_dot = q_dot[1]);
+  TwoPhaseCorrelation twoPhaseCorrelation(redeclare final package Medium = Medium, state = state_TP, m_dot = M_dot, q_dot = q_dot[1]);
+  VapourCorrelation   vapourCorrelation(  redeclare final package Medium = Medium, state = state_V,  m_dot = M_dot, q_dot = q_dot[1]);
 
   Modelica.SIunits.CoefficientOfHeatTransfer    U_cor_LTP;
   Modelica.SIunits.CoefficientOfHeatTransfer    U_cor_TPV;
   Modelica.SIunits.CoefficientOfHeatTransfer    U_cor;
+
+  //Define filtered states to avoid spikes at phase boundary
+  Medium.ThermodynamicState state, state_L, state_TP, state_V
+    "the different states";
+
+  Medium.SpecificEnthalpy h_bub_TP, h_dew_TP, h_bub_L, h_dew_V, delta_h, h_bub, h_dew
+    "Changed bubble and dew state enthalpies";
+  Medium.AbsolutePressure p;
+  Medium.SpecificEnthalpy h, h_L, h_V, h_TP;
 
 initial algorithm
   U_filtered := U_nom;
   U_limited  := U_filtered;
 
 equation
+  state    = FluidState[1];
+  p        = Medium.pressure(state);
+  h        = Medium.specificEnthalpy(state);
+
+  h_bub    = Medium.bubbleEnthalpy(Medium.setSat_p(p));
+  h_dew    = Medium.dewEnthalpy(   Medium.setSat_p(p));
+  delta_h  = h_dew-h_bub;
+
+  h_bub_L  = h_bub + x_L  *delta_h;
+  h_bub_TP = h_bub + x_LTP*delta_h;
+  h_dew_TP = h_bub + x_TPV*delta_h;
+  h_dew_V  = h_bub + x_V  *delta_h;
+
+  h_L      = min(h,h_bub_L);
+  h_TP     = max(h_bub_TP,min(h_dew_TP, h));
+  h_V      = max(h,h_dew_V);
+
+  state_L  = Medium.setState_phX(p=p,h=h_L);
+  state_TP = Medium.setState_phX(p=p,h=h_TP);
+  state_V  = Medium.setState_phX(p=p,h=h_V);
+
   U_cor_l  = liquidCorrelation.U;
   U_cor_tp = twoPhaseCorrelation.U;
   U_cor_v  = vapourCorrelation.U;
 
-  U_cor_LTP = (1-LTP)*U_cor_l  + LTP*U_cor_tp;
+  U_cor_LTP = (1-LTP)*U_cor_l + LTP*U_cor_tp;
   U_cor_TPV = (1-TPV)*U_cor_tp + TPV*U_cor_v;
   U_cor     = (1-LV) *U_cor_LTP+ LV* U_cor_TPV;
 

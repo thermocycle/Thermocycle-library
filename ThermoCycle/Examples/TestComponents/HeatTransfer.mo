@@ -108,24 +108,24 @@ end InputSelector;
     h_start_in=100e3,
     twoPhase=true,
     redeclare package Medium = ThermoCycle.Media.R134a_CP(substanceNames={"R134a|debug=0|calc_transport=1|enable_EXTTP=1|enable_TTSE=0"}),
+    m_dot_start=3,
+    m_dot_nom=3,
     redeclare model HeatTransfer =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SmoothedInit
         (
+        redeclare model LiquidCorrelation =
+            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
+            (d_hyd=0.1),
         redeclare model TwoPhaseCorrelation =
-            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations.Constant,
-        filterConstant=0.01,
-        max_dUdt=0,
-        t_start=0,
-        t_init=0.5,
+            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations.Shah_Evaporation
+            (d_hyd=0.1),
         redeclare model VapourCorrelation =
             ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
             (d_hyd=0.1),
-        smoothingRange=0.1,
-        redeclare model LiquidCorrelation =
-            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.Martin
-            (B_p=0.75, L_p=0.5)),
-    p_start=500000,
-    m_dot_start=3)
+        t_start=0,
+        t_init=0.5,
+        max_dUdt=0),
+    p_start=500000)
     annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
 
   annotation (experiment(StopTime=10));

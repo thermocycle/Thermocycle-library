@@ -118,7 +118,7 @@ equation
           lineColor={0,0,0},
           fillColor={0,0,0},
           fillPattern=FillPattern.Solid),
-        Ellipse(extent={{-48,-129},{32,-49}}, lineColor={150,150,150}),
+        Ellipse(extent={{-60,-140},{40,-40}}, lineColor={150,150,150}),
         Line(
           points={{-8,-90},{28,-58},{0,46}},
           color={0,0,0},

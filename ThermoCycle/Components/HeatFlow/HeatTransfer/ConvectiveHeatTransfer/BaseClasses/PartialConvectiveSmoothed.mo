@@ -28,17 +28,25 @@ parameter Real    massFlowExp(min=0,max=1) = 0.8
   Real TPV(min=0, max=1);
   Real LV(min=0, max=1);
   Real massFlowFactor(min=0);
+  Real x_L,x_LTP,x_TPV,x_V "Vapor quality";
+
+  Real divisor = 10;
 
 equation
-  LTP = ThermoCycle.Functions.transition_factor(start=  0-smoothingRange/2, stop=  0+smoothingRange/2, position=  x);
-  TPV = ThermoCycle.Functions.transition_factor(start=  1-smoothingRange/2, stop=  1+smoothingRange/2, position=  x);
+  x_L   = 0-smoothingRange/divisor;
+  x_LTP = 0+smoothingRange/divisor;
+  x_TPV = 1-smoothingRange/divisor;
+  x_V   = 1+smoothingRange/divisor;
 
-  U_nom_LTP = (1-LTP)*Unom_l  + LTP*Unom_tp;
-  U_nom_TPV = (1-TPV)*Unom_tp + TPV*Unom_v;
+  LTP = ThermoCycle.Functions.transition_factor(start=0-smoothingRange/2, stop=0+smoothingRange/2, position=x);
+  TPV = ThermoCycle.Functions.transition_factor(start=1-smoothingRange/2, stop=1+smoothingRange/2, position=x);
+
+  U_nom_LTP = (1-LTP)* Unom_l    + LTP*Unom_tp;
+  U_nom_TPV = (1-TPV)* Unom_tp   + TPV*Unom_v;
 
   // Not really needed, but more robust
-  LV  = ThermoCycle.Functions.transition_factor(start=  0, stop=  1, position=  x);
-  U_nom     = (1-LV) *U_nom_LTP+ LV* U_nom_TPV;
+  LV   = ThermoCycle.Functions.transition_factor(start=0,    stop=1,     position=x);
+  U_nom     = (1-LV) * U_nom_LTP + LV* U_nom_TPV;
 
   // Do the mass flow correction
   massFlowFactor = noEvent(abs(M_dot/Mdotnom)^massFlowExp);

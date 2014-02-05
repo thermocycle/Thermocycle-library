@@ -13,6 +13,6 @@ input Modelica.SIunits.CoefficientOfHeatTransfer Unom_v
     "nominal heat transfer coefficient vapor side";
 input Modelica.SIunits.MassFlowRate M_dot "Inlet massflow";
 //input Modelica.SIunits.Length diameter "Hydraulic diameter";
-input Modelica.SIunits.QualityFactor x "Vapor quality";
+input Real x "Vapor quality";
 
 end PartialConvectiveCorrelation;

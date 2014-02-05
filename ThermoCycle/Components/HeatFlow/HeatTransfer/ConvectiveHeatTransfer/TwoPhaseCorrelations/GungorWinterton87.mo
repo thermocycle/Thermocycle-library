@@ -17,7 +17,7 @@ model GungorWinterton87
     d_hyd = d_hyd,
     A_cro = A_cro,
     redeclare final package Medium = Medium,
-    state = state,
+    state = bubbleState,
     m_dot = m_dot*(1-x),
     q_dot = q_dot);
 

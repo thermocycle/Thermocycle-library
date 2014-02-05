@@ -12,23 +12,36 @@ partial model PartialTwoPhaseCorrelation
 
   Modelica.SIunits.CoefficientOfHeatTransfer U;
 
-  Medium.ThermodynamicState bubbleState "Thermodynamic state";
-  Medium.ThermodynamicState dewState "Thermodynamic state";
+  Medium.ThermodynamicState bubbleState, bubbleState_TP "Thermodynamic state";
+  Medium.ThermodynamicState dewState,    dewState_TP "Thermodynamic state";
   Medium.ThermodynamicState filteredState "Thermodynamic state";
   Modelica.SIunits.QualityFactor x "Vapour quality";
   Real deltaX = 1e-5;
 
-algorithm
-  bubbleState := Medium.setBubbleState(Medium.setSat_p(Medium.pressure(state)));
-  dewState    := Medium.setDewState(   Medium.setSat_p(Medium.pressure(state)));
-  // Filter the input to provide saturation conditions only
-  if     (Medium.vapourQuality(state) <= 0.0) then
-    filteredState := bubbleState;
-  elseif (Medium.vapourQuality(state) >= 1.0) then
-    filteredState := dewState;
+  Medium.SpecificEnthalpy h_bub_TP, h_dew_TP, h_bub_L, h_dew_V
+    "Changed bubble and dew state enthalpies";
+  Medium.AbsolutePressure p;
+
+equation
+  p           = Medium.pressure(state);
+  bubbleState = Medium.setBubbleState(Medium.setSat_p(p));
+  dewState    = Medium.setDewState(   Medium.setSat_p(p));
+  h_bub_L     = Medium.specificEnthalpy(bubbleState);
+  h_dew_V     = Medium.specificEnthalpy(   dewState);
+  h_bub_TP       = h_bub_L + (0+deltaX)*(h_dew_V - h_bub_L);
+  h_dew_TP       = h_bub_L + (1-deltaX)*(h_dew_V - h_bub_L);
+  bubbleState_TP = Medium.setState_phX(p=p,h=h_bub_TP,phase=2);
+  dewState_TP    = Medium.setState_phX(p=p,h=h_dew_TP,phase=2);
+
+  // Filter the input to provide saturation conditions only.
+  // Be careful, vapourQuality function is limited to 0<=x<=1
+  if     (Medium.vapourQuality(state) <= 0+deltaX) then
+    filteredState =  bubbleState_TP;
+  elseif (Medium.vapourQuality(state) >= 1-deltaX) then
+    filteredState =  dewState_TP;
   else
-    filteredState := state;
+    filteredState =  state;
   end if;
-  x := max(deltaX,min(1-deltaX,Medium.vapourQuality(filteredState)));
+  x =  Medium.vapourQuality(filteredState);
 
 end PartialTwoPhaseCorrelation;
