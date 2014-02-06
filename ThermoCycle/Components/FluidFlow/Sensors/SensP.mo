@@ -6,10 +6,10 @@ model SensP "Pressure sensor for working fluid"
     Modelica.Media.Interfaces.PartialMedium "Medium Model" annotation (choicesAllMatching = true);
   Modelica.Blocks.Interfaces.RealOutput p annotation (Placement(
         transformation(extent={{60,40},{100,80}}, rotation=0)));
-  Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium)
+  Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium, m_flow(min= 0))
                 annotation (Placement(transformation(extent={{-72,-44},{-52,-24}}),
         iconTransformation(extent={{-80,-58},{-40,-20}})));
-  Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium = Medium)
+  Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium = Medium, m_flow(min= 0))
                  annotation (Placement(transformation(extent={{44,-50},{64,-30}}),
         iconTransformation(extent={{40,-60},{80,-20}})));
 equation

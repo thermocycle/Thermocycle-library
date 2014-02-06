@@ -58,24 +58,21 @@ public
         origin={-32,80})));
 
 equation
+  if (PumpInput == PumpInputs.freq) then
+    f_pp = flow_in;
    if cardinality(flow_in) == 0 then
-     if PumpInput == PumpInputs.freq then
-       f_pp = f_pp0;
-     else
-       X_pp = X_pp0;
-     end if;
-
-    //flow_in = 0;
-   else
-     if PumpInput == PumpInputs.freq then
-       f_pp = flow_in;
-     else
-       X_pp = flow_in;
-     end if;
+     flow_in = f_pp0;
    end if;
+  elseif (PumpInput == PumpInputs.FF) then
+    X_pp = flow_in;
+    if cardinality(flow_in) == 0 then
+      flow_in = X_pp0;
+    end if;
+  end if;
 
    X_pp = f_pp/50;   // imposed to avoid calculation issues for some combinations of inputs
-  /*Fluid properties*/
+
+/*Fluid properties*/
   fluidState = Medium.setState_ph(p_su,h_su);
   rho_su = Medium.density(fluidState);
   h_ex = h_su + (p_ex - p_su)/(eta*rho_su);
@@ -88,7 +85,6 @@ equation
   M_dot = ThermoCycle.Functions.TestRig.GenericCentrifugalPump_MassFlowRate(
                                                                 f_pp=f_pp);
   V_dot = 1;
-    //end if;
   elseif (PumpType == PumpTypes.SQThesis) then
     eta_in = 0.931 - 0.108*log10(X_pp) - 0.204*log10(X_pp)^2 - 0.05954*log10(
     X_pp)^3;
@@ -99,7 +95,8 @@ equation
     M_dot = V_dot*rho_su;
     V_dot = epsilon_v * V_dot_max *min(X_pp, 1);
   end if;
-  /*BOUNDARY CONDITIONS */
+
+/*BOUNDARY CONDITIONS */
   /* Enthalpies */
   h_su = if noEvent(InFlow.m_flow <= 0) then h_ex else inStream(InFlow.h_outflow);
   h_su = InFlow.h_outflow;
@@ -115,7 +112,6 @@ equation
             -100},{100,100}}),
                          graphics), Diagram(coordinateSystem(
           preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics),Documentation(info="<html>
-<p><b>Information</b></p>
 <p>The Pump model represents the compression of a fluid in a turbo or volumetric machine. It is a lumped model based on performance curves where pump speed is set as an input.</p>
 <p>The assumptions for this model are:</p>
 <p><ul>

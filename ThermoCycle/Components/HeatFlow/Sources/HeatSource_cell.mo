@@ -1,12 +1,11 @@
 within ThermoCycle.Components.HeatFlow.Sources;
-model HeatSource "Source of fixed HeatFlux [W/m2] or HeatFlow[W]"
-parameter Integer N(min=1)=1 "Number of nodes";
+model HeatSource_cell "Source of fixed HeatFlux [W/m2] or HeatFlow[W]"
 parameter Boolean HeatFlow= false
     "If True then Heat through thermal port = Phi/A else = Phi";
 parameter Modelica.SIunits.Area A= 1 "Heat flux through the thermal port"
                                                                          annotation (Dialog(enable=HeatFlow));
 
-  ThermoCycle.Interfaces.HeatTransfer.ThermalPort thermalPort(N=N)
+  ThermoCycle.Interfaces.HeatTransfer.ThermalPortL thermalPort
     annotation (Placement(transformation(extent={{-10,-52},{10,-32}}),
         iconTransformation(extent={{-42,-52},{40,-30}})));
   Modelica.Blocks.Interfaces.RealInput Phi annotation (Placement(transformation(
@@ -29,9 +28,8 @@ PhiCell = -Phi;
 
 end if;
 
-for i in 1:N loop
-  thermalPort.phi[i] = PhiCell;
-end for;
+thermalPort.phi = PhiCell;
+
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
             {100,100}}),
                    graphics={Rectangle(
@@ -42,4 +40,4 @@ end for;
           extent={{-58,96},{76,60}},
           lineColor={0,0,255},
           textString="Q [W]")}),      Diagram(graphics));
-end HeatSource;
+end HeatSource_cell;

@@ -10,28 +10,39 @@ model SourceP "Pressure source for water/steam flows"
     "Temperature of fluid going out if no connector";
   parameter Boolean UseT=true "Use temperature as input instead of enthalpy";
 
-    Modelica.SIunits.Pressure p "Actual pressure";
-    Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  Modelica.SIunits.Pressure p "pressure";
+
   Modelica.Blocks.Interfaces.RealInput in_p
     annotation (Placement(transformation(
         origin={-40,92},
         extent={{-20,-20},{20,20}},
-        rotation=270)));
+        rotation=270), iconTransformation(
+        extent={{-20,-20},{20,20}},
+        rotation=270,
+        origin={-50,82})));
   Modelica.Blocks.Interfaces.RealInput in_h
     annotation (Placement(transformation(
         origin={40,90},
         extent={{-20,-20},{20,20}},
-        rotation=270)));
+        rotation=270), iconTransformation(
+        extent={{-20,-20},{20,20}},
+        rotation=270,
+        origin={60,70})));
   Modelica.Blocks.Interfaces.RealInput in_T
     annotation (Placement(transformation(
         origin={2,92},
         extent={{-20,-20},{20,20}},
-        rotation=270)));
+        rotation=270), iconTransformation(
+        extent={{-20,-20},{20,20}},
+        rotation=270,
+        origin={2,92})));
   Interfaces.Fluid.FlangeB flange( redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{84,-10},{104,10}})));
+
 equation
     flange.p = p;
-  p = in_p;
+   p = in_p;
   if cardinality(in_p)==0 then
     in_p = p0 "Pressure set by parameter";
   end if;
@@ -53,9 +64,9 @@ equation
   end if;
   annotation (
     Diagram(graphics),
-    Icon(graphics={Text(extent={{-106,90},{-52,50}}, textString=
-                                                 "p0"), Text(extent={{66,90},
-              {98,52}}, textString=
+    Icon(graphics={Text(extent={{-110,104},{-56,64}},textString=
+                                                 "p0"), Text(extent={{68,82},{100,
+              44}},     textString=
                              "h")}),
     Documentation(info="<HTML>
 

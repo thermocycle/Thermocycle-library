@@ -121,7 +121,7 @@ equation
  A_l = A_lateral*L_l;
 
   /* Energy Balance */
-  dMdt*h + der(h)*M_l = (h_su -h)*M_dot_su - (h_ex - h)*M_dot_ex - A_l*qdot;
+  dMdt*h + der(h)*M_l = (h_su -h)*M_dot_su - (h_ex - h)*M_dot_ex + A_l*qdot;
 
   qdot = heatTransfer.q_dot[1];
 
@@ -200,8 +200,7 @@ annotation (Icon(graphics={
 <li>Constant external pressure </li>
 <li>The static pressure head due to the liquid level is taken into account</li>
 <li> Thermal energy transfer through the lateral surface is ensured by the <em>TankWall</em> connector.
-The actual heat flow is computed by the thermal energy model.
-<li>Thermal energy transfer through the lateral tank surface occupied by the fluid can is considered </li>
+The actual heat flow is computed by the thermal energy model.</li>
 <li>Minimum liquid level with respect to tank height= 0 </li>
 <li>Maximum liquid level with respect to tank height= 1 </li>
 </ul></p>

@@ -165,7 +165,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(electricDrive.shaft, compressor.flange_elc) annotation (Line(
-      points={{26.32,-10},{46.3333,-10}},
+      points={{26.32,-10},{36.3267,-10},{36.3267,-10},{46.3333,-10}},
       color={0,0,0},
       smooth=Smooth.None));
   connect(evaporator.outlet_fl1, dp_ev.InFlow) annotation (Line(

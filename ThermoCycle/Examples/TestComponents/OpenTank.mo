@@ -24,13 +24,13 @@ model OpenTank
     Mdotnom=2,
     p_ext=300000,
     Tstart=373.15)
-    annotation (Placement(transformation(extent={{-20,40},{0,60}})));
+    annotation (Placement(transformation(extent={{-16,38},{4,58}})));
   Components.HeatFlow.Sensors.SensTp sensTp(redeclare package Medium =
         ThermoCycle.Media.Water)
     annotation (Placement(transformation(extent={{12,28},{32,48}})));
 equation
   connect(sourceWF.flangeB, openTank.InFlow) annotation (Line(
-      points={{-57,56},{-50,56},{-50,42},{-19.8,42},{-19.8,41.6}},
+      points={{-57,56},{-50,56},{-50,42},{-15.8,42},{-15.8,39.6}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sensTp.OutFlow, sinkVdot.flangeB) annotation (Line(
@@ -38,7 +38,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(openTank.OutFlow, sensTp.InFlow) annotation (Line(
-      points={{-0.2,41.6},{10,41.6},{10,33.2},{15,33.2}},
+      points={{3.8,39.6},{10,39.6},{10,33.2},{15,33.2}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (
