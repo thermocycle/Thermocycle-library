@@ -113,18 +113,18 @@ end InputSelector;
     redeclare model HeatTransfer =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SmoothedInit
         (
-        redeclare model LiquidCorrelation =
-            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
-            (d_hyd=0.1),
         redeclare model TwoPhaseCorrelation =
             ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations.Shah_Evaporation
             (d_hyd=0.1),
-        redeclare model VapourCorrelation =
-            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
-            (d_hyd=0.1),
         t_start=0,
         t_init=0.5,
-        max_dUdt=0),
+        max_dUdt=0,
+        redeclare model VapourCorrelation =
+            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.Gnielinski
+            (d_i=0.1),
+        redeclare model LiquidCorrelation =
+            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
+            (d_hyd=0.1)),
     p_start=500000)
     annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
 
