@@ -22,5 +22,4 @@ annotation(Documentation(info="<html>
 </p> 
  <p></p>
 </html>"));
-
 end Smoothed;

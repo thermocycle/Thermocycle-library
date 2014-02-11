@@ -14,5 +14,4 @@ annotation(Documentation(info="<html>
  
 <p></p>
 </html>"));
-
 end Constant;

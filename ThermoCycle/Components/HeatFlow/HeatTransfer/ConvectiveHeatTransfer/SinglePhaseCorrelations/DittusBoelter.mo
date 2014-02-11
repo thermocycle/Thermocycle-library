@@ -23,5 +23,4 @@ annotation(Documentation(info="<html>
  the value of the hydraulic diameter for the calculation of the heat transfer coefficient based on the DittusBoelter correlation.
  <p></p>
 </html>"));
-
 end DittusBoelter;

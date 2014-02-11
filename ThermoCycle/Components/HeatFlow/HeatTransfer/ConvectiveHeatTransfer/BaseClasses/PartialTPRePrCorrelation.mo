@@ -54,5 +54,4 @@ annotation(Documentation(info="<html>
 
  <p></p>
 </html>"));
-
 end PartialTPRePrCorrelation;
