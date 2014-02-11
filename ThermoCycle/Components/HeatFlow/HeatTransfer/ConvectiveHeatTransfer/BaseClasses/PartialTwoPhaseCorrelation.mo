@@ -47,5 +47,12 @@ equation
     filteredState =  state;
   end if;
   x =  Medium.vapourQuality(filteredState);
+annotation(Documentation(info="<html>
 
+<p><big> The model <b>PartialTwoPhaseCorrelation </b> is the basic model
+ for the calculation of heat transfer coefficient for a fluid in two-phase.</p> 
+ <p><big> In order to complete the model - from <FONT COLOR=blue>partial model</FONT>  to <FONT COLOR=blue> model</FONT> -
+ one equation calculating the heat transfer coefficient needs to be provided.</p>
+ <p></p>
+</html>"));
 end PartialTwoPhaseCorrelation;

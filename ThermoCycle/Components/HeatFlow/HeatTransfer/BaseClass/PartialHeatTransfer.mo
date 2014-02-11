@@ -1,6 +1,6 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClass;
 partial model PartialHeatTransfer
-// Partial heat transfer model
+  "Basic component for partial heat transfer model"
 replaceable package Medium=Modelica.Media.Interfaces.PartialMedium
     "Medium in the component"
     annotation(Dialog(tab="Internal Interface",enable=false));
@@ -25,7 +25,12 @@ equation
   q_dot = thermalPortL.phi;
 
 annotation(Documentation(info="<html>
-Base class for vessel heat transfer models.
+<p><big> The Partial model <b>PartialHeatTransfer</b> is the basic model for heat transfer of a real fluid in the library. It calculates the
+heat flux, q_dot[n], exchanged through the thermal port, ThermalPortL[n], for each segment n, based on the thermodynamic state of the fluid flow ,FluidState[n],  
+and the temperatures at the boundary, T_fluid and thermalPortL.T.<\p>
+<p><big> In order to complete the model - from <FONT COLOR=blue>partial model</FONT>  to <FONT COLOR=blue> model</FONT> -
+ one equation relating the exchanged heat flux, q_dot, with the fluid temperature, T_fluid,
+and the temperature at the boundary thermalPortL.T has to be privided.  
 </html>"),
       Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
             100}}),        graphics={Ellipse(

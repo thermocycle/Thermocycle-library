@@ -32,6 +32,13 @@ model Cell1D
     h=254381,
     p0=866735)
     annotation (Placement(transformation(extent={{40,4},{60,24}})));
+  Modelica.Blocks.Sources.Sine sine1(
+    startTime=10,
+    offset=0.3335,
+    amplitude=0.5,
+    phase=0,
+    freqHz=0.1)
+    annotation (Placement(transformation(extent={{-108,44},{-94,58}})));
 equation
   connect(const.y, source_T.Temperature) annotation (Line(
       points={{-45,82},{-28,82},{-28,80},{-13,80},{-13,59}},
@@ -49,9 +56,13 @@ equation
       points={{-4,18.1},{16,18.1},{16,16},{41.6,16},{41.6,14}},
       color={0,0,255},
       smooth=Smooth.None));
+  connect(sine1.y, sourceMdot1.in_Mdot) annotation (Line(
+      points={{-93.3,51},{-86,51},{-86,28}},
+      color={0,0,127},
+      smooth=Smooth.None));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
-            100}}),     graphics),
+    Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{
+            100,100}}), graphics),
     experiment(StopTime=50),
     __Dymola_experimentSetupOutput);
 end Cell1D;

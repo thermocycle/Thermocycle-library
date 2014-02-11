@@ -1,6 +1,6 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses;
 partial model PartialTPRePrCorrelation
-  "Base class for Reynolds and Prandtl number correlations for two phase fluids"
+  "Base class for Reynolds and Prandtl number correlations"
   extends PartialSinglePhaseCorrelation(
   redeclare replaceable package Medium =
         Modelica.Media.Interfaces.PartialTwoPhaseMedium
@@ -46,7 +46,13 @@ equation
   Nu =  a * Re^b * Pr^c;
   U  = Nu * lambda / cLen;
 
-  annotation(Documentation(info="<html>
-<p>Base class. </p>
+annotation(Documentation(info="<html>
+
+<p><big> The model <b>PartialTPRePrCorrelation </b> is the basic model
+ for the calculation of heat transfer coefficient using Reynolds and Prandtl number.</p> 
+
+
+ <p></p>
 </html>"));
+
 end PartialTPRePrCorrelation;

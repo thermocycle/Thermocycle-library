@@ -138,5 +138,30 @@ equation
 
   for i in 1:n loop
     U[i] = U_limited;
+    q_dot[i] = U[i]*(thermalPortL[i].T - T_fluid[i]);
   end for;
+
+ annotation(Documentation(info="<html>
+
+<p><big> The model <b>SmoothedInit</b> extends the partial model
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveSmoothed\">PartialConvectiveSmoothed</a> 
+ and allows the user to choose the correlation to calculate the heat transfer coefficient in the different zones:
+ <ul><li> liquidCorrelation: correlation for the liquid zone. The user can choose between the ones listed in 
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations\">SinglePhaseCorrelations</a> 
+<li> twoPhaseCorrelation : correlation for the two-phase zone. The user can choose between the ones listed in 
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations\">TwoPhaseCorrelations</a> 
+  <li> vaporCorrelation: correlation for the vapor zone.The user can choose between the ones listed in 
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations\">SinglePhaseCorrelations</a> 
+
+<p><big> In order to increase the robustness of the model an initialization option is available:the heat transfer coefficient value is initialized with the nominal
+ value defined by the user U_nom, and after a certain time (t_init - see below) the value is smoothed to the one calculated with the correlations previusly defined by the user.</p>
+<p><big> A filter limiting the maximum change of the heat transfer coefficent with respect to time can be activated by setting the parameter max_dUdt >=0 in the general tab. 
+
+<p><big> In the <b>Initialization</b> tab the following options are availabe:
+        <ul><li> t_start: start time for <em>Initialization</em> 
+         <li> t_init: duration of the <em>Initialization</em>
+         </ul>
+</p> 
+ <p></p>
+</html>"));
 end SmoothedInit;

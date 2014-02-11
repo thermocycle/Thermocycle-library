@@ -5,4 +5,16 @@ model Constant "Constant: Constant heat transfer coefficient"
     "Heat transfer coefficient";
 equation
   U = U_c;
+
+   annotation(Documentation(info="<html>
+
+<p><big> The model <b>Constant</b> extends the partial model
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialTwoPhaseCorrelation\">PartialTwoPhaseCorrelation</a> and 
+ impose a constant heat transfer coefficient.
+ </p>
+
+
+<p></p>
+
+</html>"));
 end Constant;

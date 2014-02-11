@@ -36,7 +36,7 @@ equation
       color={0,0,0},
       smooth=Smooth.None));
   connect(cylinder.flange, recipFlange.flange_a)    annotation (Line(
-      points={{6.10623e-16,20},{-1.04854e-15,20},{-1.04854e-15,-1.11022e-15}},
+      points={{0,20},{0,20},{0,0}},
       color={0,127,0},
       smooth=Smooth.None));
   connect(recipFlange.crankShaft_a, angleSensor.flange) annotation (Line(

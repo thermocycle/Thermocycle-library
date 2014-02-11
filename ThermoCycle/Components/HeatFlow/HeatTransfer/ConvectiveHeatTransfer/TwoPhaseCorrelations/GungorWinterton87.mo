@@ -45,5 +45,15 @@ equation
   Term1 =  1 + 3000*Bo^0.86 + 1.12*x/(1-x)^0.75*(rho_l/rho_v)^0.41;
   Term2 =  if (Fr_l<0.05) then Fr_l^(0.1-2*Fr_l) else 1;
   U = liquidCorrelation.U*Term1*Term2;
+    annotation(Documentation(info="<html>
 
+<p><big> The model <b>GungorWinterton87</b> extends the partial model
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialTwoPhaseCorrelation\">PartialTwoPhaseCorrelation</a> and 
+ calculates the heat transfer coefficient based on the GungerWinterton correlation.
+ </p>
+
+
+<p></p>
+
+</html>"));
 end GungorWinterton87;

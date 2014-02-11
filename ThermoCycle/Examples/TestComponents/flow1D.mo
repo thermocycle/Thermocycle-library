@@ -34,6 +34,13 @@ model flow1D
     h=254381,
     p0=866735)
     annotation (Placement(transformation(extent={{50,14},{70,34}})));
+  Modelica.Blocks.Sources.Sine sine(
+    startTime=10,
+    offset=0.3335,
+    amplitude=0.5,
+    phase=0,
+    freqHz=0.1)
+    annotation (Placement(transformation(extent={{-116,50},{-102,64}})));
 equation
   connect(source_T.thermalPort, flow1Dim.Wall_int) annotation (Line(
       points={{-13.17,48.49},{-13.17,43.95},{-21,43.95},{-21,22.9167}},
@@ -50,6 +57,10 @@ equation
   connect(flow1Dim.OutFlow, sinkP.flangeB) annotation (Line(
       points={{-5.16667,15.1583},{18,15.1583},{18,24},{51.6,24}},
       color={0,0,255},
+      smooth=Smooth.None));
+  connect(sine.y, sourceMdot1.in_Mdot) annotation (Line(
+      points={{-101.3,57},{-80.8,57},{-80.8,32.8}},
+      color={0,0,127},
       smooth=Smooth.None));
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{

@@ -8,7 +8,8 @@ equation
   q_dot = {U_0*(thermalPortL[i].T - T_fluid[i]) for i in 1:n};
 
   annotation(Documentation(info="<html>
-<p>Simple heat transfer correlation with constant heat transfer coefficient. </p>
-<p>Taken from: Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.ConstantFlowHeatTransfer</p>
+<p><big> The model <b>Constant</b> compute a constant heat transfer coefficient as an average between the liquid the two-phase
+ and the vapor term. </p>
+<p></p>
 </html>"));
 end Constant;

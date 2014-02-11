@@ -142,6 +142,11 @@ equation
   annotation (Documentation(info="<html>
 
 
+<p><big> The model <b>Shah_Evaporation</b> extends the partial model
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialTwoPhaseCorrelation\">PartialTwoPhaseCorrelation</a> and 
+ calculates the heat transfer coefficient based on the Shah correlation for evaporation
+ </p>
+
 <dl>
 <dt>article<a name=\"Shah1982\">(Shah1982)</a></dt>
 <dd>Shah, M.M.</dd>
@@ -150,5 +155,6 @@ equation
 
 </dl>
 
+<p></p>
 </html>"));
 end Shah_Evaporation;

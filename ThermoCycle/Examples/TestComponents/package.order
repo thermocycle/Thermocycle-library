@@ -3,6 +3,7 @@ Cell1D
 Flow1Dinc
 Flow1DConst
 flow1D
+flow1D_Trunc
 flow1D_reversal
 flow1D_reverse
 flow1D_smoothed

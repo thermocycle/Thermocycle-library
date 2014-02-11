@@ -127,6 +127,11 @@ equation
 
   annotation (Documentation(info="<html>
 
+
+<p><big> The model <b>Martin</b> extends the partial model
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialSinglePhaseCorrelation\">PartialSinglePhaseCorrelation</a> and 
+ computes the heat transfer coefficient based on the correlation for plate heat exchangers developed by Martin 2010</p> 
+
 <dl>
 <dt>inbook<a name=\"Martin2010\">(Martin2010)</a></dt>
 <dd>Martin, H.</dd>
@@ -136,7 +141,7 @@ equation
 <dd>Springer, <b>2010</b>, pp. 1515-1522</dd>
 
 </dl>
-
+<p></p>
 
 </html>"));
 end Martin;

@@ -89,7 +89,11 @@ equation
   U     = Nu * lambda / cLen;
 
   annotation(Documentation(info="<html>
-<p>Base class. </p>
+
+<p><big> The model <b>Gnielinski</b> extends the partial model
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialSinglePhaseCorrelation\">PartialSinglePhaseCorrelation</a> and 
+ computes the heat transfer coefficient based on the Gnielinski correlation.
+ </p>
 
 <dl>
 <dt>inbook<a name=\"Gnielinski2010\">(Gnielinski2010)</a></dt>
@@ -100,7 +104,7 @@ equation
 <dd>Springer, <b>2010</b>, pp. 691-700</dd>
 
 </dl>
-
+<p></p>
 
 </html>"));
 end Gnielinski;

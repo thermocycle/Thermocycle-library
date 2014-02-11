@@ -6,7 +6,7 @@ model Ideal "Ideal: Heat transfer without thermal resistance"
 equation
   T_fluid = thermalPortL.T;
   annotation(Documentation(info="<html>
-<p>Ideal heat transfer without thermal resistance. </p>
-<p><br/>This is taken from: Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer</p>
+<p><big>Ideal heat transfer without thermal resistance. </p>
+<p></p>
 </html>"));
 end Ideal;
