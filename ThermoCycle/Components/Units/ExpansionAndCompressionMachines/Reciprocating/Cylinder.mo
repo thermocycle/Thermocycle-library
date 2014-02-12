@@ -16,13 +16,19 @@ model Cylinder
         diameter=d_outlet,
         height=0,
         zeta_out=zeta,
+        zeta_in=zeta),Modelica.Fluid.Vessels.BaseClasses.VesselPortsData(
+        diameter=d_leak,
+        height=0,
+        zeta_out=zeta,
         zeta_in=zeta)});
 
   parameter Modelica.SIunits.Length d_inlet(displayUnit="mm")=1
     "Hydraulic diameter of inlet port";
   parameter Modelica.SIunits.Length d_outlet(displayUnit="mm")=1
     "Hydraulic diameter of outlet port";
-  parameter Real zeta = 0.005 "discharge coefficient";
+  parameter Modelica.SIunits.Length d_leak(displayUnit="mm")=1
+    "Hydraulic diameter of leakage gap";
+  parameter Real zeta = 0.0005 "discharge coefficient";
 
   parameter Boolean use_angle_in = false
     "Enable input connector for crankshaft angle"

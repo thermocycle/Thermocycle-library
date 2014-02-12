@@ -9,22 +9,25 @@ model Expander
       fixed=true,
       displayUnit="rpm"))
     annotation (Placement(transformation(extent={{-70,-40},{-50,-20}})));
-  inner Modelica.Fluid.System system(p_start=system.p_ambient, T_start=573.15)
+  inner Modelica.Fluid.System system(p_start=(inlet.p + outlet.p)/2, T_start=(
+        inlet.T + outlet.T)/2)
     annotation (Placement(transformation(extent={{-50,-74},{-30,-54}})));
   RecipMachine_Flange recipFlange(redeclare StrokeBoreGeometry geometry)
     annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
   Cylinder cylinder(
     pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
-    p_start=system.p_start,
-    T_start=system.T_start,
-    nPorts=2,
+    nPorts=3,
     use_HeatTransfer=true,
     redeclare model HeatTransfer =
         ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.Adair1972,
     use_angle_in=true,
     redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,
-    d_inlet=0.015,
-    d_outlet=0.035)
+    d_inlet=recipFlange.geometry.d_inlet,
+    d_outlet=recipFlange.geometry.d_outlet,
+    p_start=inlet.p,
+    T_start=inlet.T,
+    use_portsData=true,
+    d_leak=recipFlange.geometry.d_leak)
     annotation (Placement(transformation(extent={{-30,40},{-10,20}})));
 
   Modelica.Fluid.Sources.Boundary_pT inlet(
@@ -33,7 +36,7 @@ model Expander
     p=2000000,
     T=573.15) annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
   Modelica.Fluid.Sources.Boundary_pT outlet(
-    nPorts=1,
+    nPorts=2,
     p=system.p_ambient,
     T=system.T_ambient,
     redeclare package Medium = Modelica.Media.Water.WaterIF97_pT)
@@ -47,7 +50,7 @@ model Expander
   Modelica.Fluid.Valves.ValveCompressible exhaustValve(
     m_flow_nominal=1,
     redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,
-    dp_nominal=10000,
+    dp_nominal=20000,
     p_nominal=100000)
     annotation (Placement(transformation(extent={{-10,40},{10,60}})));
   ValveTimer exhaustTimer(
@@ -70,6 +73,10 @@ model Expander
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor wall(C=0.5*25, T(start=
           773.15))
     annotation (Placement(transformation(extent={{-80,10},{-60,30}})));
+  Modelica.Fluid.Fittings.SimpleGenericOrifice orifice(
+    redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,
+    diameter(displayUnit="mm") = 0.0001,
+    zeta=1000) annotation (Placement(transformation(extent={{4,6},{24,26}})));
 equation
   connect(inertia.flange_b, recipFlange.crankShaft_b) annotation (Line(
       points={{-50,-30},{-40,-30}},
@@ -104,15 +111,15 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(injectionValve.port_b, cylinder.ports[1]) annotation (Line(
-      points={{-30,50},{-22,50},{-22,40}},
+      points={{-30,50},{-22.6667,50},{-22.6667,40}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(exhaustValve.port_a, cylinder.ports[2]) annotation (Line(
-      points={{-10,50},{-18,50},{-18,40}},
+      points={{-10,50},{-20,50},{-20,40}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(exhaustValve.port_b, outlet.ports[1]) annotation (Line(
-      points={{10,50},{20,50}},
+      points={{10,50},{16,50},{16,52},{20,52}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(load.flange, inertia.flange_a) annotation (Line(
@@ -127,8 +134,16 @@ equation
       points={{-30,30},{-40,30},{-40,0},{-70,0},{-70,10}},
       color={191,0,0},
       smooth=Smooth.None));
+  connect(cylinder.ports[3], orifice.port_a) annotation (Line(
+      points={{-17.3333,40},{-8,40},{-8,16},{4,16}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(orifice.port_b, outlet.ports[2]) annotation (Line(
+      points={{24,16},{22,16},{22,48},{20,48}},
+      color={0,127,255},
+      smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=true),
+          preserveAspectRatio=false),
                       graphics), Icon(coordinateSystem(extent={{-100,-100},{100,
             100}})));
 end Expander;

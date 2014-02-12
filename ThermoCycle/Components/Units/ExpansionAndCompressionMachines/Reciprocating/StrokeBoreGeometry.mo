@@ -5,6 +5,7 @@ record StrokeBoreGeometry "Geometry defined by stroke and bore"
     stroke=0.10,
     bore=0.06,
     V_tdc=40e-6,
-    d_inlet=0.01,
-    d_outlet=0.03);
+    d_inlet=0.05,
+    d_outlet=0.05,
+    d_leak=0.0005);
 end StrokeBoreGeometry;

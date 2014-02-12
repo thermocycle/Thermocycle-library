@@ -29,7 +29,11 @@ model Compressor
     redeclare package Medium = WorkingFluid,
     T_start=system.T_start - 1,
     redeclare model HeatTransfer =
-        ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.Adair1972)
+        ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.Adair1972,
+
+    use_portsData=true,
+    d_inlet=recipFlange.geometry.d_inlet,
+    d_outlet=recipFlange.geometry.d_outlet)
     annotation (Placement(transformation(extent={{-10,-10},{10,-30}})));
 
   Modelica.Fluid.Sources.Boundary_pT inlet(
@@ -49,8 +53,8 @@ model Compressor
     filteredOpening=true,
     leakageOpening=1e-7,
     redeclare package Medium = WorkingFluid,
-    dp_nominal=50000,
     riseTime(displayUnit="ms") = 1e-05,
+    dp_nominal=50000,
     p_nominal=100000)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
   Modelica.Fluid.Valves.ValveCompressible exhaustValve(
@@ -170,11 +174,11 @@ equation
       color={0,0,0},
       smooth=Smooth.None));
   connect(limitIn.y, suctionValve.opening) annotation (Line(
-      points={{-20,19},{-20,13.5},{-20,13.5},{-20,8}},
+      points={{-20,19},{-20,8}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(limitOut.y, exhaustValve.opening) annotation (Line(
-      points={{20,19},{20,13.5},{20,13.5},{20,8}},
+      points={{20,19},{20,8}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
