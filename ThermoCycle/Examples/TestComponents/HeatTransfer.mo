@@ -112,7 +112,6 @@ end InputSelector;
     m_dot_nom=3,
     redeclare model HeatTransfer =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Smoothed,
-
     p_start=500000)
     annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
 

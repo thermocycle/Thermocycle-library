@@ -16,7 +16,7 @@ model Shah_Evaporation "Shah correlation for evaporation"
     "correlated heat transfer coefficient liquid side"  annotation(Dialog(group="Correlations"),choicesAllMatching=true);
   LiquidCorrelation liquidCorrelation(
      d_hyd = d_hyd,
-     A_cro = A_cro,
+     final A_cro = A_cro,
      redeclare final package Medium = Medium,
      state = bubbleState,
      m_dot = m_dot*(1-x),

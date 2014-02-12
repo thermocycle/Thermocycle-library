@@ -7,4 +7,6 @@ record ExpanderGeometry =
     r_crank=0.05,
     r_piston=0.05,
     V_tdc=50e-6,
-    h_piston=0.05) "Small scale ORC expander";
+    h_piston=0.05,
+    d_inlet=0.01,
+    d_outlet=0.03) "Small scale ORC expander";

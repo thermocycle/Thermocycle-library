@@ -21,7 +21,6 @@ model Compressor
     annotation (Placement(transformation(extent={{-20,-80},{20,-40}})));
   Cylinder cylinder(
     pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
-    use_portsData=false,
     nPorts=2,
     use_angle_in=true,
     stroke=recipFlange.stroke,

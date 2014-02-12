@@ -77,7 +77,6 @@ model SmoothedInit
   Medium.SpecificEnthalpy h_TP;
 
   Real x_L,x_LTP,x_TPV,x_V "Vapor quality";
-  Real divisor = 100;
 
 initial algorithm
   U_filtered := U_nom;

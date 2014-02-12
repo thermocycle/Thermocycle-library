@@ -1,7 +1,29 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating;
 model Cylinder
   "SweptVolume from Modelica.Fluid with initialisation algorihtm and default Medium"
-  extends Modelica.Fluid.Machines.SweptVolume(final clearance=0,HeatTransfer(crankshaftAngle=angle_in_internal,pistonCrossArea = pistonCrossArea,strokeLength=stroke));
+  extends Modelica.Fluid.Machines.SweptVolume(
+    final clearance=0,
+    HeatTransfer(
+      crankshaftAngle= angle_in_internal,
+      pistonCrossArea = pistonCrossArea,
+      strokeLength =   stroke),
+    final portsData={
+        Modelica.Fluid.Vessels.BaseClasses.VesselPortsData(
+        diameter=d_inlet,
+        height=0,
+        zeta_out=zeta,
+        zeta_in=zeta),Modelica.Fluid.Vessels.BaseClasses.VesselPortsData(
+        diameter=d_outlet,
+        height=0,
+        zeta_out=zeta,
+        zeta_in=zeta)});
+
+  parameter Modelica.SIunits.Length d_inlet(displayUnit="mm")=1
+    "Hydraulic diameter of inlet port";
+  parameter Modelica.SIunits.Length d_outlet(displayUnit="mm")=1
+    "Hydraulic diameter of outlet port";
+  parameter Real zeta = 0.005 "discharge coefficient";
+
   parameter Boolean use_angle_in = false
     "Enable input connector for crankshaft angle"
     annotation (Dialog(tab="Assumptions", group="Heat transfer"));

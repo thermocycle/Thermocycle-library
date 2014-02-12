@@ -17,13 +17,14 @@ model Expander
     pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
     p_start=system.p_start,
     T_start=system.T_start,
-    use_portsData=false,
     nPorts=2,
     use_HeatTransfer=true,
     redeclare model HeatTransfer =
         ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.Adair1972,
     use_angle_in=true,
-    redeclare package Medium = Modelica.Media.Water.WaterIF97_ph)
+    redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,
+    d_inlet=0.015,
+    d_outlet=0.035)
     annotation (Placement(transformation(extent={{-30,40},{-10,20}})));
 
   Modelica.Fluid.Sources.Boundary_pT inlet(

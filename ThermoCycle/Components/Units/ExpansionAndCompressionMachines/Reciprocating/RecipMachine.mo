@@ -8,14 +8,15 @@ model RecipMachine
     pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
     p_start=system.p_start,
     T_start=system.T_start,
-    use_portsData=false,
     use_HeatTransfer=true,
     redeclare model HeatTransfer =
         HeatTransfer,
     use_angle_in=true,
     stroke=recipFlange.stroke,
     nPorts=2,
-    redeclare package Medium = Medium)
+    redeclare package Medium = Medium,
+    d_inlet=recipFlange.geometry.d_inlet,
+    d_outlet=recipFlange.geometry.d_outlet)
     annotation (Placement(transformation(extent={{-30,40},{-10,20}})));
 
   Modelica.Mechanics.Rotational.Sensors.AngleSensor angleSensor
