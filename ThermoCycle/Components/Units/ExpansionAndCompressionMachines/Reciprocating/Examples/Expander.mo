@@ -40,7 +40,7 @@ model Expander
     p=system.p_ambient,
     T=system.T_ambient,
     redeclare package Medium = Modelica.Media.Water.WaterIF97_pT)
-    annotation (Placement(transformation(extent={{40,40},{20,60}})));
+    annotation (Placement(transformation(extent={{60,40},{40,60}})));
   Modelica.Fluid.Valves.ValveCompressible injectionValve(
     m_flow_nominal=1,
     redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,
@@ -52,7 +52,7 @@ model Expander
     redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,
     dp_nominal=20000,
     p_nominal=100000)
-    annotation (Placement(transformation(extent={{-10,40},{10,60}})));
+    annotation (Placement(transformation(extent={{-10,66},{10,86}})));
   ValveTimer exhaustTimer(
     input_in_rad=true,
     open=3.0543261909901,
@@ -73,10 +73,12 @@ model Expander
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor wall(C=0.5*25, T(start=
           773.15))
     annotation (Placement(transformation(extent={{-80,10},{-60,30}})));
-  Modelica.Fluid.Fittings.SimpleGenericOrifice orifice(
+  Modelica.Fluid.Fittings.SimpleGenericOrifice leakageOrifice(
     redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,
-    diameter(displayUnit="mm") = 0.0001,
-    zeta=1000) annotation (Placement(transformation(extent={{4,6},{24,26}})));
+    diameter=cylinder.d_leak,
+    allowFlowReversal=true,
+    zeta=cylinder.zeta_leak)
+    annotation (Placement(transformation(extent={{-10,38},{10,58}})));
 equation
   connect(inertia.flange_b, recipFlange.crankShaft_b) annotation (Line(
       points={{-50,-30},{-40,-30}},
@@ -99,11 +101,11 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(exhaustTimer.y, exhaustValve.opening) annotation (Line(
-      points={{61,-10},{66,-10},{66,70},{0,70},{0,58}},
+      points={{61,-10},{70,-10},{70,90},{0,90},{0,84}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(injectionTimer.y, injectionValve.opening) annotation (Line(
-      points={{61,-50},{74,-50},{74,76},{-40,76},{-40,58}},
+      points={{61,-50},{80,-50},{80,100},{-40,100},{-40,58}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(inlet.ports[1], injectionValve.port_a) annotation (Line(
@@ -115,11 +117,11 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(exhaustValve.port_a, cylinder.ports[2]) annotation (Line(
-      points={{-10,50},{-20,50},{-20,40}},
+      points={{-10,76},{-20,76},{-20,40}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(exhaustValve.port_b, outlet.ports[1]) annotation (Line(
-      points={{10,50},{16,50},{16,52},{20,52}},
+      points={{10,76},{26,76},{26,52},{40,52}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(load.flange, inertia.flange_a) annotation (Line(
@@ -134,12 +136,12 @@ equation
       points={{-30,30},{-40,30},{-40,0},{-70,0},{-70,10}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(cylinder.ports[3], orifice.port_a) annotation (Line(
-      points={{-17.3333,40},{-8,40},{-8,16},{4,16}},
+  connect(cylinder.ports[3], leakageOrifice.port_a) annotation (Line(
+      points={{-17.3333,40},{-12,40},{-12,48},{-10,48}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(orifice.port_b, outlet.ports[2]) annotation (Line(
-      points={{24,16},{22,16},{22,48},{20,48}},
+  connect(leakageOrifice.port_b, outlet.ports[2]) annotation (Line(
+      points={{10,48},{40,48}},
       color={0,127,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},

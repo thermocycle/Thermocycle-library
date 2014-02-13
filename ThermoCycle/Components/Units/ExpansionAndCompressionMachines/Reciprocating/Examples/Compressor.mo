@@ -30,7 +30,6 @@ model Compressor
     T_start=system.T_start - 1,
     redeclare model HeatTransfer =
         ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.Adair1972,
-
     use_portsData=true,
     d_inlet=recipFlange.geometry.d_inlet,
     d_outlet=recipFlange.geometry.d_outlet)

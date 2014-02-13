@@ -10,4 +10,4 @@ record ExpanderGeometry =
     h_piston=0.05,
     d_inlet=0.05,
     d_outlet=0.05,
-    d_leak=0.0005) "Small scale ORC expander";
+    d_leak=0.00005) "Small scale ORC expander";

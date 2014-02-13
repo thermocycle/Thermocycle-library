@@ -17,7 +17,7 @@ partial record BaseGeometry
     "Hydraulic diameter of inlet port";
   parameter Modelica.SIunits.Length d_outlet(displayUnit="mm")
     "Hydraulic diameter of outlet port";
-  parameter Modelica.SIunits.Length d_leak(displayUnit="mm")=1
+  parameter Modelica.SIunits.Length d_leak(displayUnit="mm")=
     "Hydraulic diameter of leakage gap";
   annotation (Documentation(info="<html>
 <p><h4><font color=\"#008000\">Partial Geometry</font></h4></p>
