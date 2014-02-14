@@ -327,7 +327,7 @@ end for;
  <ul><li> Nt: Number of collectors in series
  <li> Ns: Number of collectors in parallel
  </ul>
-  <p><big>The model allows to defocus the collectors based on the Internal focusing signal. TRUE Defocusing = 0, FALSE Defocusing =1
+  <p><big>The model allows to defocusing the collectors based on the Internal focusing signal. TRUE Defocusing = 0, FALSE Defocusing =1
   
  
  

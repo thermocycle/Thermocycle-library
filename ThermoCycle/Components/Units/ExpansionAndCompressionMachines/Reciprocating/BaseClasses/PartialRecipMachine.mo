@@ -226,7 +226,7 @@ top dead center (TDC) with 0 degrees.
           lineColor={0,0,0},
           fillColor={0,0,0},
           fillPattern=FillPattern.Solid),
-        Ellipse(extent={{-40,-129},{40,-49}}, lineColor={150,150,150}),
+        Ellipse(extent={{-40,-129},{46,-44}}, lineColor={150,150,150}),
         Line(
           points={{0,-90},{36,-58},{8,46}},
           color={0,0,0},

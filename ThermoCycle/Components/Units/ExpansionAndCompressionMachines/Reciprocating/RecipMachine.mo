@@ -124,6 +124,22 @@ equation
       points={{-90,120},{-60,120},{-60,180},{4.44089e-16,180}},
       color={191,0,0},
       smooth=Smooth.None));
+  connect(cylinder.ports[3], leakageOrifice.port_a) annotation (Line(
+      points={{-17.3333,40},{60,40}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(leakageOrifice.port_b, teeJunctionIdeal.port_1) annotation (Line(
+      points={{80,40},{100,40}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(teeJunctionIdeal.port_3, leakage_a) annotation (Line(
+      points={{110,50},{110,78},{-100,78},{-100,40},{-180,40}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(teeJunctionIdeal.port_2, leakage_b) annotation (Line(
+      points={{120,40},{180,40}},
+      color={0,127,255},
+      smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-180,-180},{180,180}},
           preserveAspectRatio=false),
                       graphics), Icon(coordinateSystem(extent={{-180,-180},{180,

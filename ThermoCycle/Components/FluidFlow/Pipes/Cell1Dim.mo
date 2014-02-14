@@ -208,9 +208,9 @@ end if;
  InFlow.p = p;
 /*Mass Flow*/
  M_dot_su = InFlow.m_flow/Nt;
-if Mdotconst then
-    OutFlow.m_flow/Nt = - M_dot_su;
-else
+ if Mdotconst then
+   OutFlow.m_flow/Nt = - M_dot_su;
+ else
    OutFlow.m_flow/Nt = -M_dot_ex;
  end if;
 

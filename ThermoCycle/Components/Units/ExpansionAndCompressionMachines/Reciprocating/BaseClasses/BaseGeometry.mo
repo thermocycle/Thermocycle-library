@@ -14,6 +14,15 @@ partial record BaseGeometry
     "ml=cm^3 - clearance volume";
   parameter Modelica.SIunits.Length h_piston(displayUnit="mm")
     "Height of piston";
+  parameter Modelica.SIunits.Length d_inlet(displayUnit="mm")
+    "Hydraulic diameter of inlet port";
+  parameter Modelica.SIunits.Length d_outlet(displayUnit="mm")
+    "Hydraulic diameter of outlet port";
+  parameter Real zeta_inout "friction coefficient valve ports";
+  parameter Modelica.SIunits.Length d_leak(displayUnit="mm")
+    "Hydraulic diameter of leakage gap";
+  parameter Real zeta_leak "friction coefficient leakage";
+
   annotation (Documentation(info="<html>
 <p><h4><font color=\"#008000\">Partial Geometry</font></h4></p>
 <p>Definition of basic geometry for reciprocating machines. All lengths and volumes are calculate</p>
