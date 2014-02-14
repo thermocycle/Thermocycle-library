@@ -49,11 +49,6 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatT
         iconTransformation(extent={{170,-100},{190,-80}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a1
     annotation (Placement(transformation(extent={{-10,170},{10,190}})));
-  Modelica.Fluid.Fittings.SimpleGenericOrifice leakageOrifice(
-    diameter=cylinder.d_leak,
-    zeta=cylinder.zeta_leak,
-    redeclare package Medium = Medium)
-    annotation (Placement(transformation(extent={{60,30},{80,50}})));
   Modelica.Fluid.Interfaces.FluidPort_b leakage_b(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{170,30},{190,50}}),
@@ -62,11 +57,16 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatT
         Medium)
     annotation (Placement(transformation(extent={{-190,30},{-170,50}}),
         iconTransformation(extent={{-190,-30},{-170,-10}})));
-  Modelica.Fluid.Fittings.TeeJunctionIdeal teeJunctionIdeal(redeclare package
-      Medium = Medium)
-    annotation (Placement(transformation(extent={{100,30},{120,50}})));
   WallSegment                                            heatCapacitor
     annotation (Placement(transformation(extent={{-100,120},{-80,140}})));
+  Modelica.Fluid.Fittings.SimpleGenericOrifice orifice(
+    redeclare package Medium = Medium,
+    diameter=cylinder.d_leak,
+    zeta=cylinder.zeta_leak)
+    annotation (Placement(transformation(extent={{62,40},{82,60}})));
+  Modelica.Fluid.Fittings.TeeJunctionIdeal teeJunctionIdeal(redeclare package
+      Medium = Medium)
+    annotation (Placement(transformation(extent={{112,32},{132,52}})));
 equation
   connect(cylinder.flange, recipFlange.flange_a)    annotation (Line(
       points={{-20,20},{-20,0}},
@@ -100,22 +100,6 @@ equation
       points={{-180,-90},{-177,-90},{-177,-90},{-180,-90}},
       color={0,0,0},
       smooth=Smooth.None));
-  connect(cylinder.ports[3], leakageOrifice.port_a) annotation (Line(
-      points={{-17.3333,40},{60,40}},
-      color={0,127,255},
-      smooth=Smooth.None));
-  connect(leakageOrifice.port_b, teeJunctionIdeal.port_1) annotation (Line(
-      points={{80,40},{100,40}},
-      color={0,127,255},
-      smooth=Smooth.None));
-  connect(teeJunctionIdeal.port_3, leakage_a) annotation (Line(
-      points={{110,50},{110,78},{-100,78},{-100,40},{-180,40}},
-      color={0,127,255},
-      smooth=Smooth.None));
-  connect(teeJunctionIdeal.port_2, leakage_b) annotation (Line(
-      points={{120,40},{180,40}},
-      color={0,127,255},
-      smooth=Smooth.None));
   connect(cylinder.heatPort, heatCapacitor.port) annotation (Line(
       points={{-30,30},{-60,30},{-60,120},{-90,120}},
       color={191,0,0},
@@ -124,20 +108,20 @@ equation
       points={{-90,120},{-60,120},{-60,180},{4.44089e-16,180}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(cylinder.ports[3], leakageOrifice.port_a) annotation (Line(
-      points={{-17.3333,40},{60,40}},
+  connect(orifice.port_a, cylinder.ports[3]) annotation (Line(
+      points={{62,50},{22,50},{22,40},{-17.3333,40}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(leakageOrifice.port_b, teeJunctionIdeal.port_1) annotation (Line(
-      points={{80,40},{100,40}},
+  connect(leakage_b, teeJunctionIdeal.port_2) annotation (Line(
+      points={{180,40},{156,40},{156,42},{132,42}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(orifice.port_b, teeJunctionIdeal.port_1) annotation (Line(
+      points={{82,50},{98,50},{98,42},{112,42}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(teeJunctionIdeal.port_3, leakage_a) annotation (Line(
-      points={{110,50},{110,78},{-100,78},{-100,40},{-180,40}},
-      color={0,127,255},
-      smooth=Smooth.None));
-  connect(teeJunctionIdeal.port_2, leakage_b) annotation (Line(
-      points={{120,40},{180,40}},
+      points={{122,52},{122,76},{-148,76},{-148,40},{-180,40}},
       color={0,127,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-180,-180},{180,180}},

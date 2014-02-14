@@ -2,7 +2,7 @@ within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocatin
 partial model PartialRecipMachine
   "Model of a one cylinder engine with crank and slider mechanism"
   import SI = Modelica.SIunits;
-  parameter Boolean animate=true;
+  parameter Boolean animate=false;
   replaceable parameter
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses.BaseGeometry
     geometry constrainedby

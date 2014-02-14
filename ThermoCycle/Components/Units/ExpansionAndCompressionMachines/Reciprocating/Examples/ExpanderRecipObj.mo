@@ -1,6 +1,5 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.Examples;
-model Expander
-  "A combination of Cylinder model and a reciprocating machine and valves"
+model ExpanderRecipObj "A combination of recip machine and valves"
 
   Modelica.Mechanics.Rotational.Components.Inertia inertia(
     phi(fixed=true, start=0),
@@ -12,25 +11,6 @@ model Expander
   inner Modelica.Fluid.System system(p_start=(inlet.p + outlet.p)/2, T_start=(
         inlet.T + outlet.T)/2)
     annotation (Placement(transformation(extent={{-50,-74},{-30,-54}})));
-  RecipMachine_Flange recipFlange(redeclare StrokeBoreGeometry geometry)
-    annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
-  Cylinder cylinder(
-    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
-    nPorts=3,
-    use_HeatTransfer=true,
-    redeclare model HeatTransfer =
-        ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.Adair1972,
-    use_angle_in=true,
-    redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,
-    d_inlet=recipFlange.geometry.d_inlet,
-    d_outlet=recipFlange.geometry.d_outlet,
-    p_start=inlet.p,
-    T_start=inlet.T,
-    use_portsData=true,
-    d_leak=recipFlange.geometry.d_leak,
-    zeta_inout=recipFlange.geometry.zeta_inout,
-    zeta_leak=0.5*recipFlange.geometry.zeta_leak)
-    annotation (Placement(transformation(extent={{-30,40},{-10,20}})));
 
   Modelica.Fluid.Sources.Boundary_pT inlet(
     nPorts=1,
@@ -72,28 +52,21 @@ model Expander
   Modelica.Mechanics.Rotational.Sources.QuadraticSpeedDependentTorque load(
       tau_nominal=-20, w_nominal(displayUnit="rpm") = 52.35987755983)
     annotation (Placement(transformation(extent={{-100,-40},{-80,-20}})));
-  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor wall(C=500*25, T(start
-        =773.15))
-    annotation (Placement(transformation(extent={{-80,10},{-60,30}})));
-  Modelica.Fluid.Fittings.SimpleGenericOrifice leakageOrifice(
+  RecipMachine recipMachine(
     redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,
-    diameter=cylinder.d_leak,
-    allowFlowReversal=true,
-    zeta=cylinder.zeta_leak)
-    annotation (Placement(transformation(extent={{-10,38},{10,58}})));
+    heatCapacitor(
+      c=500,
+      m=25,
+      T(start=773.15)),
+    recipFlange(redeclare
+        ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.StrokeBoreGeometry
+        geometry),
+    redeclare model HeatTransfer =
+        ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.Adair1972,
+
+    cylinder(p_start=inlet.p, T_start=inlet.T))
+    annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
 equation
-  connect(inertia.flange_b, recipFlange.crankShaft_b) annotation (Line(
-      points={{-50,-30},{-40,-30}},
-      color={0,0,0},
-      smooth=Smooth.None));
-  connect(cylinder.flange, recipFlange.flange_a)    annotation (Line(
-      points={{-20,20},{-20,0}},
-      color={0,127,0},
-      smooth=Smooth.None));
-  connect(recipFlange.crankShaft_a, angleSensor.flange) annotation (Line(
-      points={{0,-30},{10,-30}},
-      color={0,0,0},
-      smooth=Smooth.None));
   connect(angleSensor.phi, exhaustTimer.angle_in) annotation (Line(
       points={{31,-30},{34,-30},{34,-10},{38,-10}},
       color={0,0,127},
@@ -114,14 +87,6 @@ equation
       points={{-60,50},{-50,50}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(injectionValve.port_b, cylinder.ports[1]) annotation (Line(
-      points={{-30,50},{-22.6667,50},{-22.6667,40}},
-      color={0,127,255},
-      smooth=Smooth.None));
-  connect(exhaustValve.port_a, cylinder.ports[2]) annotation (Line(
-      points={{-10,76},{-20,76},{-20,40}},
-      color={0,127,255},
-      smooth=Smooth.None));
   connect(exhaustValve.port_b, outlet.ports[1]) annotation (Line(
       points={{10,76},{26,76},{26,52},{40,52}},
       color={0,127,255},
@@ -130,24 +95,29 @@ equation
       points={{-80,-30},{-70,-30}},
       color={0,0,0},
       smooth=Smooth.None));
-  connect(angleSensor.phi, cylinder.angle_in) annotation (Line(
-      points={{31,-30},{34,-30},{34,30},{-10,30}},
-      color={0,0,127},
+  connect(inertia.flange_b, recipMachine.flange_a) annotation (Line(
+      points={{-50,-30},{-40,-30}},
+      color={0,0,0},
       smooth=Smooth.None));
-  connect(cylinder.heatPort, wall.port) annotation (Line(
-      points={{-30,30},{-40,30},{-40,0},{-70,0},{-70,10}},
-      color={191,0,0},
+  connect(recipMachine.flange_b, angleSensor.flange) annotation (Line(
+      points={{0,-30},{10,-30}},
+      color={0,0,0},
       smooth=Smooth.None));
-  connect(cylinder.ports[3], leakageOrifice.port_a) annotation (Line(
-      points={{-17.3333,40},{-12,40},{-12,48},{-10,48}},
+  connect(recipMachine.outlet, exhaustValve.port_a) annotation (Line(
+      points={{0,-10},{10,-10},{10,20},{-16,20},{-16,76},{-10,76}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(leakageOrifice.port_b, outlet.ports[2]) annotation (Line(
-      points={{10,48},{40,48}},
+  connect(recipMachine.inlet, injectionValve.port_b) annotation (Line(
+      points={{-40,-10},{-46,-10},{-46,-10},{-50,-10},{-50,20},{-24,20},{-24,50},
+          {-30,50}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(recipMachine.leakage_b, outlet.ports[2]) annotation (Line(
+      points={{0,-22.2222},{20,-22.2222},{20,48},{40,48}},
       color={0,127,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
           preserveAspectRatio=false),
                       graphics), Icon(coordinateSystem(extent={{-100,-100},{100,
             100}})));
-end Expander;
+end ExpanderRecipObj;
