@@ -2,29 +2,32 @@ within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocatin
 model RecipMachine
   "A combination of cylinder model and a reciprocating mechanism."
 
-  RecipMachine_Flange recipFlange(redeclare StrokeBoreGeometry geometry)
+  RecipMachine_Flange recipFlange
     annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
   Cylinder cylinder(
     pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
     p_start=system.p_start,
     T_start=system.T_start,
-    use_portsData=false,
     use_HeatTransfer=true,
     redeclare model HeatTransfer =
         HeatTransfer,
     use_angle_in=true,
     stroke=recipFlange.stroke,
-    nPorts=2,
-    redeclare package Medium = Medium)
+    nPorts=3,
+    redeclare package Medium = Medium,
+    d_inlet=recipFlange.geometry.d_inlet,
+    d_outlet=recipFlange.geometry.d_outlet,
+    d_leak=recipFlange.geometry.d_leak,
+    zeta_inout=recipFlange.geometry.zeta_inout,
+    zeta_leak=0.5*recipFlange.geometry.zeta_leak)
     annotation (Placement(transformation(extent={{-30,40},{-10,20}})));
 
   Modelica.Mechanics.Rotational.Sensors.AngleSensor angleSensor
     annotation (Placement(transformation(extent={{20,-20},{40,0}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium =
-        Medium)
+  Modelica.Fluid.Interfaces.FluidPort_a inlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-190,80},{-170,100}}),
         iconTransformation(extent={{-190,80},{-170,100}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package Medium =
+  Modelica.Fluid.Interfaces.FluidPort_b outlet(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{170,80},{190,100}}),
         iconTransformation(extent={{170,80},{190,100}})));
@@ -46,6 +49,24 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatT
         iconTransformation(extent={{170,-100},{190,-80}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a1
     annotation (Placement(transformation(extent={{-10,170},{10,190}})));
+  Modelica.Fluid.Fittings.SimpleGenericOrifice leakageOrifice(
+    diameter=cylinder.d_leak,
+    zeta=cylinder.zeta_leak,
+    redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{60,30},{80,50}})));
+  Modelica.Fluid.Interfaces.FluidPort_b leakage_b(redeclare package Medium =
+        Medium)
+    annotation (Placement(transformation(extent={{170,30},{190,50}}),
+        iconTransformation(extent={{170,-30},{190,-10}})));
+  Modelica.Fluid.Interfaces.FluidPort_b leakage_a(redeclare package Medium =
+        Medium)
+    annotation (Placement(transformation(extent={{-190,30},{-170,50}}),
+        iconTransformation(extent={{-190,-30},{-170,-10}})));
+  Modelica.Fluid.Fittings.TeeJunctionIdeal teeJunctionIdeal(redeclare package
+      Medium = Medium)
+    annotation (Placement(transformation(extent={{100,30},{120,50}})));
+  WallSegment                                            heatCapacitor
+    annotation (Placement(transformation(extent={{-100,120},{-80,140}})));
 equation
   connect(cylinder.flange, recipFlange.flange_a)    annotation (Line(
       points={{-20,20},{-20,0}},
@@ -59,12 +80,12 @@ equation
       points={{41,-10},{50,-10},{50,30},{-10,30}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(port_a, cylinder.ports[1]) annotation (Line(
-      points={{-180,90},{-22,90},{-22,40}},
+  connect(inlet, cylinder.ports[1])  annotation (Line(
+      points={{-180,90},{-22.6667,90},{-22.6667,40}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(port_b, cylinder.ports[2]) annotation (Line(
-      points={{180,90},{-18,90},{-18,40}},
+  connect(outlet, cylinder.ports[2]) annotation (Line(
+      points={{180,90},{-20,90},{-20,40}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(recipFlange.crankShaft_a, flange_b) annotation (Line(
@@ -79,8 +100,28 @@ equation
       points={{-180,-90},{-177,-90},{-177,-90},{-180,-90}},
       color={0,0,0},
       smooth=Smooth.None));
-  connect(cylinder.heatPort, port_a1) annotation (Line(
-      points={{-30,30},{-36,30},{-36,180},{0,180}},
+  connect(cylinder.ports[3], leakageOrifice.port_a) annotation (Line(
+      points={{-17.3333,40},{60,40}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(leakageOrifice.port_b, teeJunctionIdeal.port_1) annotation (Line(
+      points={{80,40},{100,40}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(teeJunctionIdeal.port_3, leakage_a) annotation (Line(
+      points={{110,50},{110,78},{-100,78},{-100,40},{-180,40}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(teeJunctionIdeal.port_2, leakage_b) annotation (Line(
+      points={{120,40},{180,40}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(cylinder.heatPort, heatCapacitor.port) annotation (Line(
+      points={{-30,30},{-60,30},{-60,120},{-90,120}},
+      color={191,0,0},
+      smooth=Smooth.None));
+  connect(heatCapacitor.port, port_a1) annotation (Line(
+      points={{-90,120},{-60,120},{-60,180},{4.44089e-16,180}},
       color={191,0,0},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-180,-180},{180,180}},
@@ -155,6 +196,11 @@ equation
           smooth=Smooth.None),
         Line(
           points={{170,90},{160,90},{160,140},{64,140}},
+          color={0,127,255},
+          thickness=0.5,
+          smooth=Smooth.None),
+        Line(
+          points={{-170,-20},{170,-20},{-58,-20},{-58,106}},
           color={0,127,255},
           thickness=0.5,
           smooth=Smooth.None)}));

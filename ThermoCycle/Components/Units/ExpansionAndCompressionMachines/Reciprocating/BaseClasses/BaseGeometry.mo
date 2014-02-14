@@ -1,6 +1,7 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses;
 partial record BaseGeometry
   "Base class to define the geometry of a reciprocating machine"
+  extends Modelica.Icons.Record;
   parameter Modelica.SIunits.Length l_conrod(displayUnit="mm")
     "Length of connection rod";
   parameter Modelica.SIunits.Length d_ppin(displayUnit="mm")

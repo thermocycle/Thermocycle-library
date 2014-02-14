@@ -13,3 +13,4 @@ ValveTimer
 StiffSpeedDependentLoad
 VariableValveTimer
 RecipMachine
+WallSegment
