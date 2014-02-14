@@ -9,7 +9,7 @@ model SinkVdot "Volumetric flow sink for current working fluid"
   parameter Medium.AbsolutePressure pstart = 1E6 "Start value for the pressure";
   Medium.AbsolutePressure p(start=pstart) "pressure of the fluid coming in";
   Medium.SpecificEnthalpy h "enthalpy of the fluid coming in";
-  Medium.Density rho(start=Medium.density_ph(pstart,h_out))
+  Medium.Density rho(start=Medium.density_phX(pstart,h_out,fill(0,0)))
     "density of the fluid coming in";
   Modelica.SIunits.SpecificVolume Vdot;
   Interfaces.Fluid.FlangeB flangeB(redeclare package Medium =
@@ -27,7 +27,7 @@ equation
   Vdot = in_Vdot;
   h= inStream(flangeB.h_outflow);
   p= flangeB.p;
-  rho= Medium.density_ph(p,h);
+  rho= Medium.density_phX(p,h,fill(0,0));
     flangeB.m_flow= Vdot*rho;
     flangeB.h_outflow= h_out;
 

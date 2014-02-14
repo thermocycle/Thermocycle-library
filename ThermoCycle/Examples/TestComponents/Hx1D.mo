@@ -76,7 +76,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(sensTp.InFlow, Recuperator.outlet_fl2) annotation (Line(
-      points={{-35,23.2},{-30,22},{-23.2533,20.9867}},
+      points={{-35,23.2},{-30,20.9867},{-23.2533,20.9867}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sensTp.OutFlow, sinkP1.flangeB) annotation (Line(

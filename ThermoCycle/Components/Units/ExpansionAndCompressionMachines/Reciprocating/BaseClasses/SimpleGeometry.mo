@@ -12,7 +12,4 @@ partial record SimpleGeometry "Simple geometry"
   parameter Modelica.SIunits.Length bore(displayUnit="mm") "Cylinder bore";
   parameter Modelica.SIunits.Volume V_tdc(displayUnit="ml")
     "ml=cm^3 - clearance volume";
-  annotation (Documentation(info="<html>
-<p>This is a simplified geometry definition assuming no piston pin offset. This allows us to define the geometry using the well-established quantities stroke and bore. </p>
-</html>"));
 end SimpleGeometry;

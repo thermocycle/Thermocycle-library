@@ -16,6 +16,7 @@ Test_Evaporator_MBComp
 CrossHx
 Pump
 Solar_SolaFieldSchott
+Solar_SolaFieldSoltigua
 Tank_pL
 OpenTank
 ExpansionTank

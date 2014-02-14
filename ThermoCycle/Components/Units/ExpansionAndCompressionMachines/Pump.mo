@@ -96,7 +96,7 @@ equation
     V_dot = epsilon_v * V_dot_max *min(X_pp, 1);
   end if;
 
-/*BOUNDARY CONDITIONS */
+/* BOUNDARY CONDITIONS */
   /* Enthalpies */
   h_su = if noEvent(InFlow.m_flow <= 0) then h_ex else inStream(InFlow.h_outflow);
   h_su = InFlow.h_outflow;

@@ -102,7 +102,7 @@ Eta_tot =sum(Eta_tot_N)/N;
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
          graphics),Documentation(info="<HTML> 
     
-    <p><big>It solves the 1D radial energy balance around the Heat Collector Element of the Soltigua PTMx parabolic trough solar collector based on the Soltigua data sheet
+    <p><big>Model <b>AbsSoltigua</b> solves the 1D radial energy balance around the Heat Collector Element of the Soltigua PTMx parabolic trough solar collector based on the Soltigua data sheet
      (see <a href=\"http://www.soltigua.com/prodotti/ptm/\">http://www.soltigua.com</a>.)</p>
      <p><big>The model allows to defocusing the collectors based on the Internal focusing signal. TRUE Defocusing = 0, FALSE Defocusing =1
     

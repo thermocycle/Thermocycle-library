@@ -1,36 +1,7 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating;
 model Cylinder
   "SweptVolume from Modelica.Fluid with initialisation algorihtm and default Medium"
-  extends Modelica.Fluid.Machines.SweptVolume(
-    final clearance=0,
-    HeatTransfer(
-      crankshaftAngle= angle_in_internal,
-      pistonCrossArea = pistonCrossArea,
-      strokeLength =   stroke),
-    final portsData={
-        Modelica.Fluid.Vessels.BaseClasses.VesselPortsData(
-        diameter=d_inlet,
-        height=0,
-        zeta_out=zeta_inout,
-        zeta_in=zeta_inout),Modelica.Fluid.Vessels.BaseClasses.VesselPortsData(
-        diameter=d_outlet,
-        height=0,
-        zeta_out=zeta_inout,
-        zeta_in=zeta_inout),Modelica.Fluid.Vessels.BaseClasses.VesselPortsData(
-        diameter=d_leak,
-        height=0,
-        zeta_out=zeta_leak,
-        zeta_in=zeta_leak)});
-
-  parameter Modelica.SIunits.Length d_inlet(displayUnit="mm")=1
-    "Hydraulic diameter of inlet port";
-  parameter Modelica.SIunits.Length d_outlet(displayUnit="mm")=1
-    "Hydraulic diameter of outlet port";
-  parameter Modelica.SIunits.Length d_leak(displayUnit="mm")=1
-    "Hydraulic diameter of leakage gap";
-  parameter Real zeta_inout = 0.0005 "drag coefficient valve ports";
-  parameter Real zeta_leak =  0.2500 "drag coefficient leakage";
-
+  extends Modelica.Fluid.Machines.SweptVolume(final clearance=0,HeatTransfer(crankshaftAngle=angle_in_internal,pistonCrossArea = pistonCrossArea,strokeLength=stroke));
   parameter Boolean use_angle_in = false
     "Enable input connector for crankshaft angle"
     annotation (Dialog(tab="Assumptions", group="Heat transfer"));

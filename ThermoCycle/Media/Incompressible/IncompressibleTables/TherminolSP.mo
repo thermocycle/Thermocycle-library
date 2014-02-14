@@ -2,7 +2,7 @@ within ThermoCycle.Media.Incompressible.IncompressibleTables;
 package TherminolSP "TherminolSP Incompressible - TableBased"
   extends CoolProp2Modelica.Media.Incompressible.TableBased(
   mediumName="TherminolSP",
-  T_min = Modelica.SIunits.Conversions.from_degC(-10),
+  T_min = Modelica.SIunits.Conversions.from_degC(0),
    T_max = Modelica.SIunits.Conversions.from_degC(315),
    TinK = false,
    T0=273.15,
@@ -10,8 +10,8 @@ package TherminolSP "TherminolSP Incompressible - TableBased"
    [-10, 892; 0, 885; 20, 872; 40, 858; 60, 845; 80, 831; 100, 818; 120, 804; 140, 790;
     160, 777; 180, 762; 200, 748; 220, 734; 240, 719; 260, 704; 280, 688; 300,  672; 320, 655; 335, 642],
    tableHeatCapacity=
-  [-10, 1.798; 0, 1.834; 20, 1.906; 40, 1.978; 60, 2.049; 80, 2.120; 100, 2.191; 120, 2.262; 140, 2.333;
-    160, 2.403; 180, 2.474; 200, 2.544; 220, 2.614; 240, 2.684; 260, 2.755; 280, 2.825; 300,  2.896; 320, 2.967; 335, 3.022],
+  [-10, 1798; 0, 1834; 20, 1906; 40, 1978; 60, 2049; 80, 2120; 100, 2191; 120, 2262; 140, 2333;
+    160, 2403; 180, 2474; 200, 2544; 220, 2614; 240, 2684; 260, 2755; 280, 2825; 300,  2896; 320, 2967; 335, 3022],
     tableConductivity=
    [-10, 0.132; 0, 0.131; 20, 0.128; 40, 0.126; 60,0.124; 80, 0.122; 100, 0.119; 120, 0.117; 140, 0.115;
     160, 0.112; 180, 0.110; 200, 0.107; 220, 0.105; 240, 0.103; 260, 0.100; 280, 0.098; 300,  0.096; 320, 0.093; 335, 0.091],
@@ -26,4 +26,5 @@ package TherminolSP "TherminolSP Incompressible - TableBased"
    // Conuctivity  ----> [W/m/K]
    // Viscosity  ---->    [Pa.s]
    // Vapor pressure ---->  [Pa]
+   //
 end TherminolSP;

@@ -208,11 +208,12 @@ end if;
  InFlow.p = p;
 /*Mass Flow*/
  M_dot_su = InFlow.m_flow/Nt;
- if Mdotconst then
-   OutFlow.m_flow/Nt = - M_dot_su;
- else
+if Mdotconst then
+    OutFlow.m_flow/Nt = - M_dot_su;
+else
    OutFlow.m_flow/Nt = -M_dot_ex;
  end if;
+
 InFlow.Xi_outflow = inStream(OutFlow.Xi_outflow);
 OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
 
