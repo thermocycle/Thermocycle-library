@@ -6,11 +6,15 @@ model Flow1DConst
 
 public
 record SummaryClass
-  parameter Integer n;
-  Modelica.SIunits.Temperature[n] T;
-  Modelica.SIunits.Temperature[n+1]  Tnode;
+  replaceable Arrays T_profile;
+    record Arrays
+    parameter Integer n;
+    Modelica.SIunits.Temperature[n] T_cell;
+      Modelica.SIunits.Temperature[n+1]  Tnode;
+    end Arrays;
+
 end SummaryClass;
- SummaryClass Summary(n=N, T = Cells[:].T, Tnode = Tnode_);
+ SummaryClass Summary(T_profile(n=N, T_cell = Cells[:].T, Tnode = Tnode_));
 
 /************ Thermal and fluid ports ***********/
   Interfaces.Fluid.Flange_Cdot flange_Cdot

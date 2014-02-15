@@ -6,6 +6,11 @@ replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
     "Medium model - Incompressible Fluid" annotation (choicesAllMatching = true);
 public
  record SummaryClass
+    replaceable Arrays T_profile;
+    record Arrays
+    parameter Integer n;
+    Modelica.SIunits.Temperature[n] T_cell;
+    end Arrays;
     parameter Integer n;
     Modelica.SIunits.SpecificEnthalpy[n] h;
     Modelica.SIunits.Temperature[n] T;
@@ -14,7 +19,7 @@ public
     Modelica.SIunits.MassFlowRate Mdot;
    Modelica.SIunits.Pressure p;
  end SummaryClass;
- SummaryClass Summary(  n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, T = Cells.T, Mdot = InFlow.m_flow, p = Cells[1].p);
+ SummaryClass Summary( T_profile(n=N, T_cell = Cells[:].T), n=N, h = Cells[:].h, hnode = hnode_, rho = Cells.rho, T = Cells.T, Mdot = InFlow.m_flow, p = Cells[1].p);
 /************ Thermal and fluid ports ***********/
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),

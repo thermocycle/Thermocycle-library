@@ -6,6 +6,7 @@ flow1D
 flow1D_reversal
 flow1D_reverse
 flow1D_smoothed
+flow1D_2ph
 DP
 Expander
 Hx1DConst
@@ -26,3 +27,6 @@ Test_water
 Test_Properties
 HeatTransfer
 TestNozzle
+flow1D_Continue
+flow1D_Trunc
+Solar_SolaFieldSoltigua
