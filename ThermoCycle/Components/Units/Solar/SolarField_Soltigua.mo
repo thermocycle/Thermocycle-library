@@ -130,6 +130,14 @@ replaceable model FluidHeatTransferModel =
         extent={{-27.5,-31.5},{27.5,31.5}},
         rotation=90,
         origin={44.5,23.5})));
+  Modelica.Blocks.Logical.Not not1
+    annotation (Placement(transformation(extent={{-72,-76},{-64,-68}})));
+  Modelica.Blocks.Math.BooleanToInteger booleanToInteger
+    annotation (Placement(transformation(extent={{-50,-60},{-40,-50}})));
+  Modelica.Blocks.Interfaces.BooleanInput Defocusing
+    annotation (Placement(transformation(extent={{-128,-92},{-88,-52}}),
+        iconTransformation(extent={{-106,-84},{-66,-44}})));
+
 public
   record SummaryBase
     replaceable Arrays T_profile;
@@ -150,14 +158,6 @@ protected
  Real Eta_tot "Total efficiency";
  Modelica.SIunits.HeatFlowRate Q_tot
     "Total thermal energy flow on the tube from the sun [W]";
-public
-  Modelica.Blocks.Logical.Not not1
-    annotation (Placement(transformation(extent={{-72,-76},{-64,-68}})));
-  Modelica.Blocks.Math.BooleanToInteger booleanToInteger
-    annotation (Placement(transformation(extent={{-50,-60},{-40,-50}})));
-  Modelica.Blocks.Interfaces.BooleanInput Defocusing
-    annotation (Placement(transformation(extent={{-128,-92},{-88,-52}}),
-        iconTransformation(extent={{-106,-84},{-66,-44}})));
 equation
    for i in 1:Ns loop
      for k in 1:N loop
@@ -327,7 +327,11 @@ end for;
  <ul><li> Nt: Number of collectors in series
  <li> Ns: Number of collectors in parallel
  </ul>
-  <p><big>The model allows to defocusing the collectors based on the Internal focusing signal. TRUE Defocusing = 0, FALSE Defocusing =1
+  <p><big>The model allows to defocusing the collectors based on the internal focusing signal.
+   <ul>
+   <li>Defocusing = 0 --> Net collecting surface for each collector = 41 m²   
+   <li> Defocusing =1 --> Net collecting surface for each collector = 2.3 m²
+   </ul>
   
  
  

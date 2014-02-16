@@ -86,10 +86,16 @@ K_l = geometry.A_3*Theta_deg^3 - geometry.A_2*Theta_deg^2 + geometry.A_1*Theta_d
 Q_tube_tot = DNI*S_eff*Modelica.Math.cos(Theta);
 
 for i in 1:N loop
-Eta_tot_N[i] = (K_l * 0.747 - 0.64 * (T_fluid[i]- Tamb)/DNI);
+  if DNI > 0 then
+    Eta_tot_N[i]*DNI*(S_eff/geometry.S_net) = (DNI*K_l*0.747*(S_eff/geometry.S_net)
+       - 0.64*(T_fluid[i] - Tamb));
+  else
+    Eta_tot_N[i] = 0;
+  end if;
+
 Phi_conv_f[i]= Q_tube_tot*Eta_tot_N[i]/ geometry.A_ext_t;
 
-//Connection
+/* Connection */
 T_fluid[i] = wall_int.T[i];
 wall_int.phi[i] = - Phi_conv_f[i];
 
