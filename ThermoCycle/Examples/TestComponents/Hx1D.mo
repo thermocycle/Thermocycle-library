@@ -101,5 +101,7 @@ equation
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}}),
                       graphics), Icon(coordinateSystem(extent={{-100,-100},
-            {100,100}})));
+            {100,100}})),
+    experiment(StopTime=1000),
+    __Dymola_experimentSetupOutput);
 end Hx1D;
