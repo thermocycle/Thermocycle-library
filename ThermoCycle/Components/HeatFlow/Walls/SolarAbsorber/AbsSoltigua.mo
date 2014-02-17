@@ -102,6 +102,7 @@ wall_int.phi[i] = - Phi_conv_f[i];
 
 end for;
 Eta_tot =sum(Eta_tot_N)/N;
+
                                                                                                       annotation(Dialog(tab = "Initialisation"),
              Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
             {100,100}}),

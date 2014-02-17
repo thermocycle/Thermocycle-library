@@ -68,7 +68,7 @@ constrainedby
     "Convective heat transfer"                                                         annotation (choicesAllMatching = true);
 HeatTransfer heatTransfer( redeclare final package Medium = Medium,
 final n=1,
-final Mdotnom = Mdotnom,
+final Mdotnom = Mdotnom/Nt,
 final Unom_l = Unom_l,
 final Unom_tp = Unom_tp,
 final Unom_v = Unom_v,

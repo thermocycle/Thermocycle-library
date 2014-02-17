@@ -131,7 +131,7 @@ equation
   hnode_[N+1] = Cells[N].hnode_ex;
   Mdot_[1:N] = Cells.M_dot_su;
   Mdot_[N+1] = Cells[N].M_dot_ex;
-  Q_tot = A/N*sum(Cells.qdot) "Total heat flow through the thermal port";
+  Q_tot = A/N*sum(Cells.qdot)*Nt "Total heat flow through the thermal port";
   M_tot = V/N*sum(Cells.rho);
   connect(InFlow, Cells[1].InFlow) annotation (Line(
       points={{-90,0},{-60,0},{-60,-26},{-28,-26}},

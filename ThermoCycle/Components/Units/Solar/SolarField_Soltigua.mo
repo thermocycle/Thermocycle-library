@@ -110,7 +110,7 @@ replaceable model FluidHeatTransferModel =
         FluidHeatTransferModel,
     each N=N,
     each Nt=Nt,
-    each A=CollectorGeometry.A_int_t,
+    each A=CollectorGeometry.A_ext_t,
     each V=CollectorGeometry.V_tube_int,
     each Mdotnom=Mdotnom,
     each Unom_l=Unom_l,
@@ -165,7 +165,7 @@ equation
      end for;
    end for;
 Eta_tot = sum(SolarAbsorber[:].Eta_tot)/Ns;
- Q_tot = sum(flow1Dim[:].Q_tot)/Ns;
+Q_tot = sum(flow1Dim[:].Q_tot) "Total power absorbed by the fluid";
 
 for i in 1:Ns loop
      connect(Theta, SolarAbsorber[i].Theta) annotation (Line(

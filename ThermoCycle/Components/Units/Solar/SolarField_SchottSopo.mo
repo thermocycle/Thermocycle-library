@@ -158,36 +158,8 @@ equation
     end for;
   end for;
 Eta_tot = sum(absorberSchott[:].Eta_TOT)/Ns;
-Q_tot = sum(flow1Dim[:].Q_tot)/Ns;
-//   connect(Theta, absorberSchott.Theta) annotation (Line(
-//       points={{-68,40},{-52,40},{-52,38},{-42,38},{-42,28.61},{-22.29,28.61}},
-//       color={0,0,127},
-//       smooth=Smooth.None));
-//   connect(v_wind, absorberSchott.v_wind) annotation (Line(
-//       points={{-66,80},{-50,80},{-50,78},{-36,78},{-36,37.45},{-21.91,37.45}},
-//       color={0,0,127},
-//       smooth=Smooth.None));
-//   connect(OutFlow, flow1Dim.OutFlow) annotation (Line(
-//       points={{0,90},{44.2375,90},{44.2375,46.4167}},
-//       color={0,0,255},
-//       smooth=Smooth.None));
-//   connect(InFlow, flow1Dim.InFlow) annotation (Line(
-//       points={{0,-90},{28,-90},{28,-86},{44.5,-86},{44.5,0.583333}},
-//       color={0,0,255},
-//       smooth=Smooth.None));
-//   connect(absorberSchott.wall_int, flow1Dim.Wall_int) annotation (Line(
-//       points={{12.1,23},{20.5,23},{20.5,23.5},{31.375,23.5}},
-//       color={255,0,0},
-//       smooth=Smooth.None));
-//   connect(Tamb, absorberSchott.Tamb) annotation (Line(
-//       points={{-68,2},{-56,2},{-56,4},{-42,4},{-42,19.6},{-22.48,19.6}},
-//       color={0,0,127},
-//       smooth=Smooth.None));
-//   connect(DNI, absorberSchott.DNI) annotation (Line(
-//       points={{-66,-34},{-52,-34},{-52,-32},{-32,-32},{-32,11.27},{-22.29,
-//           11.27}},
-//       color={0,0,127},
-//       smooth=Smooth.None));
+Q_tot = sum(flow1Dim[:].Q_tot) "Total power absorbed by the fluid";
+
 //
 
     for i in 1:Ns loop

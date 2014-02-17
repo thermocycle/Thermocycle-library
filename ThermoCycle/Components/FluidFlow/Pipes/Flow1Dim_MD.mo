@@ -21,6 +21,7 @@ annotation (choicesAllMatching = true);
     "Small value for deltah";
   constant Real pi = Modelica.Constants.pi "pi-greco";
   parameter Integer N(min=1)=10 "Number of cells";
+  parameter Integer Nt(min=1)=1 "Number of tubes in parallel";
   parameter Modelica.SIunits.Area A = 16.18
     "Lateral surface of the tube: heat exchange area";
   parameter Modelica.SIunits.Volume V = 0.03781 "Volume of the tube";
@@ -111,8 +112,8 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
 
   Real dMdt[N] "Time derivative of mass in each cell between two nodes";
   Modelica.SIunits.HeatFlux qdot[N] "heat flux in each cell between two nodes";
-  Modelica.SIunits.MassFlowRate Mdot_node[N + 1](each start=Mdotnom, each min=0);
-  Modelica.SIunits.MassFlowRate Mdot[N](each start=Mdotnom, each min=0);
+  Modelica.SIunits.MassFlowRate Mdot_node[N + 1](each start=Mdotnom/Nt, each min=0);
+  Modelica.SIunits.MassFlowRate Mdot[N](each start=Mdotnom/Nt, each min=0);
   //Modelica.SIunits.CoefficientOfHeatTransfer U[N]
   //  "Heat transfer coefficient between wall and working fluid";
   Real x_node[N+1] "Vapor quality at each node";
@@ -267,8 +268,8 @@ if Mdotconst then
 end if;
 end for;
 
-Q_tot = Ai*sum(qdot) "Total heat flow through the thermal port";
-M_tot = Vi*sum(rho);
+Q_tot = A*sum(qdot)*Nt "Total heat flow through the thermal port";
+M_tot = V*sum(rho);
 
 //* BOUNDARY CONDITIONS *//
 
@@ -282,11 +283,11 @@ M_tot = Vi*sum(rho);
  InFlow.p = p;
 
 /*Mass Flow*/
- M_dot_su = InFlow.m_flow;
+ M_dot_su = InFlow.m_flow/Nt;
  if Mdotconst then
-   OutFlow.m_flow = - M_dot_su + sum(dMdt);
+   OutFlow.m_flow/Nt = - M_dot_su + sum(dMdt);
  else
-   OutFlow.m_flow = -Mdot_node[N+1];
+   OutFlow.m_flow/Nt = -Mdot_node[N+1];
  end if;
 
 // InFlow.Xi_outflow = inStream(OutFlow.Xi_outflow);

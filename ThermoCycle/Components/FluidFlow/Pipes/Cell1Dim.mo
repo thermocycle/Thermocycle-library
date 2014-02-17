@@ -71,7 +71,7 @@ constrainedby
 
 HeatTransfer heatTransfer( redeclare final package Medium = Medium,
 final n=1,
-final Mdotnom = Mdotnom,
+final Mdotnom = Mdotnom/Nt,
 final Unom_l = Unom_l,
 final Unom_tp = Unom_tp,
 final Unom_v = Unom_v,
@@ -133,14 +133,11 @@ equation
 
   h_v = Medium.dewEnthalpy(sat);
   h_l = Medium.bubbleEnthalpy(sat);
-  //T_sat = Medium.temperature(sat);
   /* Fluid Properties */
   fluidState = Medium.setState_ph(p,h);
   T = Medium.temperature(fluidState);
-  //T = heatTransfer.T_fluid[1];
   rho = Medium.density(fluidState);
- // State1 = Medium.setState_ph(p,h,1);
- // phase = State1.phase;
+
   if max_der then
       drdp = min(max_drhodt/10^5, Medium.density_derp_h(fluidState));
       drdh = max(max_drhodt/(-4000), Medium.density_derh_p(fluidState));

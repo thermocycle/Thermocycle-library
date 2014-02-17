@@ -95,7 +95,7 @@ equation
 for i in 1:N-1 loop
   connect(Cells[i].OutFlow,Cells[i+1].InFlow);
 end for;
-  Q_tot = sum(Cells.qdot)*A/N;
+  Q_tot = A/N*sum(Cells.qdot)*Nt;
   M_tot = Cells[1].rho_su*V
     "The density is considered constant along the component";
   Tnode_[1:N] = Cells.Tnode_su;

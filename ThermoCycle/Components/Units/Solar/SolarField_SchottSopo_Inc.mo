@@ -133,7 +133,7 @@ equation
     end for;
   end for;
 Eta_tot = sum(absorberSchott[:].Eta_TOT)/Ns;
-Q_tot = sum(flow1DimInc[:].Q_tot)/Ns;
+Q_tot = sum(flow1DimInc[:].Q_tot) "Total power absorbed by the fluid";
 
 //
 

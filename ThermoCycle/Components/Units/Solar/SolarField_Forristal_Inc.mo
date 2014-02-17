@@ -267,7 +267,7 @@ equation
 
 Eta_solarCollector_ = sum(solAbs[:].Eta_TOT);
 Philoss_ = sum(solAbs[:].Phi_loss);
-Q_htf_ = sum(flow1DimInc[:].Q_tot);
+Q_htf_ = sum(flow1DimInc[:].Q_tot) "Total power absorbed by the fluid";
 
   for i in 1:Ns loop
       connect(solAbs[i].wall_int, flow1DimInc[i].Wall_int) annotation (Line(

@@ -55,7 +55,7 @@ constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation_IdealFluid
     "Convective heat transfer"                                                                                                     annotation (choicesAllMatching = true);
 HeatTransfer heatTransfer(
-final Mdotnom = Mdotnom,
+final Mdotnom = Mdotnom/Nt,
 final Unom = Unom,
 final M_dot = Mdot,
 final T_fluid = T)              annotation (Placement(transformation(extent={{-6,-14},
