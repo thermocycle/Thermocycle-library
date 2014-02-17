@@ -1,7 +1,7 @@
 within ThermoCycle.Examples.TestComponents;
 model Flow1Dinc
 parameter Integer N = 10;
-  Obsolete.Flow1DimInc_130702            HotFluid(
+ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc       HotFluid(
     redeclare package Medium =
         ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66,
     A=16.18,
@@ -40,7 +40,7 @@ parameter Integer N = 10;
     annotation (Placement(transformation(extent={{-92,18},{-72,38}})));
 equation
   connect(source_T.thermalPort, HotFluid.Wall_int) annotation (Line(
-      points={{-44.1,15.9},{-44.1,0},{4,0},{4,55}},
+      points={{-44.1,15.9},{-44.1,0},{4,0},{4,57.1667}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(const.y, source_T.Temperature) annotation (Line(
@@ -48,11 +48,11 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(sourceWF1.flangeB, HotFluid.InFlow) annotation (Line(
-      points={{-71,72},{-60,72},{-60,76},{-44,76},{-44,68},{-20,68}},
+      points={{-71,72},{-60,72},{-60,76},{-44,76},{-44,68},{-16,68}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(HotFluid.OutFlow, sinkPFluid1.flangeB) annotation (Line(
-      points={{28,67.74},{40,67.74},{40,60},{75.6,60}},
+      points={{24,67.7833},{40,67.7833},{40,60},{75.6,60}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(graphics),

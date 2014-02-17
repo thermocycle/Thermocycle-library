@@ -58,7 +58,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(sine.y, sourceMdot1.in_Mdot) annotation (Line(
-      points={{-49,15.2},{-44.5,15.2},{-44.5,15},{-36.8333,15}},
+      points={{-101.3,57},{-98.5,57},{-98.5,26.8},{-96.8,26.8}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(flow1Dim.OutFlow, T_ex_Sensor.InFlow) annotation (Line(

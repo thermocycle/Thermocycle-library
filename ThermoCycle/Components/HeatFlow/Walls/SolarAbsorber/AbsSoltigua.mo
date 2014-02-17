@@ -33,8 +33,6 @@ constant Real Sigma = Modelica.Constants.sigma "Stefan-Boltzmann constant";
 constant Real gg = Modelica.Constants.g_n
     "Standard acceleration of gravity on earth";
 
-// replaceable  parameter geometry ;
-
  //constrainedby  ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua.BaseGeometry
  //                                                                                      annotation (choicesAllMatching=true);
 inner replaceable parameter
@@ -43,6 +41,7 @@ inner replaceable parameter
 constrainedby
     ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua.BaseGeometry
                                                                                        annotation (choicesAllMatching=true);
+
 /************** PARAMETER ***********************/
 /*****************General Geometries**************************/
 parameter Integer N = 2 "number of cells";
@@ -94,7 +93,9 @@ for i in 1:N loop
   end if;
 
 Phi_conv_f[i]= Q_tube_tot*Eta_tot_N[i]/ geometry.A_ext_t;
-
+//    Phi_conv_f[i] = (DNI*Modelica.Math.cos(Theta*pi/180)*(S_eff/geometry.S_net)
+//      *geometry.S_net*K_l*0.747 - geometry.S_net*0.64*(T_fluid[i] - Tamb))/
+//      geometry.A_ext_t;
 /* Connection */
 T_fluid[i] = wall_int.T[i];
 wall_int.phi[i] = - Phi_conv_f[i];

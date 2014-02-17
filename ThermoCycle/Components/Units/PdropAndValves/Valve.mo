@@ -27,9 +27,10 @@ replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
   parameter Modelica.SIunits.Temperature T_nom=423.15
     "Nominal inlet temperature"
                           annotation (Dialog(tab="Nominal Conditions"));
-  parameter Modelica.SIunits.Density rho_nom=Medium.density_pT(
+  parameter Modelica.SIunits.Density rho_nom=Medium.density_pTX(
           p_nom,
-          T_nom) "Nominal density"    annotation (Dialog(tab="Nominal Conditions"));
+          T_nom,fill(0,0)) "Nominal density"    annotation (Dialog(tab="Nominal Conditions"));
+
   parameter Modelica.SIunits.Pressure   DELTAp_nom=0 "Nominal pressure drop"
                            annotation (Dialog(tab="Nominal Conditions"));
   parameter Boolean   use_rho_nom=false
