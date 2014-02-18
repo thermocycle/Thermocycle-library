@@ -158,7 +158,7 @@ public
    Modelica.SIunits.Power Q_wf;
  end SummaryBase;
  replaceable record SummaryClass = SummaryBase;
- SummaryClass Summary( T_profile( n=N, Tsf = SecondaryFluid.Summary.T[end:-1:1], Twall = metalWall.T_wall, Twf = WorkingFluid.Cells.T,PinchPoint = min(SecondaryFluid.Summary.T[end:-1:1]-WorkingFluid.Cells.T)),p_wf = WorkingFluid.Summary.p,Q_sf = Q_sf_,Q_wf = Q_wf_);
+ SummaryClass Summary( T_profile( n=N, Tsf = SecondaryFluid.Cells[end:-1:1].T, Twall = metalWall.T_wall, Twf = WorkingFluid.Cells.T,PinchPoint = min(SecondaryFluid.Cells[end:-1:1].T-WorkingFluid.Cells.T)),p_wf = WorkingFluid.Summary.p,Q_sf = Q_sf_,Q_wf = Q_wf_);
 equation
  /*Heat flow */
  Q_sf_ = -SecondaryFluid.Q_tot;
