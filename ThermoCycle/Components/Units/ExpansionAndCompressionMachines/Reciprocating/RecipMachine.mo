@@ -41,6 +41,8 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatT
     "Wall heat transfer"
     annotation (choicesAllMatching=true);
 
+parameter Boolean leakage = true "Calculate leakage flow";
+
   Modelica.Mechanics.Rotational.Interfaces.Flange_a flange_a annotation (
       Placement(transformation(extent={{-190,-100},{-170,-80}}),
         iconTransformation(extent={{-190,-100},{-170,-80}})));
@@ -50,22 +52,23 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatT
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a1
     annotation (Placement(transformation(extent={{-10,170},{10,190}})));
   Modelica.Fluid.Interfaces.FluidPort_b leakage_b(redeclare package Medium =
-        Medium)
+        Medium) if leakage
     annotation (Placement(transformation(extent={{170,30},{190,50}}),
         iconTransformation(extent={{170,-30},{190,-10}})));
   Modelica.Fluid.Interfaces.FluidPort_b leakage_a(redeclare package Medium =
-        Medium)
+        Medium) if leakage
     annotation (Placement(transformation(extent={{-190,30},{-170,50}}),
         iconTransformation(extent={{-190,-30},{-170,-10}})));
+
   WallSegment                                            heatCapacitor
     annotation (Placement(transformation(extent={{-100,120},{-80,140}})));
   Modelica.Fluid.Fittings.SimpleGenericOrifice orifice(
     redeclare package Medium = Medium,
     diameter=cylinder.d_leak,
-    zeta=cylinder.zeta_leak)
+    zeta=cylinder.zeta_leak) if leakage
     annotation (Placement(transformation(extent={{62,40},{82,60}})));
   Modelica.Fluid.Fittings.TeeJunctionIdeal teeJunctionIdeal(redeclare package
-      Medium = Medium)
+      Medium = Medium) if leakage
     annotation (Placement(transformation(extent={{112,32},{132,52}})));
 equation
   connect(cylinder.flange, recipFlange.flange_a)    annotation (Line(
@@ -108,6 +111,7 @@ equation
       points={{-90,120},{-60,120},{-60,180},{4.44089e-16,180}},
       color={191,0,0},
       smooth=Smooth.None));
+if leakage then
   connect(orifice.port_a, cylinder.ports[3]) annotation (Line(
       points={{62,50},{22,50},{22,40},{-17.3333,40}},
       color={0,127,255},
@@ -124,6 +128,7 @@ equation
       points={{122,52},{122,76},{-148,76},{-148,40},{-180,40}},
       color={0,127,255},
       smooth=Smooth.None));
+end if;
   annotation (Diagram(coordinateSystem(extent={{-180,-180},{180,180}},
           preserveAspectRatio=false),
                       graphics), Icon(coordinateSystem(extent={{-180,-180},{180,

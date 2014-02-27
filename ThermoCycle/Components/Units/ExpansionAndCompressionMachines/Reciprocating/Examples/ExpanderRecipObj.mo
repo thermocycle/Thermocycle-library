@@ -63,9 +63,10 @@ model ExpanderRecipObj "A combination of recip machine and valves"
         geometry),
     redeclare model HeatTransfer =
         ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.Adair1972,
-
-    cylinder(p_start=inlet.p, T_start=inlet.T))
+    cylinder(p_start=inlet.p, T_start=inlet.T),
+    leakage=true)
     annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
+
 equation
   connect(angleSensor.phi, exhaustTimer.angle_in) annotation (Line(
       points={{31,-30},{34,-30},{34,-10},{38,-10}},
@@ -108,8 +109,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(recipMachine.inlet, injectionValve.port_b) annotation (Line(
-      points={{-40,-10},{-46,-10},{-46,-10},{-50,-10},{-50,20},{-24,20},{-24,50},
-          {-30,50}},
+      points={{-40,-10},{-50,-10},{-50,20},{-24,20},{-24,50},{-30,50}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(recipMachine.leakage_b, outlet.ports[2]) annotation (Line(
