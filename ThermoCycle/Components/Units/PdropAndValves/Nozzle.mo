@@ -113,6 +113,7 @@ equation
     p_choked = 1e-20;
     throat_choked = Medium.setState_dT(20, 273.15 + 100);
     Mdot_choked = 1E20;
+    gamma = 0;
   end if;
 
   // Mass flows, selecting between subsonic and supersonic
