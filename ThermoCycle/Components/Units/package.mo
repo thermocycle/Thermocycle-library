@@ -13,7 +13,7 @@ annotation (Documentation(info="<HTML>
 <li><strong><a href=\"modelica://ThermoCycle.Components.Units.PdropAndValves\">PdropAndValves</a>
 <li><strong><a href=\"modelica://ThermoCycle.Components.Units.Tanks\">Tanks</a>
 <li><strong><a href=\"modelica://ThermoCycle.Components.Units.Solar\">Solar</a>
-<\ul>
+</ul>
 
 <p><big><dl><dt><b>Main Authors:</b> <br/></dt>
 <dd>Sylvain Quoilin; &LT;<a href=\"squoilin@ulg.ac.be\">squoilin@ulg.ac.be</a>&GT;</dd>
