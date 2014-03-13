@@ -19,7 +19,7 @@ partial model PartialCylinderHeatTransfer
   Modelica.SIunits.Angle           theta "Crankshaft angle";
   Modelica.SIunits.AngularVelocity omega_c "Current angular crank velocity";
   Modelica.SIunits.AngularVelocity omega_m "Mean angular crank velocity";
-  Modelica.SIunits.Length          bore;
+  Modelica.SIunits.Length          bore(start=0.1);
   Modelica.SIunits.Length          stroke;
   Modelica.SIunits.Length[n]       position "Clearance from cyl. head";
   Modelica.SIunits.Length          position_m "Mean clearance from cyl. head";

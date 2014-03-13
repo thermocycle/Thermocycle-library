@@ -13,7 +13,7 @@ model RecipMachine
         HeatTransfer,
     use_angle_in=true,
     stroke=recipFlange.stroke,
-    nPorts=3,
+    nPorts=if leakage then 3 else 2,
     redeclare package Medium = Medium,
     d_inlet=recipFlange.geometry.d_inlet,
     d_outlet=recipFlange.geometry.d_outlet,
@@ -84,7 +84,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(inlet, cylinder.ports[1])  annotation (Line(
-      points={{-180,90},{-22.6667,90},{-22.6667,40}},
+      points={{-180,90},{-20,90},{-20,40}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(outlet, cylinder.ports[2]) annotation (Line(
@@ -113,7 +113,7 @@ equation
       smooth=Smooth.None));
 if leakage then
   connect(orifice.port_a, cylinder.ports[3]) annotation (Line(
-      points={{62,50},{22,50},{22,40},{-17.3333,40}},
+      points={{62,50},{22,50},{22,40},{-20,40}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(leakage_b, teeJunctionIdeal.port_2) annotation (Line(
@@ -205,6 +205,7 @@ end if;
           thickness=0.5,
           smooth=Smooth.None),
         Line(
+          visible=leakage,
           points={{-170,-20},{170,-20},{-58,-20},{-58,106}},
           color={0,127,255},
           thickness=0.5,
