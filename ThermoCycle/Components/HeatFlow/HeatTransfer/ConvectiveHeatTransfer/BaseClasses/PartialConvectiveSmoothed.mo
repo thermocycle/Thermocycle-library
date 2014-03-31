@@ -24,35 +24,32 @@ parameter Real    massFlowExp(min=0,max=1) = 0.8
   Modelica.SIunits.CoefficientOfHeatTransfer    U_nom_TPV;
   Modelica.SIunits.CoefficientOfHeatTransfer    U_nom;
 
-  Real LTP(min=0,max=1);
+  Real LTP(min=0, max=1);
   Real TPV(min=0, max=1);
-  Real LV(min=0, max=1);
+  Real LV( min=0, max=1);
   Real massFlowFactor(min=0);
-  Real x_L;
-  Real x_LTP;
-  Real x_TPV;
-  Real x_V "Vapor quality";
+  Real x_L, x_LTP, x_TPV, x_V "Vapour quality";
 
-  Real divisor = 10;
+  constant Real divisor = 10;
 
 equation
-  x_L   = 0-smoothingRange/divisor;
-  x_LTP = 0+smoothingRange/divisor;
-  x_TPV = 1-smoothingRange/divisor;
-  x_V   = 1+smoothingRange/divisor;
+  x_L   = 0-max(smoothingRange/divisor,10*Modelica.Constants.small);
+  x_LTP = 0+max(smoothingRange/divisor,10*Modelica.Constants.small);
+  x_TPV = 1-max(smoothingRange/divisor,10*Modelica.Constants.small);
+  x_V   = 1+max(smoothingRange/divisor,10*Modelica.Constants.small);
 
-  LTP = ThermoCycle.Functions.transition_factor(start=0-smoothingRange/2, stop=0+smoothingRange/2, position=x);
-  TPV = ThermoCycle.Functions.transition_factor(start=1-smoothingRange/2, stop=1+smoothingRange/2, position=x);
+  LTP = ThermoCycle.Functions.transition_factor(start=x_L,   stop=x_LTP, position=x);
+  TPV = ThermoCycle.Functions.transition_factor(start=x_TPV, stop=x_V,   position=x);
 
   U_nom_LTP = (1-LTP)* Unom_l    + LTP*Unom_tp;
   U_nom_TPV = (1-TPV)* Unom_tp   + TPV*Unom_v;
 
   // Not really needed, but more robust
   LV   = ThermoCycle.Functions.transition_factor(start=0,    stop=1,     position=x);
-  U_nom     = (1-LV) * U_nom_LTP + LV* U_nom_TPV;
+  U_nom     = (1-LV) * U_nom_LTP + (0+LV) * U_nom_TPV;
 
   // Do the mass flow correction
-  massFlowFactor = noEvent(abs(M_dot/Mdotnom)^massFlowExp);
+  massFlowFactor = Modelica.Fluid.Utilities.regPow(abs(M_dot/Mdotnom),massFlowExp);
 
 annotation(Documentation(info="<html>
 

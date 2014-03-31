@@ -72,8 +72,8 @@ model Expander
   Modelica.Mechanics.Rotational.Sources.QuadraticSpeedDependentTorque load(
       tau_nominal=-20, w_nominal(displayUnit="rpm") = 52.35987755983)
     annotation (Placement(transformation(extent={{-100,-40},{-80,-20}})));
-  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor wall(C=500*25, T(start
-        =773.15))
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor wall(C=500*25, T(start=
+         773.15))
     annotation (Placement(transformation(extent={{-80,10},{-60,30}})));
   Modelica.Fluid.Fittings.SimpleGenericOrifice leakageOrifice(
     redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,

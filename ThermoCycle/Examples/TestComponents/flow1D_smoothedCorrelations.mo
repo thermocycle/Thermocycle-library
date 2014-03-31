@@ -1,5 +1,5 @@
 within ThermoCycle.Examples.TestComponents;
-model flow1D_smoothed
+model flow1D_smoothedCorrelations
   parameter Integer N = 11;
   replaceable package Medium = CoolProp2Modelica.Media.R134a_CP(substanceNames={"R134a|calc_transport=1|enable_TTSE=0"})
   constrainedby Modelica.Media.Interfaces.PartialMedium;
@@ -18,7 +18,17 @@ model flow1D_smoothed
     Tstart_inlet=218.15,
     Tstart_outlet=328.15,
     redeclare model Flow1DimHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Smoothed)
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SmoothedInit
+        (
+        max_dUdt=0,
+        redeclare model TwoPhaseCorrelation =
+            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations.Constant,
+        redeclare model LiquidCorrelation =
+            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
+            (d_hyd=2*flow1Dim.V/flow1Dim.A),
+        redeclare model VapourCorrelation =
+            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
+            (d_hyd=2*flow1Dim.V/flow1Dim.A)))
     annotation (Placement(transformation(extent={{-20,-20},{20,20}})));
 
   Components.FluidFlow.Reservoirs.SourceMdot             sourceMdot1(
@@ -96,4 +106,4 @@ equation
       __Dymola_NumberOfIntervals=1000,
       __Dymola_Algorithm="Dassl"),
     __Dymola_experimentSetupOutput);
-end flow1D_smoothed;
+end flow1D_smoothedCorrelations;
