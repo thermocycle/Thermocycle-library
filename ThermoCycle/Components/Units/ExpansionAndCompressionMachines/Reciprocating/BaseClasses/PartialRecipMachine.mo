@@ -32,7 +32,8 @@ partial model PartialRecipMachine
     diameter=2*geometry.r_piston,
     color={155,155,155},
     length=geometry.h_piston,
-    r={0,-geometry.h_piston,0})
+    r={0,-geometry.h_piston,0},
+    density=geometry.m_piston*4/Modelica.Constants.pi/piston.diameter^2/piston.length)
     annotation (Placement(transformation(
         origin={0,95},
         extent={{-15,15},{15,-15}},
@@ -40,7 +41,8 @@ partial model PartialRecipMachine
   Modelica.Mechanics.MultiBody.Parts.BodyBox conrod(
     widthDirection={1,0,0},
     r={0,y_rod,z_rod},
-    width=crank.width)
+    width=crank.width,
+    density=geometry.m_conrod/conrod.height/conrod.width/conrod.length)
                      annotation (Placement(transformation(
         origin={0,15},
         extent={{-15,-15},{15,15}},
@@ -58,19 +60,22 @@ partial model PartialRecipMachine
   Modelica.Mechanics.Rotational.Components.Inertia internalInertia(
     phi(displayUnit="rad", start=0),
     w(start=0),
-    J=1e-8)                            annotation (Placement(transformation(
+    J=Modelica.Constants.small)        annotation (Placement(transformation(
           extent={{-15,-15},{15,15}},     rotation=90,
         origin={-80,-135})));
   Modelica.Mechanics.MultiBody.Parts.BodyCylinder crankshaft(
     color={100,100,100},
-    diameter=0.02,
-    r={0.1,0,0})
+    r={0.1,0,0},
+    density=geometry.m_crankshaft*4/Modelica.Constants.pi/crankshaft.diameter^2
+        /crankshaft.length,
+    diameter=2*geometry.r_crankshaft)
     annotation (Placement(transformation(extent={{-45,-110},{-15,-80}},
           rotation=0)));
   Modelica.Mechanics.MultiBody.Parts.BodyBox crank(
     widthDirection={1,0,0},
     r={0,y_cra,z_cra},
-    width=0.3*geometry.r_crank)
+    width=0.3*geometry.r_crank,
+    density=geometry.m_crank/crank.height/crank.width/crank.length)
                 annotation (Placement(transformation(
         origin={0,-65},
         extent={{-15,-15},{15,15}},
