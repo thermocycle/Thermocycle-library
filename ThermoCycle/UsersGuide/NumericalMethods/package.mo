@@ -1,4 +1,4 @@
-within ThermoCycle.UsersGuide;
+﻿within ThermoCycle.UsersGuide;
 package NumericalMethods 
 extends Modelica.Icons.Information;
 
@@ -44,7 +44,7 @@ Chattering and simulations failures are likely to occur if:
 
 
 <p><big>
-This section describes the different methods implemented to avoids the simulation issues described above. These methods aim at avoiding numerical flow reversal or avoiding unsolvable
+This section describes the different methods implemented to avoid the simulation issues described above. These methods aim at avoiding numerical flow reversal or avoiding unsolvable
 systems in case a flow reversal occurs.
 The different solutions are implemented and tested in the Modelica ThermoCycle library. Some can be
 implemented at the Modelica level while other require a modification of the thermodynamic properties
@@ -55,7 +55,7 @@ the literature, while some others are new.</p>
 
 <u><p><big> Filtering Method</p></u>
 <p><big>
-In this strategy , a first order filter is applied to the fast variations of the density with respect to time:
+In this strategy, a first order filter is applied to the fast variations of the density with respect to time:
 </p>
 <p>
 <img src=\"modelica://ThermoCycle/Resources/Images/Chattering/FilterMethod_1.png\">
