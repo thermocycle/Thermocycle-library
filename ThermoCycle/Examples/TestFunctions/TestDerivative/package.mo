@@ -1,7 +1,6 @@
 within ThermoCycle.Examples.TestFunctions;
-package TestDerivative 
+package TestDerivative
   extends Modelica.Icons.Package;
 
 
-  annotation ();
 end TestDerivative;

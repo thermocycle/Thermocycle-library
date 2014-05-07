@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Gas;
 partial model Compressor
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={Polygon(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Polygon(
                 points={{24,26},{30,26},{30,76},{60,76},{60,82},{24,82},{
             24,26}},
                 lineColor={128,128,128},

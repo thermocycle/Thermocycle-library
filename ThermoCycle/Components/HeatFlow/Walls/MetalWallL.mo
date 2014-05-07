@@ -55,6 +55,6 @@ if steadystate_T_wall then
     Documentation(info="<HTML>
 <p><big> Model <b>MetalWallL</b> represents a lumped tube of solid material. The assumptions and options of the model are the same as the <b>MetalWall</b> model
 
- 
+
 </html>"));
 end MetalWallL;

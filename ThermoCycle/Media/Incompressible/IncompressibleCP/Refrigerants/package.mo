@@ -1,5 +1,5 @@
 within ThermoCycle.Media.Incompressible.IncompressibleCP;
-package Refrigerants 
+package Refrigerants
 extends Modelica.Icons.Package;
 
 end Refrigerants;

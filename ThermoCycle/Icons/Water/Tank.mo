@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Water;
 partial model Tank
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={Rectangle(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Rectangle(
                 extent={{-60,60},{60,-80}},
                 lineColor={0,0,0},
                 fillColor={0,0,0},

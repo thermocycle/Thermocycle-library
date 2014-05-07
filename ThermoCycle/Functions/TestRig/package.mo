@@ -1,5 +1,5 @@
 within ThermoCycle.Functions;
-package TestRig 
+package TestRig
 extends Modelica.Icons.Package;
 
 

@@ -86,8 +86,7 @@ initial equation
   if SteadyState_L then
     der(L)=0;
   end if;
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
-            {100,100}}),       graphics), Icon(coordinateSystem(
+  annotation ( Icon(coordinateSystem(
           preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics={
         Rectangle(
           extent={{-76,-16},{72,-88}},

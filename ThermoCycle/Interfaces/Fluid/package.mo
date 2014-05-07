@@ -1,3 +1,3 @@
 within ThermoCycle.Interfaces;
-package Fluid 
+package Fluid
 end Fluid;

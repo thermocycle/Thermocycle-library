@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Water;
 partial model PumpMech
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={Rectangle(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Rectangle(
                 extent={{54,28},{80,12}},
                 lineColor={0,0,0},
                 fillPattern=FillPattern.HorizontalCylinder,

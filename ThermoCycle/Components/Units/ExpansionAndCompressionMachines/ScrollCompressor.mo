@@ -55,10 +55,7 @@ package ScrollCompressor
         points={{-46,-4.54},{-22,-4.54},{-22,-12},{1.6,-12}},
         color={0,0,255},
         smooth=Smooth.None));
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-              -100},{100,100}}),      graphics),
-      experiment(__Dymola_NumberOfIntervals=10),
-      __Dymola_experimentSetupOutput);
+    annotation (      experiment(__Dymola_NumberOfIntervals=10));
   end Test_nozzle;
 
   model Nozzle
@@ -147,8 +144,7 @@ package ScrollCompressor
   gamma = 1;
   end if;
 
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-              -100},{100,100}}), graphics), Icon(coordinateSystem(
+    annotation ( Icon(coordinateSystem(
             preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
           Rectangle(
             extent={{-92,84},{90,-74}},
@@ -206,8 +202,8 @@ package ScrollCompressor
   C*der_T = Compresseur.Q_flow + Q_dot_amb + W_dot_loss;
   Compresseur.T = T_wall;
   der_T = der(T_wall);
-    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-              {100,100}}), graphics={      Rectangle(
+    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+              ), graphics={      Rectangle(
             extent={{-100,16},{100,-16}},
             lineColor={0,0,0},
             fillColor={128,128,128},
@@ -216,8 +212,7 @@ package ScrollCompressor
             lineColor={0,0,0},
             fillColor={170,213,255},
             fillPattern=FillPattern.Solid,
-            textString="Fictitious isothermal wall")}), Diagram(coordinateSystem(
-            preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics));
+            textString="Fictitious isothermal wall")}));
   end Isothermal_wall;
 
   model Volumetric_compression
@@ -298,8 +293,8 @@ package ScrollCompressor
   omega_m = 2*N_rot*Modelica.Constants.pi;
   flange_elc.tau = W_dot_in/(2*N_rot*Modelica.Constants.pi);
 
-    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-              {100,100}}), graphics={
+    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+              ), graphics={
           Polygon(
             points={{-100,-80},{20,-40},{100,-40},{100,40},{20,40},{-100,80},{-100,
                 -80}},
@@ -313,15 +308,13 @@ package ScrollCompressor
             fillColor={170,213,255},
             fillPattern=FillPattern.Solid,
             textString="s=Cst",
-            origin={-43,-3},
-            rotation=0),
+            origin={-43,-3}),
           Text(
             extent={{-27,17},{27,-17}},
             lineColor={0,0,255},
             fillColor={170,213,255},
             fillPattern=FillPattern.Solid,
             origin={51,-3},
-            rotation=0,
             textString="V=Cst")}));
   end Volumetric_compression;
 
@@ -350,10 +343,8 @@ package ScrollCompressor
             extent={{90,-10},{110,10}})));
     Modelica.Blocks.Interfaces.RealOutput Wdot_loss  annotation (Placement(transformation(
           extent={{-16,-16},{16,16}},
-          rotation=0,
           origin={98,-68}),iconTransformation(
           extent={{-10,-10},{10,10}},
-          rotation=0,
           origin={82,-50})));
   equation
   omega = der(flange_A.phi);
@@ -370,8 +361,7 @@ package ScrollCompressor
 
   W_dot_B = W_dot_A - W_dot_loss;
 
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-              -100},{100,100}}), graphics), Icon(coordinateSystem(
+    annotation ( Icon(coordinateSystem(
             preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
           Rectangle(
             extent={{-102,10},{98,-10}},
@@ -683,8 +673,7 @@ package ScrollCompressor
             fillPattern=FillPattern.Solid,
             textString="%name")}),
       experiment(StopTime=50),
-      __Dymola_experimentSetupOutput,
-      Documentation(info="<html>
+Documentation(info="<html>
 <p><h4><font color=\"#008000\">Short Description :</font></h4></p>
 <p>This model describes a hermetic scroll compressor. The model involves a limited number of parameters physically meaningful. The model accounts for the supply heating-up and exhaust cooling down of the gas, an internal leakage, the internal compression ratio and the electromechanical losses. The model is the one proposed by Winandy et al. (2002). Information used to identify the parameters is extracted from Copeland&apos;s catalogue (ZR72KC-TFD)</p>
 <p><br/><h4>Nomenclature :</h4></p>
@@ -879,8 +868,7 @@ package ScrollCompressor
             fillPattern=FillPattern.Solid,
             textString="%name")}),
       experiment(StopTime=50),
-      __Dymola_experimentSetupOutput,
-      Documentation(info="<html>
+Documentation(info="<html>
 <p><h4><font color=\"#008000\">Short Description :</font></h4></p>
 <p>This model describes a hermetic scroll compressor. The model involves a limited number of parameters physically meaningful. The model accounts for the supply heating-up and exhaust cooling down of the gas, an internal leakage, the internal compression ratio and the electromechanical losses. The model is the one proposed by Winandy et al. (2002). Information used to identify the parameters is extracted from Copeland&apos;s catalogue (ZR72KC-TFD)</p>
 <p><br/><h4>Nomenclature :</h4></p>
@@ -956,8 +944,8 @@ package ScrollCompressor
 <p>website : www.labothap.ulg.ac.be</p>
 </html>"));
   end test_ScrollCompressor;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={
         Ellipse(
           extent={{-50,84},{70,-16}},
           lineColor={0,0,0},

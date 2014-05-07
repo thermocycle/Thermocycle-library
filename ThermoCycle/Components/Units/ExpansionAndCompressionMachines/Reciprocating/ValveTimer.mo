@@ -12,8 +12,7 @@ block ValveTimer "Open and close valves according to degree or time input."
                 Dialog(enable = use_angle_in));
 
     Modelica.Blocks.Interfaces.RealInput angle_in if use_angle_in
-    annotation (Placement(transformation(extent={{-140,-20},{-100,20}},
-          rotation=0), iconTransformation(extent={{-140,-20},{-100,20}})));
+    annotation (Placement(transformation(extent={{-140,-20},{-100,20}}), iconTransformation(extent={{-140,-20},{-100,20}})));
 
                 parameter Modelica.SIunits.Angle open = Modelica.SIunits.Conversions.from_deg(170)
     "Half opened";

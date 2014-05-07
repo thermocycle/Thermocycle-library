@@ -76,6 +76,5 @@ equation
           lineColor={0,0,0},
           textString="Thermal port")}),
     experiment(StopTime=50),
-    __Dymola_experimentSetupOutput,
-    Icon(coordinateSystem(extent={{-120,-100},{80,100}})));
+Icon(coordinateSystem(extent={{-120,-100},{80,100}})));
 end flow1D;

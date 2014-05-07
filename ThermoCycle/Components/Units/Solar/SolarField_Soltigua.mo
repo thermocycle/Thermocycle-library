@@ -221,10 +221,8 @@ end for;
       color={255,127,0},
       smooth=Smooth.None));
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),
-              Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=true),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},{100,
-            100}},
+ Icon(coordinateSystem(extent={{-100,-100},{100,100}}
+            ,
           preserveAspectRatio=true),  graphics={
         Rectangle(
           extent={{-88,82},{88,-88}},
@@ -329,12 +327,12 @@ end for;
  </ul>
   <p><big>The model allows to defocusing the collectors based on the internal focusing signal.
    <ul>
-   <li>Defocusing = 0 --> Net collecting surface for each collector = 41 m²   
+   <li>Defocusing = 0 --> Net collecting surface for each collector = 41 m²
    <li> Defocusing =1 --> Net collecting surface for each collector = 2.3 m²
    </ul>
-  
- 
- 
- 
+
+
+
+
  </HTML>"));
 end SolarField_Soltigua;

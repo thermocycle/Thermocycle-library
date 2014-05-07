@@ -94,11 +94,9 @@ equation
 initial equation
 
   annotation (
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}), graphics={Text(extent={{-100,-40},{100,-74}}, textString=
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Text(extent={{-100,-40},{100,-74}}, textString=
               "%name")}),
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}),     graphics),
     Documentation(info="<html>
 <p>The <b>Valve</b> model represents the expansion of a fluid through a valve. </p>
 <p>The assumptions for this model are: </p>

@@ -180,8 +180,6 @@ equation
       points={{20,19},{20,8}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=false),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},{100,
-            100}})));
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,100}}
+            )));
 end Compressor;

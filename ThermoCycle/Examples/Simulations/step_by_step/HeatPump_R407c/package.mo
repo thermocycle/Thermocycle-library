@@ -15,14 +15,14 @@ extends Modelica.Icons.Package;
   <li><a href=\"modelica://ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot\">SourceMdot</a>: Mass flow source. It imposes mass flow and inlet temperature to the system
   </ul>
   <li><strong><a href=\"modelica://ThermoCycle.Examples.Simulations.step_by_step.HeatPump_R407c.step2\">Step2</a> </strong> We replace the Flow1Dim component with an heat exchanger component where the secondary fluid
-  is considered incompressible --> <a href=\"modelica://ThermoCycle.Components.Units.HeatExchangers.Hx1DInc\">Hx1DInc</a>. 
+  is considered incompressible --> <a href=\"modelica://ThermoCycle.Components.Units.HeatExchangers.Hx1DInc\">Hx1DInc</a>.
   <ul><li>Choose StandardWater as working fluid for the secondary fluid
   <li> Choose upwind-AllowFlowReversal as discretization scheme
   <li> Impose constant heat transfer coefficient in the working fluid side
   <li> Impose an heat transfer coefficient depending on mass flow in the secondary fluid side
   </ul>
-<li><strong><a href=\"modelica://ThermoCycle.Examples.Simulations.step_by_step.HeatPump_R407c.step3\">Step3</a> </strong> Add the <a href=\"modelica://ThermoCycle.Components.Units.Tanks.Tank_pL\">Liquid receiver</a> after the condenser. 
-The pressure is imposed by the pressure sink connected to the liquid receiver. 
+<li><strong><a href=\"modelica://ThermoCycle.Examples.Simulations.step_by_step.HeatPump_R407c.step3\">Step3</a> </strong> Add the <a href=\"modelica://ThermoCycle.Components.Units.Tanks.Tank_pL\">Liquid receiver</a> after the condenser.
+The pressure is imposed by the pressure sink connected to the liquid receiver.
 
 <li><strong><a href=\"modelica://ThermoCycle.Examples.Simulations.step_by_step.HeatPump_R407c.step4\">Step4</a> </strong> Change the pressure sink after the liquid receiver with a volumetric flow sink. In this way
 the pressure will be imposed by the tank system.

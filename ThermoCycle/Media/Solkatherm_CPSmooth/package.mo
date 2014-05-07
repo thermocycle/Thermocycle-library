@@ -7,5 +7,4 @@ package Solkatherm_CPSmooth "Solkatherm - CoolProp SmoothDensity, TTSE -  TC"
     ThermoStates=Modelica.Media.Interfaces.PartialMedium.Choices.IndependentVariables.ph);
 
 
-  annotation ();
 end Solkatherm_CPSmooth;

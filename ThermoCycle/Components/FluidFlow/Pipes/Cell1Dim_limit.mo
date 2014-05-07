@@ -195,23 +195,21 @@ equation
       points={{-2.2,2.6},{-2.2,23.3},{2,23.3},{2,50}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
-            -100},{100,100}}),
-                      graphics), Icon(graphics={Rectangle(
+  annotation ( Icon(graphics={Rectangle(
           extent={{-92,40},{88,-40}},
           lineColor={0,0,255},
           fillColor={0,255,255},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
 <p><big>Model <b>Cell1Dim_limit</b> represents the <em><FONT COLOR=red><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1D\">Cell1D</a></FONT></em> model with the limiter proposed in: </p>
-<p>Schulze et al., A limiter for Preventing Singularity in Simplified Finite Volume Methods</p>. 
-<p><big>An overall flow model can be obtained by interconnecting several cells in series 
+<p>Schulze et al., A limiter for Preventing Singularity in Simplified Finite Volume Methods</p>.
+<p><big>An overall flow model can be obtained by interconnecting several cells in series
          (see <em><FONT COLOR=red><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim_limit\">Flow1Dim_limit</a></FONT></em>).
-         
+
 <p><b><big>Numerical options</b></p>
 <p><big>Two more options are available with respecto to Cell1Dim model:
 <ul><li>limit_hnode: if set to true, it limits the node enthalpy to ensure more robustness of the model
-<li>ylimit: it is a security factor to ensure a minimum distance between the outlet enthalpy and the theoretical limit 
+<li>ylimit: it is a security factor to ensure a minimum distance between the outlet enthalpy and the theoretical limit
  </ul>
 
 <p><br/>S. Quoilin, July 2013</p>

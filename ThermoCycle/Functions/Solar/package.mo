@@ -1,5 +1,5 @@
 within ThermoCycle.Functions;
-package Solar 
+package Solar
   extends Modelica.Icons.Package;
 
 

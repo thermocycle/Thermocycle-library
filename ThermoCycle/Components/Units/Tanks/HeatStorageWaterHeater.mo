@@ -205,11 +205,8 @@ package HeatStorageWaterHeater
         points={{-0.4,-12.26},{-0.4,-9.445},{-0.08,-9.445},{-0.08,-6.63},{2.32,
             -6.63},{2.32,-1.5}},
         color={255,0,0},
-        smooth=Smooth.None), Diagram(coordinateSystem(preserveAspectRatio=true,
-            extent={{-100,-100},{100,100}}), graphics),
-      experiment(StopTime=5000),
-      __Dymola_experimentSetupOutput,
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+        smooth=Smooth.None),      experiment(StopTime=5000),
+Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
           graphics={
           Ellipse(
             extent={{-40,60},{40,88}},
@@ -399,19 +396,19 @@ package HeatStorageWaterHeater
         color={255,0,0},
         smooth=Smooth.None));
     annotation (
-      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{
-              100,100}}), graphics),
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={Rectangle(
+      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}
+              ), graphics),
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+              ), graphics={Rectangle(
             extent={{-80,40},{84,-40}},
             lineColor={255,0,0},
             fillColor={0,255,255},
             fillPattern=FillPattern.Solid)}),
       Documentation(info="<HTML>
-          
+
          <p><big>This model describes the flow of an incompressible fluid through a single cell. An overall flow model can be obtained by interconnecting several cells in series (see <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc\">Flow1DimInc</a>).
-          <p><big><b>Enthalpy</b> is selected as state variable. 
-          <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell. The relation between the cell and node values depends on the discretization scheme selected. 
+          <p><big><b>Enthalpy</b> is selected as state variable.
+          <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell. The relation between the cell and node values depends on the discretization scheme selected.
  <p><big>The assumptions for this model are:
          <ul><li> Velocity is considered uniform on the cross section. 1-D lumped parameter model
          <li> The model is based on dynamic energy balance and on a static  mass and  momentum balances
@@ -421,22 +418,22 @@ package HeatStorageWaterHeater
          </ul>
 
  <p><big>The model is characterized by two flow connector and one lumped thermal port connector. During normal operation the fluid enters the model from the <em>InFlow</em> connector and exits from the <em>OutFlow</em> connector. In case of flow reversal the fluid direction is inversed.
- 
+
  <p><big> The thermal energy transfer  through the lateral surface is computed by the <em><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></em> model which is inerithed in the <em>Cell1DimInc</em> model.
- 
-        
+
+
         <p><b><big>Modelling options</b></p>
         <p><big> In the <b>General</b> tab the following options are availabe:
         <ul><li>Medium: the user has the possibility to easly switch Medium.
-        <li> HeatTransfer: the user can choose the thermal energy model he prefers </ul> 
+        <li> HeatTransfer: the user can choose the thermal energy model he prefers </ul>
         <p><big> In the <b>Initialization</b> tab the following options are availabe:
-        <ul><li> steadystate: If it sets to true, the derivative of enthalpy is sets to zero during <em>Initialization</em> 
+        <ul><li> steadystate: If it sets to true, the derivative of enthalpy is sets to zero during <em>Initialization</em>
          </ul>
         <p><b><big>Numerical options</b></p>
 <p><big> In this tab several options are available to make the model more robust:
 <ul><li> Discretization: 2 main discretization options are available: UpWind and central difference method. The authors raccomand the <em>UpWind Scheme - AllowsFlowReversal</em> in case flow reversal is expected.
 </ul>
- <p><big> 
+ <p><big>
         </HTML>"));
   end Cell1DimInc_2ports;
 
@@ -519,13 +516,10 @@ package HeatStorageWaterHeater
         points={{-0.4,-12.26},{-0.4,-9.445},{-0.08,-9.445},{-0.08,-6.63},{2.32,
             -6.63},{2.32,-1.5}},
         color={255,0,0},
-        smooth=Smooth.None), Diagram(coordinateSystem(preserveAspectRatio=false,
-            extent={{-100,-100},{100,100}}), graphics),
-      experiment(StopTime=1000),
-      __Dymola_experimentSetupOutput);
+        smooth=Smooth.None),      experiment(StopTime=1000));
   end Test_heat_storage;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={
         Ellipse(
           extent={{-42,52},{38,80}},
           lineColor={0,0,0},
@@ -558,9 +552,7 @@ package HeatStorageWaterHeater
         Line(
           points={{-42,58},{38,58}},
           color={0,0,0},
-          smooth=Smooth.None)}), Diagram(coordinateSystem(preserveAspectRatio=
-            false, extent={{-100,-100},{100,100}}), graphics),
-    Documentation(info="<html>
+          smooth=Smooth.None)}),    Documentation(info="<html>
 <p>Nodal model of a stratified tank, with the following hypotheses:</p>
 <p><ul>
 <li>No heat transfer between the different nodes</li>

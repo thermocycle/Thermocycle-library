@@ -7,5 +7,4 @@ package Solkatherm_CP "Solkatherm - Coolprop - TC"
     ThermoStates=Modelica.Media.Interfaces.PartialMedium.Choices.IndependentVariables.ph);
 
 
-  annotation ();
 end Solkatherm_CP;

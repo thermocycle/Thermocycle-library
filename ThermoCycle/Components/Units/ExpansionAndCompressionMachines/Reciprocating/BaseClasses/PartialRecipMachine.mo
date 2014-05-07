@@ -53,10 +53,10 @@ partial model PartialRecipMachine
     cylinderColor={100,100,100},
     cylinderLength=0.04,
     cylinderDiameter=0.04) annotation (Placement(transformation(extent={{-95,-80},
-            {-65,-110}},      rotation=0)));
+            {-65,-110}})));
   inner Modelica.Mechanics.MultiBody.World world(nominalLength=0.5,
       enableAnimation=animate)                   annotation (Placement(
-        transformation(extent={{-140,-10},{-120,10}}, rotation=0)));
+        transformation(extent={{-140,-10},{-120,10}})));
   Modelica.Mechanics.Rotational.Components.Inertia internalInertia(
     phi(displayUnit="rad", start=0),
     w(start=0),
@@ -69,8 +69,7 @@ partial model PartialRecipMachine
     density=geometry.m_crankshaft*4/Modelica.Constants.pi/crankshaft.diameter^2
         /crankshaft.length,
     diameter=2*geometry.r_crankshaft)
-    annotation (Placement(transformation(extent={{-45,-110},{-15,-80}},
-          rotation=0)));
+    annotation (Placement(transformation(extent={{-45,-110},{-15,-80}})));
   Modelica.Mechanics.MultiBody.Parts.BodyBox crank(
     widthDirection={1,0,0},
     r={0,y_cra,z_cra},
@@ -82,8 +81,7 @@ partial model PartialRecipMachine
         rotation=90)));
   Modelica.Mechanics.MultiBody.Parts.FixedTranslation jacketPosition(
       animation=false, r={crankshaft.r[1],h_top,geometry.d_ppin})
-    annotation (Placement(transformation(extent={{-75.5,149},{-55.5,169}},
-          rotation=0)));
+    annotation (Placement(transformation(extent={{-75.5,149},{-55.5,169}})));
   Modelica.Mechanics.MultiBody.Joints.Revolute crankPin(
     n={1,0,0},
     cylinderLength=0.03,
@@ -197,8 +195,7 @@ top dead center (TDC) with 0 degrees.
 
 </html>"),
     experiment,
-    __Dymola_experimentSetupOutput,
-    Icon(coordinateSystem(extent={{-180,-180},{180,180}},
+Icon(coordinateSystem(extent={{-180,-180},{180,180}},
           preserveAspectRatio=true), graphics={
         Rectangle(
           extent={{-48,99},{68,23}},

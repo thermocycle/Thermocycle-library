@@ -49,8 +49,7 @@ supply.m_flow + exhaust.m_flow = 0;
 //Informations au port thermique
 port_th.T = T_iso;
 port_th.Q_flow = -Q_dot;
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics), Icon(coordinateSystem(
+  annotation ( Icon(coordinateSystem(
           preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
         Rectangle(
           extent={{-82,90},{78,-70}},

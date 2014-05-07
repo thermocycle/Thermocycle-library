@@ -138,15 +138,13 @@ DELTAp_quad = 1/A_ok^2 /(2*rho)*Modelica.Fluid.Utilities.regSquare(Mdot,1e-4);
 initial equation
 
   annotation (
-    Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
-            100}}), graphics={Text(extent={{-100,-40},{100,-74}}, textString=
+    Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,100}}
+            ), graphics={Text(extent={{-100,-40},{100,-74}}, textString=
               "%name"), Line(
           points={{-66,0},{58,0},{42,10},{58,0},{42,-10}},
           color={0,0,0},
           smooth=Smooth.None,
           thickness=0.5)}),
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}),     graphics),
     Documentation(info="<html>
 <p>The <b>DP</b> model is a lumped model that computes a punctual pressure drop. </p>
 <p>The assumptions for this model are: </p>

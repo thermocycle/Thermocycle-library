@@ -26,6 +26,5 @@ equation
 <p>This generic heat source profile corresponds to the measurements of vehicle exhaust gases, filtered with 5th-order Butterworth filter with a cuttoff frequency of 0.001.</p>
 <p>Sylvain Quoilin, December 2012</p>
 </html>"),
-    experiment(StopTime=1669),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=1669));
 end inputs;

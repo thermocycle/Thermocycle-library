@@ -26,14 +26,14 @@ equation
 
 annotation(Documentation(info="<html>
 <p><big> The Partial model <b>PartialHeatTransfer</b> is the basic model for heat transfer of a real fluid in the library. It calculates the
-heat flux, q_dot[n], exchanged through the thermal port, ThermalPortL[n], for each segment n, based on the thermodynamic state of the fluid flow ,FluidState[n],  
+heat flux, q_dot[n], exchanged through the thermal port, ThermalPortL[n], for each segment n, based on the thermodynamic state of the fluid flow ,FluidState[n],
 and the temperatures at the boundary, T_fluid and thermalPortL.T.</p>
 <p><big> In order to complete the model - from <FONT COLOR=blue>partial model</FONT>  to <FONT COLOR=blue> model</FONT> -
  one equation relating the exchanged heat flux, q_dot, with the fluid temperature, T_fluid,
-and the temperature at the boundary thermalPortL.T has to be privided.  
+and the temperature at the boundary thermalPortL.T has to be privided.
 </html>"),
-      Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
-            100}}),        graphics={Ellipse(
+      Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,100}}
+            ),        graphics={Ellipse(
             extent={{-60,64},{60,-56}},
             lineColor={0,0,0},
             fillPattern=FillPattern.Sphere,

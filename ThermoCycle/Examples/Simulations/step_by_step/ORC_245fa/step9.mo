@@ -52,7 +52,6 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     height=0,
     offset=48.25)  annotation (Placement(transformation(
         extent={{-5,-5},{5,5}},
-        rotation=0,
         origin={65,67})));
 ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                              generatorNext(Np=1)
@@ -132,7 +131,6 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(
     duration=0,
     height=0)      annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
-        rotation=0,
         origin={-84,-6})));
  ThermoCycle.Components.Units.Tanks.Tank_pL tank(
     Vtot=0.015,
@@ -201,10 +199,7 @@ equation
       points={{-7.2,-16.4533},{-7.2,-36},{44,-36},{44,-55},{32,-55}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=false),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},
-            {100,100}})),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,100}}
+            )),
+    experiment(StopTime=1000));
 end step9;

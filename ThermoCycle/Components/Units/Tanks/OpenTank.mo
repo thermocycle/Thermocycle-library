@@ -207,7 +207,7 @@ The actual heat flow is computed by the thermal energy model.</li>
 <p>The model comprises two flow connectors and one lumped thermal port connector.
  During normal operation the fluid enters the model from the <em>InFlow</em> connector and exits from the <em>OutFlow</em> connector.
  In case of flow reversal the fluid direction is inversed</p>
- 
+
 <p><b>Modelling options</b> </p>
 <p>In the <b>General</b> tab the following options are available: </p>
 <p><ul>

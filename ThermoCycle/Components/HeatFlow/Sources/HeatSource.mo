@@ -32,8 +32,8 @@ end if;
 for i in 1:N loop
   thermalPort.phi[i] = PhiCell;
 end for;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-            {100,100}}),
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ),
                    graphics={Rectangle(
           extent={{-80,20},{80,-30}},
           lineColor={175,175,175},

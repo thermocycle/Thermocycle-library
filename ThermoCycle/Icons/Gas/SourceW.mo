@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Gas;
 partial model SourceW
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={Rectangle(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Rectangle(
                 extent={{-80,40},{80,-40}},
                 lineColor={128,128,128},
                 fillColor={159,159,223},

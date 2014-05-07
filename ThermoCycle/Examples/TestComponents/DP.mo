@@ -51,6 +51,5 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(graphics),
-    experiment(StopTime=50),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=50));
 end DP;

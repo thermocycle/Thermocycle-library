@@ -1,5 +1,5 @@
 within ThermoCycle.Components.Units;
-package ExpansionAndCompressionMachines 
+package ExpansionAndCompressionMachines
   extends Modelica.Icons.Package;
 
 end ExpansionAndCompressionMachines;

@@ -249,8 +249,8 @@ initial equation
    if filter_dMdt_wf then
      der(dMdt) = zeros(N);
    end if;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
-            {100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}
+            ), graphics={
         Rectangle(
           extent={{-100,100},{100,-100}},
           lineColor={0,0,0},
@@ -269,7 +269,5 @@ initial equation
               -44},{40,-24},{60,-44},{80,-24},{100,-44}},
           color={0,0,255},
           smooth=Smooth.None,
-          thickness=0.5)}),                                         Diagram(
-        coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}),
-                    graphics));
+          thickness=0.5)}));
 end Hx_06122013;

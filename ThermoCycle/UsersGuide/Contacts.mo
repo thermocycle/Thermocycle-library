@@ -16,10 +16,10 @@ Thermodynamic laboratory<br>
 Campus du Sart-Tilman Bât B49 (P33)<br>
 B-4000 Liège - BELGIUM -<br><br>
 
-This Modelica package is free software and the use is completely at your own risk; 
-it can be redistributed and/or modified under the terms of the Modelica License 2. 
-For license conditions (including the disclaimer of warranty) see 
-<a href=\"Modelica://ControlLibrary.UserGuide.ModelicaLicense2\">ModelicaLicense2</a> 
+This Modelica package is free software and the use is completely at your own risk;
+it can be redistributed and/or modified under the terms of the Modelica License 2.
+For license conditions (including the disclaimer of warranty) see
+<a href=\"Modelica://ControlLibrary.UserGuide.ModelicaLicense2\">ModelicaLicense2</a>
 or visit <a href=\"http://www.Modelica.org\">http://www.modelica.org/licenses/ModelicaLicense2</a>.
 </p>
 </html>"));

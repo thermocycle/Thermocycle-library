@@ -1,5 +1,5 @@
 within ThermoCycle.Components;
-package HeatFlow 
+package HeatFlow
   extends Modelica.Icons.Package;
 
 

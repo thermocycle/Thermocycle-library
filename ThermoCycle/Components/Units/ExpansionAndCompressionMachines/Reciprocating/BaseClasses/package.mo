@@ -1,5 +1,5 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating;
-package BaseClasses 
+package BaseClasses
   extends Modelica.Icons.BasesPackage;
 
 end BaseClasses;
