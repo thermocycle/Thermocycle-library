@@ -29,6 +29,5 @@ equation
           textString="P")}),
     Documentation(info="<HTML>
     <p><big> Model <b>SensMdot</b> represents an ideal pressure sensor.
-</html>
-"));
+</html>"));
 end SensP;

@@ -85,8 +85,8 @@ equation
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{
             100,100}}), graphics),
     Documentation(info="<html>
-<p>This model describes the conversion between mechanical power and electrical power in an ideal synchronous generator. 
+<p>This model describes the conversion between mechanical power and electrical power in an ideal synchronous generator.
 The frequency in the electrical connector is the e.m.f. of generator.
-<p>It is possible to consider the generator inertia in the model, by setting the parameter <tt>J > 0</tt>. 
+<p>It is possible to consider the generator inertia in the model, by setting the parameter <tt>J > 0</tt>.
 </html>"));
 end ElectricDrive;

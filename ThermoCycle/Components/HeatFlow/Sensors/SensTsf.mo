@@ -23,6 +23,5 @@ equation
           textString="T")}),
     Documentation(info="<HTML>
     <p><big> Model <b>SensTsf</b> represents an ideal temperature sensor for a constant heat capacity fluid
-</html>
-"));
+</html>"));
 end SensTsf;

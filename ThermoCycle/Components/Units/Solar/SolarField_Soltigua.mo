@@ -329,12 +329,12 @@ end for;
  </ul>
   <p><big>The model allows to defocusing the collectors based on the internal focusing signal.
    <ul>
-   <li>Defocusing = 0 --> Net collecting surface for each collector = 41 m²   
+   <li>Defocusing = 0 --> Net collecting surface for each collector = 41 m²
    <li> Defocusing =1 --> Net collecting surface for each collector = 2.3 m²
    </ul>
-  
- 
- 
- 
+
+
+
+
  </HTML>"));
 end SolarField_Soltigua;

@@ -1,5 +1,5 @@
 within ThermoCycle.Media.Incompressible.IncompressibleCP;
-package HighTemperature 
+package HighTemperature
 extends Modelica.Icons.MaterialPropertiesPackage;
 
 end HighTemperature;

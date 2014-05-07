@@ -204,14 +204,14 @@ equation
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
 <p><big>Model <b>Cell1Dim_limit</b> represents the <em><FONT COLOR=red><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1D\">Cell1D</a></FONT></em> model with the limiter proposed in: </p>
-<p>Schulze et al., A limiter for Preventing Singularity in Simplified Finite Volume Methods</p>. 
-<p><big>An overall flow model can be obtained by interconnecting several cells in series 
+<p>Schulze et al., A limiter for Preventing Singularity in Simplified Finite Volume Methods</p>.
+<p><big>An overall flow model can be obtained by interconnecting several cells in series
          (see <em><FONT COLOR=red><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim_limit\">Flow1Dim_limit</a></FONT></em>).
-         
+
 <p><b><big>Numerical options</b></p>
 <p><big>Two more options are available with respecto to Cell1Dim model:
 <ul><li>limit_hnode: if set to true, it limits the node enthalpy to ensure more robustness of the model
-<li>ylimit: it is a security factor to ensure a minimum distance between the outlet enthalpy and the theoretical limit 
+<li>ylimit: it is a security factor to ensure a minimum distance between the outlet enthalpy and the theoretical limit
  </ul>
 
 <p><br/>S. Quoilin, July 2013</p>

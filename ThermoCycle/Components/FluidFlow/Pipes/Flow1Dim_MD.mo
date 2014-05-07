@@ -338,13 +338,13 @@ initial equation
           lineColor={0,0,255},
           fillColor={0,255,255},
           fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
-          <p><big>Model <b>Flow1Dim_2ph</b> describes the flow of fluid through a discretized one dimentional tube.</p> 
+          <p><big>Model <b>Flow1Dim_2ph</b> describes the flow of fluid through a discretized one dimentional tube.</p>
           <p><big>Enthalpy and pressure are selected as state variable</p>
           <p><big> In the model the node variables are characterized by the following syntax: <b>_node</b>.
           <p><big>The model is discretized using the collocated grid method: the nodes variable are the state variables and the cell variable are deduced</p>.
           <p><big> UpWind discretization is considered i.e. h_node[j+1] = h_node[j].
-          
-          
+
+
           <p><b><big>Numerical options</b></p>
 <p><big> In this tab several options are available to make the model more robust:
 <ul><li> Mdotconst: assume constant mass flow rate at each node.
@@ -352,7 +352,7 @@ initial equation
 <li> filter_dMdt: if true a first order filter is applied to the fast variations of the density with respect to time
 <li> max_drhodt: it represents the maximum value of the density derivative. It activates when using max_der is set to true
 <li> TT: it represents the integration time of the first order filter. It activates when filter_dMdt is set to true
-</ul>         
+</ul>
           <p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:
            <ul>
            <li>  Temperature at the center of each cell
@@ -366,6 +366,6 @@ initial equation
            </ul>
  <p><big>The model is based on:</p>
  <p><big> <i>Casella, F. Object-oriented modelling of two-phase fluid flows by the finite volume method.
-Proceedings 5th Mathmod Vienna, Austria, Sep 2006, p. 68.  </i>       
+Proceedings 5th Mathmod Vienna, Austria, Sep 2006, p. 68.  </i>
        </HTML>"));
 end Flow1Dim_MD;

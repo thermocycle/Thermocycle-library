@@ -381,8 +381,8 @@ initial equation
           lineColor={0,0,255},
           smooth=Smooth.None,
           fillColor={0,0,255},
-          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML> 
-                    <p><big> Model <b>ExpanderOpenDriveDetailed</b> represents the expanson of fluid in a volumetric machine. 
+          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
+                    <p><big> Model <b>ExpanderOpenDriveDetailed</b> represents the expanson of fluid in a volumetric machine.
                     The evolution of the fluid through the expander is decomposed into six
                     thermodynamic processes, as shown in the figure:
          <ul><li> Supply pressure drop (su --> su,1)
@@ -393,9 +393,9 @@ initial equation
          <li> Mixing between suction flow and leakage flow (ex,2 --> ex,1)
          <li> Exhaust cooling-down or heating-up (ex,1 --> ex)
          </ul>
-        <p>            
+        <p>
       <img src=\"modelica://ThermoCycle/Resources/Images/OpenScrollExpander2.png\">
-         </p>     
-                    
+         </p>
+
                     </HTML>"));
 end ExpanderOpendriveDetailed;

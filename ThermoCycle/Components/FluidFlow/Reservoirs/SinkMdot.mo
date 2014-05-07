@@ -55,7 +55,7 @@ equation
 <p><big> Model <b>SinkMdot</b> sets the boundary mass flow of the fluid flowing from the port to the model (i.e. into the model).
 
 
- 
+
 
 
 </html>"),

@@ -38,7 +38,6 @@ equation
           smooth=Smooth.None)}),
     Documentation(info="<HTML>
 <p><big> Model <b>SensMdot</b> represents an ideal mass flow sensor.
-    
-</html>
-"));
+
+</html>"));
 end SensMdot;

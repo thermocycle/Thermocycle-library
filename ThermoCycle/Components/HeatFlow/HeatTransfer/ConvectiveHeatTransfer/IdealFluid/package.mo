@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer;
-package IdealFluid 
+package IdealFluid
 import ThermoCycle;
 
 

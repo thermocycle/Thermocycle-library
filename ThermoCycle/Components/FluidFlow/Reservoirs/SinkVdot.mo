@@ -46,7 +46,7 @@ equation
     Documentation(info="<HTML>
     <p><big> Model <b>SinkVdot</b> sets the boundary volume flow rate of the fluid flowing from the port to the model (i.e. into the model).
 
-  
+
  <!-- <p><big>Note that boundary volume flow rate is imposed by the model only if the fluid is flowing into the model. If flow reversal happens (i.e. mass flow flowing out of <b>SinkVdot</b>) then the boundary enthalpy is imposed by the model. -->
  <p><big> The volume flow rate can be set as a parameter or defined by the connector.
  <p>

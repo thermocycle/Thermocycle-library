@@ -75,8 +75,8 @@ if steadystate_T_wall then
 </u1>
  <p><b><big>Modelling options</b></p>
  <p><big> In the <b>Initialization</b> tab the following options are availabe:
-        <ul><li> steadystate_T_wall: If it sets to true, the derivative of temperature is sets to zero during <em>Initialization</em> 
+        <ul><li> steadystate_T_wall: If it sets to true, the derivative of temperature is sets to zero during <em>Initialization</em>
          </ul>
- 
+
 </html>"));
 end MetalWall;

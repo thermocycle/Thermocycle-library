@@ -1,5 +1,5 @@
 within ThermoCycle;
-package Functions 
+package Functions
   extends Modelica.Icons.Package;
 
 

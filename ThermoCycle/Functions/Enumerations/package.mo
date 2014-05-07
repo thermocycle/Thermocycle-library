@@ -1,5 +1,5 @@
 within ThermoCycle.Functions;
-package Enumerations 
+package Enumerations
 extends Modelica.Icons.Package;
 
 end Enumerations;

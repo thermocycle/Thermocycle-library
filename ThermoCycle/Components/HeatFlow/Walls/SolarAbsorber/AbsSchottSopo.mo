@@ -124,20 +124,20 @@ Eta_th = sum(eta_th)/N;
 Eta_TOT = Eta_th * eta_opt_t;
                                                                                                       annotation(Dialog(tab = "Initialisation"),
              Diagram(graphics),
-    Icon(graphics),Documentation(info="<HTML> 
-    
-    <p><big>It solves the 1D radial energy balance around the Heat Collector Element of a solar collector based on a correlation derived in 
-  <em>F. Burkholder and C. Klutscher Heat loss Testing of Schott's 2008 PTR70 Parabolic Trough Receiver. Technical report. NREL May 2009</em> 
-     
-     <p><b><big>Modelling options</b></p>
-    <p><big><ul><li>Geometry: It allows to choose between the Schott PTR70 receiver and the Sopogy  micro receiver -  Soponova (<a href=\"http://sopogy.com/products/index.php?id=31\">http://www.sopogy.com</a>). 
-    
-    
-    
+    Icon(graphics),Documentation(info="<HTML>
 
-    
-    
-    
-    
+    <p><big>It solves the 1D radial energy balance around the Heat Collector Element of a solar collector based on a correlation derived in
+  <em>F. Burkholder and C. Klutscher Heat loss Testing of Schott's 2008 PTR70 Parabolic Trough Receiver. Technical report. NREL May 2009</em>
+
+     <p><b><big>Modelling options</b></p>
+    <p><big><ul><li>Geometry: It allows to choose between the Schott PTR70 receiver and the Sopogy  micro receiver -  Soponova (<a href=\"http://sopogy.com/products/index.php?id=31\">http://www.sopogy.com</a>).
+
+
+
+
+
+
+
+
     </HTML>"));
 end AbsSchottSopo;

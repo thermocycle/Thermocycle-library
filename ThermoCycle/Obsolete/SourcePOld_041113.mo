@@ -42,8 +42,8 @@ equation
 <p><big> The pressure and enthalpy can be set as a parameters or defined by the connectors.
  <p><big>Note that boundary enthalpy is imposed by the model only if the fluid is flowing out of the model. If flow reversal happens (i.e. mass flow flowing into <b>SourceP</b>) then the boundary pressure is imposed by the model.
  <p>
- 
- 
+
+
 
 </html>"));
 end SourcePOld_041113;
