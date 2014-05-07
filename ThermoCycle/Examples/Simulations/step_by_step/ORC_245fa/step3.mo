@@ -61,7 +61,7 @@ equation
       points={{-73,0},{-62,0},{-62,-4},{-40,-4},{-40,7.5},{-30,7.5}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation ( Icon(coordinateSystem(extent={{-100,-100},
-            {100,100}})),
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,100}}
+            )),
     experiment(StopTime=1000, __Dymola_NumberOfIntervals=5000));
 end step3;

@@ -101,8 +101,7 @@ initial equation
   if impose_pressure then
     p_tot = pstart;
   end if;
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
-            {100,100}}),       graphics), Icon(coordinateSystem(
+  annotation ( Icon(coordinateSystem(
           preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics={
         Rectangle(
           extent={{-76,-16},{72,-88}},

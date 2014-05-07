@@ -80,7 +80,7 @@ equation
       points={{73,-54},{80,-54},{80,-40},{82,-40},{82,-36},{89.6,-36}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,
-            100}})),
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,100}}
+            )),
     experiment(StopTime=1000));
 end MBeva;

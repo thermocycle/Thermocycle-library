@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Water;
 partial model SteamTurbineUnit
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={Line(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Line(
                 points={{14,20},{14,42},{38,42},{38,20}},
                 color={0,0,0},
                 thickness=0.5),Rectangle(

@@ -16,8 +16,7 @@ equation
   Tsat = 273.15 - 328.62 - 0.361218*P^(1/2) + 35.9736*P^(1/3) - 260.867*P^(1/
     4) + 342.702*P^(1/5);
   DELTAT = T - Tsat;
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,
-            -100},{100,100}}), graphics), Icon(coordinateSystem(
+  annotation ( Icon(coordinateSystem(
           preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics={
           Rectangle(
           extent={{-98,90},{102,-78}},

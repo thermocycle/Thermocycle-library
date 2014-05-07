@@ -36,13 +36,11 @@ equation
   end if;
 
   annotation (
-    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}), graphics={
+    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}
+            ), graphics={
                    Text(extent={{-102,104},{-26,66}},
           textString="Vdot",
           lineColor={0,0,0})}),
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}),     graphics),
     Documentation(info="<HTML>
     <p><big> Model <b>SinkVdot</b> sets the boundary volume flow rate of the fluid flowing from the port to the model (i.e. into the model).
 

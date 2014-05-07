@@ -253,8 +253,8 @@ initial equation
     der(dMdt_h) = zeros(N);
     der(dMdt_c) = zeros(N);
   end if;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},
-            {100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}
+            ), graphics={
         Rectangle(
           extent={{-100,100},{100,-100}},
           lineColor={0,0,0},

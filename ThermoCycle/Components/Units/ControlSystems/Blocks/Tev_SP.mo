@@ -13,8 +13,7 @@ model Tev_SP
     annotation (Placement(transformation(extent={{-112,6},{-88,30}}), iconTransformation(extent={{-112,0},{-88,24}})));
 equation
   Tev = 273.15 + 100;
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,
-            -100},{100,100}}), graphics), Icon(coordinateSystem(
+  annotation ( Icon(coordinateSystem(
           preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics={
           Rectangle(
           extent={{-98,90},{102,-78}},

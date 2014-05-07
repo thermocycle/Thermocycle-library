@@ -17,8 +17,6 @@ Modelica.Blocks.Interfaces.RealInput T_hf_su "measured pressure"
 equation
 Tev=273.15+7.75856713E+01+4.93382415E-05*p_cd+2.38081717E+01*log(Mdot)+7.65402193E+00*log(T_hf_su-273.15);
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}), graphics),
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}),
                     graphics={Rectangle(
           extent={{-98,90},{102,-78}},

@@ -32,8 +32,8 @@ and the temperatures at the boundary, T_fluid and thermalPortL.T.</p>
  one equation relating the exchanged heat flux, q_dot, with the fluid temperature, T_fluid,
 and the temperature at the boundary thermalPortL.T has to be privided.
 </html>"),
-      Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
-            100}}),        graphics={Ellipse(
+      Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,100}}
+            ),        graphics={Ellipse(
             extent={{-60,64},{60,-56}},
             lineColor={0,0,0},
             fillPattern=FillPattern.Sphere,

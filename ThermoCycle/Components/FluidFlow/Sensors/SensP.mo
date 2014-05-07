@@ -20,8 +20,6 @@ equation
   inStream(InFlow.h_outflow) = OutFlow.h_outflow;
   p = InFlow.p;
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}),     graphics),
     Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,100}}),
                     graphics={Text(
           extent={{-38,88},{44,28}},

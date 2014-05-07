@@ -69,8 +69,8 @@ equation
     inlet.p = outlet.p;
    end if;
 
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={
         Ellipse(
           extent={{-32,-8},{28,8}},
           lineColor={0,0,255},

@@ -367,10 +367,8 @@ initial equation
     U_dot_w = 0;
   end if;
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}),     graphics),
-    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{
-            100,100}}),
+    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}
+            ),
                     graphics={Text(
           extent={{-84,-44},{58,-72}},
           lineColor={0,0,0},

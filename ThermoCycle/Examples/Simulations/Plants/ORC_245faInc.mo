@@ -209,8 +209,8 @@ equation
       points={{-58.5538,61.3538},{-74,61.3538},{-74,74},{-84.96,74}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation ( Icon(coordinateSystem(extent={{-100,-100},
-            {100,100}})),
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,100}}
+            )),
     experiment(StopTime=1000),
 Documentation(info="<html>
 <p>Dynamic model of an Organic Rankine Cycle with recuperator and R245fa as working fluid.</p>

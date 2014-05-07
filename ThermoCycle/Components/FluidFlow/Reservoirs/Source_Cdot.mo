@@ -21,8 +21,8 @@ equation
   flange.cp = cp;
   flange.rho = rho;
   annotation (
-    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}), graphics={
+    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}
+            ), graphics={
         Rectangle(
           extent={{-72,38},{80,-40}},
           lineColor={0,0,0},
@@ -47,11 +47,7 @@ equation
           color={0,0,0},
           smooth=Smooth.None,
           thickness=1)}),
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{
-            100,100}}), graphics),
-    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}), graphics={Text(extent={{-98,74},{-48,42}}, textString=
-          "w0"),Text(extent={{48,74},{98,42}}, textString="h")}),
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{
-            100,100}}), graphics));
+    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}
+            ), graphics={Text(extent={{-98,74},{-48,42}}, textString=
+          "w0"),Text(extent={{48,74},{98,42}}, textString="h")}));
 end Source_Cdot;

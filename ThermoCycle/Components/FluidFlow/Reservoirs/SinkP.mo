@@ -30,11 +30,9 @@ equation
     in_h = h "Enthalpy set by parameter";
   end if;
     annotation (Placement(transformation(extent={{-108,-10},{-88,10}})),
-    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
-            100}}), graphics={Text(extent={{-106,92},{-56,50}}, textString=
+    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}
+            ), graphics={Text(extent={{-106,92},{-56,50}}, textString=
               "p0"), Text(extent={{54,94},{112,52}}, textString="h")}),
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}),     graphics),
     Documentation(info="<HTML>
     <p><big> Model <b>SinkP</b> sets the boundary pressure of the fluid flowing from the port to the model (i.e. into the model).
 

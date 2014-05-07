@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Water;
 partial model Valve
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={
         Line(
           points={{0,40},{0,0}},
           color={0,0,0},

@@ -56,8 +56,8 @@ equation
   if cardinality(in_h) == 0 then
     in_h = h_0 "Enthalpy set by parameter";
   end if;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
-            {100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}
+            ), graphics={
         Text(extent={{-76,42},{-30,10}}, textString="Mdot"),
         Text(extent={{40,40},{84,12}}, textString="h"),
         Text(extent={{-20,40},{18,12}}, textString="T")}),Documentation(info="<HTML>

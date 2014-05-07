@@ -199,7 +199,7 @@ equation
       points={{-7.2,-16.4533},{-7.2,-36},{44,-36},{44,-55},{32,-55}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation ( Icon(coordinateSystem(extent={{-100,-100},
-            {100,100}})),
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,100}}
+            )),
     experiment(StopTime=1000));
 end step9;

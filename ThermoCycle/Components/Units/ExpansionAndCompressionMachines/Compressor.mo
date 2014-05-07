@@ -96,8 +96,7 @@ equation
   flange_elc.tau = W_dot/(2*N_rot*Modelica.Constants.pi)
   annotation (Diagram(graphics));
 
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
-            -100},{100,100}}), graphics), Icon(coordinateSystem(
+  annotation ( Icon(coordinateSystem(
           preserveAspectRatio=false,extent={{-120,-120},{120,120}}), graphics={
           Text(
           extent={{-62,-56},{80,-84}},

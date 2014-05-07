@@ -11,9 +11,7 @@ equation
     single[i].T = multi.T[i];
     single[i].phi = -multi.phi[i];
   end for;
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+  annotation (    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
         graphics={Text(
           extent={{-34,-20},{34,-34}},
           lineColor={0,0,255},

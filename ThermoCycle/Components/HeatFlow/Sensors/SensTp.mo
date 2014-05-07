@@ -26,10 +26,10 @@ equation
   InFlow.h_outflow = inStream(OutFlow.h_outflow);
   inStream(InFlow.h_outflow) = OutFlow.h_outflow;
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
-            100}}),     graphics),
-    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}), graphics={Text(
+    Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}
+            ),     graphics),
+    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}
+            ), graphics={Text(
           extent={{-40,84},{38,34}},
           lineColor={0,0,0},
           textString="p,T"), Line(points={{-60,60},{-40,60}})}),

@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Water;
 model Drum
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={Ellipse(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Ellipse(
                 extent={{-80,80},{80,-80}},
                 lineColor={128,128,128},
                 fillColor={128,128,128},

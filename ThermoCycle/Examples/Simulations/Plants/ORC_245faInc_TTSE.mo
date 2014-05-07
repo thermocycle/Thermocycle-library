@@ -209,7 +209,7 @@ equation
       points={{-58.5538,63.3538},{-74,63.3538},{-74,74},{-84.96,74}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation ( Icon(coordinateSystem(extent={{-100,-100},
-            {100,100}})),
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,100}}
+            )),
     experiment(StopTime=1000));
 end ORC_245faInc_TTSE;

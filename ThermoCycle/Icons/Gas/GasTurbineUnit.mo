@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Gas;
 partial model GasTurbineUnit
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={Line(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Line(
                 points={{-22,26},{-22,48},{22,48},{22,28}},
                 color={0,0,0},
                 thickness=2.5),Rectangle(

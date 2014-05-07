@@ -73,8 +73,8 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{
-            100,100}}), graphics={Text(
+    Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,100}}
+            ), graphics={Text(
           extent={{-52,66},{-16,60}},
           lineColor={0,0,0},
           textString="Thermal port")}),

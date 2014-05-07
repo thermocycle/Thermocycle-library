@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Water;
 partial model Pump
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={
         Polygon(
           points={{-40,-24},{-60,-60},{60,-60},{40,-24},{-40,-24}},
           lineColor={0,0,255},

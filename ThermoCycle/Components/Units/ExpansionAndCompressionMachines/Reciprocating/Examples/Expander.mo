@@ -146,6 +146,6 @@ equation
       points={{10,48},{40,48}},
       color={0,127,255},
       smooth=Smooth.None));
-  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,
-            100}})));
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,100}}
+            )));
 end Expander;

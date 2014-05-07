@@ -179,7 +179,7 @@ m_wf = 0;
       points={{-81.4,-8},{-65.84,-8},{-65.84,-32.4}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation ( Icon(coordinateSystem(extent={{-100,-100},
-            {100,100}})),
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,100}}
+            )),
     experiment(StopTime=1000));
 end Chattering;

@@ -41,7 +41,5 @@ equation
       points={{10,-3.8},{36,-3.8},{36,-4},{60,-4}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics),
-    experiment(StopTime=10));
+  annotation (    experiment(StopTime=10));
 end TestNozzle;

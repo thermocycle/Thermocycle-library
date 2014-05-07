@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Water;
 partial model Accumulator
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={Rectangle(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Rectangle(
                 extent={{-60,80},{60,-40}},
                 lineColor={0,0,255},
                 pattern=LinePattern.None,
@@ -51,7 +51,5 @@ partial model Accumulator
                 lineColor={0,0,255},
                 pattern=LinePattern.None,
                 fillColor={128,128,128},
-                fillPattern=FillPattern.Solid)}), Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}}), graphics));
+                fillPattern=FillPattern.Solid)}));
 end Accumulator;

@@ -55,9 +55,7 @@ package ScrollCompressor
         points={{-46,-4.54},{-22,-4.54},{-22,-12},{1.6,-12}},
         color={0,0,255},
         smooth=Smooth.None));
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-              -100},{100,100}}),      graphics),
-      experiment(__Dymola_NumberOfIntervals=10));
+    annotation (      experiment(__Dymola_NumberOfIntervals=10));
   end Test_nozzle;
 
   model Nozzle
@@ -146,8 +144,7 @@ package ScrollCompressor
   gamma = 1;
   end if;
 
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-              -100},{100,100}}), graphics), Icon(coordinateSystem(
+    annotation ( Icon(coordinateSystem(
             preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
           Rectangle(
             extent={{-92,84},{90,-74}},
@@ -205,8 +202,8 @@ package ScrollCompressor
   C*der_T = Compresseur.Q_flow + Q_dot_amb + W_dot_loss;
   Compresseur.T = T_wall;
   der_T = der(T_wall);
-    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-              {100,100}}), graphics={      Rectangle(
+    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+              ), graphics={      Rectangle(
             extent={{-100,16},{100,-16}},
             lineColor={0,0,0},
             fillColor={128,128,128},
@@ -296,8 +293,8 @@ package ScrollCompressor
   omega_m = 2*N_rot*Modelica.Constants.pi;
   flange_elc.tau = W_dot_in/(2*N_rot*Modelica.Constants.pi);
 
-    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-              {100,100}}), graphics={
+    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+              ), graphics={
           Polygon(
             points={{-100,-80},{20,-40},{100,-40},{100,40},{20,40},{-100,80},{-100,
                 -80}},
@@ -364,8 +361,7 @@ package ScrollCompressor
 
   W_dot_B = W_dot_A - W_dot_loss;
 
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-              -100},{100,100}}), graphics), Icon(coordinateSystem(
+    annotation ( Icon(coordinateSystem(
             preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
           Rectangle(
             extent={{-102,10},{98,-10}},
@@ -948,8 +944,8 @@ Documentation(info="<html>
 <p>website : www.labothap.ulg.ac.be</p>
 </html>"));
   end test_ScrollCompressor;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={
         Ellipse(
           extent={{-50,84},{70,-16}},
           lineColor={0,0,0},

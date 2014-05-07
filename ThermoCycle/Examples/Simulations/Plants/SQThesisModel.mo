@@ -248,10 +248,7 @@ equation
       points={{0,72.4},{4,72.4},{4,72},{6,72},{6,51},{-22,51}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}),
-                      graphics),
-    experiment(StopTime=1669),
+  annotation (    experiment(StopTime=1669),
     __Dymola_experimentSetupOutput(equdistant=false),
     Documentation(info="<html>
 <p>Dynamic model of a non-recuperative Organic Rankine Cycle with its control system.</p>

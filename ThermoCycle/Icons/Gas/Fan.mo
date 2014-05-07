@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Gas;
 partial model Fan
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={Polygon(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Polygon(
                 points={{-38,-24},{-58,-60},{62,-60},{42,-24},{-38,-24}},
                 lineColor={95,95,95},
                 lineThickness=1,

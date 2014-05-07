@@ -46,8 +46,8 @@ equation
   flange.cp = cp;
   flange.rho = rho;
   Hdot = flange.Mdot * (flange.T - T_ref) * cp;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
-            -100},{100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,100}}
+            ), graphics={
         Rectangle(extent={{-72,38},{80,-40}}, lineColor={0,0,0},
           radius=10),
         Polygon(
@@ -69,12 +69,10 @@ equation
           points={{-2,32},{2,32},{-2,32}},
           color={0,0,0},
           smooth=Smooth.None,
-          thickness=1)}),    Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
-            100}}), graphics={Text(extent={{-98,74},{-48,42}}, textString="w0"),
+          thickness=1)}),    Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,100}}
+            ), graphics={Text(extent={{-98,74},{-48,42}}, textString="w0"),
           Text(extent={{48,74},{98,42}}, textString="h")}),
-    Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{
-            100,100}}),
-            graphics),Documentation(info="<HTML>
+Documentation(info="<HTML>
                     <p><big> Model <b>SourceCdot</b> represents an ideal mass flow source, with prescribed specific heat capacity, temperature and density of the constant heat capacity fluid flowing from the model to the port (i.e. out of the model).
 
  <p><big> The massFlow and temperature can be set as  parameters or defined by the connectors.

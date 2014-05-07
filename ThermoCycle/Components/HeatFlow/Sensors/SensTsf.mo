@@ -14,10 +14,8 @@ equation
   inlet.rho = outlet.rho;
   T = inlet.T;
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{
-            100,100}}), graphics),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}), graphics={Text(
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Text(
           extent={{-40,88},{42,28}},
           lineColor={0,0,0},
           textString="T")}),

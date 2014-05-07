@@ -108,9 +108,7 @@ equation
   /*pressures*/
   p_su = InFlow.p;
   p_ex = OutFlow.p;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
-            -100},{100,100}}),
-                         graphics),Documentation(info="<html>
+  annotation (Documentation(info="<html>
 <p>The Pump model represents the compression of a fluid in a turbo or volumetric machine. It is a lumped model based on performance curves where pump speed is set as an input.</p>
 <p>The assumptions for this model are:</p>
 <p><ul>

@@ -36,8 +36,8 @@ equation
   flange.cp = cp;
   flange.rho = rho;
   Hdot = flange.Mdot * (flange.T - T_ref) * cp;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},
-            {100,100}}),       graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,100}}
+            ),       graphics={
         Rectangle(extent={{-72,38},{80,-40}}, lineColor={0,0,0},
           radius=10),
         Polygon(
@@ -59,13 +59,7 @@ equation
           points={{-2,32},{2,32},{-2,32}},
           color={0,0,0},
           smooth=Smooth.None,
-          thickness=1)}),                                          Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}), graphics),
-    Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
-            100}}), graphics={Text(extent={{-98,74},{-48,42}}, textString="w0"),
-          Text(extent={{48,74},{98,42}}, textString="h")}),
-    Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{
-            100,100}}),
-            graphics));
+          thickness=1)}),    Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,100}}
+            ), graphics={Text(extent={{-98,74},{-48,42}}, textString="w0"),
+          Text(extent={{48,74},{98,42}}, textString="h")}));
 end Source_Cdot2_04112013;

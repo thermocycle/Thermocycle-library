@@ -396,10 +396,10 @@ Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})
         color={255,0,0},
         smooth=Smooth.None));
     annotation (
-      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{
-              100,100}}), graphics),
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-              100}}), graphics={Rectangle(
+      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}
+              ), graphics),
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+              ), graphics={Rectangle(
             extent={{-80,40},{84,-40}},
             lineColor={255,0,0},
             fillColor={0,255,255},
@@ -518,8 +518,8 @@ Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})
         color={255,0,0},
         smooth=Smooth.None),      experiment(StopTime=1000));
   end Test_heat_storage;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={
         Ellipse(
           extent={{-42,52},{38,80}},
           lineColor={0,0,0},

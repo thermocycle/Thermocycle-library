@@ -23,8 +23,6 @@ equation
   /* MassFlow */
   Mdot = InFlow.m_flow;
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}),     graphics),
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}),
                     graphics={Text(
           extent={{-42,86},{40,26}},

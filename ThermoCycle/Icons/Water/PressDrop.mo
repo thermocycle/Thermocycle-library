@@ -1,7 +1,7 @@
 within ThermoCycle.Icons.Water;
 partial model PressDrop
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics={Rectangle(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}
+            ), graphics={Rectangle(
                 extent={{-80,40},{80,-40}},
                 lineColor={0,0,0},
                 fillPattern=FillPattern.HorizontalCylinder),Polygon(
