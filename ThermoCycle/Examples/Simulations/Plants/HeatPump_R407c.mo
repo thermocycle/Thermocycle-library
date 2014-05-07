@@ -219,8 +219,7 @@ equation
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
             -100},{100,100}}),      graphics),
     experiment(StopTime=100),
-    __Dymola_experimentSetupOutput,
-    Documentation(info="<html>
+Documentation(info="<html>
 <p>Simple model of an air-to-water heat pump with R407c as working fluid. </p>
 <p>The pressure drops are lumped into two pressure drop (assumed to be quadratic with the mass flow) components in the vapor lines. </p>
 <p>The heat exchangers are modeled by a constant heat transfer coefficient on the refrigerant side and a variable heat transfer coefficient (depending on the flow rate) on the secondary fluid side.</p>

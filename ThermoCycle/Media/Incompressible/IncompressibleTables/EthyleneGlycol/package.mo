@@ -18,5 +18,4 @@ package EthyleneGlycol "Ethylene glycol Incompressible - TableBased"
    // Vapor pressure ---->  [Pa]                                                     // Use ~ boiling point of propylene glycol since Eckerd uses propylene"
 
 
-  annotation ();
 end EthyleneGlycol;

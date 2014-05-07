@@ -8,12 +8,9 @@ model MBeva
     p=6000000)
     annotation (Placement(transformation(extent={{-84,-54},{-64,-34}})));
   Modelica.Blocks.Sources.Constant Hin(k=852540)
-    annotation (Placement(transformation(extent={{-100,-16},{-80,4}},
-          rotation=0)));
+    annotation (Placement(transformation(extent={{-100,-16},{-80,4}})));
   Modelica.Blocks.Sources.Constant Pout(k=1e5)
-    annotation (Placement(transformation(extent={{130,10},{110,30}},
-                                                                   rotation=
-           0)));
+    annotation (Placement(transformation(extent={{130,10},{110,30}})));
  ThermoCycle.Components.Units.HeatExchangers.MBeva MB_eva(
     A=0.0314159,
     L=1,
@@ -83,10 +80,7 @@ equation
       points={{73,-54},{80,-54},{80,-40},{82,-40},{82,-36},{89.6,-36}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=true),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},{100,
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},{100,
             100}})),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=1000));
 end MBeva;

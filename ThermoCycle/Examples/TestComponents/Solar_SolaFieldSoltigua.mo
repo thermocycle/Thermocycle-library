@@ -73,6 +73,5 @@ equation
       color={255,0,255},
       smooth=Smooth.None));
   annotation (Diagram(graphics),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=1000));
 end Solar_SolaFieldSoltigua;

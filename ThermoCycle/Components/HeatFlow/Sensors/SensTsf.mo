@@ -2,7 +2,7 @@ within ThermoCycle.Components.HeatFlow.Sensors;
 model SensTsf "Temperature sensor for  constant heat capacity fluid"
   extends ThermoCycle.Icons.Water.SensThrough;
   Modelica.Blocks.Interfaces.RealOutput T annotation (Placement(
-        transformation(extent={{60,40},{100,80}}, rotation=0)));
+        transformation(extent={{60,40},{100,80}})));
   Interfaces.Fluid.Flange_Cdot inlet
     annotation (Placement(transformation(extent={{-80,-60},{-40,-20}})));
   Interfaces.Fluid.Flange_ex_Cdot outlet

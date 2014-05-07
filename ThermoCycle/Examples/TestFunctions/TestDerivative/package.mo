@@ -3,5 +3,4 @@ package TestDerivative
   extends Modelica.Icons.Package;
 
 
-  annotation ();
 end TestDerivative;

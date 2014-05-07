@@ -49,7 +49,6 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     height=0,
     offset=48.25)  annotation (Placement(transformation(
         extent={{-5,-5},{5,5}},
-        rotation=0,
         origin={65,67})));
 ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                              generatorNext(Np=1)
@@ -180,10 +179,7 @@ m_wf = 0;
       points={{-81.4,-8},{-65.84,-8},{-65.84,-32.4}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=false),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},
             {100,100}})),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=1000));
 end Chattering;

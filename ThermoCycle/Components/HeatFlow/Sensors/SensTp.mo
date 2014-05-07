@@ -5,9 +5,9 @@ replaceable package Medium = ThermoCycle.Media.R245fa_CP
                                           constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium Model" annotation (choicesAllMatching = true);
   Modelica.Blocks.Interfaces.RealOutput T annotation (Placement(
-        transformation(extent={{60,40},{100,80}}, rotation=0)));
+        transformation(extent={{60,40},{100,80}})));
   Modelica.Blocks.Interfaces.RealOutput p annotation (Placement(
-        transformation(extent={{-60,40},{-100,80}}, rotation=0)));
+        transformation(extent={{-60,40},{-100,80}})));
 Modelica.SIunits.SpecificEnthalpy h "Specific Enthalpy of the fluid";
 Medium.ThermodynamicState fluidState "Thermodynamic state of the fluid";
   Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium, m_flow(min= 0))

@@ -60,9 +60,7 @@ equation
             {100,100}}), graphics={
         Text(extent={{-76,42},{-30,10}}, textString="Mdot"),
         Text(extent={{40,40},{84,12}}, textString="h"),
-        Text(extent={{-20,40},{18,12}}, textString="T")}), Diagram(
-        coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}),
-                    graphics),Documentation(info="<HTML>
+        Text(extent={{-20,40},{18,12}}, textString="T")}),Documentation(info="<HTML>
                     <p><big> Model <b>SourceMdot</b> represents an ideal mass flow sources, with prescribed enthalpy of the fluid flowing from the model to the port (i.e. out of the model).
                  <p><b><big>Modelling options</b></p>
                <p><big> In the <b>General</b> tab the following option is availabe:

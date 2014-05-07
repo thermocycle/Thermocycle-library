@@ -7,5 +7,4 @@ package Solkatherm_CP_DerSmooth "Solkatherm - Coolprop smooth density derivative
     ThermoStates=Modelica.Media.Interfaces.PartialMedium.Choices.IndependentVariables.ph);
 
 
-  annotation ();
 end Solkatherm_CP_DerSmooth;

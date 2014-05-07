@@ -20,7 +20,7 @@ protected
   AngularVelocity_rpm n "Rotational speed [rpm]";
 public
   Modelica.Mechanics.Rotational.Interfaces.Flange_a shaft annotation (
-      Placement(transformation(extent={{-100,-14},{-72,14}}, rotation=0)));
+      Placement(transformation(extent={{-100,-14},{-72,14}})));
   Modelica.Blocks.Interfaces.RealInput f(start=50) "Electrical frequency"
     annotation (Placement(transformation(
         extent={{16,16},{-16,-16}},

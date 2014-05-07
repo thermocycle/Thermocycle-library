@@ -5,7 +5,7 @@ model ExpanderOpendriveDetailed
 //=============================
    Modelica.Mechanics.Rotational.Interfaces.Flange_b flange_elc
     "Flange of shaft"
-    annotation (Placement(transformation(extent={{64,-8},{100,28}},  rotation=0),
+    annotation (Placement(transformation(extent={{64,-8},{100,28}}),
         iconTransformation(extent={{68,-2},{92,22}})));
 replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);

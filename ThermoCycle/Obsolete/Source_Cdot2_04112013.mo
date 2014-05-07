@@ -15,7 +15,6 @@ model Source_Cdot2_04112013 "Flowrate source for Cdot-type heat source"
         extent={{-20,-20},{20,20}},
         rotation=270), iconTransformation(
         extent={{-15,-15},{15,15}},
-        rotation=0,
         origin={-71,-1})));
   Interfaces.Fluid.Flange_ex_Cdot flange
                                 annotation (Placement(transformation(extent={{82,-2},

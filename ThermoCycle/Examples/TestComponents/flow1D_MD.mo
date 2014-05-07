@@ -78,6 +78,5 @@ equation
           extent={{-52,66},{-16,60}},
           lineColor={0,0,0},
           textString="Thermal port")}),
-    experiment(StopTime=125, __Dymola_Algorithm="Dassl"),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=125, __Dymola_Algorithm="Dassl"));
 end flow1D_MD;

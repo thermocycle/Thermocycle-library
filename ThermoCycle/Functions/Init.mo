@@ -5,14 +5,11 @@ model Init "Smooth transition between two values"
   parameter Boolean noevent=false
     "Avoids the generation of events during the transition";
   Modelica.Blocks.Interfaces.RealInput u1 "Connector of Real input signal"
-    annotation (Placement(transformation(extent={{-140,-58},{-100,-18}},
-          rotation=0)));
+    annotation (Placement(transformation(extent={{-140,-58},{-100,-18}})));
   Modelica.Blocks.Interfaces.RealInput u2 "Connector of Real input signal"
-    annotation (Placement(transformation(extent={{-140,-58},{-100,-18}},
-          rotation=0), iconTransformation(extent={{-140,20},{-100,60}})));
+    annotation (Placement(transformation(extent={{-140,-58},{-100,-18}}), iconTransformation(extent={{-140,20},{-100,60}})));
   Modelica.Blocks.Interfaces.RealOutput y "Connector of Real input signal"
-    annotation (Placement(transformation(extent={{100,-20},{140,20}},
-          rotation=0), iconTransformation(extent={{88,-18},{128,22}})));
+    annotation (Placement(transformation(extent={{100,-20},{140,20}}), iconTransformation(extent={{88,-18},{128,22}})));
 equation
   if noevent then
     y = smooth(1, noEvent(if time < t_init then u1 elseif time < t_init +
@@ -73,10 +70,6 @@ equation
           lineColor={0,0,0},
           pattern=LinePattern.Dot,
           textString="Initialisation")}),
-    Diagram(coordinateSystem(
-        preserveAspectRatio=true,
-        extent={{-100,-100},{100,100}},
-        grid={2,2}), graphics),
     Documentation(info="<html>
 <p>Smooth transition between u1 and u2 (C1-continuous). Allows initiating the simulation with constant values, which avoids initialization issues.</p>
 <p>S.Quoilin (University of Li&egrave;ge)</p>

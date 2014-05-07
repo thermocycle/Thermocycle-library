@@ -2,16 +2,15 @@ within ThermoCycle.Components.Units.ControlSystems.Blocks;
 model Tev_SP
   // Calculate the superheating with the temperature and the pressure as inputs
   Modelica.Blocks.Interfaces.RealInput p_cd "measured pressure" annotation (
-      Placement(transformation(extent={{-112,54},{-88,78}}, rotation=0),
+      Placement(transformation(extent={{-112,54},{-88,78}}),
         iconTransformation(extent={{-112,54},{-88,78}})));
   Modelica.Blocks.Interfaces.RealInput Mdot "measured" annotation (Placement(
-        transformation(extent={{-112,-54},{-88,-30}}, rotation=0)));
+        transformation(extent={{-112,-54},{-88,-30}})));
   Modelica.Blocks.Interfaces.RealOutput Tev annotation (Placement(
         transformation(extent={{92,-2},{130,36}}), iconTransformation(extent=
             {{96,2},{116,22}})));
   Modelica.Blocks.Interfaces.RealInput T_hf_su "measured pressure"
-    annotation (Placement(transformation(extent={{-112,6},{-88,30}}, rotation=
-           0), iconTransformation(extent={{-112,0},{-88,24}})));
+    annotation (Placement(transformation(extent={{-112,6},{-88,30}}), iconTransformation(extent={{-112,0},{-88,24}})));
 equation
   Tev = 273.15 + 100;
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,

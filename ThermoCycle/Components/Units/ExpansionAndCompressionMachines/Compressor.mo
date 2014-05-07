@@ -8,7 +8,7 @@ replaceable package Medium =
 public
 Modelica.Mechanics.Rotational.Interfaces.Flange_b flange_elc "Flange of shaft"
                       annotation (Placement(transformation(extent={{64,-8},{
-            100,28}}, rotation=0), iconTransformation(extent={{68,-12},{92,12}})));
+            100,28}}), iconTransformation(extent={{68,-12},{92,12}})));
   Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{-78,68},{-58,88}}),

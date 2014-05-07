@@ -43,7 +43,6 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     height=0,
     offset=48.25)  annotation (Placement(transformation(
         extent={{-5,-5},{5,5}},
-        rotation=0,
         origin={65,67})));
   ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                                generatorNext(Np=1)
@@ -116,7 +115,6 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc                 condenser(
     duration=0,
     height=0)      annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
-        rotation=0,
         origin={-84,-6})));
  ThermoCycle.Components.Units.Tanks.Tank_pL tank(
     Vtot=0.015,
@@ -211,10 +209,7 @@ equation
       points={{-58.5538,63.3538},{-74,63.3538},{-74,74},{-84.96,74}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=true),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},
+  annotation ( Icon(coordinateSystem(extent={{-100,-100},
             {100,100}})),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=1000));
 end ORC_245faInc_TTSE;

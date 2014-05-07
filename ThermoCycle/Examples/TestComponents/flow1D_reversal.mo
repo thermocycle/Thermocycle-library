@@ -69,6 +69,5 @@ equation
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             100}}),     graphics),
-    experiment(StopTime=50, __Dymola_Algorithm="Dassl"),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=50, __Dymola_Algorithm="Dassl"));
 end flow1D_reversal;

@@ -104,6 +104,5 @@ equation
     experiment(
       StopTime=500,
       __Dymola_NumberOfIntervals=1000,
-      __Dymola_Algorithm="Dassl"),
-    __Dymola_experimentSetupOutput);
+      __Dymola_Algorithm="Dassl"));
 end flow1D_smoothedCorrelations;

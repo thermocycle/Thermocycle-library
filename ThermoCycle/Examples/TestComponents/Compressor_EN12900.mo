@@ -29,6 +29,5 @@ equation
           preserveAspectRatio=false),
                       graphics), Icon(coordinateSystem(extent={{-120,-100},
             {80,100}})),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=1000));
 end Compressor_EN12900;

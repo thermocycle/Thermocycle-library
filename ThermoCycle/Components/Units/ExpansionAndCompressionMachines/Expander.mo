@@ -7,7 +7,7 @@ replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
 public
 Modelica.Mechanics.Rotational.Interfaces.Flange_b flange_elc "Flange of shaft"
                       annotation (Placement(transformation(extent={{64,-8},{
-            100,28}}, rotation=0), iconTransformation(extent={{68,-2},{92,22}})));
+            100,28}}), iconTransformation(extent={{68,-2},{92,22}})));
   Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{-78,36},{-58,56}}),

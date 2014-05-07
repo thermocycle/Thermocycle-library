@@ -7,5 +7,4 @@ package Propane_FPRP "Propane - FluidProp.RefProp - TC"
     ThermoStates=Modelica.Media.Interfaces.PartialMedium.Choices.IndependentVariables.ph);
 
 
-  annotation ();
 end Propane_FPRP;

@@ -61,6 +61,5 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(graphics),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=1000));
 end Solar_SolaFieldSchott;
