@@ -7,5 +7,4 @@ package Propane_CP "Propane - CoolProp - TC"
     ThermoStates=Modelica.Media.Interfaces.PartialMedium.Choices.IndependentVariables.ph);
 
 
-  annotation ();
 end Propane_CP;

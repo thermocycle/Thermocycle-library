@@ -221,9 +221,7 @@ end for;
       color={255,127,0},
       smooth=Smooth.None));
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),
-              Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=true),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},{100,
+ Icon(coordinateSystem(extent={{-100,-100},{100,
             100}},
           preserveAspectRatio=true),  graphics={
         Rectangle(

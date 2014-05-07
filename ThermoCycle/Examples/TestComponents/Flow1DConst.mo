@@ -28,6 +28,5 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   annotation (Diagram(graphics),
-    experiment(StopTime=100),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=100));
 end Flow1DConst;

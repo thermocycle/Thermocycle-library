@@ -205,11 +205,8 @@ package HeatStorageWaterHeater
         points={{-0.4,-12.26},{-0.4,-9.445},{-0.08,-9.445},{-0.08,-6.63},{2.32,
             -6.63},{2.32,-1.5}},
         color={255,0,0},
-        smooth=Smooth.None), Diagram(coordinateSystem(preserveAspectRatio=true,
-            extent={{-100,-100},{100,100}}), graphics),
-      experiment(StopTime=5000),
-      __Dymola_experimentSetupOutput,
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+        smooth=Smooth.None),      experiment(StopTime=5000),
+Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
           graphics={
           Ellipse(
             extent={{-40,60},{40,88}},
@@ -399,8 +396,6 @@ package HeatStorageWaterHeater
         color={255,0,0},
         smooth=Smooth.None));
     annotation (
-      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{
-              100,100}}), graphics),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}}), graphics={Rectangle(
             extent={{-80,40},{84,-40}},
@@ -519,10 +514,7 @@ package HeatStorageWaterHeater
         points={{-0.4,-12.26},{-0.4,-9.445},{-0.08,-9.445},{-0.08,-6.63},{2.32,
             -6.63},{2.32,-1.5}},
         color={255,0,0},
-        smooth=Smooth.None), Diagram(coordinateSystem(preserveAspectRatio=false,
-            extent={{-100,-100},{100,100}}), graphics),
-      experiment(StopTime=1000),
-      __Dymola_experimentSetupOutput);
+        smooth=Smooth.None),      experiment(StopTime=1000));
   end Test_heat_storage;
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics={
@@ -558,9 +550,7 @@ package HeatStorageWaterHeater
         Line(
           points={{-42,58},{38,58}},
           color={0,0,0},
-          smooth=Smooth.None)}), Diagram(coordinateSystem(preserveAspectRatio=
-            false, extent={{-100,-100},{100,100}}), graphics),
-    Documentation(info="<html>
+          smooth=Smooth.None)}),    Documentation(info="<html>
 <p>Nodal model of a stratified tank, with the following hypotheses:</p>
 <p><ul>
 <li>No heat transfer between the different nodes</li>

@@ -7,7 +7,6 @@ model Expander
     offset=48.25,
     height=0)      annotation (Placement(transformation(
         extent={{-5,-5},{5,5}},
-        rotation=0,
         origin={-13,77})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
                                                          expander(redeclare
@@ -47,6 +46,5 @@ equation
           preserveAspectRatio=true),
                       graphics), Icon(coordinateSystem(extent={{-120,-100},
             {80,100}})),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=1000));
 end Expander;

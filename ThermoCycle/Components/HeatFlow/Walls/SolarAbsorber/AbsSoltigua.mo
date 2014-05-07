@@ -104,11 +104,7 @@ end for;
 Eta_tot =sum(Eta_tot_N)/N;
 
                                                                                                       annotation(Dialog(tab = "Initialisation"),
-             Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-            {100,100}}),
-                     graphics),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-         graphics),Documentation(info="<HTML>
+Documentation(info="<HTML>
 
     <p><big>It solves the 1D radial energy balance around the Heat Collector Element of the Soltigua PTMx parabolic trough solar collector based on the Soltigua data sheet
      (see <a href=\"http://www.soltigua.com/prodotti/ptm/\">http://www.soltigua.com</a>.)</p>

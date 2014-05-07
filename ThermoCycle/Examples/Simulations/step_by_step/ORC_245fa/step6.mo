@@ -57,7 +57,6 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     height=0,
     offset=48.25)  annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
-        rotation=0,
         origin={72,64})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                               generatorNext(Np=1)
@@ -135,10 +134,5 @@ equation
       points={{-4,-11.3333},{-4,2},{-66,2},{-66,36},{-46,36}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=false),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},
-            {100,100}})),
-    experiment(StopTime=1000, __Dymola_NumberOfIntervals=5000),
-    __Dymola_experimentSetupOutput);
+  annotation (    experiment(StopTime=1000, __Dymola_NumberOfIntervals=5000));
 end step6;

@@ -125,8 +125,7 @@ equation
   su.h_outflow = 6E5;
   ex.h_outflow = inStream(su.h_outflow);
 
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}),      graphics), Icon(coordinateSystem(
+  annotation ( Icon(coordinateSystem(
           preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
         graphics={
         Rectangle(

@@ -275,7 +275,5 @@ initial equation
           smooth=Smooth.None,
           thickness=0.5),
         Rectangle(extent={{-100,48},{100,68}}, lineColor={0,0,255}),
-        Rectangle(extent={{-100,-44},{100,-24}}, lineColor={255,0,0})}),
-                            Diagram(coordinateSystem(preserveAspectRatio=false,
-          extent={{-100,-100},{100,100}}), graphics));
+        Rectangle(extent={{-100,-44},{100,-24}}, lineColor={255,0,0})}));
 end HxRec_06122013;

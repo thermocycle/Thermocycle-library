@@ -26,5 +26,4 @@ if x < -width/2
   then (Unom_v - Unom_tp)* Modelica.Constants.pi/width * cos((x - 1)*Modelica.Constants.pi/width)/2 * x_der
  else
      0;
-  annotation ();
 end U_hx_der;
