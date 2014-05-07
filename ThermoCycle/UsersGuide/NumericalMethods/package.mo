@@ -1,4 +1,4 @@
-﻿within ThermoCycle.UsersGuide;
+within ThermoCycle.UsersGuide;
 package NumericalMethods 
 extends Modelica.Icons.Information;
 
@@ -44,7 +44,7 @@ Chattering and simulations failures are likely to occur if:
 
 
 <p><big>
-This section describes the different methods implemented to avoids the simulation issues described above. These methods aim at avoiding numerical flow reversal or avoiding unsolvable
+This section describes the different methods implemented to avoid the simulation issues described above. These methods aim at avoiding numerical flow reversal or avoiding unsolvable
 systems in case a flow reversal occurs.
 The different solutions are implemented and tested in the Modelica ThermoCycle library. Some can be
 implemented at the Modelica level while other require a modification of the thermodynamic properties
@@ -55,7 +55,7 @@ the literature, while some others are new.</p>
 
 <u><p><big> Filtering Method</p></u>
 <p><big>
-In this strategy , a first order filter is applied to the fast variations of the density with respect to time:
+In this strategy, a first order filter is applied to the fast variations of the density with respect to time:
 </p>
 <p>
 <img src=\"modelica://ThermoCycle/Resources/Images/Chattering/FilterMethod_1.png\">
@@ -63,7 +63,7 @@ In this strategy , a first order filter is applied to the fast variations of the
 <p><big>
 where u and y are the input and output signals, respectively. In this particular case, u is the mass variation
 calculated with the equation of state and y is the filtered mass derivative. This filter therefore acts
-as ”mass damper” and avoids transmitting abrupt variations of the flow rate due the density derivative
+as &ldquo;mass damper&rdquo; and avoids transmitting abrupt variations of the flow rate due the density derivative
 discontinuity. The filtered mass accumulation in each cell is written:
 </p>
 <p>
@@ -122,7 +122,7 @@ line and a constant vapor quality line. The method is implemented in the standar
 The enthalpy limiter method does not aim at avoiding flow reversals. Instead, it ensures that the system of equations remains solvable even in case of flow reversal
 The enthalpy of the fluid entering a cell should have a minimum value, ensuring that the system of equations can be solved. The enthalpy limiter method is the practical implementation of
 this constraint in the cell model. It was originally proposed by Schultze et al. and implemented in the TIL Modelica library.
-The idea is to take profit of the ”Stream” connector type available in Modelica to propagate the minimum enthalpy limitation: in this manner a cell can communicate with its two neighbouring cell and propagate
+The idea is to take profit of the &ldquo;Stream&rdquo; connector type available in Modelica to propagate the minimum enthalpy limitation: in this manner a cell can communicate with its two neighbouring cell and propagate
 the minimum enthalpy of an incoming flow. The incoming flow is limited to this minimum value:
 </p>
 <p>
