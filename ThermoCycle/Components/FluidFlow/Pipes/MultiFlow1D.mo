@@ -188,6 +188,6 @@ equation
           color={0,0,255},
           smooth=Smooth.None)}), Documentation(info="<HTML>  <p><big>This model describes the flow of a constant heat capacity fluid in parallel pipes. Each pipe is represented by the lumped model.
            It is obtained by connecting in parallel <b>N</b> <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.AirCell\">AirCell</a>
-           The resulting discretization scheme is of the staggered type i.e. state variables are computed at the center of each cell and the node variables are calculated depending on the local discretization  (Upwind or Central difference). 
+           The resulting discretization scheme is of the staggered type i.e. state variables are computed at the center of each cell and the node variables are calculated depending on the local discretization  (Upwind or Central difference).
  </HTML>"));
 end MultiFlow1D;

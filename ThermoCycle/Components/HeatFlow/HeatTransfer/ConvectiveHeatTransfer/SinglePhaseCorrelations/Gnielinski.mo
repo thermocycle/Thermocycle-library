@@ -91,7 +91,7 @@ equation
   annotation(Documentation(info="<html>
 
 <p><big> The model <b>Gnielinski</b> extends the partial model
- <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialSinglePhaseCorrelation\">PartialSinglePhaseCorrelation</a> and 
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialSinglePhaseCorrelation\">PartialSinglePhaseCorrelation</a> and
  computes the heat transfer coefficient based on the Gnielinski correlation.
  </p>
 

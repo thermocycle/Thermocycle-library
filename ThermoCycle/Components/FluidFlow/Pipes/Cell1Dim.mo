@@ -237,12 +237,12 @@ equation
           extent={{-88,24},{92,-20}},
           lineColor={0,0,255},
           textString="%Cell1D")}),Documentation(info="<HTML>
-          
-         <p><big>Model <b>Cell1Dim</b> describes the flow of fluid through a single cell. An overall flow model can be obtained by interconnecting several cells in series 
+
+         <p><big>Model <b>Cell1Dim</b> describes the flow of fluid through a single cell. An overall flow model can be obtained by interconnecting several cells in series
          (see <em><FONT COLOR=red><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a></FONT></em>).
-         
-          <p><big><b>Pressure</b> and <b>enthalpy</b> are selected as state variables. 
-          <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell. The relation between the cell and node values depends on the discretization scheme selected. 
+
+          <p><big><b>Pressure</b> and <b>enthalpy</b> are selected as state variables.
+          <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell. The relation between the cell and node values depends on the discretization scheme selected.
  <p><big>The assumptions for this model are:
          <ul><li> Velocity is considered uniform on the cross section. 1-D lumped parameter model
          <li> The model is based on dynamic mass and energy balances and on a static momentum balance
@@ -252,14 +252,14 @@ equation
          </ul>
 
  <p><big>The model is characterized by two flow connector and one lumped thermal port connector. During normal operation the fluid enters the model from the <em>InFlow</em> connector and exits from the <em>OutFlow</em> connector. In case of flow reversal the fluid direction is inversed.
- <p><big> The thermal energy transfer  through the lateral surface is computed by the <em><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></em> model which is inerithed in the <em>Cell1Dim</em> model. 
-        
+ <p><big> The thermal energy transfer  through the lateral surface is computed by the <em><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></em> model which is inerithed in the <em>Cell1Dim</em> model.
+
         <p><b><big>Modelling options</b></p>
         <p><big> In the <b>General</b> tab the following options are availabe:
         <ul><li>Medium: the user has the possibility to easly switch Medium.
-        <li> HeatTransfer: the user can choose the thermal energy model he prefers </ul> 
+        <li> HeatTransfer: the user can choose the thermal energy model he prefers </ul>
         <p><big> In the <b>Initialization</b> tab the following options are availabe:
-        <ul><li> steadystate: If it sets to true, the derivative of enthalpy is sets to zero during <em>Initialization</em> 
+        <ul><li> steadystate: If it sets to true, the derivative of enthalpy is sets to zero during <em>Initialization</em>
          </ul>
         <p><b><big>Numerical options</b></p>
 <p><big> In this tab several options are available to make the model more robust:
@@ -271,6 +271,6 @@ equation
 <li> TT: it represents the integration time of the first order filter. It activates when filter_dMdt is set to true
 <li> ComputeSat: if false saturation properties are not computed in the fluid model and they can be passed as a parameter.
  </ul>
- <p><big> 
+ <p><big>
         </HTML>"));
 end Cell1Dim;

@@ -129,8 +129,8 @@ equation
 
 
 <p><big> The model <b>Martin</b> extends the partial model
- <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialSinglePhaseCorrelation\">PartialSinglePhaseCorrelation</a> and 
- computes the heat transfer coefficient based on the correlation for plate heat exchangers developed by Martin 2010</p> 
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialSinglePhaseCorrelation\">PartialSinglePhaseCorrelation</a> and
+ computes the heat transfer coefficient based on the correlation for plate heat exchangers developed by Martin 2010</p>
 
 <dl>
 <dt>inbook<a name=\"Martin2010\">(Martin2010)</a></dt>

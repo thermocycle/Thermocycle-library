@@ -78,13 +78,13 @@ equation
           Text(extent={{48,74},{98,42}}, textString="h")}),
     Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{
             100,100}}),
-            graphics),Documentation(info="<HTML> 
+            graphics),Documentation(info="<HTML>
                     <p><big> Model <b>SourceCdot</b> represents an ideal mass flow source, with prescribed specific heat capacity, temperature and density of the constant heat capacity fluid flowing from the model to the port (i.e. out of the model).
-                
- <p><big> The massFlow and temperature can be set as  parameters or defined by the connectors. 
+
+ <p><big> The massFlow and temperature can be set as  parameters or defined by the connectors.
 
  <p><big>The calculation of the fluid thermal energy, calculated with respect to a user-defined reference temperature, is implemented in the model and accessible by the Hdot output.
-                    
-                    
+
+
                     </HTML>"));
 end SourceCdot;

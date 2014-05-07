@@ -1,5 +1,5 @@
 within ThermoCycle.UsersGuide;
-package NumericalMethods 
+package NumericalMethods
 extends Modelica.Icons.Information;
 
 
@@ -23,9 +23,9 @@ is often the density derivative on the liquid saturation curve. Simulation failu
 occur if the cell-generated (and purely numerical) flow rate due to this discontinuity causes a flow reversal in
 one of the nodes. Therefore, a numerical stability criteria can be expressed as follows:
 </p>
- 
- 
- 
+
+
+
  <img src=\"modelica://ThermoCycle/Resources/Images/ChatteringConstrain.png\">
 
 
@@ -39,8 +39,8 @@ Chattering and simulations failures are likely to occur if:
 <li> The working conditions are highly transient (i.e. the partial derivative of density with respect to enthalpy and pressure are high)
 </ul>
 </p>
- 
- 
+
+
 
 
 <p><big>
@@ -74,9 +74,9 @@ discontinuity. The filtered mass accumulation in each cell is written:
 where Tfilter is the filter time constant, set as model input. This strategy displaces the mass variations in
 time but does not generate mass defects. However the energy balance is affected because the cell density
 is not exactly the one corresponding to the actual node flow rates.
-This approach is implemented at the model level, and can be activated by setting to true the 
+This approach is implemented at the model level, and can be activated by setting to true the
 filter_dMdt options in the <em><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell model</a></em>, but it doubles the number of time
-states of the model since a second-order derivative of the working fluid mass is defined, as shown in the above equation. 
+states of the model since a second-order derivative of the working fluid mass is defined, as shown in the above equation.
 </p>
 
 <u><p><big> Truncation method </p></u>
@@ -148,12 +148,11 @@ solved using a smooth transition between both parts of the equation. Eq. 2 is th
 </p>
 <p><big>
 The smooth transition is a C1-continuous sinusoidal transition function varying from 0 to 1 between
- - Mnom/10 and Mnom/10. Mnom is a user-defined model parameter. This method can be activeted by setting the Discretization scheme to UpWind with Smoothing in the Numerical option folder of the 
+ - Mnom/10 and Mnom/10. Mnom is a user-defined model parameter. This method can be activeted by setting the Discretization scheme to UpWind with Smoothing in the Numerical option folder of the
  <em><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim model</a></em>.
 <p><big>
 
 </p>
-</html>
-"));
+</html>"));
 
 end NumericalMethods;

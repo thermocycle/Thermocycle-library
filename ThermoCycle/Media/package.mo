@@ -1,5 +1,5 @@
 within ThermoCycle;
-package Media 
+package Media
   extends Modelica.Icons.Package;
 
 

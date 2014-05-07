@@ -438,9 +438,9 @@ connect(InFlow, flow1Dim[1].InFlow);
      Documentation(info="<HTML>
 
 <p><big>The <b>SolarField_Forristal</b> model represents the solar field, composed by
-  a loop of parabolic collectors, based on <a href=\"http://www.nrel.gov/csp/troughnet/pdfs/34169.pdf\">Forristal model</a>. The large ratio between diameter 
+  a loop of parabolic collectors, based on <a href=\"http://www.nrel.gov/csp/troughnet/pdfs/34169.pdf\">Forristal model</a>. The large ratio between diameter
   and length allows a 1-D discretization of the absorber tube.
-   The model is composed by two sub-components: the <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> and the <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.SolAbsForristal\">SolAbsForristal</a> components. 
+   The model is composed by two sub-components: the <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> and the <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.SolAbsForristal\">SolAbsForristal</a> components.
 They are connected together through a thermal port.
 </p>
 
