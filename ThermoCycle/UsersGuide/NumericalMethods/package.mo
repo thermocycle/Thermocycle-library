@@ -122,7 +122,7 @@ line and a constant vapor quality line. The method is implemented in the standar
 The enthalpy limiter method does not aim at avoiding flow reversals. Instead, it ensures that the system of equations remains solvable even in case of flow reversal
 The enthalpy of the fluid entering a cell should have a minimum value, ensuring that the system of equations can be solved. The enthalpy limiter method is the practical implementation of
 this constraint in the cell model. It was originally proposed by Schultze et al. and implemented in the TIL Modelica library.
-The idea is to take profit of the ”Stream” connector type available in Modelica to propagate the minimum enthalpy limitation: in this manner a cell can communicate with its two neighbouring cell and propagate
+The idea is to take profit of the &ldquo;Stream&rdquo; connector type available in Modelica to propagate the minimum enthalpy limitation: in this manner a cell can communicate with its two neighbouring cell and propagate
 the minimum enthalpy of an incoming flow. The incoming flow is limited to this minimum value:
 </p>
 <p>
