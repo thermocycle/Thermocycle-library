@@ -63,7 +63,7 @@ In this strategy, a first order filter is applied to the fast variations of the 
 <p><big>
 where u and y are the input and output signals, respectively. In this particular case, u is the mass variation
 calculated with the equation of state and y is the filtered mass derivative. This filter therefore acts
-as ”mass damper” and avoids transmitting abrupt variations of the flow rate due the density derivative
+as &ldquo;mass damper&rdquo; and avoids transmitting abrupt variations of the flow rate due the density derivative
 discontinuity. The filtered mass accumulation in each cell is written:
 </p>
 <p>
