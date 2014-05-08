@@ -5,9 +5,9 @@ replaceable package Medium = ThermoCycle.Media.R245fa_CPRP
                                           constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium Model" annotation (choicesAllMatching = true);
   Modelica.Blocks.Interfaces.RealOutput T annotation (Placement(
-        transformation(extent={{60,40},{100,80}}, rotation=0)));
+        transformation(extent={{60,40},{100,80}})));
   Modelica.Blocks.Interfaces.RealOutput p annotation (Placement(
-        transformation(extent={{-60,40},{-100,80}}, rotation=0)));
+        transformation(extent={{-60,40},{-100,80}})));
 Modelica.SIunits.SpecificEnthalpy h "Specific Enthalpy of the fluid";
 Medium.ThermodynamicState fluidState "Thermodynamic state of the fluid";
   Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium, m_flow(min= 0))
@@ -26,8 +26,6 @@ equation
   InFlow.h_outflow = inStream(OutFlow.h_outflow);
   inStream(InFlow.h_outflow) = OutFlow.h_outflow;
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
-            100}}),     graphics),
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}), graphics={Text(
           extent={{-40,84},{38,34}},

@@ -1,5 +1,5 @@
 within ThermoCycle;
-package Interfaces 
+package Interfaces
   extends Modelica.Icons.InterfacesPackage;
 
 

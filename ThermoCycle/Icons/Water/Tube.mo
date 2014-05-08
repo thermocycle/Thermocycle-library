@@ -4,7 +4,5 @@ partial model Tube
             -100},{100,100}}), graphics={Rectangle(
                 extent={{-80,40},{80,-40}},
                 lineColor={0,0,0},
-                fillPattern=FillPattern.HorizontalCylinder)}), Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}}), graphics));
+                fillPattern=FillPattern.HorizontalCylinder)}));
 end Tube;

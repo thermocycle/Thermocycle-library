@@ -317,6 +317,5 @@ equation
           preserveAspectRatio=true),
                       graphics), Icon(coordinateSystem(extent={{-160,-140},
             {140,140}})),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+    experiment(StopTime=1000));
 end ORC_245fa_FMU;

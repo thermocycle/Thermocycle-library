@@ -10,9 +10,7 @@ equation
   thermalPortL.T = heatPort.T;
   thermalPortL.phi = heatPort.Q_flow/A;
 
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+  annotation (    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
         graphics={Text(
           extent={{0,30},{100,10}},
           lineColor={0,0,255},

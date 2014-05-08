@@ -45,8 +45,7 @@ model Test_Evaporator_MBComp
       Medium = ThermoCycle.Media.Water, p0=6000000)
     annotation (Placement(transformation(extent={{76,-6},{96,14}})));
   Modelica.Blocks.Sources.Constant Hin(k=852540)
-    annotation (Placement(transformation(extent={{-106,24},{-86,44}},
-          rotation=0)));
+    annotation (Placement(transformation(extent={{-106,24},{-86,44}})));
 equation
   connect(eva.inletSf, source_Cdot3_2.flange) annotation (Line(
       points={{8,28.5},{16,28.5},{16,30},{24,30},{24,49.9},{39.8,49.9}},
@@ -64,7 +63,5 @@ equation
       points={{8,9.5},{46,9.5},{46,4},{77.6,4}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(graphics),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+  annotation (    experiment(StopTime=1000));
 end Test_Evaporator_MBComp;

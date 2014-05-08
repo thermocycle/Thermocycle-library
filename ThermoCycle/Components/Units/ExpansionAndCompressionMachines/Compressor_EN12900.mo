@@ -96,9 +96,7 @@ equation
   InFlow.p = p_su;
   OutFlow.p = p_ex;
 
-  annotation (Diagram(graphics),
-              Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics), Icon(coordinateSystem(
+  annotation ( Icon(coordinateSystem(
           preserveAspectRatio=false,extent={{-120,-120},{120,120}}), graphics={
           Text(
           extent={{-62,-56},{80,-84}},

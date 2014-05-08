@@ -44,6 +44,4 @@ equation
       points={{-35.2,80},{0,80},{0,66}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
-            -100},{100,100}}),      graphics));
 end step1;

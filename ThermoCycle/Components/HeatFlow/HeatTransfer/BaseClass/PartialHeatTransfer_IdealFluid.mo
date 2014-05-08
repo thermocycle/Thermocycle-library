@@ -30,6 +30,5 @@ and the temperature at the boundary thermalPortL.T has to be provided.
             fillColor={232,0,0}), Text(
             extent={{-38,26},{40,-14}},
             lineColor={0,0,0},
-            textString="%name")}),
-    Diagram(graphics));
+            textString="%name")}));
 end PartialHeatTransfer_IdealFluid;

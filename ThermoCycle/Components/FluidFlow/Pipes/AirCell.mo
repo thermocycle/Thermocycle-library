@@ -73,20 +73,20 @@ M_tot = Vi*rho;
       points={{1.8,0.6},{1.8,22.3},{2,22.3},{2,50}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(graphics), Icon(graphics={Rectangle(
+  annotation ( Icon(graphics={Rectangle(
           extent={{-92,40},{88,-40}},
           lineColor={0,0,255},
           fillColor={170,255,255},
           fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
-          
+
          <p><big>Model <b>CellConst</b> describes the flow of a constant specific heat fluid through a single cell. No dynamics is considered in this model.
-         <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell. 
+         <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell.
          The relation between the cell and node values depends on the discretization scheme selected.
          <p><big>The assumptions for this model are:
          <ul><li> Velocity is considered uniform on the cross section. 1-D lumped parameter model
          <li> The model is based on dynamic energy balances and on a static mass and momentum balance
          <li> Constant pressure is assumed in the cell
-         <li> Constant heat capacity is assumed in the cell 
+         <li> Constant heat capacity is assumed in the cell
          <li> Axial thermal energy transfer is neglected
          <li> Thermal energy transfer through the lateral surface is ensured by the <em>wall_int</em> connector. The actual heat flow is computed by the thermal energy model
          </ul>

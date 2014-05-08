@@ -145,8 +145,6 @@ initial equation
           color={0,0,0},
           smooth=Smooth.None,
           thickness=0.5)}),
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}),     graphics),
     Documentation(info="<html>
 <p>The <b>DP</b> model is a lumped model that computes a punctual pressure drop. </p>
 <p>The assumptions for this model are: </p>

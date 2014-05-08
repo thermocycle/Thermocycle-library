@@ -54,7 +54,7 @@ equation
 annotation(Documentation(info="<html>
 
 <p><big> The partial model <b>PartialConvectiveSmoothed</b> extends the partial model
- <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation\">PartialConvectiveCorrelation</a> 
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation\">PartialConvectiveCorrelation</a>
  and smooth the value of the heat transfer coefficient between the liquid, two-phase
  and vapor nominal heat transfer coefficient values using the  <a href=\"modelica://ThermoCycle.Functions.transition_factor\">transition factor</a> based on the vapor quality value of the fluid flow.</p>
    <p></p>

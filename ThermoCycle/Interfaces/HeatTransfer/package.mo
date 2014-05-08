@@ -1,3 +1,3 @@
 within ThermoCycle.Interfaces;
-package HeatTransfer 
+package HeatTransfer
 end HeatTransfer;

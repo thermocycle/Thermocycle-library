@@ -1,4 +1,4 @@
 within ThermoCycle.Components.HeatFlow;
-package Sensors 
+package Sensors
   extends Modelica.Icons.SensorsPackage;
 end Sensors;

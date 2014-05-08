@@ -13,8 +13,7 @@ block VariableValveTimer
                 Dialog(enable = use_angle_in));
 
     Modelica.Blocks.Interfaces.RealInput angle_in if use_angle_in
-    annotation (Placement(transformation(extent={{-140,-20},{-100,20}},
-          rotation=0), iconTransformation(extent={{-140,-20},{-100,20}})));
+    annotation (Placement(transformation(extent={{-140,-20},{-100,20}}), iconTransformation(extent={{-140,-20},{-100,20}})));
 
                 input Modelica.SIunits.Angle open = Modelica.SIunits.Conversions.from_deg(170)
     "Half opened";
@@ -94,5 +93,5 @@ equation
       fillColor={192,192,192},
       fillPattern=FillPattern.Solid),
     Line(points={{-83,-78},{-62,-78},{-32,32},{7,32},{37,-78},{59,-78},{88,32}},
-                   color={0,0,0})}), Diagram(graphics));
+                   color={0,0,0})}));
 end VariableValveTimer;

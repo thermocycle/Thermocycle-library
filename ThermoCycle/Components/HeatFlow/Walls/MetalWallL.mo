@@ -34,7 +34,7 @@ initial equation
 if steadystate_T_wall then
     der(T_wall) = 0.0;
   end if;
-  annotation (Diagram(graphics), Icon(graphics={
+  annotation ( Icon(graphics={
         Rectangle(
           extent={{-62,20},{60,-20}},
           lineColor={135,135,135},
@@ -55,6 +55,6 @@ if steadystate_T_wall then
     Documentation(info="<HTML>
 <p><big> Model <b>MetalWallL</b> represents a lumped tube of solid material. The assumptions and options of the model are the same as the <b>MetalWall</b> model
 
- 
+
 </html>"));
 end MetalWallL;

@@ -60,7 +60,5 @@ equation
       points={{-89,-44},{-56,-44},{-56,39.2},{-27.28,39.2}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(graphics),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+  annotation (    experiment(StopTime=1000));
 end Solar_SolaFieldSchott;

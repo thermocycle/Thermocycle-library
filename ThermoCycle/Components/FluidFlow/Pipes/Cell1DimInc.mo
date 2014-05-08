@@ -125,17 +125,15 @@ equation
       points={{-2.2,2.6},{-2.2,25.3},{2,25.3},{2,50}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
-            -100},{100,100}}),
-                      graphics), Icon(graphics={Rectangle(
+  annotation ( Icon(graphics={Rectangle(
           extent={{-92,40},{88,-40}},
           lineColor={0,0,255},
           fillColor={0,255,255},
           fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
-          
+
          <p><big>This model describes the flow of an incompressible fluid through a single cell. An overall flow model can be obtained by interconnecting several cells in series (see <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc\">Flow1DimInc</a>).
-          <p><big><b>Enthalpy</b> is selected as state variable. 
-          <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell. The relation between the cell and node values depends on the discretization scheme selected. 
+          <p><big><b>Enthalpy</b> is selected as state variable.
+          <p><big>Two types of variables can be distinguished: cell variables and node variables. Node variables are characterized by the su (supply) and ex (exhaust) subscripts, and correspond to the inlet and outlet nodes at each cell. The relation between the cell and node values depends on the discretization scheme selected.
  <p><big>The assumptions for this model are:
          <ul><li> Velocity is considered uniform on the cross section. 1-D lumped parameter model
          <li> The model is based on dynamic energy balance and on a static  mass and  momentum balances
@@ -145,21 +143,21 @@ equation
          </ul>
 
  <p><big>The model is characterized by two flow connector and one lumped thermal port connector. During normal operation the fluid enters the model from the <em>InFlow</em> connector and exits from the <em>OutFlow</em> connector. In case of flow reversal the fluid direction is inversed.
- 
+
  <p><big> The thermal energy transfer  through the lateral surface is computed by the <em><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></em> model which is inerithed in the <em>Cell1DimInc</em> model.
- 
-        
+
+
         <p><b><big>Modelling options</b></p>
         <p><big> In the <b>General</b> tab the following options are availabe:
         <ul><li>Medium: the user has the possibility to easly switch Medium.
-        <li> HeatTransfer: the user can choose the thermal energy model he prefers </ul> 
+        <li> HeatTransfer: the user can choose the thermal energy model he prefers </ul>
         <p><big> In the <b>Initialization</b> tab the following options are availabe:
-        <ul><li> steadystate: If it sets to true, the derivative of enthalpy is sets to zero during <em>Initialization</em> 
+        <ul><li> steadystate: If it sets to true, the derivative of enthalpy is sets to zero during <em>Initialization</em>
          </ul>
         <p><b><big>Numerical options</b></p>
 <p><big> In this tab several options are available to make the model more robust:
 <ul><li> Discretization: 2 main discretization options are available: UpWind and central difference method. The authors raccomand the <em>UpWind Scheme - AllowsFlowReversal</em> in case flow reversal is expected.
 </ul>
- <p><big> 
+ <p><big>
         </HTML>"));
 end Cell1DimInc;

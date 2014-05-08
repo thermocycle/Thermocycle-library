@@ -66,7 +66,4 @@ equation
   if noEvent(not use_angle_in) then
     angle_in_internal = 0;
   end if;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}),
-                   graphics), Diagram(graphics));
 end Cylinder;

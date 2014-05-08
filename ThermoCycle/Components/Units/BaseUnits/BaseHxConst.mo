@@ -15,8 +15,7 @@ replaceable package Medium1 = ThermoCycle.Media.R245fa_CP
   Interfaces.Fluid.FlangeB outletWf( redeclare package Medium = Medium1)
     annotation (Placement(transformation(extent={{86,-60},{106,-40}}),
         iconTransformation(extent={{90,-60},{110,-40}})));
-  annotation (Diagram(graphics), Icon(graphics),
-    Documentation(info="<HTML>
+  annotation (    Documentation(info="<HTML>
 <p><big> Partial Model <b>BaseHx</b> defines the four fluid port for an heat exchanger model that uses as secondary fluid a constant heat capacity fluid
 </html>"));
 end BaseHxConst;

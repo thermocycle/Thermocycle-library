@@ -22,5 +22,5 @@ partial model GasTurbineUnit
                 extent={{-16,64},{16,32}},
                 lineColor={0,0,0},
                 fillPattern=FillPattern.Sphere,
-                fillColor={255,0,0})}), Diagram(graphics));
+                fillColor={255,0,0})}));
 end GasTurbineUnit;

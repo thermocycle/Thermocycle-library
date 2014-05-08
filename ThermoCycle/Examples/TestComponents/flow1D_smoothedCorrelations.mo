@@ -99,11 +99,8 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}}), graphics),
     experiment(
       StopTime=500,
       __Dymola_NumberOfIntervals=1000,
-      __Dymola_Algorithm="Dassl"),
-    __Dymola_experimentSetupOutput);
+      __Dymola_Algorithm="Dassl"));
 end flow1D_smoothedCorrelations;

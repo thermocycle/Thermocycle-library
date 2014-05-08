@@ -64,7 +64,5 @@ equation
       points={{-71,-18},{-44,-18},{-44,-4.92308},{-30.8462,-4.92308}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(graphics),
-    experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+  annotation (    experiment(StopTime=1000));
 end Hx1DInc;

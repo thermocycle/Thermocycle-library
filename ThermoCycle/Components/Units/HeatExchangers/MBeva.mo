@@ -454,7 +454,7 @@ T_sf_[1]=Tsf_SU;
 T_sf_[2]=Tsf_TP;
 T_sf_[3]=Tsf_EX;
 
-  annotation (Diagram(graphics), Icon(graphics={
+  annotation ( Icon(graphics={
         Rectangle(
           extent={{-100,-20},{-32,-100}},
           lineColor={60,121,182},
@@ -560,22 +560,22 @@ T_sf_[3]=Tsf_EX;
           lineColor={0,128,255},
           fillColor={0,128,255},
           fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
-          
+
          <p><big>Model <b>MBeva</b> is a moving boundaries heat exchanger model for evaporators.
          The model considers a fictitius heat transfer channel split up into three different section based on the phase state of the working fluid:
          <ul><li> Sub-cooled zone (SB)
          <li> Two-phase zone (TP)
          <li> SuperHeated zone (SH)
          </ul>
-          <p><big><b>Pressure</b> and <b>enthalpy</b> are selected as state variables for each of the three zones. 
-          
+          <p><big><b>Pressure</b> and <b>enthalpy</b> are selected as state variables for each of the three zones.
+
         <p><big>  The name moving boundary is derived from the fact that the interfaces between these sections do not
 have a fixed spatial position but merely a fixed thermodynamic location depending
 on the presence of liquid and gaseous fluid, respectively. The actual existence of
 a certain section and its length are determined based on the fluid state resulting
 in variable sectioning. A fixed total length superimposes the required boundary
 condition to calculate the length of each section.
- 
+
  <p><big>The assumptions for this model are:
          <ul><li> The tube is cylindrical with a constant cross sectional area
          <li> The velocity of the fluid is uniform on the cross sectional area

@@ -123,7 +123,7 @@ initial equation
   if steadystate then
     der(h) = zeros(N);
       end if;
-  annotation (Diagram(graphics), Icon(graphics={Rectangle(
+  annotation ( Icon(graphics={Rectangle(
           extent={{-92,40},{88,-40}},
           lineColor={0,0,255},
           fillColor={170,85,255},

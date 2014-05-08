@@ -54,6 +54,5 @@ equation
 <h4>Implementation: </h4>
 <p>2013 for Technical University of Denmark, DTU Mechanical Engineering, Kongens Lyngby, Denmark by Jorrit Wronski (jowr@mek.dtu.dk) </p>
 </body>
-</html>
-"));
+</html>"));
 end Kornhauser1994;

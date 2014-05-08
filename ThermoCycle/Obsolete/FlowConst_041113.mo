@@ -117,5 +117,5 @@ initial equation
     der(T) = zeros(N);
       end if;
   annotation (Icon(graphics={Rectangle(extent={{-90,40},{90,-40}},
-            lineColor={0,0,255})}), Diagram(graphics));
+            lineColor={0,0,255})}));
 end FlowConst_041113;

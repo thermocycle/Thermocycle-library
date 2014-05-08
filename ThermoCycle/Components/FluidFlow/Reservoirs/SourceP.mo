@@ -63,7 +63,6 @@ equation
     in_h = h "Enthalpy set by parameter";
   end if;
   annotation (
-    Diagram(graphics),
     Icon(graphics={Text(extent={{-110,104},{-56,64}},textString=
                                                  "p0"), Text(extent={{68,82},{100,
               44}},     textString=
@@ -74,12 +73,12 @@ equation
  <p><b><big>Modelling options</b></p>
                <p><big> In the <b>General</b> tab the following option is availabe:
         <ul>
-        <li> UseT: if true uses the temperature as an input instead of using enthalpy</ul> 
+        <li> UseT: if true uses the temperature as an input instead of using enthalpy</ul>
 <p><big> The pressure and temperature or enthalpy can be set as parameters or defined by the connectors.
  <p><big>Note that boundary enthalpy is imposed by the model only if the fluid is flowing out of the model. If flow reversal happens (i.e. mass flow flowing into <b>SourceP</b>) then only the boundary pressure is imposed by the model.
  <p>
- 
- 
+
+
 
 </html>"));
 end SourceP;

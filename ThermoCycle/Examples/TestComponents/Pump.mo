@@ -39,5 +39,4 @@ equation
       points={{-41,52},{-18,52},{-18,54},{-5.16,54},{-5.16,7.4}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(graphics));
 end Pump;

@@ -7,5 +7,5 @@ partial model Header
                 fillColor={95,95,95},
                 fillPattern=FillPattern.Solid),Ellipse(extent={{70,70},{-70,
           -70}}, lineColor={95,95,95}),Text(extent={{-100,-84},{100,-110}},
-          textString="%name")}), Diagram(graphics));
+          textString="%name")}));
 end Header;

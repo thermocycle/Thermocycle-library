@@ -1,5 +1,5 @@
-﻿within ThermoCycle.UsersGuide;
-package NumericalMethods 
+within ThermoCycle.UsersGuide;
+package NumericalMethods
 extends Modelica.Icons.Information;
 
 
@@ -23,9 +23,9 @@ is often the density derivative on the liquid saturation curve. Simulation failu
 occur if the cell-generated (and purely numerical) flow rate due to this discontinuity causes a flow reversal in
 one of the nodes. Therefore, a numerical stability criteria can be expressed as follows:
 </p>
- 
- 
- 
+
+
+
  <img src=\"modelica://ThermoCycle/Resources/Images/ChatteringConstrain.png\">
 
 
@@ -39,12 +39,12 @@ Chattering and simulations failures are likely to occur if:
 <li> The working conditions are highly transient (i.e. the partial derivative of density with respect to enthalpy and pressure are high)
 </ul>
 </p>
- 
- 
+
+
 
 
 <p><big>
-This section describes the different methods implemented to avoids the simulation issues described above. These methods aim at avoiding numerical flow reversal or avoiding unsolvable
+This section describes the different methods implemented to avoid the simulation issues described above. These methods aim at avoiding numerical flow reversal or avoiding unsolvable
 systems in case a flow reversal occurs.
 The different solutions are implemented and tested in the Modelica ThermoCycle library. Some can be
 implemented at the Modelica level while other require a modification of the thermodynamic properties
@@ -55,7 +55,7 @@ the literature, while some others are new.</p>
 
 <u><p><big> Filtering Method</p></u>
 <p><big>
-In this strategy , a first order filter is applied to the fast variations of the density with respect to time:
+In this strategy, a first order filter is applied to the fast variations of the density with respect to time:
 </p>
 <p>
 <img src=\"modelica://ThermoCycle/Resources/Images/Chattering/FilterMethod_1.png\">
@@ -63,7 +63,7 @@ In this strategy , a first order filter is applied to the fast variations of the
 <p><big>
 where u and y are the input and output signals, respectively. In this particular case, u is the mass variation
 calculated with the equation of state and y is the filtered mass derivative. This filter therefore acts
-as ”mass damper” and avoids transmitting abrupt variations of the flow rate due the density derivative
+as &ldquo;mass damper&rdquo; and avoids transmitting abrupt variations of the flow rate due the density derivative
 discontinuity. The filtered mass accumulation in each cell is written:
 </p>
 <p>
@@ -74,9 +74,9 @@ discontinuity. The filtered mass accumulation in each cell is written:
 where Tfilter is the filter time constant, set as model input. This strategy displaces the mass variations in
 time but does not generate mass defects. However the energy balance is affected because the cell density
 is not exactly the one corresponding to the actual node flow rates.
-This approach is implemented at the model level, and can be activated by setting to true the 
+This approach is implemented at the model level, and can be activated by setting to true the
 filter_dMdt options in the <em><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell model</a></em>, but it doubles the number of time
-states of the model since a second-order derivative of the working fluid mass is defined, as shown in the above equation. 
+states of the model since a second-order derivative of the working fluid mass is defined, as shown in the above equation.
 </p>
 
 <u><p><big> Truncation method </p></u>
@@ -122,7 +122,7 @@ line and a constant vapor quality line. The method is implemented in the standar
 The enthalpy limiter method does not aim at avoiding flow reversals. Instead, it ensures that the system of equations remains solvable even in case of flow reversal
 The enthalpy of the fluid entering a cell should have a minimum value, ensuring that the system of equations can be solved. The enthalpy limiter method is the practical implementation of
 this constraint in the cell model. It was originally proposed by Schultze et al. and implemented in the TIL Modelica library.
-The idea is to take profit of the ”Stream” connector type available in Modelica to propagate the minimum enthalpy limitation: in this manner a cell can communicate with its two neighbouring cell and propagate
+The idea is to take profit of the &ldquo;Stream&rdquo; connector type available in Modelica to propagate the minimum enthalpy limitation: in this manner a cell can communicate with its two neighbouring cell and propagate
 the minimum enthalpy of an incoming flow. The incoming flow is limited to this minimum value:
 </p>
 <p>
@@ -148,12 +148,11 @@ solved using a smooth transition between both parts of the equation. Eq. 2 is th
 </p>
 <p><big>
 The smooth transition is a C1-continuous sinusoidal transition function varying from 0 to 1 between
- - Mnom/10 and Mnom/10. Mnom is a user-defined model parameter. This method can be activeted by setting the Discretization scheme to UpWind with Smoothing in the Numerical option folder of the 
+ - Mnom/10 and Mnom/10. Mnom is a user-defined model parameter. This method can be activeted by setting the Discretization scheme to UpWind with Smoothing in the Numerical option folder of the
  <em><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim model</a></em>.
 <p><big>
 
 </p>
-</html>
-"));
+</html>"));
 
 end NumericalMethods;

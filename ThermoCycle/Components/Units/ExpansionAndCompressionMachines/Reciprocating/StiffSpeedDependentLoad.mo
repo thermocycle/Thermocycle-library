@@ -25,9 +25,6 @@ equation
     tau = tau_nominal*smooth(1,if w >= 0 then (w/w_nominal)^order else -abs((w/w_nominal)^order));
   end if;
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
-            {100,100}}),
-            graphics),
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{
             100,100}}), graphics={Line(points={{-100,-100},{-80,-98},{-60,-92},
               {-40,-82},{-20,-68},{0,-50},{20,-28},{40,-2},{60,28},{80,62},

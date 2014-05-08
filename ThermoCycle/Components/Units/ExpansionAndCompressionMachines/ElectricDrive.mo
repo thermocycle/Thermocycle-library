@@ -20,7 +20,7 @@ protected
   AngularVelocity_rpm n "Rotational speed [rpm]";
 public
   Modelica.Mechanics.Rotational.Interfaces.Flange_a shaft annotation (
-      Placement(transformation(extent={{-100,-14},{-72,14}}, rotation=0)));
+      Placement(transformation(extent={{-100,-14},{-72,14}})));
   Modelica.Blocks.Interfaces.RealInput f(start=50) "Electrical frequency"
     annotation (Placement(transformation(
         extent={{16,16},{-16,-16}},
@@ -82,11 +82,9 @@ equation
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid),
         Text(extent={{-100,-50},{100,-84}}, textString="%name")}),
-    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{
-            100,100}}), graphics),
     Documentation(info="<html>
-<p>This model describes the conversion between mechanical power and electrical power in an ideal synchronous generator. 
+<p>This model describes the conversion between mechanical power and electrical power in an ideal synchronous generator.
 The frequency in the electrical connector is the e.m.f. of generator.
-<p>It is possible to consider the generator inertia in the model, by setting the parameter <tt>J > 0</tt>. 
+<p>It is possible to consider the generator inertia in the model, by setting the parameter <tt>J > 0</tt>.
 </html>"));
 end ElectricDrive;

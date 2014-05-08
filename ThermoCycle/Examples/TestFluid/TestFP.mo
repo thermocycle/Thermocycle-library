@@ -7,6 +7,5 @@ model TestFP
 equation
   mediumRP.baseProperties.p = 2.5e6;
   mediumRP.baseProperties.h = 0+time*200000;
-  annotation (experiment(Algorithm="Euler"),
-      __Dymola_experimentSetupOutput);
+  annotation (experiment(Algorithm="Euler"));
 end TestFP;
