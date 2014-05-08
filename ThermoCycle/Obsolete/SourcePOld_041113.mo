@@ -30,7 +30,6 @@ equation
     in_h = h "Enthalpy set by parameter";
   end if;
   annotation (
-    Diagram(graphics),
     Icon(graphics={Text(extent={{-106,90},{-52,50}}, textString=
                                                  "p0"), Text(extent={{66,90},
               {98,52}}, textString=

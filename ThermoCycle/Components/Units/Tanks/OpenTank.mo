@@ -191,7 +191,7 @@ annotation (Icon(graphics={
         points={{-6,8},{2,8},{-6,8}},
         color={0,0,255},
         thickness=0.5,
-        smooth=Smooth.None)}),     Diagram(graphics),Documentation(info="<html>
+        smooth=Smooth.None)}),Documentation(info="<html>
 <p>The model <b>OpenTank</b> describes the storage of fluid in liquid phase in an open tank. </p>
 <p><b>Pressure</b> and <b>enthalpy</b> are selected as state variables. </p>
 <p>The assumptions for this model are: </p>

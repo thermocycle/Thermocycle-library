@@ -338,8 +338,7 @@ Eta_th = sum(eta_th)/N;
 //TOTAL EFFICIENCY
 Eta_TOT = Eta_th*eta_opt_t;
                                                                                                       annotation(Dialog(tab = "Initialisation"),
-             Diagram(graphics),
-    Icon(graphics),Documentation(info="<HTML>
+Documentation(info="<HTML>
 
          <p><big>Model <b>SolAbs</b>  represents the one-dimensional radial energy balance between the the Heat Collector Element (HCE) and the atmosphere.
           The terms in the energy balance depends on the collector type, the HCE condition, the optical properties and the ambient condition.

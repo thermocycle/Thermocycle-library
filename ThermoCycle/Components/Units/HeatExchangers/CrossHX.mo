@@ -225,7 +225,7 @@ equation
       points={{-1,41},{-1,28.5},{0,28.5},{0,13.2}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(graphics), Icon(graphics={
+  annotation ( Icon(graphics={
         Rectangle(
           extent={{-100,100},{100,-100}},
           lineColor={0,0,0},

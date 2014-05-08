@@ -54,5 +54,4 @@ equation
       points={{-5.78,-24.4},{-5.78,-46},{9.6,-46}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(graphics));
 end CrossHx;

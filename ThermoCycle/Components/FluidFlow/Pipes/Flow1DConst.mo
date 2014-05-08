@@ -118,7 +118,7 @@ end for;
       color={255,0,0},
       smooth=Smooth.None));
   annotation (Icon(graphics={Rectangle(extent={{-90,40},{90,-40}},
-            lineColor={0,0,255})}), Diagram(graphics),Documentation(info="<HTML>
+            lineColor={0,0,255})}),Documentation(info="<HTML>
             <p><big>This model describes the flow of a constant heat capacity fluid through a discretized one dimentional tube.  It is obtained by connecting in series <b>N</b> <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.CellConst\">CellConst</a>
 
             <p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:

@@ -66,7 +66,6 @@ package Sizing
         points={{8,9.5},{46,9.5},{46,4},{77.6,4}},
         color={0,0,255},
         smooth=Smooth.None));
-    annotation (Diagram(graphics),
-      experiment(StopTime=1000));
+    annotation (      experiment(StopTime=1000));
   end Sizing_evaporator;
 end Sizing;

@@ -16,8 +16,7 @@ equation
   y[4] = smooth(1,if time < 200 then
     10 else
     15 + 5*sin(1.5 * Modelica.Constants.pi + 2 * Modelica.Constants.pi * 0.005 * (time-200)));
-  annotation (                               Diagram(graphics),
-    Icon(graphics={Ellipse(extent={{-58,-34},{80,34}}, lineColor={0,0,255}),
+  annotation (    Icon(graphics={Ellipse(extent={{-58,-34},{80,34}}, lineColor={0,0,255}),
           Text(
           extent={{-34,14},{54,-14}},
           lineColor={0,0,255},

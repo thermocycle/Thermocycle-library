@@ -123,8 +123,7 @@ Eta_th = sum(eta_th)/N;
 //TOTAL EFFICIENCY
 Eta_TOT = Eta_th * eta_opt_t;
                                                                                                       annotation(Dialog(tab = "Initialisation"),
-             Diagram(graphics),
-    Icon(graphics),Documentation(info="<HTML>
+Documentation(info="<HTML>
 
     <p><big>It solves the 1D radial energy balance around the Heat Collector Element of a solar collector based on a correlation derived in
   <em>F. Burkholder and C. Klutscher Heat loss Testing of Schott's 2008 PTR70 Parabolic Trough Receiver. Technical report. NREL May 2009</em>

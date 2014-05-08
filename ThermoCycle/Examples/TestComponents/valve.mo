@@ -33,7 +33,7 @@ equation
         t_init=2,
         length=5,
         t=time)
-  annotation (Diagram(graphics), uses(Modelica(version="3.2")));
+  annotation ( uses(Modelica(version="3.2")));
   connect(valve.OutFlow, sinkPFluid.flangeB) annotation (Line(
       points={{-19,38},{6,38},{6,42},{25.6,42}},
       color={0,0,255},

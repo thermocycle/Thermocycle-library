@@ -454,7 +454,7 @@ T_sf_[1]=Tsf_SU;
 T_sf_[2]=Tsf_TP;
 T_sf_[3]=Tsf_EX;
 
-  annotation (Diagram(graphics), Icon(graphics={
+  annotation ( Icon(graphics={
         Rectangle(
           extent={{-100,-20},{-32,-100}},
           lineColor={60,121,182},

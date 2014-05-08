@@ -19,5 +19,5 @@ end for;
           extent={{-80,20},{80,-30}},
           lineColor={175,175,175},
           fillPattern=FillPattern.Forward,
-          fillColor={135,135,135})}), Diagram(graphics));
+          fillColor={135,135,135})}));
 end Source_T;

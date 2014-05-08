@@ -92,5 +92,5 @@ equation
       fillColor={192,192,192},
       fillPattern=FillPattern.Solid),
     Line(points={{-83,-78},{-62,-78},{-32,32},{7,32},{37,-78},{59,-78},{88,32}},
-                   color={0,0,0})}), Diagram(graphics));
+                   color={0,0,0})}));
 end ValveTimer;

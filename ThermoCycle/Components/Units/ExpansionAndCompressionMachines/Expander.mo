@@ -128,8 +128,6 @@ end if;
 // Mechanical port:
   der(flange_elc.phi) = 2*N_rot*Modelica.Constants.pi;
   flange_elc.tau = W_dot/(2*N_rot*Modelica.Constants.pi)
-  annotation (Diagram(graphics));
-
   annotation ( Icon(coordinateSystem(
           preserveAspectRatio=false,extent={{-120,-120},{120,120}}), graphics={
           Text(

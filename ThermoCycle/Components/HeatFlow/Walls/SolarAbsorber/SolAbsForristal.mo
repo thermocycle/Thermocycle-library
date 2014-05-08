@@ -339,8 +339,7 @@ Eta_th = sum(eta_th)/N;
 //TOTAL EFFICIENCY
 Eta_TOT = Eta_th*eta_opt_t;
                                                                                                       annotation(Dialog(tab = "Initialisation"),
-             Diagram(graphics),
-    Icon(graphics),Documentation(info="<HTML>
+Documentation(info="<HTML>
 
          <p><big>Model <b>SolAbsForristal</b>  represents the one-dimensional radial energy balance between the Heat Collector Element (HCE) and the atmosphere based on the
           <a href=\"http://www.nrel.gov/csp/troughnet/pdfs/34169.pdf\">Forristal model</a>.

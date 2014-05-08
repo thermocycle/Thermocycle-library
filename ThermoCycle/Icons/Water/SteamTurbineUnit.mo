@@ -35,5 +35,5 @@ partial model SteamTurbineUnit
                 thickness=0.5),Line(
                 points={{66,-70},{100,-70}},
                 color={0,0,255},
-                thickness=0.5)}), Diagram(graphics));
+                thickness=0.5)}));
 end SteamTurbineUnit;

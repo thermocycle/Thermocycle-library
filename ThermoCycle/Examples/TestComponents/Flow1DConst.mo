@@ -27,6 +27,5 @@ equation
       points={{-42.1,1.9},{-42.1,-10},{-11,-10},{-11,56.5}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(graphics),
-    experiment(StopTime=100));
+  annotation (    experiment(StopTime=100));
 end Flow1DConst;

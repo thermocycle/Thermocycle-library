@@ -66,5 +66,4 @@ equation
   if noEvent(not use_angle_in) then
     angle_in_internal = 0;
   end if;
-  annotation ( Diagram(graphics));
 end Cylinder;

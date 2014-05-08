@@ -41,7 +41,7 @@ equation
         t_init=2,
         length=5,
         t=time)
-  annotation (Diagram(graphics), uses(Modelica(version="3.2")));
+  annotation ( uses(Modelica(version="3.2")));
   connect(sourceWF.flangeB, dP.InFlow) annotation (Line(
       points={{-65,40},{-58,40},{-58,38},{-50,38},{-50,42},{-29,42}},
       color={0,0,255},
@@ -50,6 +50,5 @@ equation
       points={{-11,42},{0,42},{0,36},{14,36},{14,42},{25.6,42}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(graphics),
-    experiment(StopTime=50));
+  annotation (    experiment(StopTime=50));
 end DP;

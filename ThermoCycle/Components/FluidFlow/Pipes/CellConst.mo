@@ -102,7 +102,7 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   annotation (Icon(graphics={Rectangle(extent={{-90,40},{90,-40}},
-            lineColor={0,0,255})}), Diagram(graphics),Documentation(info="<HTML>
+            lineColor={0,0,255})}),Documentation(info="<HTML>
 
          <p><big>Model <b>CellConst</b> describes the flow of a constant specific heat fluid through a single cell.  An overall flow model can be obtained by interconnecting several cells in series
           (see <em><FONT COLOR=red><a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1DConst\">Flow1DConst</a></FONT></em>)

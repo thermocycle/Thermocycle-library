@@ -55,6 +55,5 @@ equation
       points={{24,67.7833},{40,67.7833},{40,60},{75.6,60}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(graphics),
-    experiment(StopTime=1000));
+  annotation (    experiment(StopTime=1000));
 end Flow1Dinc;

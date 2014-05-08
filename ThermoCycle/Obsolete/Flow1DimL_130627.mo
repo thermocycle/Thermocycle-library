@@ -173,7 +173,7 @@ initial equation
   if filter_dMdt then
     der(dMdt) = 0;
     end if;
-  annotation (Diagram(graphics), Icon(graphics={Rectangle(
+  annotation ( Icon(graphics={Rectangle(
           extent={{-92,40},{88,-40}},
           lineColor={0,0,255},
           fillColor={0,255,255},

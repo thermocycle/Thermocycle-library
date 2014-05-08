@@ -72,6 +72,5 @@ equation
           -15.4}},
       color={255,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(graphics),
-    experiment(StopTime=1000));
+  annotation (    experiment(StopTime=1000));
 end Solar_SolaFieldSoltigua;

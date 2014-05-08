@@ -135,8 +135,6 @@ equation
   connect(multiPort.ports_b[j], simpleAirCell[j].InFlow);
   connect(dP[j].OutFlow, multiPort1.ports_b[j]);
   end for
-  annotation (Diagram(graphics));
-
   annotation (Icon(graphics={
         Rectangle(
           extent={{-92,24},{86,10}},

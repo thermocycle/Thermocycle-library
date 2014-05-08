@@ -14,7 +14,5 @@ connector Flange "Flange connector for water/steam flows"
   annotation (Documentation(info="<HTML>.
 </HTML>",
       revisions="<html>
-University of Liège, November 2012"),
-    Diagram(graphics),
-    Icon(graphics));
+University of Liège, November 2012"));
 end Flange;
