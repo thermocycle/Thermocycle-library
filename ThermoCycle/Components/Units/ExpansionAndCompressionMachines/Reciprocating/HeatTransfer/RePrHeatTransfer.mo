@@ -29,7 +29,7 @@ equation
     assert(lambda[i] > 0, "Invalid thermal conductivity, make sure transport properties are calculated.");
     // Use transport properties to determine dimensionless numbers
     Re[i] = (Medium.density(states[i]) * Lambda[i] * Gamma[i]) / eta[i];
-    Nu[i] =  a * Re[i]^b * Pr[i]^c;
+    Nu[i] =  a * Modelica.Fluid.Utilities.regPow(Re[i],b) * Modelica.Fluid.Utilities.regPow(Pr[i],c);
     h[i]  = Nu[i] * lambda[i] / Gamma[i];
   end for;
   annotation(Documentation(info="<html>

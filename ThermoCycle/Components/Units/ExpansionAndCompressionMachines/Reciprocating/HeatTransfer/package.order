@@ -9,5 +9,6 @@ RePrHeatTransfer
 ConstantHeatTransfer
 IdealHeatTransfer
 GnielinskiHeatTransfer
+HeatRelease
 HX_base
 HX_full
