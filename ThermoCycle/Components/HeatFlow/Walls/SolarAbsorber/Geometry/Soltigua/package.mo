@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry;
-package Soltigua
+package Soltigua 
   extends Modelica.Icons.Package;
 
 end Soltigua;

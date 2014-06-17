@@ -55,7 +55,10 @@ package ScrollCompressor
         points={{-46,-4.54},{-22,-4.54},{-22,-12},{1.6,-12}},
         color={0,0,255},
         smooth=Smooth.None));
-    annotation (      experiment(__Dymola_NumberOfIntervals=10));
+    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+              -100},{100,100}}),      graphics),
+      experiment(__Dymola_NumberOfIntervals=10),
+      __Dymola_experimentSetupOutput);
   end Test_nozzle;
 
   model Nozzle
@@ -144,7 +147,8 @@ package ScrollCompressor
   gamma = 1;
   end if;
 
-    annotation ( Icon(coordinateSystem(
+    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+              -100},{100,100}}), graphics), Icon(coordinateSystem(
             preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
           Rectangle(
             extent={{-92,84},{90,-74}},
@@ -212,7 +216,8 @@ package ScrollCompressor
             lineColor={0,0,0},
             fillColor={170,213,255},
             fillPattern=FillPattern.Solid,
-            textString="Fictitious isothermal wall")}));
+            textString="Fictitious isothermal wall")}), Diagram(coordinateSystem(
+            preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics));
   end Isothermal_wall;
 
   model Volumetric_compression
@@ -308,13 +313,15 @@ package ScrollCompressor
             fillColor={170,213,255},
             fillPattern=FillPattern.Solid,
             textString="s=Cst",
-            origin={-43,-3}),
+            origin={-43,-3},
+            rotation=0),
           Text(
             extent={{-27,17},{27,-17}},
             lineColor={0,0,255},
             fillColor={170,213,255},
             fillPattern=FillPattern.Solid,
             origin={51,-3},
+            rotation=0,
             textString="V=Cst")}));
   end Volumetric_compression;
 
@@ -343,8 +350,10 @@ package ScrollCompressor
             extent={{90,-10},{110,10}})));
     Modelica.Blocks.Interfaces.RealOutput Wdot_loss  annotation (Placement(transformation(
           extent={{-16,-16},{16,16}},
+          rotation=0,
           origin={98,-68}),iconTransformation(
           extent={{-10,-10},{10,10}},
+          rotation=0,
           origin={82,-50})));
   equation
   omega = der(flange_A.phi);
@@ -361,7 +370,8 @@ package ScrollCompressor
 
   W_dot_B = W_dot_A - W_dot_loss;
 
-    annotation ( Icon(coordinateSystem(
+    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+              -100},{100,100}}), graphics), Icon(coordinateSystem(
             preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
           Rectangle(
             extent={{-102,10},{98,-10}},
@@ -673,7 +683,8 @@ package ScrollCompressor
             fillPattern=FillPattern.Solid,
             textString="%name")}),
       experiment(StopTime=50),
-Documentation(info="<html>
+      __Dymola_experimentSetupOutput,
+      Documentation(info="<html>
 <p><h4><font color=\"#008000\">Short Description :</font></h4></p>
 <p>This model describes a hermetic scroll compressor. The model involves a limited number of parameters physically meaningful. The model accounts for the supply heating-up and exhaust cooling down of the gas, an internal leakage, the internal compression ratio and the electromechanical losses. The model is the one proposed by Winandy et al. (2002). Information used to identify the parameters is extracted from Copeland&apos;s catalogue (ZR72KC-TFD)</p>
 <p><br/><h4>Nomenclature :</h4></p>
@@ -868,7 +879,8 @@ Documentation(info="<html>
             fillPattern=FillPattern.Solid,
             textString="%name")}),
       experiment(StopTime=50),
-Documentation(info="<html>
+      __Dymola_experimentSetupOutput,
+      Documentation(info="<html>
 <p><h4><font color=\"#008000\">Short Description :</font></h4></p>
 <p>This model describes a hermetic scroll compressor. The model involves a limited number of parameters physically meaningful. The model accounts for the supply heating-up and exhaust cooling down of the gas, an internal leakage, the internal compression ratio and the electromechanical losses. The model is the one proposed by Winandy et al. (2002). Information used to identify the parameters is extracted from Copeland&apos;s catalogue (ZR72KC-TFD)</p>
 <p><br/><h4>Nomenclature :</h4></p>

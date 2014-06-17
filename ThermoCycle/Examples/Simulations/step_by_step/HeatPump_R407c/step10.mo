@@ -15,12 +15,12 @@ model step10
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     V_sf=0.002,
     V_wf=0.002,
+    steadystate_h_wf=true,
     pstart_wf=1650000,
     Tstart_inlet_wf=345.15,
     Tstart_outlet_wf=308.15,
     Tstart_inlet_sf=303.15,
-    Tstart_outlet_sf=303.15,
-    steadystate_h_wf=true)
+    Tstart_outlet_sf=303.15)
     annotation (Placement(transformation(extent={{10,16},{-16,42}})));
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot1(
@@ -180,5 +180,8 @@ equation
       points={{-71.5,-27},{-60.75,-27},{-60.75,-26},{-48,-26}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (    experiment(StopTime=100));
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+            -100},{100,100}}),      graphics),
+    experiment(StopTime=100),
+    __Dymola_experimentSetupOutput);
 end step10;

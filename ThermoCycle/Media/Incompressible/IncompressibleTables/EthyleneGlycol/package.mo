@@ -1,6 +1,6 @@
 within ThermoCycle.Media.Incompressible.IncompressibleTables;
 package EthyleneGlycol "Ethylene glycol Incompressible - TableBased"
-  extends CoolProp2Modelica.Media.Incompressible.TableBased(
+  extends Modelica.Media.Incompressible.TableBased(
   mediumName="EthyleneGlycol",
   T_min = Modelica.SIunits.Conversions.from_degC(0),
    T_max = Modelica.SIunits.Conversions.from_degC(185),
@@ -18,4 +18,5 @@ package EthyleneGlycol "Ethylene glycol Incompressible - TableBased"
    // Vapor pressure ---->  [Pa]                                                     // Use ~ boiling point of propylene glycol since Eckerd uses propylene"
 
 
+  annotation ();
 end EthyleneGlycol;

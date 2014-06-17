@@ -49,7 +49,7 @@ initial equation
 if steadystate_T_wall then
     der(T_wall) = zeros(N);
   end if;
-  annotation ( Icon(graphics={
+  annotation (Diagram(graphics), Icon(graphics={
         Rectangle(
           extent={{-62,20},{60,-20}},
           lineColor={135,135,135},
@@ -75,8 +75,8 @@ if steadystate_T_wall then
 </u1>
  <p><b><big>Modelling options</b></p>
  <p><big> In the <b>Initialization</b> tab the following options are availabe:
-        <ul><li> steadystate_T_wall: If it sets to true, the derivative of temperature is sets to zero during <em>Initialization</em>
+        <ul><li> steadystate_T_wall: If it sets to true, the derivative of temperature is sets to zero during <em>Initialization</em> 
          </ul>
-
+ 
 </html>"));
 end MetalWall;

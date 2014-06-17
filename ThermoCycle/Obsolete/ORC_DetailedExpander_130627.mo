@@ -248,6 +248,9 @@ equation
       points={{24.5,42.6},{53.4,42.6},{53.4,18.8}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (    experiment(StopTime=1669),
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+            -100},{100,100}}),
+                      graphics),
+    experiment(StopTime=1669),
     __Dymola_experimentSetupOutput(equdistant=false));
 end ORC_DetailedExpander_130627;

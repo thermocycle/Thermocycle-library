@@ -1,7 +1,7 @@
 within ThermoCycle.Components.Units.Solar;
 model SolarField_Forristal
   "Solar field model with collectors based on Forristal model"
-replaceable package Medium1 = ThermoCycle.Media.R245fa_CPRP
+replaceable package Medium1 = ThermoCycle.Media.DummyFluid
                                            constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
 
@@ -215,31 +215,31 @@ constrainedby
         rotation=90,
         origin={34.5,7.5})));
   Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium1)
-    annotation (Placement(transformation(extent={{-96,2},{-76,22}}),
-        iconTransformation(extent={{-96,2},{-76,22}})));
+    annotation (Placement(transformation(extent={{30,-110},{50,-90}}),
+        iconTransformation(extent={{30,-110},{50,-90}})));
   Interfaces.Fluid.FlangeB OutFlow( redeclare package Medium = Medium1)
-    annotation (Placement(transformation(extent={{94,0},{114,20}}),
-        iconTransformation(extent={{94,0},{114,20}})));
+    annotation (Placement(transformation(extent={{30,108},{50,128}}),
+        iconTransformation(extent={{30,108},{50,128}})));
   Modelica.Blocks.Interfaces.RealInput v_wind
-    annotation (Placement(transformation(extent={{-90,38},{-50,78}}),
+    annotation (Placement(transformation(extent={{-96,46},{-56,86}}),
         iconTransformation(extent={{-20,-20},{20,20}},
-        rotation=-90,
-        origin={-70,98})));
+        rotation=0,
+        origin={-74,96})));
   Modelica.Blocks.Interfaces.RealInput Theta
     annotation (Placement(transformation(extent={{-90,4},{-50,44}}),
         iconTransformation(extent={{-20,-20},{20,20}},
-        rotation=-90,
-        origin={-24,98})));
+        rotation=0,
+        origin={-78,46})));
   Modelica.Blocks.Interfaces.RealInput Tamb
-    annotation (Placement(transformation(extent={{-90,-38},{-50,2}}),
+    annotation (Placement(transformation(extent={{-100,-18},{-60,22}}),
         iconTransformation(extent={{-20,-20},{20,20}},
-        rotation=-90,
-        origin={24,98})));
+        rotation=0,
+        origin={-76,0})));
   Modelica.Blocks.Interfaces.RealInput DNI
-    annotation (Placement(transformation(extent={{-90,-76},{-50,-36}}),
+    annotation (Placement(transformation(extent={{-102,-68},{-62,-28}}),
         iconTransformation(extent={{-20,-20},{20,20}},
-        rotation=-90,
-        origin={80,98})));
+        rotation=0,
+        origin={-70,-56})));
 
    /**************************************************** SUMMARY ********************************************/
 public
@@ -302,17 +302,17 @@ Q_htf_ = sum(flow1Dim[:].Q_tot) "Total power absorbed by the fluid";
       color={255,0,0},
       smooth=Smooth.None));
         connect(DNI, solAbs[i].DNI) annotation (Line(
-      points={{-70,-56},{-36,-56},{-36,-10},{-27.36,-10}},
+      points={{-82,-48},{-36,-48},{-36,-10},{-27.36,-10}},
       color={0,0,127},
       smooth=Smooth.None));
 
        connect(v_wind, solAbs[i].v_wind) annotation (Line(
-      points={{-70,58},{-34,58},{-34,30},{-26.92,30}},
+      points={{-76,66},{-34,66},{-34,30},{-26.92,30}},
       color={0,0,127},
       smooth=Smooth.None));
 
         connect(Tamb, solAbs[i].Tamb) annotation (Line(
-      points={{-70,-18},{-46,-18},{-46,2.5},{-26.92,2.5}},
+      points={{-80,2},{-46,2},{-46,2.5},{-26.92,2.5}},
       color={0,0,127},
       smooth=Smooth.None));
 
@@ -327,120 +327,51 @@ Q_htf_ = sum(flow1Dim[:].Q_tot) "Total power absorbed by the fluid";
   connect(flow1Dim[i].OutFlow,flow1Dim[i+1].InFlow);
 
   end for;
-  connect(OutFlow, flow1Dim[Ns].OutFlow);
-connect(InFlow, flow1Dim[1].InFlow);
 
+  connect(flow1Dim[1].InFlow, InFlow) annotation (Line(
+      points={{34.5,-15.4167},{34.5,-100},{40,-100}},
+      color={0,0,255},
+      smooth=Smooth.None));
+  connect(flow1Dim[Ns].OutFlow, OutFlow) annotation (Line(
+      points={{34.2375,30.4167},{34.2375,60.2083},{40,60.2083},{40,118}},
+      color={0,0,255},
+      smooth=Smooth.None));
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),
-              Diagram(coordinateSystem(extent={{-80,-100},{100,100}},
-          preserveAspectRatio=true),
-                      graphics={Line(
-          points={{-86,0},{-86,-88},{36,-88},{36,-22}},
-          color={0,0,255},
-          smooth=Smooth.None), Line(
-          points={{34,36},{34,54},{104,54},{104,22}},
-          color={0,0,255},
-          smooth=Smooth.None)}), Icon(coordinateSystem(extent={{-80,-100},{100,100}},
-                      preserveAspectRatio=true),
+              Diagram(coordinateSystem(extent={{-80,-100},{100,120}},
+          preserveAspectRatio=false),
+                      graphics), Icon(coordinateSystem(extent={{-80,-100},{100,
+            120}},    preserveAspectRatio=false),
                                       graphics={
-        Rectangle(
-          extent={{-80,84},{100,-86}},
-          pattern=LinePattern.Dot,
-          lineColor={0,0,0},
-          fillColor={239,239,239},
-          fillPattern=FillPattern.Solid), Text(
-          extent={{-34,-52},{50,-80}},
+                                     Bitmap(extent={{-96,118},{126,-100}}, fileName=
+              "modelica://ThermoCycle/Resources/Images/Avatar_SF.jpg"),
+                                          Text(
+          extent={{-50,116},{34,88}},
           lineColor={0,0,0},
           fillColor={255,85,85},
           fillPattern=FillPattern.Solid,
           textString="%name"),
-        Ellipse(
-          extent={{-58,60},{-28,28}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Rectangle(
-          extent={{-42,60},{-4,28}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Ellipse(
-          extent={{16,56},{46,24}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Rectangle(
-          extent={{32,56},{70,24}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Ellipse(
-          extent={{-56,-4},{-26,-36}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Rectangle(
-          extent={{-42,-4},{-4,-36}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Ellipse(
-          extent={{18,-8},{48,-40}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Rectangle(
-          extent={{32,-8},{70,-40}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Line(
-          points={{78,42},{78,-22},{72,-22},{72,-22}},
-          color={0,0,255},
-          smooth=Smooth.None),
-        Line(
-          points={{-66,42},{78,42}},
-          color={0,0,255},
-          smooth=Smooth.None),
-        Line(
-          points={{-66,42},{-66,-22},{-60,-22},{-60,-22}},
-          color={0,0,255},
-          smooth=Smooth.None),
-        Line(
-          points={{-80,12},{-66,12},{-66,12}},
-          color={0,0,255},
-          thickness=0.5,
-          smooth=Smooth.None),
-        Line(
-          points={{-66,-22},{76,-22}},
-          color={0,0,255},
-          smooth=Smooth.None),
-        Line(
-          points={{78,10},{90,10},{98,10}},
-          color={0,0,255},
-          smooth=Smooth.None,
-          thickness=0.5),
         Text(
-          extent={{-24,78},{2,70}},
+          extent={{-62,-8},{-36,-16}},
           lineColor={0,0,0},
           textString="Tamb[K]"),
         Text(
-          extent={{-72,76},{-42,66}},
+          extent={{-60,-62},{-30,-72}},
           lineColor={0,0,0},
           textString="DNI"),
         Text(
-          extent={{12,78},{62,70}},
+          extent={{-70,38},{-20,30}},
           lineColor={0,0,0},
           textString="Theta[rad]"),
         Text(
-          extent={{54,76},{98,66}},
+          extent={{-64,86},{-20,76}},
           lineColor={0,0,0},
           textString="v_wind [m/s]")}),
      Documentation(info="<HTML>
 
 <p><big>The <b>SolarField_Forristal</b> model represents the solar field, composed by
-  a loop of parabolic collectors, based on <a href=\"http://www.nrel.gov/csp/troughnet/pdfs/34169.pdf\">Forristal model</a>. The large ratio between diameter
+  a loop of parabolic collectors, based on <a href=\"http://www.nrel.gov/csp/troughnet/pdfs/34169.pdf\">Forristal model</a>. The large ratio between diameter 
   and length allows a 1-D discretization of the absorber tube.
-   The model is composed by two sub-components: the <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> and the <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.SolAbsForristal\">SolAbsForristal</a> components.
+   The model is composed by two sub-components: the <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim\">Flow1Dim</a> and the <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.SolAbsForristal\">SolAbsForristal</a> components. 
 They are connected together through a thermal port.
 </p>
 

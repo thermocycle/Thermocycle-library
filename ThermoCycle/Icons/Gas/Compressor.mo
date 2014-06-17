@@ -22,5 +22,5 @@ partial model Compressor
                 lineColor={128,128,128},
                 lineThickness=0.5,
                 fillColor={159,159,223},
-                fillPattern=FillPattern.Solid)}));
+                fillPattern=FillPattern.Solid)}), Diagram(graphics));
 end Compressor;

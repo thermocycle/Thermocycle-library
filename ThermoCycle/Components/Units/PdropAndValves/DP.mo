@@ -1,7 +1,15 @@
 within ThermoCycle.Components.Units.PdropAndValves;
 model DP "Lumped, 3-terms pressure drop model"
   extends ThermoCycle.Icons.Water.PressDrop;
-  //Ports
+
+  /*********** PORTS ****************/
+  Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
+        Medium)
+    annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
+  Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium =
+               Medium)
+    annotation (Placement(transformation(extent={{80,-10},{100,10}})));
+
   replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Boolean UseNom=false
@@ -9,7 +17,7 @@ model DP "Lumped, 3-terms pressure drop model"
   parameter Modelica.SIunits.Length h=0 "Static fluid head (dp = h * rho * g)"  annotation (Dialog(enable=(not UseNom)));
   parameter Real k=0 "Coefficient for linear pressure drop (dp = k * V_dot)" annotation (Dialog(enable=(not UseNom)));
   parameter Modelica.SIunits.Area A=10e-5
-    "Valve throat area for quadratic pressure drop (dp = 1/A²*M_dot²/(2*rho))"
+    "Valve throat area for quadratic pressure drop (dp = 1/A²*M_dot²/(2*rho)) - Set 5e3 to put it to zero"
                                                                                  annotation (Dialog(enable=(not UseNom)));
   Modelica.SIunits.Length h_ok;
   Real k_ok;
@@ -22,9 +30,9 @@ model DP "Lumped, 3-terms pressure drop model"
                        annotation (Dialog(tab="Nominal Conditions"));
   parameter Modelica.SIunits.Temperature T_nom=423.15 "Nominal temperature"
                           annotation (Dialog(tab="Nominal Conditions"));
-  parameter Modelica.SIunits.Density rho_nom=Medium.density_pT(
+  parameter Modelica.SIunits.Density rho_nom=Medium.density_pTX(
           p_nom,
-          T_nom) "Nominal density"    annotation (Dialog(tab="Nominal Conditions"));
+          T_nom,fill(0,0)) "Nominal density"    annotation (Dialog(tab="Nominal Conditions"));
   parameter Modelica.SIunits.Pressure   DELTAp_stat_nom=0
     "Nominal static pressure drop"
                            annotation (Dialog(tab="Nominal Conditions"));
@@ -52,6 +60,12 @@ model DP "Lumped, 3-terms pressure drop model"
   Modelica.SIunits.Pressure DELTAp_stat(start=DELTAp_stat_nom)
     "Static pressure drop";
   Modelica.SIunits.MassFlowRate Mdot(start=Mdot_nom);
+  Modelica.SIunits.Time t_change=5
+    "time during which the transition of the weighting factor function happens";
+  Modelica.SIunits.MassFlowRate Mdot_0 "Nominal mass flow rate";
+
+  /***************************** Initialization options ********************************************/
+
   parameter Modelica.SIunits.Time t_init=10
     "if constinit is true, time during which the pressure drop is set to the constant value DELTAp_start"
     annotation (Dialog(tab="Initialization", enable=constinit));
@@ -61,20 +75,12 @@ model DP "Lumped, 3-terms pressure drop model"
   parameter Boolean UseHomotopy=false
     "if true, uses homotopy to set the pressure drop to zero in the first initialization"
   annotation (Dialog(tab="Initialization"));
-  Modelica.SIunits.Time t_change=5
-    "time during which the transition of the weighting factor function happens";
-  Modelica.SIunits.MassFlowRate Mdot_0 "Nominal mass flow rate";
-  Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
-        Medium)
-    annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
-  Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium =
-               Medium)
-    annotation (Placement(transformation(extent={{80,-10},{100,10}})));
+
 equation
   InFlow.m_flow + OutFlow.m_flow = 0 "Mass balance";
   p_fl = InFlow.p;
   h_fl = smooth(1,if Mdot >= 0 then OutFlow.h_outflow else InFlow.h_outflow);
-  d_fl = Medium.density_ph(p_fl,h_fl);
+  d_fl = Medium.density_phX(p_fl,h_fl,fill(0,0));
   DELTAp = InFlow.p - OutFlow.p;
   Mdot_0 = A_ok*sqrt(2*rho_nom)*sqrt(DELTAp_0);
 if not UseNom then
@@ -125,7 +131,8 @@ end if;
 //DELTAp_quad = 1/A_ok^2 /(2*rho) * smooth(1, if (Mdot > Mdot_0) then Mdot^2 else if (Mdot < -Mdot_0) then -Mdot^2 else 1/(2*Mdot_0) * Mdot^3 + Mdot_0/2*Mdot);
 //DELTAp_quad = 1/A_ok^2 * Mdot^2/(2*rho);
 //DELTAp_quad = Modelica.Fluid.Utilities.regSquare2(Mdot,Mdot_0,1/A_ok^2 /(2*rho),1/A_ok^2 /(2*rho),use_yd0=false,yd0=0.0);
-DELTAp_quad = 1/A_ok^2 /(2*rho)*Modelica.Fluid.Utilities.regSquare(Mdot,1e-4);
+DELTAp_quad = if noEvent(A_ok >= 5000) then 0 else 1/A_ok^2 /(2*rho)*Modelica.Fluid.Utilities.regSquare(Mdot,1e-4);
+
 // Linear pressure drop:
   DELTAp_lin = k_ok*Mdot/rho;
 // Static pressure difference:
@@ -145,6 +152,8 @@ initial equation
           color={0,0,0},
           smooth=Smooth.None,
           thickness=0.5)}),
+    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
+            100}}),     graphics),
     Documentation(info="<html>
 <p>The <b>DP</b> model is a lumped model that computes a punctual pressure drop. </p>
 <p>The assumptions for this model are: </p>

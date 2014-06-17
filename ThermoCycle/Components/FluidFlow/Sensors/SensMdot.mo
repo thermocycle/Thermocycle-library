@@ -1,11 +1,11 @@
 within ThermoCycle.Components.FluidFlow.Sensors;
 model SensMdot "Mass Flowrate sensor for working fluid"
   extends ThermoCycle.Icons.Water.SensThrough;
-  replaceable package Medium = ThermoCycle.Media.R245fa_CPRP
+  replaceable package Medium = ThermoCycle.Media.DummyFluid
                                             constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium Model" annotation (choicesAllMatching = true);
   Modelica.Blocks.Interfaces.RealOutput Mdot annotation (Placement(
-        transformation(extent={{60,40},{100,80}})));
+        transformation(extent={{60,40},{100,80}}, rotation=0)));
   Interfaces.Fluid.FlangeA InFlow( m_flow(min=0),redeclare package Medium = Medium)
                 annotation (Placement(transformation(extent={{-50,-50},{-30,-30}}),
         iconTransformation(extent={{-50,-50},{-30,-30}})));
@@ -23,6 +23,8 @@ equation
   /* MassFlow */
   Mdot = InFlow.m_flow;
   annotation (
+    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
+            100}}),     graphics),
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,100}}),
                     graphics={Text(
           extent={{-42,86},{40,26}},
@@ -36,6 +38,7 @@ equation
           smooth=Smooth.None)}),
     Documentation(info="<HTML>
 <p><big> Model <b>SensMdot</b> represents an ideal mass flow sensor.
-
-</html>"));
+    
+</html>
+"));
 end SensMdot;

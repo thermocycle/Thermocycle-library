@@ -1,5 +1,5 @@
 within ThermoCycle.UsersGuide;
-package Overview
+package Overview 
 extends Modelica.Icons.Information;
 
 
@@ -8,7 +8,7 @@ annotation (Documentation(info="<HTML>
 The ThermoCycle library aims at providing a robust framework to model small-capacity thermal systems,
 with a focus on organic Rankine cycle (ORC) and heat pump systems. The goal is to provide a fully opensource
 integrated solution going from thermodynamic properties, using CoolProp, to the simulation of complex
-systems with their control strategy.
+systems with their control strategy. 
 </p>
 <p><big>
 The library is designed for system level simulations and the models
@@ -19,6 +19,7 @@ Library and the models are able to handle reverse flow.
 </p>
 
 
-</html>"));
+</HTML>
+"));
 
 end Overview;

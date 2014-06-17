@@ -25,11 +25,12 @@ model PID "ISA PID controller with anti-windup"
     "Control signal scaled in per unit before saturation";
   Real track "Tracking signal for anti-windup integral action";
   Modelica.Blocks.Interfaces.RealInput PV "Process variable signal"
-    annotation (Placement(transformation(extent={{-112,-52},{-88,-28}})));
+    annotation (Placement(transformation(extent={{-112,-52},{-88,-28}},
+          rotation=0)));
   Modelica.Blocks.Interfaces.RealOutput CS "Control signal" annotation (
-      Placement(transformation(extent={{94,-12},{118,12}})));
+      Placement(transformation(extent={{94,-12},{118,12}}, rotation=0)));
   Modelica.Blocks.Interfaces.RealInput SP "Set point signal" annotation (
-      Placement(transformation(extent={{-112,28},{-88,52}})));
+      Placement(transformation(extent={{-112,28},{-88,52}}, rotation=0)));
 equation
   // Scaling
   SPs = (SP - PVmin)/(PVmax - PVmin);
@@ -63,6 +64,8 @@ initial equation
     end if;
   end if;
   annotation (
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+            100,100}}), graphics),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             100}}), graphics={
         Rectangle(

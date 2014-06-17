@@ -1,5 +1,5 @@
 within ThermoCycle;
-package UsersGuide
+package UsersGuide 
 extends Modelica.Icons.Information;
 
 end UsersGuide;

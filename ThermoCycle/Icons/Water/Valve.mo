@@ -18,5 +18,7 @@ partial model Valve
           extent={{-20,60},{20,40}},
           lineColor={0,0,0},
           fillColor={0,0,0},
-          fillPattern=FillPattern.Solid)}));
+          fillPattern=FillPattern.Solid)}), Diagram(coordinateSystem(
+          preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+        graphics));
 end Valve;

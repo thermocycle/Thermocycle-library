@@ -76,11 +76,17 @@ model SmoothedInit
   Medium.SpecificEnthalpy h_V;
   Medium.SpecificEnthalpy h_TP;
 
+  Real x_L,x_LTP,x_TPV,x_V "Vapor quality";
+
 initial algorithm
   U_filtered := U_nom;
   U_limited  := U_filtered;
 
 equation
+  x_L   = 0-max(smoothingRange/divisor,10*Modelica.Constants.small);
+  x_LTP = 0+max(smoothingRange/divisor,10*Modelica.Constants.small);
+  x_TPV = 1-max(smoothingRange/divisor,10*Modelica.Constants.small);
+  x_V   = 1+max(smoothingRange/divisor,10*Modelica.Constants.small);
 
   state    = FluidState[1];
   p        = Medium.pressure(state);

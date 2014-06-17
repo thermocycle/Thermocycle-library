@@ -8,7 +8,7 @@ replaceable package Medium =
 public
 Modelica.Mechanics.Rotational.Interfaces.Flange_b flange_elc "Flange of shaft"
                       annotation (Placement(transformation(extent={{64,-8},{
-            100,28}}), iconTransformation(extent={{68,-12},{92,12}})));
+            100,28}}, rotation=0), iconTransformation(extent={{68,-12},{92,12}})));
   Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{-78,68},{-58,88}}),
@@ -94,7 +94,10 @@ equation
 // Mechanical port:
   der(flange_elc.phi) = 2*N_rot*Modelica.Constants.pi;
   flange_elc.tau = W_dot/(2*N_rot*Modelica.Constants.pi)
-  annotation ( Icon(coordinateSystem(
+  annotation (Diagram(graphics));
+
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-100,
+            -100},{100,100}}), graphics), Icon(coordinateSystem(
           preserveAspectRatio=false,extent={{-120,-120},{120,120}}), graphics={
           Text(
           extent={{-62,-56},{80,-84}},

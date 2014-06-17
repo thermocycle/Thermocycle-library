@@ -49,11 +49,13 @@ equation
           extent={{102,86},{48,60}},
           lineColor={0,0,255},
           textString="Mdot")}),
+    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
+            100}}),     graphics),
     Documentation(info="<HTML>
 <p><big> Model <b>SinkMdot</b> sets the boundary mass flow of the fluid flowing from the port to the model (i.e. into the model).
 
 
-
+ 
 
 
 </html>"),

@@ -16,7 +16,8 @@ equation
   y[4] = smooth(1,if time < 200 then
     10 else
     15 + 5*sin(1.5 * Modelica.Constants.pi + 2 * Modelica.Constants.pi * 0.005 * (time-200)));
-  annotation (    Icon(graphics={Ellipse(extent={{-58,-34},{80,34}}, lineColor={0,0,255}),
+  annotation (                               Diagram(graphics),
+    Icon(graphics={Ellipse(extent={{-58,-34},{80,34}}, lineColor={0,0,255}),
           Text(
           extent={{-34,14},{54,-14}},
           lineColor={0,0,255},
@@ -25,5 +26,6 @@ equation
 <p>This generic heat source profile corresponds to the measurements of vehicle exhaust gases, filtered with 5th-order Butterworth filter with a cuttoff frequency of 0.001.</p>
 <p>Sylvain Quoilin, December 2012</p>
 </html>"),
-    experiment(StopTime=1669));
+    experiment(StopTime=1669),
+    __Dymola_experimentSetupOutput);
 end inputs;

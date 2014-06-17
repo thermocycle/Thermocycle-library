@@ -470,7 +470,8 @@ initial equation
     p_su = p_su_start;
     //   M_dot=M_dot_start;
   end if;
-  annotation ( Icon(coordinateSystem(
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
+            {100,100}}),       graphics), Icon(coordinateSystem(
           preserveAspectRatio=false,extent={{-100,-100},{100,100}}), graphics={
           Text(
           extent={{-84,-44},{58,-72}},
@@ -482,11 +483,11 @@ initial equation
           lineColor={0,0,255},
           smooth=Smooth.None,
           fillColor={0,0,255},
-          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
+          fillPattern=FillPattern.Solid)}),Documentation(info="<HTML> 
                     <p><big> Model <b>ExpanderHermeticDetailed</b> represents the expanson of fluid in a volumetric machine. The evolution of the refrigerant through the expander is decomposed into six
                     thermodynamic processes:
-
-
-
+                    
+                    
+                    
                     </HTML>"));
 end ExpanderHermeticDetailed;

@@ -162,9 +162,9 @@ equation
           lineColor={0,0,255},
           textString="%FLow1D")}),Documentation(info="<HTML>
           <p><big>This model describes the flow of fluid through a discretized one dimentional tube. It is obtained by connecting in series <b>N</b>  <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>. The
-          resulting discretization scheme is of the staggered type i.e. state variables are computed at the center of each cell and the node variables are calculated depending on the local discretization  (Upwind or Central difference).
+          resulting discretization scheme is of the staggered type i.e. state variables are computed at the center of each cell and the node variables are calculated depending on the local discretization  (Upwind or Central difference). 
           <p><big> The <b>Modelling options</b> and the <b>Numerical options</b> are the same as the one presented in the Cell1D model documentation.
-
+          
           <p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:
            <ul><li> Enthalpy at each node
            <li>  Enthalpy at the center of each cell
@@ -173,6 +173,6 @@ equation
            <li> Vapor quality at the center of each cell
            <li> Pressure in the tube
            </ul>
-
+          
        </HTML>"));
 end Flow1Dim;

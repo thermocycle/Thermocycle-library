@@ -1,5 +1,5 @@
 within ThermoCycle.Media;
-package Incompressible
-  extends Modelica.Icons.MaterialPropertiesPackage;
+package Incompressible 
+  extends Modelica.Icons.Package;
 
 end Incompressible;

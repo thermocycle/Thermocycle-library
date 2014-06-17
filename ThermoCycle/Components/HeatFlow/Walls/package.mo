@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow;
-package Walls
+package Walls 
   extends Modelica.Icons.Package;
 
 end Walls;

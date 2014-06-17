@@ -3,7 +3,7 @@ package Syltherm_XLT "Syltherm XLT Incompressible - CoolProp"
 //  extends Modelica.Media.Water.StandardWater;
 
 
-  extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
+  extends CoolProp2Modelica.Interfaces.IncompressibleCoolPropMedium(
     mediumName = "XLT",
     libraryName = "CoolProp",
     substanceNames = {"XLT|debug=0|enable_TTSE=0"});

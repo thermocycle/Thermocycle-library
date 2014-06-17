@@ -159,7 +159,7 @@ h_su = if noEvent(M_dot <= 0) then h else inStream(InFlow.h_outflow);
       points={{-92,1},{-46,1},{-46,0},{25.8,0},{25.8,-15.4}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation ( Icon(graphics={
+  annotation (Diagram(graphics), Icon(graphics={
         Rectangle(
           extent={{-100,100},{-98,-100}},
           lineColor={0,0,0},

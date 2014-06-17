@@ -1,7 +1,7 @@
 within ThermoCycle.Components.Units.Solar;
 model SolarField_SchottSopo_Inc
   "Solar field model with Schott PTR70 or Sopogy solar collector for incompressible fluids"
-replaceable package Medium1 = ThermoCycle.Media.R245fa_CPRP
+replaceable package Medium1 = ThermoCycle.Media.DummyFluid
                                            constrainedby
     Modelica.Media.Interfaces.PartialMedium                                                      annotation (choicesAllMatching = true);
 
@@ -60,31 +60,31 @@ replaceable model FluidHeatTransferModel =
   ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSchottSopo[Ns] absorberSchott(each N=N, each geometry=CollectorGeometry)
     annotation (Placement(transformation(extent={{-24,6},{14,40}})));
   Modelica.Blocks.Interfaces.RealInput v_wind
-    annotation (Placement(transformation(extent={{-86,60},{-46,100}}),
-        iconTransformation(extent={{-12,-12},{12,12}},
-        rotation=-90,
-        origin={74,92})));
+    annotation (Placement(transformation(extent={{-92,54},{-52,94}}),
+        iconTransformation(extent={{-14,-14},{14,14}},
+        rotation=0,
+        origin={-68,96})));
   Modelica.Blocks.Interfaces.RealInput Theta
-    annotation (Placement(transformation(extent={{-88,20},{-48,60}}),
-        iconTransformation(extent={{-13,-13},{13,13}},
-        rotation=-90,
-        origin={27,93})));
+    annotation (Placement(transformation(extent={{-92,22},{-52,62}}),
+        iconTransformation(extent={{-15,-15},{15,15}},
+        rotation=0,
+        origin={-67,47})));
   Modelica.Blocks.Interfaces.RealInput Tamb
     annotation (Placement(transformation(extent={{-88,-18},{-48,22}}),
-        iconTransformation(extent={{-13,-13},{13,13}},
-        rotation=-90,
-        origin={-23,93})));
+        iconTransformation(extent={{-16,-16},{16,16}},
+        rotation=0,
+        origin={-68,-8})));
   Modelica.Blocks.Interfaces.RealInput DNI
     annotation (Placement(transformation(extent={{-86,-54},{-46,-14}}),
-        iconTransformation(extent={{-14,-14},{14,14}},
-        rotation=-90,
-        origin={-68,92})));
+        iconTransformation(extent={{-16,-16},{16,16}},
+        rotation=0,
+        origin={-70,-66})));
   Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium1)
     annotation (Placement(transformation(extent={{-10,-100},{10,-80}}),
-        iconTransformation(extent={{-108,-8},{-88,12}})));
+        iconTransformation(extent={{28,-112},{48,-92}})));
   Interfaces.Fluid.FlangeB OutFlow( redeclare package Medium = Medium1)
     annotation (Placement(transformation(extent={{-10,80},{10,100}}),
-        iconTransformation(extent={{88,-8},{108,12}})));
+        iconTransformation(extent={{28,110},{48,130}})));
   Components.FluidFlow.Pipes.Flow1DimInc[Ns] flow1DimInc(redeclare each package
       Medium =                                                                     Medium1,
   redeclare each final model Flow1DimIncHeatTransferModel =
@@ -139,11 +139,11 @@ Q_tot = sum(flow1DimInc[:].Q_tot) "Total power absorbed by the fluid";
 
     for i in 1:Ns loop
      connect(Theta, absorberSchott[i].Theta) annotation (Line(
-      points={{-68,40},{-52,40},{-52,38},{-42,38},{-42,28.61},{-22.29,28.61}},
+      points={{-72,42},{-42,42},{-42,28.61},{-22.29,28.61}},
       color={0,0,127},
       smooth=Smooth.None));
            connect(v_wind, absorberSchott[i].v_wind) annotation (Line(
-      points={{-66,80},{-50,80},{-50,78},{-36,78},{-36,37.45},{-21.91,37.45}},
+      points={{-72,74},{-50,74},{-50,78},{-36,78},{-36,37.45},{-21.91,37.45}},
       color={0,0,127},
       smooth=Smooth.None));
 
@@ -176,102 +176,35 @@ end for;
       smooth=Smooth.None));
 
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),
- Icon(coordinateSystem(extent={{-100,-100},{100,
-            100}},
-          preserveAspectRatio=true),  graphics={
-        Rectangle(
-          extent={{-88,82},{88,-88}},
-          pattern=LinePattern.Dot,
-          lineColor={0,0,0},
-          fillColor={239,239,239},
-          fillPattern=FillPattern.Solid),
-        Rectangle(
-          extent={{22,-18},{60,-50}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Ellipse(
-          extent={{8,-18},{38,-50}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Rectangle(
-          extent={{22,46},{60,14}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Ellipse(
-          extent={{6,46},{36,14}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),      Text(
-          extent={{-80,-72},{66,-96}},
+              Diagram(coordinateSystem(extent={{-80,-100},{100,120}},
+          preserveAspectRatio=false),
+                      graphics), Icon(coordinateSystem(extent={{-80,-100},{100,
+            120}},
+          preserveAspectRatio=false), graphics={
+           Bitmap(extent={{-96,118},{126,-100}}, fileName=
+              "modelica://ThermoCycle/Resources/Images/Avatar_SF.jpg"),
+                                          Text(
+          extent={{-84,116},{62,92}},
           lineColor={0,0,0},
           fillColor={255,85,85},
           fillPattern=FillPattern.Solid,
           textString="%name"),
-        Rectangle(
-          extent={{-52,50},{-14,18}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Ellipse(
-          extent={{-68,50},{-38,18}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Line(
-          points={{-76,32},{68,32}},
-          color={0,0,255},
-          smooth=Smooth.None),
-        Line(
-          points={{-76,32},{-76,-32},{-70,-32},{-70,-32}},
-          color={0,0,255},
-          smooth=Smooth.None),
-        Line(
-          points={{-90,2},{-76,2},{-76,2}},
-          color={0,0,255},
-          thickness=0.5,
-          smooth=Smooth.None),
-        Line(
-          points={{-76,-32},{66,-32}},
-          color={0,0,255},
-          smooth=Smooth.None),
-        Line(
-          points={{68,0},{80,0},{88,0}},
-          color={0,0,255},
-          smooth=Smooth.None,
-          thickness=0.5),
-        Rectangle(
-          extent={{-52,-14},{-14,-46}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Ellipse(
-          extent={{-66,-14},{-36,-46}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Line(
-          points={{68,32},{68,-32},{62,-32},{62,-32}},
-          color={0,0,255},
-          smooth=Smooth.None),
         Text(
-          extent={{-82,74},{-52,64}},
+          extent={{-66,-74},{-36,-84}},
           lineColor={0,0,0},
           textString="DNI"),
         Text(
-          extent={{-34,76},{-8,68}},
+          extent={{-58,-16},{-32,-24}},
           lineColor={0,0,0},
           textString="Tamb[K]"),
         Text(
-          extent={{2,76},{52,68}},
+          extent={{-66,38},{-16,30}},
           lineColor={0,0,0},
           textString="Theta[rad]"),
         Text(
-          extent={{56,80},{88,64}},
+          extent={{-60,90},{-28,74}},
           lineColor={0,0,0},
-          textString="V_winD [m/s]")}),
+          textString="V_wind [m/s]")}),
                                  Documentation(info="<HTML>
 
 <p><big>The <b>SolarField_SchottSopo_Inc</b> model is based on the same modeling concept of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarField_SchottSopo\">SolarField_SchottSopo</a> model.

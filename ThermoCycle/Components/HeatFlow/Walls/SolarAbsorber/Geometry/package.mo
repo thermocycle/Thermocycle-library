@@ -1,5 +1,5 @@
 within ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber;
-package Geometry
+package Geometry 
  extends Modelica.Icons.Package;
 
 end Geometry;

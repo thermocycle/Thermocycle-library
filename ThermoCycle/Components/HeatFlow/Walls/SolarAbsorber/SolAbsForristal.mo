@@ -339,26 +339,27 @@ Eta_th = sum(eta_th)/N;
 //TOTAL EFFICIENCY
 Eta_TOT = Eta_th*eta_opt_t;
                                                                                                       annotation(Dialog(tab = "Initialisation"),
-Documentation(info="<HTML>
-
+             Diagram(graphics),
+    Icon(graphics),Documentation(info="<HTML>
+          
          <p><big>Model <b>SolAbsForristal</b>  represents the one-dimensional radial energy balance between the Heat Collector Element (HCE) and the atmosphere based on the
           <a href=\"http://www.nrel.gov/csp/troughnet/pdfs/34169.pdf\">Forristal model</a>.
       <p><big> The terms in the energy balance depends on the collector type, the HCE condition, the optical properties and the ambient condition.
-
+         
          <p><big>The phenomena represented by the model are:
          <ul><li>Convection in the heat transfer fluid.
          <li>Conduction and thermal energy storage in the metal pipe.
          <li> Convection and radiation transfer in the vacuum between the glass envelope and the metal pipe.
-         <li> Conduction and thermal energy storage in the glass envelope.
+         <li> Conduction and thermal energy storage in the glass envelope. 
          <li> Radiation and convection to the environment.
          </ul>
-
+         
          <p><big>The model assumptions are:
 <ul><li> Temperatures, thermal energy flux and thermodynamic properties are considered uniform around the circumference of the HCE.
  <li> Solar absorption is treated as a linear phenomenon.
  <li> Constant density in the metal pipe and in the glass envelope.
- <li> Constant heat capacity in the metal pipe and in the glass envelope.
-        </ul>
-
+ <li> Constant heat capacity in the metal pipe and in the glass envelope.          
+        </ul> 
+         
 </HTML>"));
 end SolAbsForristal;

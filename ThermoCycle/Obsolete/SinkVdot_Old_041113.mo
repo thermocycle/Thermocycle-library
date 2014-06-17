@@ -21,6 +21,10 @@ equation
   flangeB.m_flow= Vdot*rho;
   flangeB.h_outflow= h_out;
   annotation (
+    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
+            100}}), graphics),
+    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
+            100}}),     graphics),
     Documentation(info="<HTML>
 <p><b>Modelling options</b></p>
 

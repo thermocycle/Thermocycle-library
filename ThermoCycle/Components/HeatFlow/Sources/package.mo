@@ -1,4 +1,4 @@
 within ThermoCycle.Components.HeatFlow;
-package Sources
+package Sources 
   extends Modelica.Icons.SourcesPackage;
 end Sources;

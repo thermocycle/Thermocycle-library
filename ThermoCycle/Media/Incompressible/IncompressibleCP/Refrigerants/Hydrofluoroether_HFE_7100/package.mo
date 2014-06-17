@@ -2,7 +2,7 @@ within ThermoCycle.Media.Incompressible.IncompressibleCP.Refrigerants;
 package Hydrofluoroether_HFE_7100 "Hydrofluoroether HFE 7100 Incompressible - CoolProp"
 
 
-  extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
+  extends CoolProp2Modelica.Interfaces.IncompressibleCoolPropMedium(
     mediumName = "HFE",
     libraryName = "CoolProp",
     substanceNames = {"HFE|debug=0|enable_TTSE=0"});

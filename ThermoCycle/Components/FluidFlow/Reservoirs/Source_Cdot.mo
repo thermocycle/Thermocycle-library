@@ -10,6 +10,7 @@ model Source_Cdot
         extent={{-20,-20},{20,20}},
         rotation=270), iconTransformation(
         extent={{-15,-15},{15,15}},
+        rotation=0,
         origin={-71,-1})));
   Interfaces.Fluid.Flange_ex_Cdot flange
                                    annotation (Placement(transformation(
@@ -47,7 +48,11 @@ equation
           color={0,0,0},
           smooth=Smooth.None,
           thickness=1)}),
+    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{
+            100,100}}), graphics),
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}), graphics={Text(extent={{-98,74},{-48,42}}, textString=
-          "w0"),Text(extent={{48,74},{98,42}}, textString="h")}));
+          "w0"),Text(extent={{48,74},{98,42}}, textString="h")}),
+    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{
+            100,100}}), graphics));
 end Source_Cdot;

@@ -1,6 +1,8 @@
 within ThermoCycle.Functions.Solar;
 function T_start_inlet
   "Definition of inlet temperatures for collectors in series"
+  extends Modelica.Icons.Function;
+
 input Real T_start_inlet "inlet temperature";
 input Real T_start_outlet "outlet temperature";
 input Integer Ns "Number of emlement in series";

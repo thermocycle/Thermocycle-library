@@ -42,6 +42,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     height=0,
     offset=48.25)  annotation (Placement(transformation(
         extent={{-5,-5},{5,5}},
+        rotation=0,
         origin={65,67})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                           generatorNext(Np=1)
@@ -115,6 +116,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     duration=0,
     height=0)      annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
+        rotation=0,
         origin={-84,-6})));
 ThermoCycle.Components.Units.Tanks.Tank_pL tank(
     Vtot=0.015,
@@ -209,8 +211,13 @@ equation
       points={{-58.5538,61.3538},{-74,61.3538},{-74,74},{-84.96,74}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (    experiment(StopTime=1000),
-Documentation(info="<html>
+  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
+          preserveAspectRatio=true),
+                      graphics), Icon(coordinateSystem(extent={{-100,-100},
+            {100,100}})),
+    experiment(StopTime=1000),
+    __Dymola_experimentSetupOutput,
+    Documentation(info="<html>
 <p>Dynamic model of an Organic Rankine Cycle with recuperator and R245fa as working fluid.</p>
 <p><h4><font color=\"#008000\">Modeling assumptions</font></h4></p>
 <p><ul>

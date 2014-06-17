@@ -1,5 +1,5 @@
 within ThermoCycle.Examples.Simulations;
-package step_by_step
+package step_by_step 
 extends Modelica.Icons.Package;
 
 

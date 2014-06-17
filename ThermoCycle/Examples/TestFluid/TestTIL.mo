@@ -6,5 +6,6 @@ parameter String fluid = "Refprop.propane";
 equation
   refrigerant.p = 2.5e6;
   refrigerant.h = 0 + time*200000;
-  annotation (experiment(Algorithm="Euler"));
+  annotation (experiment(Algorithm="Euler"),
+      __Dymola_experimentSetupOutput);
 end TestTIL;

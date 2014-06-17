@@ -16,5 +16,6 @@ der(y_bis) = der(y);
 initial equation
   y_bis = y;
   annotation (
-    experiment(StopTime=3));
+    experiment(StopTime=3),
+    __Dymola_experimentSetupOutput);
 end test_der_regsquare;

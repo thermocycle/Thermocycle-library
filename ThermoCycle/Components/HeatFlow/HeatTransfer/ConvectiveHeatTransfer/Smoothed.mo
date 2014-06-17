@@ -11,15 +11,15 @@ equation
 annotation(Documentation(info="<html>
 
 <p><big> The model <b>Smoothed</b> extends the partial model
- <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveSmoothed\">PartialConvectiveSmoothed</a>
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveSmoothed\">PartialConvectiveSmoothed</a> 
  and calculates the heat transfer coefficient based on the following equation:</p>
-
+  
  <p>
 <img src=\"modelica://ThermoCycle/Resources/Images/HTC_massFlow.png\">
-</p>
-
-<p><big> Note that in the model U_nom corresponds to the smoothed heat transfer coefficient calculated in  <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveSmoothed\">PartialConvectiveSmoothed</a>
-</p>
+</p>  
+  
+<p><big> Note that in the model U_nom corresponds to the smoothed heat transfer coefficient calculated in  <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveSmoothed\">PartialConvectiveSmoothed</a> 
+</p> 
  <p></p>
 </html>"));
 end Smoothed;

@@ -33,10 +33,12 @@ equation
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
             100}}), graphics={Text(extent={{-106,92},{-56,50}}, textString=
               "p0"), Text(extent={{54,94},{112,52}}, textString="h")}),
-    Documentation(info="<HTML>
+    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
+            100}}),     graphics),
+    Documentation(info="<HTML> 
     <p><big> Model <b>SinkP</b> sets the boundary pressure of the fluid flowing from the port to the model (i.e. into the model).
 
-
+  
  <p><big>Note that boundary pressure is imposed by the model if the fluid is flowing into the model. If flow reversal happens (i.e. mass flow flowing out og <b>SinkP</b>) then the boundary enthalpy is also imposed by the model.
  <p><big> The pressure and enthalpy can be set as parameters or defined by the connector.
  <p>

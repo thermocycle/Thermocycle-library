@@ -59,7 +59,8 @@ Real Theta_deg;
 Modelica.SIunits.Temperature T_fluid[N] "Temperature of the fluid";
 
 /************* THERMAL FLOW ****************************************/
-Modelica.SIunits.HeatFlowRate Q_tube_tot "Total thermal energy on the ";
+Modelica.SIunits.HeatFlowRate Q_tube_tot
+    "Total thermal energy on one solar collector";
 
 /****************************************THERMAL FLUX ****************************************/
 Modelica.SIunits.HeatFlux Phi_conv_f[N] "Heat flux to the fluid";
@@ -70,10 +71,8 @@ Real Eta_tot "Averaged overall Efficiency";
 equation
 //Total thermal energy flow on the tube from the Sun [W]. Depend on the Focusing Parameter//
 
-if Focusing ==1 then
-                     S_eff =geometry.S_net;
-else
-      S_eff = geometry.S_ext_t;
+if Focusing ==1 then S_eff =geometry.S_net;
+else  S_eff = geometry.S_ext_t;
 end if;
 
 /* Get Theta in degree */
@@ -101,18 +100,23 @@ T_fluid[i] = wall_int.T[i];
 wall_int.phi[i] = - Phi_conv_f[i];
 
 end for;
+
 Eta_tot =sum(Eta_tot_N)/N;
 
                                                                                                       annotation(Dialog(tab = "Initialisation"),
-Documentation(info="<HTML>
-
+             Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+            {100,100}}),
+                     graphics),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+         graphics),Documentation(info="<HTML> 
+    
     <p><big>It solves the 1D radial energy balance around the Heat Collector Element of the Soltigua PTMx parabolic trough solar collector based on the Soltigua data sheet
      (see <a href=\"http://www.soltigua.com/prodotti/ptm/\">http://www.soltigua.com</a>.)</p>
      <p><big>The model allows to defocusing the collectors based on the Internal focusing signal. TRUE Defocusing = 0, FALSE Defocusing =1
-
+    
     <p><b><big>Modelling options</b></p>
-    <p><big><ul><li>Geometry: It allows to choose one of the different PTMx model.
-
+    <p><big><ul><li>Geometry: It allows to choose one of the different PTMx model. 
+     
     </ul>
     </HTML>"));
 end AbsSoltigua;

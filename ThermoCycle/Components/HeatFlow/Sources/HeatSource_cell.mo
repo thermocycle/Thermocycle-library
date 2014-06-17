@@ -39,5 +39,5 @@ thermalPort.phi = PhiCell;
           fillColor={135,135,135}), Text(
           extent={{-58,96},{76,60}},
           lineColor={0,0,255},
-          textString="Q [W]")}));
+          textString="Q [W]")}),      Diagram(graphics));
 end HeatSource_cell;

@@ -42,7 +42,7 @@ Modelica.Blocks.Interfaces.RealOutput Level
   /************ FLUID INITIAL VALUES ***************/
 parameter Modelica.SIunits.Temperature Tstart= 100+273.15 "Initial temperature"
   annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Pressure pstart=2e5 "Initial temperature"
+  parameter Modelica.SIunits.Pressure pstart=2e5 "Initial pressure"
   annotation (Dialog(tab="Initialization"));
 
   final parameter Modelica.SIunits.SpecificEnthalpy hstart=
@@ -191,7 +191,7 @@ annotation (Icon(graphics={
         points={{-6,8},{2,8},{-6,8}},
         color={0,0,255},
         thickness=0.5,
-        smooth=Smooth.None)}),Documentation(info="<html>
+        smooth=Smooth.None)}),     Diagram(graphics),Documentation(info="<html>
 <p>The model <b>OpenTank</b> describes the storage of fluid in liquid phase in an open tank. </p>
 <p><b>Pressure</b> and <b>enthalpy</b> are selected as state variables. </p>
 <p>The assumptions for this model are: </p>
@@ -207,7 +207,7 @@ The actual heat flow is computed by the thermal energy model.</li>
 <p>The model comprises two flow connectors and one lumped thermal port connector.
  During normal operation the fluid enters the model from the <em>InFlow</em> connector and exits from the <em>OutFlow</em> connector.
  In case of flow reversal the fluid direction is inversed</p>
-
+ 
 <p><b>Modelling options</b> </p>
 <p>In the <b>General</b> tab the following options are available: </p>
 <p><ul>

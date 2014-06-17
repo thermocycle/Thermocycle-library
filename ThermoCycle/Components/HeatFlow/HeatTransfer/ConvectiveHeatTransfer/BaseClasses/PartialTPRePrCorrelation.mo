@@ -49,7 +49,7 @@ equation
 annotation(Documentation(info="<html>
 
 <p><big> The model <b>PartialTPRePrCorrelation </b> is the basic model
- for the calculation of heat transfer coefficient using Reynolds and Prandtl number.</p>
+ for the calculation of heat transfer coefficient using Reynolds and Prandtl number.</p> 
 
 
  <p></p>

@@ -4,15 +4,15 @@ model controlPID2
   // Control unit inputs for evaporative temperature control
   Modelica.Blocks.Interfaces.RealInput Mdot "Set point signal Evap. Temp."
                                                                 annotation (Placement(transformation(extent={{-98,14},
-            {-74,38}}),
+            {-74,38}},                                                                                                    rotation=0),
         iconTransformation(extent={{-100,6},{-86,20}})));
   Modelica.Blocks.Interfaces.RealInput T_hf_su "Present Value of Evap. Temp."
                                                                 annotation (Placement(transformation(extent={{-98,40},
-            {-74,64}}),
+            {-74,64}},                                                                                                    rotation=0),
         iconTransformation(extent={{-100,30},{-86,44}})));
   Modelica.Blocks.Interfaces.RealInput p_su_exp
     "Elec. Frequency initial values"                            annotation (Placement(transformation(extent={{-98,-22},
-            {-74,2}}),
+            {-74,2}},                                                                                                    rotation=0),
         iconTransformation(extent={{-100,-42},{-86,-28}})));
   Modelica.Blocks.Interfaces.RealOutput CS_freq
     "Control Signal of the electrical frequency"
@@ -66,11 +66,11 @@ model controlPID2
     annotation (Placement(transformation(extent={{20,0},{46,22}})));
   Modelica.Blocks.Interfaces.RealInput T_su_exp "Set point signal Overheating"
                                                                 annotation (Placement(transformation(extent={{-98,-52},
-            {-74,-28}}),
+            {-74,-28}},                                                                                                   rotation=0),
         iconTransformation(extent={{-100,-18},{-86,-4}})));
   Modelica.Blocks.Interfaces.RealInput p_cd "Present Value of Overheating"
                                                                 annotation (Placement(transformation(extent={{-98,68},
-            {-74,92}}),
+            {-74,92}},                                                                                                    rotation=0),
         iconTransformation(extent={{-100,54},{-86,68}})));
   Modelica.Blocks.Interfaces.RealOutput CS_Xpp
     "Control signal of the pump capacity ratio"
@@ -200,6 +200,8 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation (
+    Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
+            100}}), graphics),
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}), graphics={Rectangle(
           extent={{-96,74},{88,-54}},

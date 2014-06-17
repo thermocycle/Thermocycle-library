@@ -51,5 +51,7 @@ partial model Accumulator
                 lineColor={0,0,255},
                 pattern=LinePattern.None,
                 fillColor={128,128,128},
-                fillPattern=FillPattern.Solid)}));
+                fillPattern=FillPattern.Solid)}), Diagram(
+        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+            100,100}}), graphics));
 end Accumulator;

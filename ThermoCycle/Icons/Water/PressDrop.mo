@@ -10,5 +10,8 @@ partial model PressDrop
             40}},
                 lineColor={0,0,0},
                 fillPattern=FillPattern.HorizontalCylinder,
-                fillColor={85,170,255})}));
+                fillColor={85,170,255})}),
+                                        Diagram(coordinateSystem(
+          preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+        graphics));
 end PressDrop;

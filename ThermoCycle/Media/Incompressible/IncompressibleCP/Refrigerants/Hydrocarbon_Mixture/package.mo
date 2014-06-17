@@ -3,7 +3,7 @@ package Hydrocarbon_Mixture "Hydrocarbon_Mixture Incompressible - CoolProp"
 //  extends Modelica.Media.Water.StandardWater;
 
 
-  extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
+  extends CoolProp2Modelica.Interfaces.IncompressibleCoolPropMedium(
     mediumName = "HCM",
     libraryName = "CoolProp",
     substanceNames = {"HCM|debug=0|enable_TTSE=0"});

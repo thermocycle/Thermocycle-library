@@ -34,7 +34,9 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_hp(
     DELTAp_quad_nom=5150)
     annotation (Placement(transformation(extent={{-22,42},{-2,62}})));
 ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
-                                                        expander(
+                                                        expander(redeclare
+      package Medium =
+        ThermoCycle.Media.R245fa_CP,
     ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.ORCNext,
     V_s=1,
     constPinit=false,
@@ -42,11 +44,15 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     p_su_start=2357000,
     p_ex_start=177800,
     T_su_start=413.15)
-    annotation (Placement(transformation(extent={{24,20},{56,52}})));
+    annotation (Placement(transformation(extent={{26,20},{58,52}})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                               generatorNext(Np=1)
     annotation (Placement(transformation(extent={{70,20},{98,48}})));
- ThermoCycle.Components.Units.HeatExchangers.Hx1D    recuperator(
+ ThermoCycle.Components.Units.HeatExchangers.Hx1D    recuperator(redeclare
+      package Medium1 =
+        ThermoCycle.Media.R245fa_CP,
+      redeclare package Medium2 =
+        ThermoCycle.Media.R245fa_CP,
     N=10,
     steadystate_h_cold=true,
     steadystate_h_hot=true,
@@ -57,13 +63,14 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
-    pstart_hot=177800,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+    pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
         origin={-13,-6})));
 
-ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
+ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(redeclare package Medium
+      = ThermoCycle.Media.R245fa_CP,
     k=38.4E3*9.5,
     A=(2*9.5*23282.7)^(-0.5),
     Mdot_nom=0.2588,
@@ -74,7 +81,9 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     DELTAp_lin_nom=3000,
     DELTAp_quad_nom=5150)
     annotation (Placement(transformation(extent={{32,0},{12,20}})));
-ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(
+ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(redeclare
+      package Medium1 =
+        ThermoCycle.Media.R245fa_CP,
     Unom_l=500,
     Unom_tp=1500,
     Unom_v=750,
@@ -104,27 +113,34 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot heat_sink(
     T_0=293.15)
     annotation (Placement(transformation(extent={{68,-98},{50,-80}})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Pump
-                                                     pump(
+                                                     pump(redeclare package
+      Medium =
+        ThermoCycle.Media.R245fa_CP,
     PumpType=ThermoCycle.Functions.Enumerations.PumpTypes.ORCNext,
     PumpInput=ThermoCycle.Functions.Enumerations.PumpInputs.freq,
     hstart=2.27e5,
     M_dot_start=0.2588)
     annotation (Placement(transformation(extent={{-96,-54},{-72,-30}})));
-ThermoCycle.Components.Units.Tanks.Tank_pL tank(
+ThermoCycle.Components.Units.Tanks.Tank_pL tank(redeclare package Medium =
+        ThermoCycle.Media.R245fa_CP,
     Vtot=0.015,
     L_start=0.5,
     SteadyState_p=false,
     impose_pressure=true,
     pstart=135000)
     annotation (Placement(transformation(extent={{-42,-78},{-24,-60}})));
- ThermoCycle.Components.FluidFlow.Sensors.SensP sensP
+ ThermoCycle.Components.FluidFlow.Sensors.SensP sensP(redeclare package Medium
+      = ThermoCycle.Media.R245fa_CP)
               annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-104,-64})));
- ThermoCycle.Components.FluidFlow.Sensors.SensMdot sensMdot
+ ThermoCycle.Components.FluidFlow.Sensors.SensMdot sensMdot(redeclare package
+      Medium = ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{-64,-34},{-44,-14}})));
- ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp
+ ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp( redeclare package
+      Medium =
+        ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{10,44},{30,64}})));
  ThermoCycle.Components.HeatFlow.Sensors.SensTsf sensTsf
     annotation (Placement(transformation(extent={{-64,94},{-44,114}})));
@@ -152,13 +168,13 @@ ThermoCycle.Components.Units.Tanks.Tank_pL tank(
   Modelica.Blocks.Interfaces.RealInput Tcool
     annotation (Placement(transformation(extent={{140,-116},{116,-92}})));
   Modelica.Blocks.Interfaces.RealInput Up
-    annotation (Placement(transformation(extent={{-124,-20},{-98,6}})));
+    annotation (Placement(transformation(extent={{-144,-12},{-118,14}})));
   Modelica.Blocks.Interfaces.RealInput Uexp
     annotation (Placement(transformation(extent={{126,74},{100,100}})));
  ThermoCycle.Components.Units.ControlSystems.Blocks.Tev_SPOptim tev_SPOptim
     annotation (Placement(transformation(extent={{-148,30},{-128,50}})));
 ThermoCycle.Components.Units.ControlSystems.Blocks.DELTAT dELTAT
-    annotation (Placement(transformation(extent={{44,100},{64,120}})));
+    annotation (Placement(transformation(extent={{44,96},{64,116}})));
   Modelica.Blocks.Interfaces.RealOutput Tevopt
     annotation (Placement(transformation(extent={{-120,32},{-100,52}})));
   Modelica.Blocks.Interfaces.RealOutput deltaT
@@ -172,11 +188,11 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(expander.flange_elc,generatorNext. shaft) annotation (Line(
-      points={{50.6667,37.3333},{62.4,37.3333},{62.4,34},{71.96,34}},
+      points={{52.6667,37.3333},{62.4,37.3333},{62.4,34},{71.96,34}},
       color={0,0,0},
       smooth=Smooth.None));
   connect(expander.OutFlow, dp_lp.InFlow) annotation (Line(
-      points={{52,28},{52,10},{31,10}},
+      points={{54,28},{54,10},{31,10}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(heat_sink.flange,condenser. inletSf) annotation (Line(
@@ -220,7 +236,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(sensTp.OutFlow, expander.InFlow) annotation (Line(
-      points={{27,49.2},{27,46.6},{30.9333,46.6},{30.9333,42.1333}},
+      points={{27,49.2},{27,46.6},{32.9333,46.6},{32.9333,42.1333}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(source_Cdot.flange, sensTsf.inlet) annotation (Line(
@@ -256,7 +272,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(Up, pump.flow_in) annotation (Line(
-      points={{-111,-7},{-111,-19.5},{-87.84,-19.5},{-87.84,-32.4}},
+      points={{-131,1},{-131,-17.5},{-87.84,-17.5},{-87.84,-32.4}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Uexp, generatorNext.f) annotation (Line(
@@ -264,11 +280,11 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(dELTAT.T, sensTp.T) annotation (Line(
-      points={{44,105.8},{46,105.8},{46,102},{36,102},{36,60},{28,60}},
+      points={{44,101.8},{46,101.8},{46,102},{36,102},{36,60},{28,60}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(dELTAT.P, sensTp.p) annotation (Line(
-      points={{44.2,116.6},{12,116.6},{12,60}},
+      points={{44.2,112.6},{12,112.6},{12,60}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(tev_SPOptim.p_cd, sensP.p) annotation (Line(
@@ -276,13 +292,12 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(tev_SPOptim.T_hf_su, sensTsf.T) annotation (Line(
-      points={{-148,41.2},{-156,41.2},{-156,44},{-168,44},{-168,140},{-50,
-          140},{-50,136},{-46,136},{-46,110}},
+      points={{-148,41.2},{-150,41.2},{-150,50},{-164,50},{-164,146},{-46,146},
+          {-46,110}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(tev_SPOptim.Mdot, sensMdot.Mdot) annotation (Line(
-      points={{-148,35.8},{-168,35.8},{-168,-12},{-44,-12},{-44,-18},{-46,
-          -18}},
+      points={{-148,35.8},{-170,35.8},{-170,-14},{-46,-14},{-46,-18}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(tev_SPOptim.Tev, Tevopt) annotation (Line(
@@ -290,11 +305,11 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(dELTAT.DELTAT, deltaT) annotation (Line(
-      points={{64.4,113},{75.2,113},{75.2,122},{94,122}},
+      points={{64.4,109},{75.2,109},{75.2,122},{94,122}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(dELTAT.Tsat, Tsat) annotation (Line(
-      points={{64.4,109},{84.2,109},{84.2,114},{110,114}},
+      points={{64.4,105},{84.2,105},{84.2,114},{110,114}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Mheat, source_Cdot.M_dot_source) annotation (Line(
@@ -314,8 +329,9 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-160,-140},{140,140}},
-          preserveAspectRatio=true),
+          preserveAspectRatio=false),
                       graphics), Icon(coordinateSystem(extent={{-160,-140},
             {140,140}})),
-    experiment(StopTime=1000));
+    experiment(StopTime=1000),
+    __Dymola_experimentSetupOutput);
 end ORC_245fa_FMU;

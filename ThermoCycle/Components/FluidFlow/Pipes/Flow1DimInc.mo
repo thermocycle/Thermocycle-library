@@ -125,8 +125,8 @@ equation
           lineColor={0,0,255},
           fillColor={0,255,255},
           fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
-       <p><big>This model describes the flow of incompressible fluid through a discretized one dimentional tube. It is obtained by connecting in series <b>N</b> <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1DimInc\">Cell1DimInc</a>.
-
+       <p><big>This model describes the flow of incompressible fluid through a discretized one dimentional tube. It is obtained by connecting in series <b>N</b> <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1DimInc\">Cell1DimInc</a>.    
+          
           <p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:
            <ul><li> Enthalpy at each node
            <li>  Enthalpy at the center of each cell
@@ -135,6 +135,6 @@ equation
            <li> Temperature at the center of each cell
            <li> Pressure in the tube
            </ul>
-
+          
       </HTML>"));
 end Flow1DimInc;

@@ -9,9 +9,9 @@ equation
 annotation(Documentation(info="<html>
 
 <p><big> The model <b>Constant</b> extends the partial model
- <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialSinglePhaseCorrelation\">PartialSinglePhaseCorrelation</a>
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialSinglePhaseCorrelation\">PartialSinglePhaseCorrelation</a> 
  and defines a constant heat transfer coefficient.
-
+ 
 <p></p>
 </html>"));
 end Constant;

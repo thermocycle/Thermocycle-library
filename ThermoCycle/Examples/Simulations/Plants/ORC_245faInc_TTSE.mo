@@ -1,6 +1,6 @@
 within ThermoCycle.Examples.Simulations.Plants;
 model ORC_245faInc_TTSE
-replaceable package OrganicMedium = ThermoCycle.Media.R245fa_CP_DerSmooth;
+replaceable package OrganicMedium = ThermoCycle.Media.R245fa_CP_Smooth;
 ThermoCycle.Components.Units.HeatExchangers.Hx1DInc                  evaporator(
     N=10,
     redeclare package Medium1 = OrganicMedium,
@@ -43,6 +43,7 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     height=0,
     offset=48.25)  annotation (Placement(transformation(
         extent={{-5,-5},{5,5}},
+        rotation=0,
         origin={65,67})));
   ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                                generatorNext(Np=1)
@@ -115,6 +116,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc                 condenser(
     duration=0,
     height=0)      annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
+        rotation=0,
         origin={-84,-6})));
  ThermoCycle.Components.Units.Tanks.Tank_pL tank(
     Vtot=0.015,
@@ -209,5 +211,10 @@ equation
       points={{-58.5538,63.3538},{-74,63.3538},{-74,74},{-84.96,74}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (    experiment(StopTime=1000));
+  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
+          preserveAspectRatio=true),
+                      graphics), Icon(coordinateSystem(extent={{-100,-100},
+            {100,100}})),
+    experiment(StopTime=1000),
+    __Dymola_experimentSetupOutput);
 end ORC_245faInc_TTSE;

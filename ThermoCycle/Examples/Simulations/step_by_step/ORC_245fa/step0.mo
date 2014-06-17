@@ -74,5 +74,10 @@ equation
       points={{-3.5,21.2},{-3.5,12.6},{-6,12.6},{-6,4.16667}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (    experiment(StopTime=1000));
+  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
+          preserveAspectRatio=true),
+                      graphics), Icon(coordinateSystem(extent={{-100,-100},
+            {100,100}})),
+    experiment(StopTime=1000),
+    __Dymola_experimentSetupOutput);
 end step0;

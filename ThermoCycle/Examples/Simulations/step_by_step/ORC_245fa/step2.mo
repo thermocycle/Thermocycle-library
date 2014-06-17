@@ -60,5 +60,10 @@ equation
       points={{43,4},{64,4},{64,8},{79.6,8}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (    experiment(StopTime=1000, __Dymola_NumberOfIntervals=5000));
+  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
+          preserveAspectRatio=false),
+                      graphics), Icon(coordinateSystem(extent={{-100,-100},
+            {100,100}})),
+    experiment(StopTime=1000, __Dymola_NumberOfIntervals=5000),
+    __Dymola_experimentSetupOutput);
 end step2;

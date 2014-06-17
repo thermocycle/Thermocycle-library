@@ -14,9 +14,9 @@ partial model PartialSinglePhaseCorrelation
 annotation(Documentation(info="<html>
 
 <p><big> The model <b>PartialSinglePhaseCorrelation </b> is the basic model
- for the calculation of heat transfer coefficient for a fluid in single phase.</p>
+ for the calculation of heat transfer coefficient for a fluid in single phase.</p> 
 <p><big> In order to complete the model - from <FONT COLOR=blue>partial model</FONT>  to <FONT COLOR=blue> model</FONT> -
- one equation definif the value of the Coefficient of heat transfer U has to be defined.</p>
+ one equation definif the value of the Coefficient of heat transfer U has to be defined.</p> 
 
  <p></p>
 </html>"));

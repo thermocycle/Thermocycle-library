@@ -19,4 +19,5 @@ equation
       points={{-19,10},{-10,10},{-10,-30},{-2,-30}},
       color={0,0,127},
       smooth=Smooth.None));
+  annotation (Diagram(graphics));
 end ValveTimerTester;

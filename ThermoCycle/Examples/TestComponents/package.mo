@@ -1,5 +1,5 @@
 within ThermoCycle.Examples;
-package TestComponents
+package TestComponents 
   extends Modelica.Icons.Package;
 
 

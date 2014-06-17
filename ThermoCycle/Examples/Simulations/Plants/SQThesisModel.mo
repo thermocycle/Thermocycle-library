@@ -6,9 +6,9 @@ model SQThesisModel
     level_start=0.5,
     hstart=2.32e5,
     impose_pressure=true,
-    impose_level=true,
     Vtot=0.015,
-    pstart=148400)
+    pstart=148400,
+    impose_level=false)
     annotation (Placement(transformation(extent={{-44,-32},{-24,-12}})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Pump
                                                      Pump(
@@ -248,7 +248,10 @@ equation
       points={{0,72.4},{4,72.4},{4,72},{6,72},{6,51},{-22,51}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (    experiment(StopTime=1669),
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+            -100},{100,100}}),
+                      graphics),
+    experiment(StopTime=1669),
     __Dymola_experimentSetupOutput(equdistant=false),
     Documentation(info="<html>
 <p>Dynamic model of a non-recuperative Organic Rankine Cycle with its control system.</p>

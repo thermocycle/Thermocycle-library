@@ -18,7 +18,9 @@ Classical.m_flow = - Limited.m_flow;
 Classical.h_outflow = inStream(Limited.h_outflow);
 Limited.h_outflow = noEvent(max(inStream(Limited.h_limit),inStream(Classical.h_outflow)));
 Limited.h_limit = h_limit;
-  annotation (    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+            -100},{100,100}}), graphics),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
         graphics={Line(
           points={{-20,60},{-20,-60}},
           color={0,0,255},

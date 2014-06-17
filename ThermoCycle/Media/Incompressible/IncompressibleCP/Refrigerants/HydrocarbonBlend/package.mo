@@ -3,7 +3,7 @@ package HydrocarbonBlend "Hydrocarbon Blend Incompressible - CoolProp"
 //  extends Modelica.Media.Water.StandardWater;
 
 
-  extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
+  extends CoolProp2Modelica.Interfaces.IncompressibleCoolPropMedium(
     mediumName = "HCB",
     libraryName = "CoolProp",
     substanceNames = {"HCB|debug=0|enable_TTSE=0"});

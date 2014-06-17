@@ -1,5 +1,5 @@
 within ThermoCycle.Examples.Simulations;
-package Plants
+package Plants 
 extends Modelica.Icons.Package;
 
 end Plants;

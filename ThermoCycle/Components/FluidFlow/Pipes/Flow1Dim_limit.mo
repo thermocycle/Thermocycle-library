@@ -170,7 +170,7 @@ equation
           extent={{-92,24},{88,-20}},
           lineColor={0,0,255},
           textString="%name")}),
-    Documentation(info="<html>
+    Documentation(info="<html>         
 <p><big>Implementation of the Flow1Dim model with the limiter proposed in: </p>
 <p>Schulze et al., A limiter for Preventing Singularity in Simplified Finite Volume Methods</p>
 <p><big>It is obtained by connecting in series <b>N</b>  <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim_limit\">Cell1Dim_limit</a>.
