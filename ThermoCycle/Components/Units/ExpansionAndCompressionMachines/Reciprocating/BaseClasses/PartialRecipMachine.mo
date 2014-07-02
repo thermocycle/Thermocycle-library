@@ -32,7 +32,8 @@ partial model PartialRecipMachine
     diameter=2*geometry.r_piston,
     color={155,155,155},
     length=geometry.h_piston,
-    r={0,-geometry.h_piston,0})
+    r={0,-geometry.h_piston,0},
+    animation=animate)
     annotation (Placement(transformation(
         origin={0,95},
         extent={{-15,15},{15,-15}},
@@ -40,7 +41,8 @@ partial model PartialRecipMachine
   Modelica.Mechanics.MultiBody.Parts.BodyBox conrod(
     widthDirection={1,0,0},
     r={0,y_rod,z_rod},
-    width=crank.width)
+    width=crank.width,
+    animation=animate)
                      annotation (Placement(transformation(
         origin={0,15},
         extent={{-15,-15},{15,15}},
@@ -50,7 +52,8 @@ partial model PartialRecipMachine
     n={1,0,0},
     cylinderColor={100,100,100},
     cylinderLength=0.04,
-    cylinderDiameter=0.04) annotation (Placement(transformation(extent={{-95,-80},
+    cylinderDiameter=0.04,
+    animation=animate)     annotation (Placement(transformation(extent={{-95,-80},
             {-65,-110}},      rotation=0)));
   inner Modelica.Mechanics.MultiBody.World world(nominalLength=0.5,
       enableAnimation=animate)                   annotation (Placement(
@@ -64,13 +67,15 @@ partial model PartialRecipMachine
   Modelica.Mechanics.MultiBody.Parts.BodyCylinder crankshaft(
     color={100,100,100},
     diameter=0.02,
-    r={0.1,0,0})
+    r={0.1,0,0},
+    animation=animate)
     annotation (Placement(transformation(extent={{-45,-110},{-15,-80}},
           rotation=0)));
   Modelica.Mechanics.MultiBody.Parts.BodyBox crank(
     widthDirection={1,0,0},
     r={0,y_cra,z_cra},
-    width=0.3*geometry.r_crank)
+    width=0.3*geometry.r_crank,
+    animation=animate)
                 annotation (Placement(transformation(
         origin={0,-65},
         extent={{-15,-15},{15,15}},
@@ -82,22 +87,23 @@ partial model PartialRecipMachine
   Modelica.Mechanics.MultiBody.Joints.Revolute crankPin(
     n={1,0,0},
     cylinderLength=0.03,
-    cylinderDiameter=0.03)
-    "This is the connection between conrod and crank arm. "
+    cylinderDiameter=0.03,
+    animation=animate) "This is the connection between conrod and crank arm. "
     annotation (Placement(transformation(extent={{-10,-35},{10,-15}})));
   Modelica.Mechanics.MultiBody.Joints.RevolutePlanarLoopConstraint pistonPin(
     n={1,0,0},
     cylinderLength=0.03,
     cylinderDiameter=0.03,
-    frame_b(r_0(start={0,0,0})))
-    "This is the connection between piston and conrod."
+    frame_b(r_0(start={0,0,0})),
+    animation=animate) "This is the connection between piston and conrod."
                 annotation (Placement(transformation(extent={{10,45},{-10,65}})));
   Modelica.Mechanics.MultiBody.Joints.Prismatic slider(
     useAxisFlange=true,
     n={0,-1,0},
     boxHeight(displayUnit="mm") = slider.boxWidth,
     boxWidth(displayUnit="mm") = 0.5*crank.width,
-    s(start=h_TDC))     annotation (Placement(transformation(
+    s(start=h_TDC),
+    animation=animate)  annotation (Placement(transformation(
         extent={{-15,-15},{15,15}},
         rotation=-90,
         origin={0,135})));
@@ -179,7 +185,7 @@ equation
       smooth=Smooth.None));
   annotation (
     Diagram(coordinateSystem(
-        preserveAspectRatio=true,
+        preserveAspectRatio=false,
         extent={{-180,-180},{180,180}},
         grid={1,1}), graphics),
     Documentation(info="<html>

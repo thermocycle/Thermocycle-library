@@ -14,7 +14,6 @@ model HeatRelease "Heat release model for IC engines"
     "Length for heat release development.";
 
   ValveTimer valveTimer(
-    angle_in = crankshaftAngle,
     use_angle_in=true,
     input_in_rad=true,
     open=on,
@@ -22,6 +21,7 @@ model HeatRelease "Heat release model for IC engines"
     switch=swi)
     annotation (Placement(transformation(extent={{-60,20},{-40,40}})));
 equation
+  valveTimer.angle_in = crankshaftAngle;
   for i in 1:n loop
     // Calculate the heat transfer directly
     -q_w[i]*surfaceAreas[i] = valveTimer.y * peak;

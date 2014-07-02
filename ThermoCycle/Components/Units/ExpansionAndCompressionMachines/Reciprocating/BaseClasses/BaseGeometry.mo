@@ -2,6 +2,12 @@ within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocatin
 partial record BaseGeometry
   "Base class to define the geometry of a reciprocating machine"
   extends Modelica.Icons.Record;
+  parameter Boolean use_angle_in=true "Enable input connector";
+  parameter Modelica.SIunits.AngularVelocity rpm=
+      Modelica.SIunits.Conversions.from_rpm(60)
+    annotation (Evaluate = true,
+                Dialog(enable = not use_angle_in));
+
   parameter Modelica.SIunits.Length l_conrod(displayUnit="mm")
     "Length of connection rod";
   parameter Modelica.SIunits.Length d_ppin(displayUnit="mm")
@@ -23,8 +29,10 @@ partial record BaseGeometry
     "Hydraulic diameter of leakage gap";
   parameter Real zeta_leak "friction coefficient leakage";
 
+  InputObject inputObject(dens(displayUnit="kg/m3") = 7700, use_dens=true)
+    annotation (Placement(transformation(extent={{-74,62},{-54,82}})));
   annotation (Documentation(info="<html>
 <p><h4><font color=\"#008000\">Partial Geometry</font></h4></p>
-<p>Definition of basic geometry for reciprocating machines. All lengths and volumes are calculate</p>
+<p>Definition of basic geometry for reciprocating machines. All lengths and volumes are calculated</p>
 </html>"));
 end BaseGeometry;
