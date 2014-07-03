@@ -16,13 +16,13 @@ record BaseGeometry
     "Hydraulic diameter of leakage gap";
   parameter Real zeta_leak "friction coefficient leakage";
 
-  InputObject piston(final kind = 1, dens(displayUnit="kg/m3") = 0.5*7700)
+  InputObject piston(final kind = 1, final width = 0, dens(displayUnit="kg/m3") = 0.5*7700)
     annotation (Placement(transformation(extent={{-40,60},{-20,80}})));
-  InputObject conrod(final kind = 2, dens(displayUnit="kg/m3") = 7700)
+  InputObject conrod(final kind = 2, final radius = 0,  dens(displayUnit="kg/m3") = 7700)
     annotation (Placement(transformation(extent={{20,60},{40,80}})));
-  InputObject crankArm(final kind = 2, dens(displayUnit="kg/m3") = 7700)
+  InputObject crankArm(final kind = 2, final radius = 0,  dens(displayUnit="kg/m3") = 7700)
     annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
-  InputObject crankShaft(final kind = 1, dens(displayUnit="kg/m3") = 7700)
+  InputObject crankShaft(final kind = 1, final width = 0,  dens(displayUnit="kg/m3") = 7700)
     annotation (Placement(transformation(extent={{20,20},{40,40}})));
   annotation (Documentation(info="<html>
 <p><h4><font color=\"#008000\">Partial Geometry</font></h4></p>

@@ -8,19 +8,18 @@ partial model PartialRecipMachine
     geometry constrainedby
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses.BaseGeometry
     "Define geometry here or replace with approriate record." annotation (
-      choicesAllMatching=true, Placement(transformation(extent={{58,-123},{103,
-            -78}})));
-  final parameter SI.Length s_TDC=sqrt((geometry.crankArm.radius + geometry.conrod.height)
+      choicesAllMatching=true, Placement(transformation(extent={{58,-123},{103,-78}})));
+  final parameter SI.Length s_TDC=sqrt((geometry.crankArm.height + geometry.conrod.height)
       ^2 - geometry.d_ppin^2) "Crank shaft to TDC";
-  final parameter SI.Length s_BDC=sqrt((geometry.crankArm.radius - geometry.conrod.height)
+  final parameter SI.Length s_BDC=sqrt((geometry.crankArm.height - geometry.conrod.height)
       ^2 - geometry.d_ppin^2) "Crank shaft to BDC";
-  final parameter SI.Length z_cra=geometry.d_ppin/(geometry.crankArm.radius +
-      geometry.conrod.height)*geometry.crankArm.radius "Crank pin z at TDC";
-  final parameter SI.Length y_cra=s_TDC/(geometry.crankArm.radius + geometry.conrod.height)
-      *geometry.crankArm.radius "Crank pin y at TDC";
-  final parameter SI.Length z_rod=geometry.d_ppin/(geometry.crankArm.radius +
+  final parameter SI.Length z_cra=geometry.d_ppin/(geometry.crankArm.height +
+      geometry.conrod.height)*geometry.crankArm.height "Crank pin z at TDC";
+  final parameter SI.Length y_cra=s_TDC/(geometry.crankArm.height + geometry.conrod.height)
+      *geometry.crankArm.height "Crank pin y at TDC";
+  final parameter SI.Length z_rod=geometry.d_ppin/(geometry.crankArm.height +
       geometry.conrod.height)*geometry.conrod.height "Rod pin z at TDC";
-  final parameter SI.Length y_rod=s_TDC/(geometry.crankArm.radius + geometry.conrod.height)
+  final parameter SI.Length y_rod=s_TDC/(geometry.crankArm.height + geometry.conrod.height)
       *geometry.conrod.height "Rod pin y at TDC";
   final parameter SI.Length h_TDC=geometry.V_tdc/(Modelica.Constants.pi
       *geometry.piston.radius^2) "equivalent height at TDC";

@@ -3,7 +3,7 @@ model RecipMachine
   "A combination of cylinder model and a reciprocating mechanism."
 
   RecipMachine_Flange recipFlange(redeclare
-      ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.ExpanderGeometry
+      ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.StrokeBoreGeometry
       geometry)
     annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
   Cylinder cylinder(
