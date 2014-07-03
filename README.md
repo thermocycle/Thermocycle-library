@@ -1,9 +1,6 @@
 ThermoCycle
 ===================
 
-
-About ThermoCycle
-
 The ThermoCycle library is an open-source library for dynamic modelling of thermal
 systems developed in the Modelica language. The library aims at providing a robust 
 framework to model thermal systems, including thermodynamic cycles. A number of 
