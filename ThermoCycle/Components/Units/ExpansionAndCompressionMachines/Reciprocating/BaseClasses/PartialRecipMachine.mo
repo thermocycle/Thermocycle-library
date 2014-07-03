@@ -7,33 +7,34 @@ partial model PartialRecipMachine
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses.BaseGeometry
     geometry constrainedby
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses.BaseGeometry
-    "Define geometry here or replace with approriate record."
-                    annotation (choicesAllMatching=true,Placement(transformation(extent={{58,-123},
-            {103,-78}})));
-  final parameter SI.Length s_TDC=sqrt((geometry.r_crank + geometry.l_conrod)
+    "Define geometry here or replace with approriate record." annotation (
+      choicesAllMatching=true, Placement(transformation(extent={{58,-123},{103,
+            -78}})));
+  final parameter SI.Length s_TDC=sqrt((geometry.crankArm.radius + geometry.conrod.height)
       ^2 - geometry.d_ppin^2) "Crank shaft to TDC";
-  final parameter SI.Length s_BDC=sqrt((geometry.r_crank - geometry.l_conrod)
+  final parameter SI.Length s_BDC=sqrt((geometry.crankArm.radius - geometry.conrod.height)
       ^2 - geometry.d_ppin^2) "Crank shaft to BDC";
-  final parameter SI.Length z_cra=geometry.d_ppin/(geometry.r_crank +
-      geometry.l_conrod)*geometry.r_crank "Crank pin z at TDC";
-  final parameter SI.Length y_cra=s_TDC/(geometry.r_crank + geometry.l_conrod)
-      *geometry.r_crank "Crank pin y at TDC";
-  final parameter SI.Length z_rod=geometry.d_ppin/(geometry.r_crank +
-      geometry.l_conrod)*geometry.l_conrod "Rod pin z at TDC";
-  final parameter SI.Length y_rod=s_TDC/(geometry.r_crank + geometry.l_conrod)
-      *geometry.l_conrod "Rod pin y at TDC";
+  final parameter SI.Length z_cra=geometry.d_ppin/(geometry.crankArm.radius +
+      geometry.conrod.height)*geometry.crankArm.radius "Crank pin z at TDC";
+  final parameter SI.Length y_cra=s_TDC/(geometry.crankArm.radius + geometry.conrod.height)
+      *geometry.crankArm.radius "Crank pin y at TDC";
+  final parameter SI.Length z_rod=geometry.d_ppin/(geometry.crankArm.radius +
+      geometry.conrod.height)*geometry.conrod.height "Rod pin z at TDC";
+  final parameter SI.Length y_rod=s_TDC/(geometry.crankArm.radius + geometry.conrod.height)
+      *geometry.conrod.height "Rod pin y at TDC";
   final parameter SI.Length h_TDC=geometry.V_tdc/(Modelica.Constants.pi
-      *geometry.r_piston^2) "equivalent height at TDC";
-  final parameter SI.Length h_top=s_TDC + geometry.h_piston + h_TDC
+      *geometry.piston.radius^2) "equivalent height at TDC";
+  final parameter SI.Length h_top=s_TDC + geometry.piston.height + h_TDC
     "Height of cylinder";
   final parameter SI.Length stroke=s_TDC - s_BDC;
-  final parameter SI.Length bore=geometry.r_piston*2;
+  final parameter SI.Length bore=geometry.piston.radius*2;
   Modelica.Mechanics.MultiBody.Parts.BodyCylinder piston(
-    diameter=2*geometry.r_piston,
+    diameter=2*geometry.piston.radius,
     color={155,155,155},
-    length=geometry.h_piston,
-    r={0,-geometry.h_piston,0},
-    animation=animate)
+    length=geometry.piston.height,
+    r={0,-geometry.piston.height,0},
+    animation=animate,
+    density=geometry.piston.rho)
     annotation (Placement(transformation(
         origin={0,95},
         extent={{-15,15},{15,-15}},
@@ -41,8 +42,9 @@ partial model PartialRecipMachine
   Modelica.Mechanics.MultiBody.Parts.BodyBox conrod(
     widthDirection={1,0,0},
     r={0,y_rod,z_rod},
-    width=crank.width,
-    animation=animate)
+    animation=animate,
+    width=geometry.conrod.width,
+    density=geometry.conrod.rho)
                      annotation (Placement(transformation(
         origin={0,15},
         extent={{-15,-15},{15,15}},
@@ -66,16 +68,18 @@ partial model PartialRecipMachine
         origin={-80,-135})));
   Modelica.Mechanics.MultiBody.Parts.BodyCylinder crankshaft(
     color={100,100,100},
-    diameter=0.02,
-    r={0.1,0,0},
-    animation=animate)
+    animation=animate,
+    r={geometry.crankShaft.height,0,0},
+    diameter=2*geometry.crankShaft.radius,
+    density=geometry.crankShaft.rho)
     annotation (Placement(transformation(extent={{-45,-110},{-15,-80}},
           rotation=0)));
   Modelica.Mechanics.MultiBody.Parts.BodyBox crank(
     widthDirection={1,0,0},
     r={0,y_cra,z_cra},
-    width=0.3*geometry.r_crank,
-    animation=animate)
+    animation=animate,
+    width=geometry.crankArm.width,
+    density=geometry.crankArm.rho)
                 annotation (Placement(transformation(
         origin={0,-65},
         extent={{-15,-15},{15,15}},
@@ -103,7 +107,7 @@ partial model PartialRecipMachine
     boxHeight(displayUnit="mm") = slider.boxWidth,
     boxWidth(displayUnit="mm") = 0.5*crank.width,
     s(start=h_TDC),
-    animation=animate)  annotation (Placement(transformation(
+    animation=false)    annotation (Placement(transformation(
         extent={{-15,-15},{15,15}},
         rotation=-90,
         origin={0,135})));

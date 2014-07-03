@@ -15,7 +15,6 @@ model Expander
   RecipMachine_Flange recipFlange(redeclare StrokeBoreGeometry geometry)
     annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
   Cylinder cylinder(
-    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
     nPorts=3,
     use_HeatTransfer=true,
     redeclare model HeatTransfer =
@@ -29,7 +28,8 @@ model Expander
     use_portsData=true,
     d_leak=recipFlange.geometry.d_leak,
     zeta_inout=recipFlange.geometry.zeta_inout,
-    zeta_leak=0.5*recipFlange.geometry.zeta_leak)
+    zeta_leak=0.5*recipFlange.geometry.zeta_leak,
+    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.piston.radius^2)
     annotation (Placement(transformation(extent={{-30,40},{-10,20}})));
 
   Modelica.Fluid.Sources.Boundary_pT inlet(

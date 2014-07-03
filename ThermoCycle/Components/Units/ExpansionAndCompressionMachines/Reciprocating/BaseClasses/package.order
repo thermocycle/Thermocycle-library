@@ -1,7 +1,6 @@
-BaseGeometry
 PartialCylinderHeatTransfer
 PartialRecipMachine
 SimpleGeometry
 VolumeForces
 InputObject
-BaseGeometryObj
+BaseGeometry

@@ -2,10 +2,11 @@ within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocatin
 model RecipMachine
   "A combination of cylinder model and a reciprocating mechanism."
 
-  RecipMachine_Flange recipFlange
+  RecipMachine_Flange recipFlange(redeclare
+      ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.ExpanderGeometry
+      geometry)
     annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
   Cylinder cylinder(
-    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
     p_start=system.p_start,
     T_start=system.T_start,
     use_HeatTransfer=true,
@@ -19,7 +20,8 @@ model RecipMachine
     d_outlet=recipFlange.geometry.d_outlet,
     d_leak=recipFlange.geometry.d_leak,
     zeta_inout=recipFlange.geometry.zeta_inout,
-    zeta_leak=0.5*recipFlange.geometry.zeta_leak)
+    zeta_leak=0.5*recipFlange.geometry.zeta_leak,
+    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.piston.radius^2)
     annotation (Placement(transformation(extent={{-30,40},{-10,20}})));
 
   Modelica.Mechanics.Rotational.Sensors.AngleSensor angleSensor

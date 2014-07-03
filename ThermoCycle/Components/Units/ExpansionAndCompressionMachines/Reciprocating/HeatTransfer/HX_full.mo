@@ -24,10 +24,10 @@ model HX_full "A combination of Cylinder model and a reciprocating machine"
 
   Cylinder cylinder(
     redeclare package Medium = WorkingFluid,
-    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
     use_portsData=false,
     p_start=system.p_start,
-    T_start=system.T_start)
+    T_start=system.T_start,
+    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.piston.radius^2)
     annotation (Placement(transformation(extent={{-120,40},{-100,20}})));
   Cylinder annand(
     redeclare package Medium = WorkingFluid,

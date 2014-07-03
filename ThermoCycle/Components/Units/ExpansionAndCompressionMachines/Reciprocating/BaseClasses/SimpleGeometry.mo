@@ -3,9 +3,10 @@ partial record SimpleGeometry "Simple geometry"
   extends
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses.BaseGeometry(
     final d_ppin=0,
-    final r_crank=0.5*stroke,
-    final r_piston=0.5*bore,
-    final h_piston=bore);
+    final crankArm(height=0.5*stroke),
+    final piston(radius=0.5*bore,height=bore),
+    final conrod(height=l_conrod),
+    crankShaft(height=0.2));
   parameter Modelica.SIunits.Length l_conrod(displayUnit="mm")
     "Length of connection rod";
   parameter Modelica.SIunits.Length stroke(displayUnit="mm") "Stroke length";

@@ -108,8 +108,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(recipMachine.inlet, injectionValve.port_b) annotation (Line(
-      points={{-40,-10},{-46,-10},{-46,-10},{-50,-10},{-50,20},{-24,20},{-24,50},
-          {-30,50}},
+      points={{-40,-10},{-50,-10},{-50,20},{-24,20},{-24,50},{-30,50}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(recipMachine.leakage_b, outlet.ports[2]) annotation (Line(

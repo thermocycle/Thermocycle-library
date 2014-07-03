@@ -16,14 +16,15 @@ model Cylinder_tester
   RecipMachine_Flange recipFlange(redeclare StrokeBoreGeometry geometry)
     annotation (Placement(transformation(extent={{-20,-40},{20,0}})));
   Cylinder cylinder(
-    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
     p_start=system.p_start,
     T_start=system.T_start,
     redeclare package Medium = Modelica.Media.Air.DryAirNasa,
     use_portsData=false,
     use_HeatTransfer=false,
     redeclare model HeatTransfer =
-        ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.IdealHeatTransfer)
+        ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.IdealHeatTransfer,
+
+    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.piston.radius^2)
     annotation (Placement(transformation(extent={{-10,40},{10,20}})));
 equation
   connect(inertia.flange_b, recipFlange.crankShaft_b) annotation (Line(
