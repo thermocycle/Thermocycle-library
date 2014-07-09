@@ -1,6 +1,6 @@
 within ThermoCycle.Media.Incompressible.IncompressibleTables;
 package TherminolSP "TherminolSP Incompressible - TableBased"
-  extends Modelica.Media.Incompressible.TableBased(
+  extends CoolProp2Modelica.Media.Incompressible.TableBased(
   mediumName="TherminolSP",
   T_min = Modelica.SIunits.Conversions.from_degC(-10),
    T_max = Modelica.SIunits.Conversions.from_degC(315),

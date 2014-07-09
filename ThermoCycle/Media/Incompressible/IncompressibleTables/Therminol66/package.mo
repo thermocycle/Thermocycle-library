@@ -1,6 +1,6 @@
 within ThermoCycle.Media.Incompressible.IncompressibleTables;
 package Therminol66 "Therminol66 Incompressible - TableBased"
-  extends Modelica.Media.Incompressible.TableBased(
+  extends CoolProp2Modelica.Media.Incompressible.TableBased(
   mediumName="Therminol66",
   T_min = Modelica.SIunits.Conversions.from_degC(0),
    T_max = Modelica.SIunits.Conversions.from_degC(380),

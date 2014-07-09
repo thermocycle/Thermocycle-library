@@ -56,7 +56,7 @@ equation
   flange.h_outflow =h;
   else
     flange.h_outflow =in_h;
-    h = 0;
+    h = h_0;
   end if;
 
   if cardinality(in_h)==0 then

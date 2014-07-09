@@ -238,5 +238,4 @@ end for;
  </ul>
  The dynamic one-dimensional radial energy balance around the heat collector element is based on the Schott test analysis using the  <a href=\"modelica://ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSchottSopo\">AbsSchottSopo</a> model.
  </HTML>"));
-
 end SolarField_SchottSopo;

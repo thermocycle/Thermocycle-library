@@ -8,7 +8,7 @@ model HeatPortConverter "Convert thermal port into heat port"
 parameter Modelica.SIunits.Area A = 1 "Heat exchange area";
 equation
   thermalPortL.T = heatPort.T;
-  thermalPortL.phi = heatPort.Q_flow/A;
+  thermalPortL.phi = -heatPort.Q_flow/A;
 
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics),
