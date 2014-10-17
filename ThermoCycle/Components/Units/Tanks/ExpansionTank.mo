@@ -116,10 +116,6 @@ M_l = rho*V_l;
 L_l = Level;
 L_l = V_l/V_tank;
 
-//V_tank = V_l + V_gas;
-/* Boyle's law */
-//p_gas*V_gas = pV_gas;
-
 if p_const then
 p_gas = 0;
 V_gas = 0;

@@ -2,13 +2,6 @@ within ;
 package ThermoCycle "A library for the simulation of thermal systems"
 
 
-
-
-
-
-
-
-
   annotation (uses(                        CoolProp2Modelica,
     TILMedia(version="2.1.4"),
     ThermoPower(version="3.0"),

@@ -121,7 +121,7 @@ equation
  A_l = A_lateral*L_l;
 
   /* Energy Balance */
-  dMdt*h + der(h)*M_l = (h_su -h)*M_dot_su - (h_ex - h)*M_dot_ex + A_l*qdot;
+  dMdt*h + der(h)*M_l = (h_su - h)*M_dot_su - (h_ex - h)*M_dot_ex + A_l*qdot;
 
   qdot = heatTransfer.q_dot[1];
 

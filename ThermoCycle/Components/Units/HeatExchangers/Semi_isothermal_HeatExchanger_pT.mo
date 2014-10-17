@@ -1,54 +1,54 @@
 within ThermoCycle.Components.Units.HeatExchangers;
-model Semi_isothermal_HeatExchanger
+model Semi_isothermal_HeatExchanger_pT
   "Steady-state model of a semi-isothermal heat exchanger using epsilon-NTU"
   import ThermoCycle;
 replaceable package Medium = ThermoCycle.Media.DummyFluid;
-
-Medium.ThermodynamicState inlet;
-Medium.ThermodynamicState outlet;
+Medium.Temperature T_su(start=T_su_start);
+Medium.Temperature T_ex(start=T_ex_start);
+parameter Medium.Temperature T_su_start=273.15+200
+    "Start value for the inlet temperature" annotation(Dialog(tab = "Initialization"));
+parameter Medium.Temperature T_ex_start=273.15+100
+    "Start value for the outlet temperature" annotation(Dialog(tab = "Initialization"));
+Medium.ThermodynamicState meanState;
 parameter Modelica.SIunits.ThermalConductance AU = 35 "Thermal conductance";
 Modelica.SIunits.Power Q_dot;
 Medium.Temperature T_iso; //Température de la plaque isotherme
-Real C_dot_min;
+Real C_dot;
 Real NTU;
 Real epsilon;
-  ThermoCycle.Interfaces.Fluid.FlangeA supply(
-    redeclare package Medium =
-        ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ScrollCompressor.R22)
+  ThermoCycle.Interfaces.Fluid.FlangeA_pT supply(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-112,-10},{-92,10}})));
-  ThermoCycle.Interfaces.Fluid.FlangeB exhaust(
-    redeclare package Medium =
-        ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ScrollCompressor.R22,
-                                          h_outflow(stateSelect = StateSelect.prefer))
+  ThermoCycle.Interfaces.Fluid.FlangeB_pT exhaust(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{88,-8},{108,12}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_th
     annotation (Placement(transformation(extent={{-10,-104},{10,-84}})));
 
 equation
-/* Thermodynamic state at the inlet of the heat exchanger */
-inlet = Medium.setState_ph(supply.p,inStream(supply.h_outflow));
-/* Thermodynamic state at the outlet of the heat exchanger */
-outlet = Medium.setState_ph(exhaust.p,exhaust.h_outflow);
-
-C_dot_min = supply.m_flow*(inlet.cp + outlet.cp)/2;
-NTU = AU/C_dot_min;
-epsilon = 1-exp(-NTU); //Heat exchanger efficiency
-
-if supply.m_flow > 0 then Q_dot = epsilon*C_dot_min*(inlet.T - T_iso);
-else Q_dot = epsilon*C_dot_min*(outlet.T - T_iso);
+//Etat en entrée de l'échangeur semi-isothermes
+meanState= Medium.setState_pT(supply.p,(T_su + T_ex)/2);
+supply.p = exhaust.p;
+C_dot = supply.m_flow*Medium.specificHeatCapacityCp(meanState);
+NTU = AU/C_dot;
+epsilon = 1-exp(-NTU); //Efficacité de l'échangeur
+if supply.m_flow > 0 then
+  T_su = inStream(supply.T_outflow);
+  Q_dot = epsilon*C_dot*(T_su - T_iso);
+else
+  T_ex = inStream(exhaust.T_outflow);
+  Q_dot = -epsilon*C_dot*(T_ex - T_iso);
 end if;
 
-supply.h_outflow = outlet.h - Q_dot/exhaust.m_flow;
-exhaust.h_outflow = inlet.h - Q_dot/supply.m_flow;
+T_ex = T_su - Q_dot/C_dot;
 
-//Mass balance
+  supply.T_outflow = T_su;
+  exhaust.T_outflow = T_ex;
+
+//Conservation du débit
 supply.m_flow + exhaust.m_flow = 0;
 
-/* BOUNDARY CONDITIOS */
-supply.p = exhaust.p;
+//Informations au port thermique
 port_th.T = T_iso;
 port_th.Q_flow = -Q_dot;
-
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics), Icon(coordinateSystem(
           preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
@@ -94,4 +94,4 @@ port_th.Q_flow = -Q_dot;
     Documentation(info="<html>
 <p>Steady-state model of a semi-isothermal heat exchanger using the well-know epsilon-NTU method.</p>
 </html>"));
-end Semi_isothermal_HeatExchanger;
+end Semi_isothermal_HeatExchanger_pT;

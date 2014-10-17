@@ -23,9 +23,9 @@ model Cylinder_tester
     use_HeatTransfer=false,
     redeclare model HeatTransfer =
         ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.IdealHeatTransfer,
-
     pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.piston.radius^2)
     annotation (Placement(transformation(extent={{-10,40},{10,20}})));
+
 equation
   connect(inertia.flange_b, recipFlange.crankShaft_b) annotation (Line(
       points={{-40,-30},{-20,-30}},

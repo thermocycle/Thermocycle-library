@@ -13,6 +13,7 @@ Test_Hx1DInc
 Test_MBeva
 Test_Evaporator_MBComp
 Test_CrossHx
+Test_CrossCondenser
 Test_DP
 Test_Expander
 Test_Pump
@@ -26,3 +27,4 @@ Test_Tank_pL
 Test_OpenTank
 Test_ExpansionTank
 Test_HeatTransferTester
+Test_BoilerSystem

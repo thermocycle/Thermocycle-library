@@ -249,6 +249,6 @@ equation
 <li>steadystate_T_wall: if true, the derivative of temperature of the metal wall is set to zero during <i>Initialization</i> </li>
 </ul></p>
 <p><b>Numerical options</b></p>
-<p>The numerical options available for the <b>HxRec1DConst</b> are the one implemented in <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>. and <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.CellConst\">CellConst</a>. </p>
+<p>The numerical options available for the <b>HxRec1DConst</b> are the one implemented in <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a> and <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.CellConst\">CellConst</a>. </p>
 </html>"));
 end Hx1DConst_MD;

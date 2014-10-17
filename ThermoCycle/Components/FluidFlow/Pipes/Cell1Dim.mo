@@ -263,7 +263,7 @@ equation
          </ul>
         <p><b><big>Numerical options</b></p>
 <p><big> In this tab several options are available to make the model more robust:
-<ul><li> Discretization: 2 main discretization options are available: UpWind and central difference method. The authors raccomand the <em>UpWind Scheme - AllowsFlowReversal</em> in case flow reversal is expected.
+<ul><li> Discretization: 2 main discretization options are available: UpWind and central difference method. The authors recommend the <em>UpWind Scheme - AllowsFlowReversal</em> in case flow reversal is expected.
 <li> Mdotconst: assume constant mass flow rate at each node.
 <li> max_der: if true the density derivative is truncated during phase change
 <li> filter_dMdt: if true a first order filter is applied to the fast variations of the density with respect to time
