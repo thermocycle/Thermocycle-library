@@ -1,5 +1,6 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer;
-model Kornhauser1994 "Recip compressor correlation of Kornhauser 1994"
+model Kornhauser1994
+  "Gas spring correlation of Kornhauser 1994, simplified for low Peclet numbers"
   extends
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses.PartialCylinderHeatTransfer;
 
