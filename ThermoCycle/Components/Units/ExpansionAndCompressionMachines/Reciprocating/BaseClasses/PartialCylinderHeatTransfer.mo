@@ -7,7 +7,7 @@ partial model PartialCylinderHeatTransfer
   input Modelica.SIunits.Area pistonCrossArea;
   input Modelica.SIunits.Length strokeLength;
 
-  parameter Integer initialize = 2 "0: None, 1: High HTC, 2: Low HTC";
+  parameter Integer initialize = 0 "0: None, 1: High HTC, 2: Low HTC";
 
   import Modelica.Constants.pi;
   Modelica.SIunits.CoefficientOfHeatTransfer[n] h;
