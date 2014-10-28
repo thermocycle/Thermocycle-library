@@ -11,19 +11,18 @@ model Cylinder_tester
     annotation (Placement(transformation(extent={{-60,-40},{-40,-20}})));
   Modelica.Mechanics.Rotational.Sensors.SpeedSensor speed
     annotation (Placement(transformation(extent={{40,-40},{60,-20}})));
-  inner Modelica.Fluid.System system(p_start=40*system.p_ambient, T_start=1273.15)
+  inner Modelica.Fluid.System system(p_start=40*system.p_ambient, T_start=
+        1273.15)
     annotation (Placement(transformation(extent={{40,40},{60,60}})));
   RecipMachine_Flange recipFlange(redeclare StrokeBoreGeometry geometry)
     annotation (Placement(transformation(extent={{-20,-40},{20,0}})));
   Cylinder cylinder(
     p_start=system.p_start,
     T_start=system.T_start,
-    redeclare package Medium = Modelica.Media.Air.DryAirNasa,
     use_portsData=false,
+    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.piston.radius^2,
     use_HeatTransfer=false,
-    redeclare model HeatTransfer =
-        ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.IdealHeatTransfer,
-    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.piston.radius^2)
+    redeclare package Medium = Modelica.Media.Air.DryAirNasa)
     annotation (Placement(transformation(extent={{-10,40},{10,20}})));
 
 equation
