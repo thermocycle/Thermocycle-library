@@ -1,5 +1,5 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer;
-model Kornhauser1994 "Gas spring correlation of Kornhauser 1994"
+model Kornhauser1994Full "Complex gas spring correlation of Kornhauser 1994"
   extends
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses.PartialCylinderHeatTransfer;
 
@@ -17,13 +17,12 @@ model Kornhauser1994 "Gas spring correlation of Kornhauser 1994"
   Modelica.SIunits.Length[n] D_h "Hydraulic diameter";
   Modelica.SIunits.ThermalDiffusivity[n] alpha_f "Thermal diffusivity";
 
-  Modelica.SIunits.NusseltNumber[n] Nu(min=0);
+  Modelica.SIunits.NusseltNumber[n] Nu;
+  Modelica.SIunits.NusseltNumber[n] Nu_r(min=0);
+  Modelica.SIunits.NusseltNumber[n] Nu_i(min=0);
+
   Modelica.SIunits.ThermalConductivity[n] lambda;
   Modelica.SIunits.DynamicViscosity[n] eta;
-
-  //Real dT[n];
-
-  //Complex Nu_c[n], T_c[n], T_w[n];
 
 equation
   for i in 1:n loop
@@ -42,11 +41,15 @@ equation
     // Use transport properties to determine dimensionless numbers
     alpha_f[i]  = lambda[i] / (Medium.density(states[i]) * cp[i]);
     Pe[i] = (Lambda[i] * Gamma[i] * Gamma[i]) / (4*alpha_f[i]);
-    assert(Pe[i] > 0, "Invalid Peclet number, make sure transport properties are calculated.");
-    Nu[i] =  a * Pe[i]^b;
+    assert(Pe[i] > 10, "Invalid Peclet number, make sure transport properties are calculated and you operate at a sufficiently high speed.");
+    // Adding the complex part, note that Nu_real = Nu_im for Pe>100
+    Nu_r[i] =  a * Pe[i]^b;
+    Nu_i[i] =  Nu_r[i];
+    // rewrite everything to get the alternate Nusselt number to stick into the original equation
+    // A rewrite of Eq. 11 from the original 1994 paper
+    Nu[i] = Nu_r[i] + Nu_i[i]/Gamma[i] * der(Ts[i]) / (Ts[i] - heatPorts[i].T);
     h[i]  = Nu[i] * lambda[i] / Gamma[i];
-    //dT[i] = der(Medium.temperature(states[i]));
-    //Nu_c[i] = Complex(Nu[i],Nu[i]);
+
   end for;
   annotation(Documentation(info="<html>
 <body>
@@ -63,4 +66,4 @@ equation
 </body>
 </html>
 "));
-end Kornhauser1994;
+end Kornhauser1994Full;
