@@ -1,6 +1,7 @@
 within ThermoCycle.Examples.TestComponents;
 model Test_SolaFieldSoltigua
 
+parameter Real VV;
 ThermoCycle.Components.Units.Solar.SolarField_Soltigua_Inc        solarCollectorIncSchott(
     Mdotnom=0.5,
     Ns=2,
@@ -35,7 +36,7 @@ ThermoCycle.Components.Units.Solar.SolarField_Soltigua_Inc        solarCollector
   Modelica.Blocks.Sources.Step step(
     startTime=100,
     height=0,
-    offset=450)
+    offset=VV)
     annotation (Placement(transformation(extent={{-110,-54},{-90,-34}})));
   Modelica.Blocks.Sources.BooleanConstant booleanConstant
     annotation (Placement(transformation(extent={{-162,-74},{-142,-54}})));
