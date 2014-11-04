@@ -7,8 +7,10 @@ Kornhauser1994Full
 Irimescu2013
 Gnielinski2010
 RePrHeatTransfer
-ConstantHeatTransfer
 IdealHeatTransfer
+ConstantHeatTransfer
+NusseltHeatTransfer
+ComplexNusseltHeatTransfer
 GnielinskiHeatTransfer
 HeatRelease
 HX_base

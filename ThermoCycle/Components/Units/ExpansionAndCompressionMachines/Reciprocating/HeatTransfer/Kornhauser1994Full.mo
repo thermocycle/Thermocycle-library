@@ -24,6 +24,9 @@ model Kornhauser1994Full "Complex gas spring correlation of Kornhauser 1994"
   Modelica.SIunits.ThermalConductivity[n] lambda;
   Modelica.SIunits.DynamicViscosity[n] eta;
 
+  //Real[n] dTdt;
+  //Real[n] dddt;
+
 equation
   for i in 1:n loop
     // Get transport properties from Medium model
@@ -47,9 +50,11 @@ equation
     Nu_i[i] =  Nu_r[i];
     // rewrite everything to get the alternate Nusselt number to stick into the original equation
     // A rewrite of Eq. 11 from the original 1994 paper
-    Nu[i] = Nu_r[i] + Nu_i[i]/Gamma[i] * der(Ts[i]) / (Ts[i] - heatPorts[i].T);
+    Nu[i] = Nu_r[i] + Nu_i[i]/omega_c * der(Ts[i]) / (Ts[i] - heatPorts[i].T);
+    //dddt[i] = WorkingFluid.density_derh_p(states[i])*der(Medium.specificEnthalpy(states[i])) + WorkingFluid.density_derp_h(states[i])*der(Medium.pressure(states[i]));
+    //dTdt[i] = 1/WorkingFluid.partialDeriv_state("p","T","d",states[i])*der(Medium.pressure(states[i])) + 1/WorkingFluid.partialDeriv_state("d","T","p",states[i])*dddt[i];
+    //Nu[i] = Nu_r[i] + Nu_i[i]/Gamma[i] * dTdt[i] / (Ts[i] - heatPorts[i].T);
     h[i]  = Nu[i] * lambda[i] / Gamma[i];
-
   end for;
   annotation(Documentation(info="<html>
 <body>
