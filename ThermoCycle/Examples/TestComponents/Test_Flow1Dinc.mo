@@ -22,10 +22,10 @@ ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc       HotFluid(
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot
            sourceWF1(
     h_0=470523,
-    Mdot_0=3,
     UseT=true,
     redeclare package Medium =
         ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66,
+    Mdot_0=3.1,
     p=100000,
     T_0=418.15)
     annotation (Placement(transformation(extent={{-90,62},{-70,82}})));

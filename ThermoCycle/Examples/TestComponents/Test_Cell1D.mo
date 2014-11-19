@@ -24,9 +24,9 @@ model Test_Cell1D
     annotation (Placement(transformation(extent={{-66,72},{-46,92}})));
   Components.FluidFlow.Reservoirs.SourceMdot             sourceMdot1(
     redeclare package Medium = ThermoCycle.Media.R407c_CP,
-    Mdot_0=0.3335,
     UseT=false,
     h_0=84867,
+    Mdot_0=0.3334,
     p=888343,
     T_0=356.26)
     annotation (Placement(transformation(extent={{-84,10},{-64,30}})));
@@ -35,13 +35,6 @@ model Test_Cell1D
     h=254381,
     p0=866735)
     annotation (Placement(transformation(extent={{40,4},{60,24}})));
-  Modelica.Blocks.Sources.Sine sine1(
-    startTime=10,
-    offset=0.3335,
-    amplitude=0.5,
-    phase=0,
-    freqHz=0.1)
-    annotation (Placement(transformation(extent={{-108,44},{-94,58}})));
 equation
   connect(const.y, source_T.Temperature) annotation (Line(
       points={{-45,82},{-28,82},{-28,80},{-21,80},{-21,65}},
@@ -58,10 +51,6 @@ equation
   connect(flow1Dim.OutFlow, sinkP.flangeB) annotation (Line(
       points={{-8,20.1},{16,20.1},{16,16},{41.6,16},{41.6,14}},
       color={0,0,255},
-      smooth=Smooth.None));
-  connect(sine1.y, sourceMdot1.in_Mdot) annotation (Line(
-      points={{-93.3,51},{-80,51},{-80,26}},
-      color={0,0,127},
       smooth=Smooth.None));
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
