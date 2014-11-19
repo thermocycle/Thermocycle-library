@@ -1,7 +1,7 @@
 within ThermoCycle.Examples.TestComponents;
 model Test_CrossCondenser
 
-  Queralt.Components.CrossCondenser condenser(
+ ThermoCycle.Components.Units.HeatExchangers.CrossCondenser condenser(
     redeclare package Medium1 = CoolProp2Modelica.Media.WaterIF95_FP,
     N=5,
     c_wall=500,
