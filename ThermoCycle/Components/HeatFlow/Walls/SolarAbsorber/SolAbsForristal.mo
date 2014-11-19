@@ -302,7 +302,6 @@ Phi_glass_int[i] = (Phi_conv_gas[i] + Phi_rad_gas[i]);
 Phi_conv_gas[i] = Gamma_vacuum[i] *(T_ext_t[i] - T_int_g[i]);
 
 // Radiation in the vacuum //
-
 Phi_rad_gas[i] = Sigma*(T_ext_t[i]^4 -T_int_g[i]^4)/(1/Eps_t[N] + Dext_t/Dext_g*(1/Eps_g-1));
 
 // Heat flux to the tube //
