@@ -10,7 +10,7 @@ model DP "Lumped, 3-terms pressure drop model"
                Medium)
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
 
-  replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
+  replaceable package Medium = ThermoCycle.Media.DummyFluid  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Boolean UseNom=false
     "Use Nominal conditions to compute pressure drop characteristics";
@@ -30,9 +30,11 @@ model DP "Lumped, 3-terms pressure drop model"
                        annotation (Dialog(tab="Nominal Conditions"));
   parameter Modelica.SIunits.Temperature T_nom=423.15 "Nominal temperature"
                           annotation (Dialog(tab="Nominal Conditions"));
-  parameter Modelica.SIunits.Density rho_nom=Medium.density_pTX(
-          p_nom,
-          T_nom,fill(0,0)) "Nominal density"    annotation (Dialog(tab="Nominal Conditions"));
+//   parameter Modelica.SIunits.Density rho_nom=Medium.density_pTX(
+//           p_nom,
+//           T_nom,fill(0,0)) "Nominal density"    annotation (Dialog(tab="Nominal Conditions"));
+  parameter Modelica.SIunits.Density rho_nom=Medium.density(Medium.setState_pT(
+          p_nom,T_nom)) "Nominal density"    annotation (Dialog(tab="Nominal Conditions"));
   parameter Modelica.SIunits.Pressure   DELTAp_stat_nom=0
     "Nominal static pressure drop"
                            annotation (Dialog(tab="Nominal Conditions"));
