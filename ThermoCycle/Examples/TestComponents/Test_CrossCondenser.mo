@@ -2,7 +2,7 @@ within ThermoCycle.Examples.TestComponents;
 model Test_CrossCondenser
 
  ThermoCycle.Components.Units.HeatExchangers.CrossCondenser condenser(
-    redeclare package Medium1 = CoolProp2Modelica.Media.WaterIF95_FP,
+    redeclare package Medium1 = Media.WaterIF95_FP,
     N=5,
     c_wall=500,
     steadystate_T_wall=false,
@@ -36,14 +36,14 @@ model Test_CrossCondenser
     annotation (Placement(transformation(extent={{-54,22},{-66,34}})));
   Components.FluidFlow.Reservoirs.SourceMdot             source_wf(
     UseT=true,
-    redeclare package Medium = CoolProp2Modelica.Media.WaterIF95_FP,
+    redeclare package Medium = Media.WaterIF95_FP,
     Mdot_0=585176/3600,
     p=248000,
     T_0=283.15)
     annotation (Placement(transformation(extent={{-14,52},{2,68}})));
   Components.FluidFlow.Reservoirs.SinkP             sink_wf(
                                                            redeclare package
-      Medium = CoolProp2Modelica.Media.WaterIF95_FP, p0=248000)
+      Medium = Media.WaterIF95_FP,                   p0=248000)
     annotation (Placement(transformation(extent={{-18,-24},{-30,-12}})));
 equation
 

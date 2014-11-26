@@ -3,7 +3,7 @@ model Test_Nozzle
 
   ThermoCycle.Components.Units.PdropAndValves.Nozzle
     leakageNozzle(
-    redeclare package Medium = CoolProp2Modelica.Media.R718_CP,
+    redeclare package Medium = Media.R718_CP,
     Afull=5e-5,
     gamma_start=1.3,
     Use_gamma=false,
@@ -20,14 +20,13 @@ model Test_Nozzle
   Modelica.Fluid.Sources.Boundary_ph boundary1(
     nPorts=1,
     use_p_in=true,
-    redeclare package Medium = CoolProp2Modelica.Media.R718_CP)
+    redeclare package Medium = Media.R718_CP)
     annotation (Placement(transformation(extent={{80,-14},{60,6}})));
   Modelica.Fluid.Sources.Boundary_pT boundary(
     nPorts=1,
-    redeclare package Medium = CoolProp2Modelica.Media.R718_CP,
+    redeclare package Medium = Media.R718_CP,
     p=1500000,
-    T=623.15)
-    annotation (Placement(transformation(extent={{-80,-14},{-60,6}})));
+    T=623.15) annotation (Placement(transformation(extent={{-80,-14},{-60,6}})));
 equation
   connect(sine.y,boundary1. p_in) annotation (Line(
       points={{-71,46},{88,46},{88,4},{82,4}},

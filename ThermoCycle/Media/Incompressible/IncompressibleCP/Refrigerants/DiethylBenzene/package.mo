@@ -3,7 +3,7 @@ package DiethylBenzene "DiethylBenzene Incompressible - CoolProp"
 //  extends Modelica.Media.Water.StandardWater;
 
 
-  extends CoolProp2Modelica.Interfaces.IncompressibleCoolPropMedium(
+  extends ExternalMedia.Media.IncompressibleCoolPropMedium(
     mediumName = "DEB",
     libraryName = "CoolProp",
     substanceNames = {"DEB|debug=0|enable_TTSE=0"});

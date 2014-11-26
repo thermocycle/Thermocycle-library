@@ -3,7 +3,7 @@ package Therminol_VP1 "Therminol VP1 Incompressible - CoolProp"
 //  extends Modelica.Media.Water.StandardWater;
 
 
-  extends CoolProp2Modelica.Interfaces.IncompressibleCoolPropMedium(
+  extends ExternalMedia.Media.IncompressibleCoolPropMedium(
     mediumName = "TVP1",
     libraryName = "CoolProp",
     substanceNames = {"TVP1"});

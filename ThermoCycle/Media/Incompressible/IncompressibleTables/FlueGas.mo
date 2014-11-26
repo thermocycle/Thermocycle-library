@@ -1,6 +1,6 @@
 within ThermoCycle.Media.Incompressible.IncompressibleTables;
 package FlueGas "Flue Gas Incompressible - TableBased"
-  extends CoolProp2Modelica.Media.Incompressible.TableBased(
+  extends TableBased(
   mediumName="FlueGas",
   T_min =  Modelica.SIunits.Conversions.from_degC(150),
    T_max =  Modelica.SIunits.Conversions.from_degC(1000),

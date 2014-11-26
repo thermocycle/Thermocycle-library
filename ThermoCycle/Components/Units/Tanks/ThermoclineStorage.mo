@@ -2,7 +2,7 @@ within ThermoCycle.Components.Units.Tanks;
 model ThermoclineStorage
   "Thermocline model - Imposed pressure, Volume variable"
 
-  replaceable package Medium = CoolProp2Modelica.Media.WaterTPSI_FP constrainedby
+  replaceable package Medium = Media.WaterTPSI_FP                   constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
 
 /********************** PORTS **********************/

@@ -39,7 +39,10 @@ model step5
   ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
     redeclare package Medium = ThermoCycle.Media.R407c_CP,
     Vtot=0.004,
-    pstart=1650000)
+    impose_L=true,
+    pstart=1650000,
+    impose_pressure=true,
+    SteadyState_L=false)
     annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
   ThermoCycle.Components.Units.PdropAndValves.Valve valve(
     redeclare package Medium = ThermoCycle.Media.R407c_CP,
@@ -49,7 +52,8 @@ model step5
     Xopen=0.55,
     p_nom=1650000,
     T_nom=308.15,
-    DELTAp_nom=1200000)
+    DELTAp_nom=1200000,
+    use_rho_nom=true)
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-40,-26})));

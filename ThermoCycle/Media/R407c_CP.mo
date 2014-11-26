@@ -1,7 +1,6 @@
 within ThermoCycle.Media;
 package R407c_CP "R407c - Coolprop - TC"
-  extends CoolProp2Modelica.Interfaces.CoolPropMedium(
+  extends ExternalMedia.Media.CoolPropMedium(
     mediumName = "R407c",
-    substanceNames = {"R407c"},
-    ThermoStates=Modelica.Media.Interfaces.PartialMedium.Choices.IndependentVariables.ph);
+    substanceNames = {"R407c|debug=0"});
 end R407c_CP;

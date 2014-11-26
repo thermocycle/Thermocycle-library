@@ -114,25 +114,25 @@ model HeatPump_R407c
     duration=2,
     startTime=50)
     annotation (Placement(transformation(extent={{-12,0},{-2,10}})));
-  Components.HeatFlow.Sensors.SensTp             sensTp(redeclare package
-      Medium = ThermoCycle.Media.R407c_CP)
-    annotation (Placement(transformation(extent={{76,-56},{60,-40}})));
-  Components.Units.ControlSystems.SH_block sH_block(redeclare package Medium =
-        ThermoCycle.Media.R407c_CP)
-    annotation (Placement(transformation(extent={{36,-40},{46,-30}})));
   Modelica.Blocks.Sources.Constant DELTAT_SP(k=5)
-    annotation (Placement(transformation(extent={{48,14},{54,20}})));
+    annotation (Placement(transformation(extent={{68,28},{74,34}})));
   Components.Units.ControlSystems.PID             PID_valve(
     CSmax=1,
     PVmax=25,
     PVmin=-5,
     CSmin=0,
     CSstart=0.45,
-    steadyStateInit=false,
     PVstart=2,
     Ti=1000,
-    Kp=-0.001)
-    annotation (Placement(transformation(extent={{60,30},{78,16}})));
+    Kp=-0.001,
+    steadyStateInit=false)
+    annotation (Placement(transformation(extent={{84,40},{102,26}})));
+  Components.HeatFlow.Sensors.SensTp             sensTp(redeclare package
+      Medium = ThermoCycle.Media.R407c_CP)
+    annotation (Placement(transformation(extent={{54,-56},{70,-40}})));
+  Components.Units.ControlSystems.SH_block sH_block(redeclare package Medium =
+        ThermoCycle.Media.R407c_CP)
+    annotation (Placement(transformation(extent={{64,38},{74,48}})));
 equation
   connect(sourceMdot1.flangeB, condenser.inlet_fl2)
                                                   annotation (Line(
@@ -185,36 +185,40 @@ equation
       points={{-1.5,5},{17.6,5},{17.6,-6.6}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(compressor.InFlow, sensTp.InFlow) annotation (Line(
-      points={{69.7667,-27.7},{88,-27.7},{88,-51.84},{73.6,-51.84}},
+  connect(PID_valve.PV, sH_block.DeltaT) annotation (Line(
+      points={{84,35.8},{80,35.8},{80,43.25},{74.55,43.25}},
+      color={0,0,127},
+      smooth=Smooth.None,
+      pattern=LinePattern.Dot));
+  connect(dp_ev.OutFlow, sensTp.InFlow) annotation (Line(
+      points={{49,-52},{52,-52},{52,-51.84},{56.4,-51.84}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(sensTp.OutFlow, dp_ev.OutFlow) annotation (Line(
-      points={{62.4,-51.84},{49,-51.84},{49,-52}},
+  connect(sensTp.OutFlow, compressor.InFlow) annotation (Line(
+      points={{67.6,-51.84},{82,-51.84},{82,-27.7},{69.7667,-27.7}},
       color={0,0,255},
       smooth=Smooth.None));
+  connect(sensTp.T, sH_block.T_measured) annotation (Line(
+      points={{68.4,-43.2},{88,-43.2},{88,14},{58,14},{58,45.5},{63.7,45.5}},
+      color={0,0,127},
+      smooth=Smooth.None,
+      pattern=LinePattern.Dot));
   connect(DELTAT_SP.y, PID_valve.SP) annotation (Line(
-      points={{54.3,17},{56,17},{56,20.2},{60,20.2}},
+      points={{74.3,31},{79.15,31},{79.15,30.2},{84,30.2}},
       color={0,0,127},
-      smooth=Smooth.None));
-  connect(sensTp.p, sH_block.T_measured) annotation (Line(
-      points={{74.4,-43.2},{70,-43.2},{70,-32},{52,-32},{52,-24},{32,-24},{32,-32.5},
-          {35.7,-32.5}},
+      smooth=Smooth.None,
+      pattern=LinePattern.Dot));
+  connect(sensTp.p, sH_block.p_measured) annotation (Line(
+      points={{55.6,-43.2},{48,-43.2},{48,-36},{76,-36},{76,6},{62,6},{62,41},{
+          63.9,41}},
       color={0,0,127},
-      smooth=Smooth.None));
-  connect(sensTp.T, sH_block.p_measured) annotation (Line(
-      points={{61.6,-43.2},{26,-43.2},{26,-37},{35.9,-37}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(sH_block.DeltaT, PID_valve.PV) annotation (Line(
-      points={{46.55,-34.75},{92,-34.75},{92,0},{58,0},{58,24},{50,24},{50,32},{
-          54,32},{54,25.8},{60,25.8}},
-      color={0,0,127},
-      smooth=Smooth.None));
+      smooth=Smooth.None,
+      pattern=LinePattern.Dot));
   connect(PID_valve.CS, valve.cmd) annotation (Line(
-      points={{78.54,23},{96,23},{96,74},{-70,74},{-70,-26},{-48,-26}},
+      points={{102.54,33},{104,33},{104,76},{-66,76},{-66,-26},{-48,-26}},
       color={0,0,127},
-      smooth=Smooth.None));
+      smooth=Smooth.None,
+      pattern=LinePattern.Dot));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}),      graphics),
     experiment(StopTime=100),

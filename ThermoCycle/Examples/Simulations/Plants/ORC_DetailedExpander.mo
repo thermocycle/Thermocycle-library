@@ -199,12 +199,12 @@ equation
       pattern=LinePattern.Dot,
       smooth=Smooth.None));
   connect(data.y[1:2], Heat_source.source) annotation (Line(
-      points={{-67.2,71.46},{-50.64,71.46},{-50.64,71.92},{-35.68,71.92}},
+      points={{-67.2,71.82},{-50.64,71.82},{-50.64,71.92},{-35.68,71.92}},
       color={0,128,255},
       pattern=LinePattern.Dash,
       smooth=Smooth.None));
   connect(data.y[3:4], Heat_sink.source) annotation (Line(
-      points={{-67.2,72.18},{-52,72.18},{-52,3.9},{-43.1,3.9}},
+      points={{-67.2,72.54},{-52,72.54},{-52,3.9},{-43.1,3.9}},
       color={0,128,255},
       pattern=LinePattern.Dash,
       smooth=Smooth.None));
