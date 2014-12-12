@@ -84,7 +84,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     T_nom=351.15,
     DELTAp_lin_nom=3000,
     DELTAp_quad_nom=5150)
-    annotation (Placement(transformation(extent={{46,-16},{26,4}})));
+    annotation (Placement(transformation(extent={{46,-14},{26,6}})));
  ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    condenser(
     Unom_l=500,
     Unom_tp=1500,
@@ -165,7 +165,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(expander.OutFlow, dp_lp.InFlow) annotation (Line(
-      points={{68,8},{68,-6},{45,-6}},
+      points={{68,8},{68,-4},{45,-4}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(heat_sink.flange,condenser. inletSf) annotation (Line(
@@ -185,7 +185,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(recuperator.inlet_fl2, dp_lp.OutFlow) annotation (Line(
-      points={{7,-11.5467},{7,-6},{27,-6}},
+      points={{7,-11.5467},{7,-4},{27,-4}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.outlet_fl1, hx1DConst.inletWf) annotation (Line(

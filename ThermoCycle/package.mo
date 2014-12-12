@@ -2,15 +2,9 @@ within ;
 package ThermoCycle "A library for the simulation of thermal systems"
 
 
-
-
-
-
-
-
-
   annotation (uses(                        CoolProp2Modelica,
-    Modelica(version="3.2.1")),                             Documentation(info="<HTML>
+    Modelica(version="3.2.1"),
+    TILMedia(version="2.0.4")),                             Documentation(info="<HTML>
  <p><big>  The <b>ThermoCycle</b> library is an <b>open-source</b> library for dynamic modelling of ORC
 systems developed in the Modelica language. The library aims at providing a robust framework to model thermal systems, including ORC systems.</p>
 

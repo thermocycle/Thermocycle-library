@@ -15,11 +15,12 @@ model step9
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     V_sf=0.002,
     V_wf=0.002,
+    steadystate_h_wf=true,
     pstart_wf=1650000,
     Tstart_inlet_wf=345.15,
     Tstart_outlet_wf=308.15,
     Tstart_inlet_sf=303.15,
-    Tstart_outlet_sf=308.15)
+    Tstart_outlet_sf=303.15)
     annotation (Placement(transformation(extent={{10,16},{-16,42}})));
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot1(
@@ -62,7 +63,8 @@ model step9
     A_sf=20,
     Unom_sf=100,
     Mdotnom_sf=0.76,
-    pstart_wf=460000,
+    steadystate_h_wf=true,
+    pstart_wf=500000,
     Tstart_inlet_wf=263.15,
     Tstart_outlet_wf=277.15,
     Tstart_inlet_sf=280.15,
@@ -91,14 +93,11 @@ model step9
   ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                                electricDrive
     annotation (Placement(transformation(extent={{28,-26},{8,-6}})));
-  Modelica.Blocks.Sources.Ramp ramp(offset=50)
-    annotation (Placement(transformation(extent={{-14,-2},{-4,8}})));
   ThermoCycle.Components.Units.PdropAndValves.DP dp_ev(
     redeclare package Medium = ThermoCycle.Media.R407c_CP,
     UseNom=true,
     Mdot_nom=0.044,
-    use_rho_nom=true,
-    p_nom=400000,
+    p_nom=380000,
     T_nom=283.15,
     DELTAp_quad_nom=20000)
     annotation (Placement(transformation(extent={{30,-62},{50,-42}})));
@@ -106,11 +105,15 @@ model step9
     redeclare package Medium = ThermoCycle.Media.R407c_CP,
     UseNom=true,
     Mdot_nom=0.044,
-    use_rho_nom=true,
     p_nom=1650000,
     T_nom=345.15,
     DELTAp_quad_nom=20000)
     annotation (Placement(transformation(extent={{38,14},{18,34}})));
+  Modelica.Blocks.Sources.Ramp ramp(offset=50,
+    height=10,
+    duration=2,
+    startTime=50)
+    annotation (Placement(transformation(extent={{-12,0},{-2,10}})));
 equation
   connect(sourceMdot1.flangeB, condenser.inlet_fl2)
                                                   annotation (Line(
@@ -147,10 +150,6 @@ equation
       points={{26.6,-16},{36.4667,-16},{36.4667,-16},{46.3333,-16}},
       color={0,0,0},
       smooth=Smooth.None));
-  connect(ramp.y, electricDrive.f) annotation (Line(
-      points={{-3.5,3},{17.6,3},{17.6,-6.6}},
-      color={0,0,127},
-      smooth=Smooth.None));
   connect(evaporator.outlet_fl1, dp_ev.InFlow) annotation (Line(
       points={{11,-52},{31,-52}},
       color={0,0,255},
@@ -166,6 +165,10 @@ equation
   connect(dp_cd.OutFlow, condenser.inlet_fl1) annotation (Line(
       points={{19,24},{7,24}},
       color={0,0,255},
+      smooth=Smooth.None));
+  connect(ramp.y, electricDrive.f) annotation (Line(
+      points={{-1.5,5},{17.6,5},{17.6,-6.6}},
+      color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}),      graphics),
