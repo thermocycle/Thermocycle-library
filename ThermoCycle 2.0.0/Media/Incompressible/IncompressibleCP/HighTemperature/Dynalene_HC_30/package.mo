@@ -3,7 +3,7 @@ package Dynalene_HC_30 "Dynalene HC 30 Incompressible - CoolProp"
 //  extends Modelica.Media.Water.StandardWater;
 
 
-  extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
+  extends ExternalMedia.Media.IncompressibleCoolPropMedium(
     mediumName = "HC30",
     libraryName = "CoolProp",
     substanceNames = {"HC30|debug=0|enable_TTSE=0"});

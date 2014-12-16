@@ -3,8 +3,8 @@ package Therminol_66 "Therminol 66 Incompressible - CoolProp"
 //  extends Modelica.Media.Water.StandardWater;
 
 
-  extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
+  extends ExternalMedia.Media.IncompressibleCoolPropMedium(
     mediumName = "T66",
-    libraryName = "CoolProp",
     substanceNames = {"T66"});
+    //libraryName = "CoolProp",
 end Therminol_66;

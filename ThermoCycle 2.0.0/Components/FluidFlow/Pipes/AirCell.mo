@@ -27,7 +27,7 @@ replaceable model HeatTransfer =
       ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
 constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-    "Convective heat transfer"                                                         annotation (Dialog(choicesAllMatching = true));
+    "Convective heat transfer"                                                         annotation (choicesAllMatching = true);
 HeatTransfer ConvectiveHeatTransfer(redeclare final package Medium = Medium,
 final n=1,
 final Mdotnom = Mdotnom,

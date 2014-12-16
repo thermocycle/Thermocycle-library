@@ -3,15 +3,17 @@ model SQThesisModel
   "Non-regenerative ORC with double-PID control system and variable Tev"
 
  ThermoCycle.Components.Units.Tanks.Tank tank(
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     level_start=0.5,
     hstart=2.32e5,
     impose_pressure=true,
-    impose_level=true,
     Vtot=0.015,
-    pstart=148400)
+    pstart=148400,
+    impose_level=false)
     annotation (Placement(transformation(extent={{-44,-32},{-24,-12}})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Pump
                                                      Pump(
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     X_pp0=0.5539,
     hstart=1.76e5,
     eta_em=0.7,
@@ -22,7 +24,8 @@ model SQThesisModel
     annotation (Placement(transformation(extent={{-66,10},{-86,30}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     annotation (Placement(transformation(extent={{-38,64},{-22,80}})));
-ThermoCycle.Obsolete.Hx_06122013 Evaporator(
+  ThermoCycle.Obsolete.Hx_06122013 Evaporator(
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     N=20,
     V_sf=0.003324,
     M_wall=13,
@@ -50,6 +53,7 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
     annotation (Placement(transformation(extent={{82,4},{104,26}})));
 ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
                                                         expander(
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     epsilon_s=0.69,
     FF_exp=1.016,
     V_s=1.1e-4,
@@ -64,6 +68,7 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     T_su_start=382.55)
     annotation (Placement(transformation(extent={{54,2},{78,26}})));
 ThermoCycle.Obsolete.Hx_06122013  Condenser(
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     N=20,
     V_sf=0.009562,
     M_wall=30,
@@ -124,6 +129,7 @@ ThermoCycle.Components.Units.ControlSystems.SQThesisController    control_unit1(
 ThermoCycle.Components.FluidFlow.Sources.inputs data
     annotation (Placement(transformation(extent={{-86,66},{-66,78}})));
  ThermoCycle.Components.Units.PdropAndValves.DP DP_cd(
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     A=564.1e-6,
     Mdot_nom=0.37,
     UseHomotopy=true,
@@ -136,6 +142,7 @@ ThermoCycle.Components.FluidFlow.Sources.inputs data
     DELTAp_quad_nom=29400)
     annotation (Placement(transformation(extent={{44,-18},{28,-2}})));
 ThermoCycle.Components.Units.PdropAndValves.DP DP_ev(
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     A=307.9e-6,
     Mdot_nom=0.37,
     UseHomotopy=false,
@@ -187,12 +194,12 @@ equation
       pattern=LinePattern.Dot,
       smooth=Smooth.None));
   connect(data.y[1:2], Heat_source.source) annotation (Line(
-      points={{-67.2,71.46},{-50.64,71.46},{-50.64,71.92},{-35.68,71.92}},
+      points={{-67.2,71.82},{-50.64,71.82},{-50.64,71.92},{-35.68,71.92}},
       color={0,128,255},
       pattern=LinePattern.Dash,
       smooth=Smooth.None));
   connect(data.y[3:4], Heat_sink.source) annotation (Line(
-      points={{-67.2,72.18},{-52,72.18},{-52,3.9},{-43.1,3.9}},
+      points={{-67.2,72.54},{-52,72.54},{-52,3.9},{-43.1,3.9}},
       color={0,128,255},
       pattern=LinePattern.Dash,
       smooth=Smooth.None));

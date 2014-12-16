@@ -1,7 +1,7 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.Examples;
 model Compressor
   "A combination of Cylinder model, a reciprocating machine and check valves"
-  replaceable package WorkingFluid = ThermoCycle.Media.R134a_CP constrainedby
+  replaceable package WorkingFluid = ExternalMedia.Media.CoolPropMedium(substanceNames={"R134a|calc_transport=1"},mediumName="R134a",ThermoStates = Modelica.Media.Interfaces.Choices.IndependentVariables.ph) constrainedby
     Modelica.Media.Interfaces.PartialMedium;
 
   Modelica.Mechanics.Rotational.Components.Inertia inertia(
@@ -12,7 +12,7 @@ model Compressor
       displayUnit="rpm"))
     annotation (Placement(transformation(extent={{-50,-80},{-30,-60}})));
   inner Modelica.Fluid.System system(
-    p_start(displayUnit="Pa") = ThermoCycle.Media.R134a_CP.saturationPressure(
+    p_start(displayUnit="Pa") = WorkingFluid.saturationPressure(
       system.T_start) - 5,
     dp_small(displayUnit="Pa"),
     T_start=373.15)
@@ -20,7 +20,6 @@ model Compressor
   RecipMachine_Flange recipFlange(redeclare StrokeBoreGeometry geometry)
     annotation (Placement(transformation(extent={{-20,-80},{20,-40}})));
   Cylinder cylinder(
-    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
     nPorts=2,
     use_angle_in=true,
     stroke=recipFlange.stroke,
@@ -32,7 +31,8 @@ model Compressor
         ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.Adair1972,
     use_portsData=true,
     d_inlet=recipFlange.geometry.d_inlet,
-    d_outlet=recipFlange.geometry.d_outlet)
+    d_outlet=recipFlange.geometry.d_outlet,
+    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.piston.radius^2)
     annotation (Placement(transformation(extent={{-10,-10},{10,-30}})));
 
   Modelica.Fluid.Sources.Boundary_pT inlet(

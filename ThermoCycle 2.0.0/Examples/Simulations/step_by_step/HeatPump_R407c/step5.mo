@@ -9,7 +9,7 @@ model step5
     annotation (Placement(transformation(extent={{68,14},{48,34}})));
   ThermoCycle.Components.Units.HeatExchangers.Hx1DInc hx1DInc(
     redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
-    redeclare package Medium2 = ThermoCycle.Media.StandardWater,
+    redeclare package Medium2 = ThermoCycle.Media.Water,
     N=10,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
@@ -29,17 +29,20 @@ model step5
     annotation (Placement(transformation(extent={{10,16},{-16,42}})));
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot1(
-    redeclare package Medium = ThermoCycle.Media.StandardWater,
+    redeclare package Medium = ThermoCycle.Media.Water,
     Mdot_0=0.52,
     T_0=298.15)
     annotation (Placement(transformation(extent={{-66,46},{-46,66}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP1(redeclare package
-      Medium = ThermoCycle.Media.StandardWater)
+      Medium = ThermoCycle.Media.Water)
     annotation (Placement(transformation(extent={{36,44},{56,64}})));
   ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
     redeclare package Medium = ThermoCycle.Media.R407c_CP,
     Vtot=0.004,
-    pstart=1650000)
+    impose_L=true,
+    pstart=1650000,
+    impose_pressure=true,
+    SteadyState_L=false)
     annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
   ThermoCycle.Components.Units.PdropAndValves.Valve valve(
     redeclare package Medium = ThermoCycle.Media.R407c_CP,
@@ -49,7 +52,8 @@ model step5
     Xopen=0.55,
     p_nom=1650000,
     T_nom=308.15,
-    DELTAp_nom=1200000)
+    DELTAp_nom=1200000,
+    use_rho_nom=true)
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-40,-26})));

@@ -95,7 +95,7 @@ package HeatStorageWaterHeater
       each pstart=pstart_tank,
       hstart=hstart_tank,
       each A_hx=1/(N2 - N1 + 1))
-      annotation (Placement(transformation(extent={{-14,-10},{20,24}})));
+      annotation (Placement(transformation(extent={{-16,-10},{18,24}})));
 
     ThermoCycle.Interfaces.HeatTransfer.ThermalPortConverter thermalPortConverter(N=N2 - N1
            + 1)
@@ -150,10 +150,12 @@ package HeatStorageWaterHeater
               -56}}),iconTransformation(extent={{34,28},{46,40}})));
   equation
 
+  /* Connection of the different cell of the tank in series */
     for i in 1:N - 1 loop
       connect(cell1DimInc_hx[i].OutFlow, cell1DimInc_hx[i + 1].InFlow);
     end for;
 
+  /* Connection of the different cell of the tank in series */
     for i in 1:N loop
       connect(Wall_ext,cell1DimInc_hx[i].Wall_int);
     end for;
@@ -184,11 +186,11 @@ package HeatStorageWaterHeater
         color={255,0,0},
         smooth=Smooth.None));
     connect(MainFluid_su, cell1DimInc_hx[1].InFlow) annotation (Line(
-        points={{-42,-84},{-51,-84},{-51,7},{-14,7}},
+        points={{-42,-84},{-51,-84},{-51,7},{-16,7}},
         color={0,0,255},
         smooth=Smooth.None));
     connect(cell1DimInc_hx[N].OutFlow, MainFluid_ex) annotation (Line(
-        points={{20,7.17},{68,7.17},{68,82},{-4,82}},
+        points={{18,7.17},{68,7.17},{68,82},{-4,82}},
         color={0,0,255},
         smooth=Smooth.None));
     connect(SecondaryFluid_ex, flow1Dim.OutFlow)
@@ -205,7 +207,7 @@ package HeatStorageWaterHeater
         points={{-0.4,-12.26},{-0.4,-9.445},{-0.08,-9.445},{-0.08,-6.63},{2.32,
             -6.63},{2.32,-1.5}},
         color={255,0,0},
-        smooth=Smooth.None), Diagram(coordinateSystem(preserveAspectRatio=true,
+        smooth=Smooth.None), Diagram(coordinateSystem(preserveAspectRatio=false,
             extent={{-100,-100},{100,100}}), graphics),
       experiment(StopTime=5000),
       __Dymola_experimentSetupOutput,

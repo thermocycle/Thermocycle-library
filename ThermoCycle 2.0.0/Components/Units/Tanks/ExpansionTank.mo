@@ -116,10 +116,6 @@ M_l = rho*V_l;
 L_l = Level;
 L_l = V_l/V_tank;
 
-//V_tank = V_l + V_gas;
-/* Boyle's law */
-//p_gas*V_gas = pV_gas;
-
 if p_const then
 p_gas = 0;
 V_gas = 0;
@@ -159,6 +155,11 @@ h_su = if noEvent(M_dot <= 0) then h else inStream(InFlow.h_outflow);
       points={{-92,1},{-46,1},{-46,0},{25.8,0},{25.8,-15.4}},
       color={255,0,0},
       smooth=Smooth.None));
+
+initial equation
+
+   L_l = L_lstart;
+
   annotation (Diagram(graphics), Icon(graphics={
         Rectangle(
           extent={{-100,100},{-98,-100}},

@@ -14,7 +14,7 @@ model step2
     annotation (Placement(transformation(extent={{-52,14},{-72,34}})));
   ThermoCycle.Components.Units.HeatExchangers.Hx1DInc hx1DInc(
     redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
-    redeclare package Medium2 = ThermoCycle.Media.StandardWater,
+    redeclare package Medium2 = ThermoCycle.Media.Water,
     N=10,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
@@ -34,12 +34,12 @@ model step2
     annotation (Placement(transformation(extent={{10,16},{-16,42}})));
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot1(
-    redeclare package Medium = ThermoCycle.Media.StandardWater,
+    redeclare package Medium = ThermoCycle.Media.Water,
     Mdot_0=0.52,
     T_0=298.15)
     annotation (Placement(transformation(extent={{-66,46},{-46,66}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP1(redeclare package
-      Medium = ThermoCycle.Media.StandardWater)
+      Medium = ThermoCycle.Media.Water)
     annotation (Placement(transformation(extent={{36,44},{56,64}})));
 equation
   connect(sourceMdot.flangeB, hx1DInc.inlet_fl1) annotation (Line(

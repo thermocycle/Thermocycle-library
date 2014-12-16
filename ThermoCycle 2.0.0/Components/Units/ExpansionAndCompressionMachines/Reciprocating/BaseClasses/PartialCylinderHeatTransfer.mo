@@ -7,7 +7,7 @@ partial model PartialCylinderHeatTransfer
   input Modelica.SIunits.Area pistonCrossArea;
   input Modelica.SIunits.Length strokeLength;
 
-  parameter Integer initialize = 2 "0: None, 1: High HTC, 2: Low HTC";
+  parameter Integer initialize = 0 "0: None, 1: High HTC, 2: Low HTC";
 
   import Modelica.Constants.pi;
   Modelica.SIunits.CoefficientOfHeatTransfer[n] h;
@@ -49,7 +49,7 @@ equation
      HTC_gain = 1.0 + (1 - ThermoCycle.Functions.transition_factor(start=0.05,stop=0.1,position=time)) * 100000.0;
    elseif noEvent(initialize==2) then
      // Low heat transfer coefficient
-     HTC_gain =            ThermoCycle.Functions.transition_factor(start=0.05,stop=0.1,position=time);
+     HTC_gain = Modelica.Constants.small + ThermoCycle.Functions.transition_factor(start=0.05,stop=0.1,position=time) * ( 1.0 - Modelica.Constants.small);
    else
      assert(false, "Please define initialization as 0, 1 or 2.");
      HTC_gain = 1.;

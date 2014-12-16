@@ -9,7 +9,7 @@ model step6
     annotation (Placement(transformation(extent={{68,14},{48,34}})));
   ThermoCycle.Components.Units.HeatExchangers.Hx1DInc condenser(
     redeclare package Medium1 = ThermoCycle.Media.R407c_CP,
-    redeclare package Medium2 = ThermoCycle.Media.StandardWater,
+    redeclare package Medium2 = ThermoCycle.Media.Water,
     N=10,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
@@ -29,12 +29,12 @@ model step6
     annotation (Placement(transformation(extent={{10,16},{-16,42}})));
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot1(
-    redeclare package Medium = ThermoCycle.Media.StandardWater,
+    redeclare package Medium = ThermoCycle.Media.Water,
     Mdot_0=0.52,
     T_0=298.15)
     annotation (Placement(transformation(extent={{-66,46},{-46,66}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP1(redeclare package
-      Medium = ThermoCycle.Media.StandardWater)
+      Medium = ThermoCycle.Media.Water)
     annotation (Placement(transformation(extent={{36,44},{56,64}})));
   ThermoCycle.Components.Units.Tanks.Tank_pL tank_pL(
     redeclare package Medium = ThermoCycle.Media.R407c_CP,
@@ -54,7 +54,7 @@ model step6
         rotation=90,
         origin={-40,-26})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP2(redeclare package
-      Medium = ex5.R407c, p0=380000)
+      Medium = ThermoCycle.Media.R407c_CP, p0=380000)
     annotation (Placement(transformation(extent={{42,-62},{62,-42}})));
   ThermoCycle.Components.Units.HeatExchangers.Hx1DInc evaporator(
     redeclare package Medium1 = ThermoCycle.Media.R407c_CP,

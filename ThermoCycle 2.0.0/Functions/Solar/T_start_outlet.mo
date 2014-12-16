@@ -1,6 +1,7 @@
 within ThermoCycle.Functions.Solar;
 function T_start_outlet
   "Definition of outlet temperatures for collectors in series"
+extends Modelica.Icons.Function;
 input Real T_start_inlet;
 input Real T_start_outlet;
 input Integer Ns;

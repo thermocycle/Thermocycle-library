@@ -3,7 +3,7 @@ package ScrollCompressor
   "Detailed, semi-empirical model of a scroll compressor"
 
   package R22
-    extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
+    extends ExternalMedia.Media.BaseClasses.ExternalTwoPhaseMedium(
     mediumName="R22",
     libraryName="CoolProp",
     substanceNames={"R22"},

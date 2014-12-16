@@ -64,7 +64,9 @@ equation
       points={{8,9.5},{46,9.5},{46,4},{77.6,4}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(graphics),
+  annotation (Diagram(coordinateSystem(extent={{-120,-40},{100,60}}),
+                      graphics),
     experiment(StopTime=1000),
-    __Dymola_experimentSetupOutput);
+    __Dymola_experimentSetupOutput,
+    Icon(coordinateSystem(extent={{-120,-40},{100,60}})));
 end Test_Evaporator_MBComp;

@@ -1,7 +1,7 @@
 within ThermoCycle.Components.FluidFlow.Sensors;
 model SensP "Pressure sensor for working fluid"
   extends ThermoCycle.Icons.Water.SensThrough;
-  replaceable package Medium = ThermoCycle.Media.R245fa_CPRP
+  replaceable package Medium = ThermoCycle.Media.DummyFluid
                                             constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium Model" annotation (choicesAllMatching = true);
   Modelica.Blocks.Interfaces.RealOutput p annotation (Placement(

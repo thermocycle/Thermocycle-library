@@ -1,6 +1,6 @@
 within ThermoCycle.Media.Incompressible.IncompressibleTables;
 package EthyleneGlycol "Ethylene glycol Incompressible - TableBased"
-  extends CoolProp2Modelica.Media.Incompressible.TableBased(
+  extends TableBased(
   mediumName="EthyleneGlycol",
   T_min = Modelica.SIunits.Conversions.from_degC(0),
    T_max = Modelica.SIunits.Conversions.from_degC(185),

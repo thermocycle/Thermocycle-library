@@ -4,8 +4,8 @@ record BaseGeometry
 constant Real pi = Modelica.Constants.pi;
 parameter Modelica.SIunits.Area S_net=41 "Net Collecting Surface";
 parameter Modelica.SIunits.Length A_P=2.37 "Aperture of the parabola";
-parameter Modelica.SIunits.Length Dext_t=0.04 "External diameter tube";
-parameter Modelica.SIunits.Length th_t = 0.004 "tube thickness";
+parameter Modelica.SIunits.Length Dext_t=0.0424 "External diameter tube";
+parameter Modelica.SIunits.Length th_t = 0.002 "tube thickness";
 
 final parameter Modelica.SIunits.Length L=S_net/A_P "length of tubes";
 final parameter Modelica.SIunits.Area A_ext_t=pi*Dext_t*L

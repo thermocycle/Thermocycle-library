@@ -15,7 +15,7 @@ model HX_base "A combination of Cylinder model and a reciprocating machine"
   RecipMachine_Flange recipFlange(redeclare StrokeBoreGeometry geometry)
     annotation (Placement(transformation(extent={{-20,-40},{20,0}})));
   Cylinder cylinder(
-    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
+    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.piston.radius^2,
     p_start=system.p_start,
     T_start=system.T_start,
     redeclare package Medium = Modelica.Media.Air.DryAirNasa,

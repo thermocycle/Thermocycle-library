@@ -25,30 +25,30 @@ Real epsilon;
     annotation (Placement(transformation(extent={{-10,-104},{10,-84}})));
 
 equation
-//Etat en entrée de l'échangeur semi-isotherme
+/* Thermodynamic state at the inlet of the heat exchanger */
 inlet = Medium.setState_ph(supply.p,inStream(supply.h_outflow));
-//Etat de sortie de l'échangeur semi-isotherme
+/* Thermodynamic state at the outlet of the heat exchanger */
 outlet = Medium.setState_ph(exhaust.p,exhaust.h_outflow);
-supply.p = exhaust.p;
+
 C_dot_min = supply.m_flow*(inlet.cp + outlet.cp)/2;
 NTU = AU/C_dot_min;
-epsilon = 1-exp(-NTU); //Efficacité de l'échangeur
-if supply.m_flow > 0 then
-                          Q_dot = epsilon*C_dot_min*(inlet.T - T_iso);
-else
-     Q_dot = epsilon*C_dot_min*(outlet.T - T_iso);
+epsilon = 1-exp(-NTU); //Heat exchanger efficiency
+
+if supply.m_flow > 0 then Q_dot = epsilon*C_dot_min*(inlet.T - T_iso);
+else Q_dot = epsilon*C_dot_min*(outlet.T - T_iso);
 end if;
 
-//On considère le cas où le débit est négatif, pour la forme
 supply.h_outflow = outlet.h - Q_dot/exhaust.m_flow;
 exhaust.h_outflow = inlet.h - Q_dot/supply.m_flow;
 
-//Conservation du débit
+//Mass balance
 supply.m_flow + exhaust.m_flow = 0;
 
-//Informations au port thermique
+/* BOUNDARY CONDITIOS */
+supply.p = exhaust.p;
 port_th.T = T_iso;
 port_th.Q_flow = -Q_dot;
+
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics), Icon(coordinateSystem(
           preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={

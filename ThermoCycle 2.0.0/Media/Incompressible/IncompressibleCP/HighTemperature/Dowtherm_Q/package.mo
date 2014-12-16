@@ -3,7 +3,7 @@ package Dowtherm_Q "Dowtherm Q Incompressible - CoolProp"
 //  extends Modelica.Media.Water.StandardWater;
 
 
-  extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
+  extends ExternalMedia.Media.IncompressibleCoolPropMedium(
     mediumName = "DowQ",
     libraryName = "CoolProp",
     substanceNames = {"DowQ|debug=0|enable_TTSE=0"});

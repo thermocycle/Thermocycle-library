@@ -1,7 +1,7 @@
 within ThermoCycle.Components.FluidFlow.Sensors;
 model SensTp "Temperature sensor for working fluid"
   extends ThermoCycle.Icons.Water.SensThrough;
-replaceable package Medium = ThermoCycle.Media.R245fa_CPRP
+replaceable package Medium = ThermoCycle.Media.R245fa_CP
                                           constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium Model" annotation (choicesAllMatching = true);
   Modelica.Blocks.Interfaces.RealOutput T annotation (Placement(

@@ -15,12 +15,12 @@ model step10
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     V_sf=0.002,
     V_wf=0.002,
+    steadystate_h_wf=true,
     pstart_wf=1650000,
     Tstart_inlet_wf=345.15,
     Tstart_outlet_wf=308.15,
     Tstart_inlet_sf=303.15,
-    Tstart_outlet_sf=303.15,
-    steadystate_h_wf=true)
+    Tstart_outlet_sf=303.15)
     annotation (Placement(transformation(extent={{10,16},{-16,42}})));
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot1(

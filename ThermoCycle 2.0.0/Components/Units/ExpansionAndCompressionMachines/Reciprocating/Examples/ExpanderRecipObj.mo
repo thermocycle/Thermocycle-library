@@ -63,8 +63,7 @@ model ExpanderRecipObj "A combination of recip machine and valves"
         geometry),
     redeclare model HeatTransfer =
         ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer.Adair1972,
-    cylinder(p_start=inlet.p, T_start=inlet.T),
-    leakage=true)
+    cylinder(p_start=inlet.p, T_start=inlet.T))
     annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
 
 equation

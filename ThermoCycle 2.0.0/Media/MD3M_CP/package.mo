@@ -1,9 +1,6 @@
 within ThermoCycle.Media;
 package MD3M_CP "MD3M - Coolprop - TC"
-
-
-  extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
+  extends ExternalMedia.Media.CoolPropMedium(
     mediumName = "Dodecamethylpentasiloxane",
-    libraryName = "CoolProp",
     substanceNames = {"Dodecamethylpentasiloxane"});
 end MD3M_CP;

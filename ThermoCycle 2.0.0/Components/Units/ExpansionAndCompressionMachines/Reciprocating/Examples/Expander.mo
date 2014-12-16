@@ -15,7 +15,6 @@ model Expander
   RecipMachine_Flange recipFlange(redeclare StrokeBoreGeometry geometry)
     annotation (Placement(transformation(extent={{-40,-40},{0,0}})));
   Cylinder cylinder(
-    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.r_piston^2,
     nPorts=3,
     use_HeatTransfer=true,
     redeclare model HeatTransfer =
@@ -29,7 +28,8 @@ model Expander
     use_portsData=true,
     d_leak=recipFlange.geometry.d_leak,
     zeta_inout=recipFlange.geometry.zeta_inout,
-    zeta_leak=0.5*recipFlange.geometry.zeta_leak)
+    zeta_leak=0.5*recipFlange.geometry.zeta_leak,
+    pistonCrossArea=Modelica.Constants.pi*recipFlange.geometry.piston.radius^2)
     annotation (Placement(transformation(extent={{-30,40},{-10,20}})));
 
   Modelica.Fluid.Sources.Boundary_pT inlet(
@@ -72,8 +72,8 @@ model Expander
   Modelica.Mechanics.Rotational.Sources.QuadraticSpeedDependentTorque load(
       tau_nominal=-20, w_nominal(displayUnit="rpm") = 52.35987755983)
     annotation (Placement(transformation(extent={{-100,-40},{-80,-20}})));
-  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor wall(C=500*25, T(start
-        =773.15))
+  Modelica.Thermal.HeatTransfer.Components.HeatCapacitor wall(C=500*25, T(start=
+         773.15))
     annotation (Placement(transformation(extent={{-80,10},{-60,30}})));
   Modelica.Fluid.Fittings.SimpleGenericOrifice leakageOrifice(
     redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,

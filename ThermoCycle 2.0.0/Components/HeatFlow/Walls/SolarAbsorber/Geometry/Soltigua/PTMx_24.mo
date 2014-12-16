@@ -2,7 +2,7 @@ within ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua;
 record PTMx_24
 extends
     ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua.BaseGeometry(
-    S_net = 54,
+    S_net = 54.5,
     A_0 = 1.00057143,
  A_1 = 7.28571429E-04,
  A_2 = -1.63214286E-04,

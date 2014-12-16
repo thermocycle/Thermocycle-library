@@ -1,9 +1,6 @@
 within ThermoCycle.Media;
 package Methane "Methane - Coolprop - TC"
-
-
-  extends CoolProp2Modelica.Interfaces.ExternalTwoPhaseMedium(
+  extends ExternalMedia.Media.CoolPropMedium(
     mediumName = "methane",
-    libraryName = "CoolProp",
     substanceNames = {"methane"});
 end Methane;

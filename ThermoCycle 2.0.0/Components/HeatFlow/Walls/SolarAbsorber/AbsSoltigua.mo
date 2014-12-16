@@ -59,7 +59,8 @@ Real Theta_deg;
 Modelica.SIunits.Temperature T_fluid[N] "Temperature of the fluid";
 
 /************* THERMAL FLOW ****************************************/
-Modelica.SIunits.HeatFlowRate Q_tube_tot "Total thermal energy on the ";
+Modelica.SIunits.HeatFlowRate Q_tube_tot
+    "Total thermal energy on one solar collector";
 
 /****************************************THERMAL FLUX ****************************************/
 Modelica.SIunits.HeatFlux Phi_conv_f[N] "Heat flux to the fluid";
@@ -70,10 +71,8 @@ Real Eta_tot "Averaged overall Efficiency";
 equation
 //Total thermal energy flow on the tube from the Sun [W]. Depend on the Focusing Parameter//
 
-if Focusing ==1 then
-                     S_eff =geometry.S_net;
-else
-      S_eff = geometry.S_ext_t;
+if Focusing ==1 then S_eff =geometry.S_net;
+else  S_eff = geometry.S_ext_t;
 end if;
 
 /* Get Theta in degree */
@@ -101,6 +100,7 @@ T_fluid[i] = wall_int.T[i];
 wall_int.phi[i] = - Phi_conv_f[i];
 
 end for;
+
 Eta_tot =sum(Eta_tot_N)/N;
 
                                                                                                       annotation(Dialog(tab = "Initialisation"),

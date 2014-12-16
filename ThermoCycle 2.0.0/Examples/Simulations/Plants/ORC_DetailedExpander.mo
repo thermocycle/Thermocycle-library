@@ -6,9 +6,10 @@ ThermoCycle.Components.Units.Tanks.Tank tank(
     level_start=0.5,
     hstart=2.32e5,
     impose_pressure=true,
-    impose_level=true,
     Vtot=0.015,
-    pstart=148400)
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
+    pstart=148400,
+    impose_level=true)
     annotation (Placement(transformation(extent={{-44,-32},{-24,-12}})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Pump
                                                      Pump(
@@ -18,7 +19,8 @@ ThermoCycle.Components.Units.Tanks.Tank tank(
     M_dot_start=0.3707,
     V_dot_max=6.5e-4,
     PumpInput=ThermoCycle.Functions.Enumerations.PumpInputs.FF,
-    PumpType=ThermoCycle.Functions.Enumerations.PumpTypes.SQThesis)
+    PumpType=ThermoCycle.Functions.Enumerations.PumpTypes.SQThesis,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{-66,10},{-86,30}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     annotation (Placement(transformation(extent={{-38,64},{-22,80}})));
@@ -37,17 +39,18 @@ ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     A_wf=3.078,
     Mdotnom_wf=0.3706,
     max_drhodt_wf=80,
-    steadystate_T_wall=false,
-    steadystate_h_wf=false,
     max_der_wf=true,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
+    steadystate_h_wf=false,
     pstart_wf=1251000,
     Tstart_inlet_wf=299.96,
     Tstart_outlet_wf=382.55,
     Tstart_inlet_sf=473.15,
-    Tstart_outlet_sf=325.41)
+    Tstart_outlet_sf=325.41,
+    steadystate_T_wall=false)
     annotation (Placement(transformation(extent={{-42,36},{-22,56}})));
 
 ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
@@ -70,16 +73,17 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst Condenser(
     TT_wf=11,
     max_drhodt_wf=40,
     filter_dMdt_wf=true,
-    steadystate_T_sf=true,
-    steadystate_T_wall=true,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     pstart_wf=148400,
     Tstart_inlet_wf=337.91,
     Tstart_outlet_wf=298.25,
     Tstart_inlet_sf=283.15,
-    Tstart_outlet_sf=293.25)
+    Tstart_outlet_sf=293.25,
+    steadystate_T_sf=false,
+    steadystate_T_wall=false)
     annotation (Placement(transformation(extent={{6,-12},{-14,8}})));
 
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_sink(rho=1000, cp=4188)
@@ -95,8 +99,7 @@ ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp(redeclare package Medium
                                     annotation (Placement(transformation(extent={{16,40},
             {26,50}})));
 ThermoCycle.Components.FluidFlow.Sensors.SensMdot sensMdot(redeclare package
-      Medium =
-        ThermoCycle.Media.R245fa_CP)
+      Medium = ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{-70,38},{-58,50}})));
 ThermoCycle.Components.HeatFlow.Sensors.SensTsf sensTsf
     annotation (Placement(transformation(extent={{-8,70},{2,78}})));
@@ -125,17 +128,19 @@ ThermoCycle.Components.Units.PdropAndValves.DP DP_cd(
     UseNom=false,
     use_rho_nom=true,
     UseHomotopy=false,
+    constinit=false,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     DELTAp_0=1000,
     p_nom=177845,
     T_nom=339.15,
-    DELTAp_quad_nom=29400,
-    constinit=false)
+    DELTAp_quad_nom=29400)
     annotation (Placement(transformation(extent={{46,-16},{30,0}})));
  ThermoCycle.Components.Units.PdropAndValves.DP DP_ev(
     A=307.9e-6,
     Mdot_nom=0.37,
     use_rho_nom=true,
     UseHomotopy=false,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     p_nom=1251000,
     T_nom=382.15,
     DELTAp_quad_nom=10814)
@@ -150,6 +155,7 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ExpanderOpendriveDe
     U_dot_w(start=66.7),
     M_dot_n=0.37,
     M_dot_start=0.37,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     p_su_start=1240000,
     T_su_start=382.55,
     p_su1_start=1100000,
@@ -157,7 +163,8 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ExpanderOpendriveDe
     annotation (Placement(transformation(extent={{50,4},{70,24}})));
 equation
   connect(sensP.p, control_unit1.p_cd) annotation (Line(
-      points={{-83.6,-7},{-83.6,6},{-88,6},{-88,84},{16,84},{16,73.32},{36.84,73.32}},
+      points={{-83.6,-7},{-83.6,-4},{-86,-4},{-86,84},{16,84},{16,73.32},{36.84,
+          73.32}},
       color={0,0,127},
       pattern=LinePattern.Dot,
       smooth=Smooth.None));
@@ -192,12 +199,12 @@ equation
       pattern=LinePattern.Dot,
       smooth=Smooth.None));
   connect(data.y[1:2], Heat_source.source) annotation (Line(
-      points={{-67.2,71.46},{-50.64,71.46},{-50.64,71.92},{-35.68,71.92}},
+      points={{-67.2,71.82},{-50.64,71.82},{-50.64,71.92},{-35.68,71.92}},
       color={0,128,255},
       pattern=LinePattern.Dash,
       smooth=Smooth.None));
   connect(data.y[3:4], Heat_sink.source) annotation (Line(
-      points={{-67.2,72.18},{-52,72.18},{-52,3.9},{-43.1,3.9}},
+      points={{-67.2,72.54},{-52,72.54},{-52,3.9},{-43.1,3.9}},
       color={0,128,255},
       pattern=LinePattern.Dash,
       smooth=Smooth.None));

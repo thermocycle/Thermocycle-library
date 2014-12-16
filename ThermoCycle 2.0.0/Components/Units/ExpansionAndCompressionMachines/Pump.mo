@@ -18,15 +18,18 @@ model Pump "Pump model"
                                                                 annotation (Dialog(enable= (PumpInputs == "Flow Fraction")));
   Real f_pp "Pump Frequency";
   Real X_pp "Pump Flow fraction";
-  parameter Modelica.SIunits.SpecificEnthalpy hstart=2.22e5
-    "Fluid specific enthalpy" annotation (Dialog(tab="Initialization"));
-  parameter Real eta_em=1 "Electro-mechanical efficiency of the pump";
+    parameter Real eta_em=1 "Electro-mechanical efficiency of the pump";
   parameter Real eta_is=1 "Internal Isentropic efficiency of the pump" annotation (Dialog(enable= (PumpType == "User Defined")));
   parameter Real epsilon_v=1 "Volumetric effectiveness of the pump" annotation (Dialog(enable= (PumpType == "User Defined")));
   parameter Modelica.SIunits.VolumeFlowRate V_dot_max=2e-4
     "Maximum pump flow rate" annotation (Dialog(enable= not (PumpType == "ORCnext")));
   parameter Modelica.SIunits.MassFlowRate M_dot_start=0.25
     "Start value for the Mass flow rate"                                                        annotation (Dialog(tab="Initialization"));
+parameter Modelica.SIunits.SpecificEnthalpy hstart=2.22e5
+    "Fluid specific enthalpy" annotation (Dialog(tab="Initialization"));
+parameter Modelica.SIunits.Density rhostart=Medium.density(Medium.setState_ph(p_su_start,hstart)) annotation (Dialog(tab="Initialization"));
+parameter Modelica.SIunits.Pressure p_su_start = 1E5
+    "Start value for the inlet pressure"                                                    annotation (Dialog(tab="Initialization"));
 
   /***************************************** VARIABLES *****************************************/
   Modelica.SIunits.MassFlowRate M_dot(start=M_dot_start) "Mass flow rate";
@@ -38,11 +41,11 @@ model Pump "Pump model"
     "Fluid specific enthalpy";
   Modelica.SIunits.Pressure p_su "Supply pressure";
   Modelica.SIunits.Pressure p_ex "Exhaust pressure";
-  Modelica.SIunits.Density rho_su "Liquid density";
+  Modelica.SIunits.Density rho_su( start=rhostart) "Liquid density";
   Modelica.SIunits.Power W_dot "Power Consumption (single pump)";
   Real eta "Pump overall effectiveness";
   Real eta_in "Pump internal effectiveness";
-  Modelica.SIunits.VolumeFlowRate V_dot "Pump flow rate";
+  Modelica.SIunits.VolumeFlowRate V_dot(min=0) "Pump flow rate";
 public
   Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium)
                             annotation (Placement(transformation(extent={{-92,-14},

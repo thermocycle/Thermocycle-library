@@ -1,5 +1,5 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer;
-model Kornhauser1994 "Recip compressor correlation of Kornhauser 1994"
+model Kornhauser1994 "Gas spring correlation of Kornhauser 1994"
   extends
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses.PartialCylinderHeatTransfer;
 
@@ -20,6 +20,11 @@ model Kornhauser1994 "Recip compressor correlation of Kornhauser 1994"
   Modelica.SIunits.NusseltNumber[n] Nu(min=0);
   Modelica.SIunits.ThermalConductivity[n] lambda;
   Modelica.SIunits.DynamicViscosity[n] eta;
+
+  //Real dT[n];
+
+  //Complex Nu_c[n], T_c[n], T_w[n];
+
 equation
   for i in 1:n loop
     // Get transport properties from Medium model
@@ -40,6 +45,8 @@ equation
     assert(Pe[i] > 0, "Invalid Peclet number, make sure transport properties are calculated.");
     Nu[i] =  a * Pe[i]^b;
     h[i]  = Nu[i] * lambda[i] / Gamma[i];
+    //dT[i] = der(Medium.temperature(states[i]));
+    //Nu_c[i] = Complex(Nu[i],Nu[i]);
   end for;
   annotation(Documentation(info="<html>
 <body>
