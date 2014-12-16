@@ -12,11 +12,8 @@ pumps, Organic Rankine Cycles, absorption chillers, etc.
 Thermodynamic properties of organic fluids require complex equations of state 
 available only in external libraries such as FluidProp, Refprop or CoolProp. 
 Thermodynamic properties in the ThermoCycle library are computed using the open-source 
-library CoolProp. The interface between ThermoCycle and CoolProp is ensured by the 
-CoolProp2Modelica library, which is based on a modified version of the External 
-Media library. However, this will change in the near future as CoolProp is being 
-integrated with ExternalMedia.
-
+library CoolProp. From version 2.0 onwards, the interface between ThermoCycle and CoolProp is ensured by the 
+ExternalMedia library (formerly ensured by the Coolprop2Modelica library).
 
 The ThermoCycle package is free software licensed under the Modelica License 2. It 
 can be redistributed and/or modified under the terms of this license.
