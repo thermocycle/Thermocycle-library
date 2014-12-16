@@ -1,5 +1,6 @@
 within ThermoCycle.Examples;
 package TestNumericalMethods
+                             extends Modelica.Icons.Package;
   model Cell1D_Trunc
 
     Components.FluidFlow.Pipes.Cell1Dim

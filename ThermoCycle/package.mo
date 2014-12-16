@@ -1,5 +1,7 @@
 within ;
 package ThermoCycle "A library for the simulation of thermal systems"
+                                                                      extends
+  Modelica.Icons.Package;
 
 
 
@@ -25,5 +27,8 @@ package ThermoCycle "A library for the simulation of thermal systems"
 <li><b><a href=\"modelica://ThermoCycle.Media\">Media</a> </b>contains a list of some of the fluid available in the library. The fluids in this package are labeled with the acronym <b>TC</b>. The CoolProp2Modelica library is anyway necessary to allow the coupling with CoolProp for computing the thermo-physical and transport properties of the fluids. </li>
 <li><b><a href=\"modelica://ThermoCycle.Obsolete\">Obsolete</a> </b>is a storage of some old models that are replaced by new ones during the development of the library but that are still used in some examples. </li>
 </ul>
-</html>"));
+</html>"),
+  Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+      graphics={Bitmap(extent={{-100,100},{100,-100}}, fileName=
+            "modelica://ThermoCycle/Resources/Images/ThermoCycleLibrary.png")}));
 end ThermoCycle;
