@@ -32,10 +32,10 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     offset=0.5)
     annotation (Placement(transformation(extent={{-104,78},{-84,98}})));
   Real y;
-  Components.FluidFlow.Sensors.SensTp sensTp(redeclare package Medium =
+  Components.FluidFlow.Sensors.SensTpSat sensTp(redeclare package Medium =
         ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{-56,36},{-36,56}})));
-  Components.FluidFlow.Sensors.SensTp sensTp1(redeclare package Medium =
+  Components.FluidFlow.Sensors.SensTpSat sensTp1(redeclare package Medium =
         ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{-4,36},{16,56}})));
 equation
