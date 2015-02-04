@@ -1,6 +1,7 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.HeatTransfer;
 model HX_full "A combination of Cylinder model and a reciprocating machine"
-  replaceable package WorkingFluid = ThermoCycle.Media.R134a_CP;
+  replaceable package WorkingFluid = ThermoCycle.Media.R601_CP;
+  //ThermoCycle.Media.R134a_CP;
   //ThermoCycle.Media.R134aCP;
   //ThermoCycle.Media.AirCP;
   //CoolProp2Modelica.Media.R601_CP;
