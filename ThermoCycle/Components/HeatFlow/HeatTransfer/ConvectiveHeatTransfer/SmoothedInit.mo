@@ -83,10 +83,10 @@ initial algorithm
   U_limited  := U_filtered;
 
 equation
-  x_L   = 0-max(smoothingRange/divisor,10*Modelica.Constants.small);
-  x_LTP = 0+max(smoothingRange/divisor,10*Modelica.Constants.small);
-  x_TPV = 1-max(smoothingRange/divisor,10*Modelica.Constants.small);
-  x_V   = 1+max(smoothingRange/divisor,10*Modelica.Constants.small);
+//   x_L   = 0-max(smoothingRange/divisor,10*Modelica.Constants.small);
+//   x_LTP = 0+max(smoothingRange/divisor,10*Modelica.Constants.small);
+//   x_TPV = 1-max(smoothingRange/divisor,10*Modelica.Constants.small);
+//   x_V   = 1+max(smoothingRange/divisor,10*Modelica.Constants.small);
 
   state    = FluidState[1];
   p        = Medium.pressure(state);
