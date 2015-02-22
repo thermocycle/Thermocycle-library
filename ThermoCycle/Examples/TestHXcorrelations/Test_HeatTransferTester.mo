@@ -36,7 +36,7 @@ Medium.ThermodynamicState bubbleState(h(start=0));
     Medium.ThermodynamicState dewState(h(start=0));
 
 replaceable model HeatTransfer =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
   constrainedby
       ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
       "Heat transfer model"
@@ -52,6 +52,9 @@ replaceable model HeatTransfer =
   Unom_v =  U_nom_v,
   M_dot = m_dot,
   x = x);
+
+    parameter Modelica.SIunits.Temperature T_port=0 "Fixed wall temperature";
+    ThermoCycle.Interfaces.HeatTransfer.ThermalPortL cell_port;
 
     parameter Medium.AbsolutePressure p_start = 1e5 "Start pressure";
     parameter Medium.AbsolutePressure p_end = p_start "Final pressure";
@@ -86,6 +89,9 @@ equation
   m_dot = (1-y) * m_dot_start + y * m_dot_end;
   h     = (1-y) * h_start     + y * h_end;
   state = Medium.setState_phX(p=p,h=h);
+
+  //cell_port.T = T_port;
+  connect(heatTransfer.thermalPortL[1], cell_port);
 
 end InputSelector;
 
