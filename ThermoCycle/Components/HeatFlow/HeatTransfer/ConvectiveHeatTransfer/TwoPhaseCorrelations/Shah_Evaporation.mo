@@ -5,7 +5,7 @@ model Shah_Evaporation "Shah correlation for evaporation"
   parameter Modelica.SIunits.Length d_hyd(min=0)
     "Hydraulic diameter (2*V/A_lateral)";
   parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_hyd^2 / 4
-    "Hydraulic diameter";
+    "Cross-sectional area";
 
   parameter Boolean vertical = true "Vertical or horizontal flow";
 
@@ -71,6 +71,9 @@ model Shah_Evaporation "Shah correlation for evaporation"
   Medium.SpecificEnthalpy h_v;
   Medium.SpecificEnthalpy i_fg;
 
+  Real sqrtBo;
+  Real trans = 0.25;
+
 equation
   rho_l = Medium.density(bubbleState);
   rho_v = Medium.density(dewState);
@@ -83,29 +86,30 @@ equation
   psi   = htc_TP / htc_l "Eq. 1";
   Co    = (1/max(Modelica.Constants.small,x) -1)^0.8 * sqrt(rho_v/rho_l) "Eq. 2";
   Bo    = q_dot / (G*i_fg) "Eq. 3";
+  sqrtBo = Modelica.Fluid.Utilities.regRoot2(Bo,x_small=1e-10);
   Fr_l  = G^2/(rho_l^2*Modelica.Constants.g_n*d_hyd) "Eq. 4";
   htc_l = liquidCorrelation.U "Eq. 5";
 
   // Convective (cb) and fully nucleate boiling (nb), N>1.0
-  psi_nb_hi    = 230 * sqrt(Bo) "Eq. 6";
-  psi_nb_lo    = 1 + 46 * sqrt(Bo) "Eq. 7";
-  psi_nb_trans = ThermoCycle.Functions.transition_factor(start=0.29e-4, stop=0.31e-4, position=Bo);
+  psi_nb_hi    = 230 * sqrtBo "Eq. 6";
+  psi_nb_lo    = 1 + 46 * sqrtBo "Eq. 7";
+  psi_nb_trans = ThermoCycle.Functions.transition_factor_alt(switch=0.3e-4, trans=trans*0.3e-4,position=Bo);
   psi_nb       = (1-psi_nb_trans)*psi_nb_lo + psi_nb_trans*psi_nb_hi;
   psi_cb       =  1.8 / N^0.8 "Eq. 8";
   psi_N10      = max(psi_nb,psi_cb);
 
   // Bubble nucleation is partly suppressed (nbbs), 0.1<N<=1.0
-  psi_nbbs     = F * sqrt(Bo) * exp(2.74*N^(-0.1)) "Eq. 9";
+  psi_nbbs     = F * sqrtBo * exp(2.74*N^(-0.1)) "Eq. 9";
   psi_N05      = max(psi_nbbs,psi_cb);
 
   // Bubble nucleation is suppressed (bs), N<=0.1
-  psi_bs       = F * sqrt(Bo) * exp(2.47*N^(-0.15)) "Eq. 10";
+  psi_bs       = F * sqrtBo * exp(2.47*N^(-0.15)) "Eq. 10";
   psi_N01      = max(psi_bs,psi_cb);
 
   // Constants
   F_hi         = 14.70 "Eq. 11";
   F_lo         = 15.43 "Eq. 12";
-  F_trans      = ThermoCycle.Functions.transition_factor(start=10.9e-4, stop=11.1e-4, position=Bo);
+  F_trans      = ThermoCycle.Functions.transition_factor_alt(switch=11e-4, trans=trans*11e-4, position=Bo);
   F            = (1-F_trans)*F_lo + F_trans*F_hi;
 
   // Determining parameter N
@@ -122,17 +126,17 @@ equation
   N            = (1-N_trans)*N_lo + N_trans*N_hi;
 
   // In the end we merge all three calculated psi values from N < 0.1 to N > 1.0
-  psi_0105_trans = ThermoCycle.Functions.transition_factor(start=0.09, stop=0.11, position=N);
+  psi_0105_trans = ThermoCycle.Functions.transition_factor_alt(switch=0.1, trans=trans*0.1, position=N);
   psi_0105_hi    = psi_N05;
   psi_0105_lo    = psi_N01;
   psi_0105       = (1-psi_0105_trans)*psi_0105_lo + psi_0105_trans*psi_0105_hi;
 
-  psi_0510_trans = ThermoCycle.Functions.transition_factor(start=0.99, stop=1.01, position=N);
+  psi_0510_trans = ThermoCycle.Functions.transition_factor_alt(switch=1, trans=trans*1, position=N);
   psi_0510_hi    = psi_N10;
   psi_0510_lo    = psi_N05;
   psi_0510       = (1-psi_0510_trans)*psi_0510_lo + psi_0510_trans*psi_0510_hi;
 
-  psi_trans = ThermoCycle.Functions.transition_factor(start=0.1, stop=1.0, position=N);
+  psi_trans = ThermoCycle.Functions.transition_factor_alt(switch=0.5, trans=trans*0.5, position=N);
   psi_hi    = psi_0510;
   psi_lo    = psi_0105;
   psi       = (1-psi_trans)*psi_lo + psi_trans*psi_hi;

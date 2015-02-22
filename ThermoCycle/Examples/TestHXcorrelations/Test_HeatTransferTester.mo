@@ -25,6 +25,9 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_v = 1000
                                                  annotation (Dialog(tab="Heat transfer"));
 Medium.AbsolutePressure p;
 Medium.SpecificEnthalpy h;
+Medium.Temperature T_port;
+Medium.Temperature T_start;
+Medium.Temperature T_end;
 Medium.SpecificEnthalpy h_start;
 Medium.SpecificEnthalpy h_end;
 Modelica.SIunits.MassFlowRate m_dot "Inlet massflow";
@@ -53,7 +56,7 @@ replaceable model HeatTransfer =
   M_dot = m_dot,
   x = x);
 
-    input Modelica.SIunits.Temperature T_port=Medium.temperature(state)
+    parameter Modelica.SIunits.TemperatureDifference Delta_T=5
       "Fixed wall temperature";
     ThermoCycle.Components.HeatFlow.Sources.Source_T_cell source_T;
 
@@ -65,6 +68,7 @@ replaceable model HeatTransfer =
       "Final flow rate";
 
     parameter Boolean twoPhase = false "is two-phase medium?";
+    parameter Real Delta_x = 0.1;
     parameter Medium.SpecificEnthalpy h_start_in = 0 "Start enthalpy"
       annotation(Dialog(enable = not twoPhase));
 
@@ -76,20 +80,26 @@ equation
     bubbleState = Medium.setBubbleState(Medium.setSat_p(Medium.pressure(state)));
     dewState    = Medium.setDewState(   Medium.setSat_p(Medium.pressure(state)));
     x           = (Medium.specificEnthalpy(state) - Medium.specificEnthalpy(bubbleState))/(Medium.specificEnthalpy(dewState) - Medium.specificEnthalpy(bubbleState));
-    h_start     = Medium.specificEnthalpy(bubbleState) - 0.55*(Medium.specificEnthalpy(dewState) - Medium.specificEnthalpy(bubbleState));
-    h_end       = Medium.specificEnthalpy(dewState)    + 0.55*(Medium.specificEnthalpy(dewState) - Medium.specificEnthalpy(bubbleState));
+    h_start     = Medium.specificEnthalpy(bubbleState) - Delta_x*(Medium.specificEnthalpy(dewState) - Medium.specificEnthalpy(bubbleState));
+    h_end       = Medium.specificEnthalpy(dewState)    + Delta_x*(Medium.specificEnthalpy(dewState) - Medium.specificEnthalpy(bubbleState));
+    T_end       = Medium.temperature_ph(p_end,h_end)+Delta_T;
+    T_start     = Medium.temperature(bubbleState)+ Delta_T - (Delta_x *(T_end-Delta_T-Medium.temperature(bubbleState)))/(1+Delta_x-0);
   else
     bubbleState = state;
     dewState    = state;
     x           = 0;
     h_start     = h_start_in;
     h_end       = h_end_in;
+    T_start     = Medium.temperature_ph(p_start,h_start)+Delta_T;
+    T_end       = Medium.temperature_ph(p_end,h_end)+Delta_T;
   end if;
   y = time/c;
-  p     = (1-y) * p_start     + y * p_end;
-  m_dot = (1-y) * m_dot_start + y * m_dot_end;
-  h     = (1-y) * h_start     + y * h_end;
-  state = Medium.setState_phX(p=p,h=h);
+  p      = (1-y) * p_start     + y * p_end;
+  m_dot  = (1-y) * m_dot_start + y * m_dot_end;
+  h      = (1-y) * h_start     + y * h_end;
+  T_port = (1-y) * T_start     + y * T_end;
+  //T_port = Medium.temperature(state)+Delta_T;
+  state  = Medium.setState_phX(p=p,h=h);
 
   T_port =source_T.Temperature;
   connect(heatTransfer.thermalPortL[1], source_T.ThermalPortCell);
@@ -100,8 +110,8 @@ end InputSelector;
     h_start_in=100e3,
     twoPhase=true,
     redeclare package Medium = ThermoCycle.Media.R134a_CP(substanceNames={"R134a|debug=0|calc_transport=1|enable_EXTTP=1|enable_TTSE=0"}),
-    m_dot_start=0.01,
-    p_start=500000)
+    p_start=675000,
+    m_dot_start=0.025)
     annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
 
   annotation (experiment(StopTime=10));

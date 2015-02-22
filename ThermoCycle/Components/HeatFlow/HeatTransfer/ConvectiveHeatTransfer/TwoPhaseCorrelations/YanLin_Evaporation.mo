@@ -5,7 +5,7 @@ model YanLin_Evaporation "Yan & Lin correlation for evaporation"
   parameter Modelica.SIunits.Length d_hyd(min=0)
     "Hydraulic diameter (2*V/A_lateral)";
   parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_hyd^2 / 4
-    "Hydraulic diameter";
+    "Cross-sectional area";
 
   Real G(unit="kg/(s.m.m)") "Mass flux";
   Real G_eq(unit="kg/(s.m.m)") "Equivalent mass flux";
@@ -43,7 +43,7 @@ equation
 
   // Determine dimensionless numbers
   G     = m_dot / A_cro "mass flux";
-  G_eq  = G * (0.5 + 0.5 * (rho_l/rho_v)^0.5) "Eq. 35";
+  G_eq  = G * ((1-X_m) + X_m * (rho_l/rho_v)^0.5) "Eq. 35";
   Bo_eq = q_dot / (G_eq*i_fg) "Eq. 34";
   Re_eq = G_eq * d_hyd/mu_l "Eq. 34";
   Re = G * d_hyd/mu_l;
@@ -51,7 +51,7 @@ equation
   //assert(Re_eq > 2000, "Reynolds number too low, make sure you are in the correct flow regime.");
   //assert(Re_eq < 10000, "Reynolds number too high, make sure you are in the correct flow regime.");
 
-  Nu = 1.926*Pr_l^(1/3)*Bo_eq^(0.3)*Re^(0.5)*((1 - X_m) + X_m*(rho_l/rho_v)^0.5) "Eq. 36";
+  Nu = 1.926*Pr_l^(1/3)*Bo_eq^(0.3)*Re_eq^(0.5)*((1 - X_m) + X_m*(rho_l/rho_v)^0.5) "Eq. 36";
   U  = Nu * k_l / d_hyd;
 
   annotation (Documentation(info="<html>

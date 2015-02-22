@@ -12,7 +12,7 @@ model Gnielinski "Gnielinski pipe equations"
     "Hydraulic diameter (2*V/A_lateral)";
   parameter Modelica.SIunits.Length l(min=0) =   0.250 "Pipe or plate length";
   parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_i^2 / 4
-    "Cross section area";
+    "Cross-sectional area";
   Modelica.SIunits.ReynoldsNumber Re(min=0);
   Modelica.SIunits.ReynoldsNumber Re_tur(min=0);
   Modelica.SIunits.ReynoldsNumber Re_lam(min=0);

@@ -4,7 +4,7 @@ partial model PartialConvectiveSmoothed "Smoothed heat transfer coefficients"
 extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation;
 
-parameter Real smoothingRange(min=0,max=1) = 0.2
+parameter Real smoothingRange(min=0,max=1) = 0.1
     "Vapour quality smoothing range";
 parameter Real    massFlowExp(min=0,max=1) = 0.8
     "Mass flow correction term, disable with 0.0";
@@ -41,8 +41,8 @@ equation
   x_TPV = 1-smoothingRange/divisor;
   x_V   = 1+smoothingRange/divisor;
 
-  LTP = ThermoCycle.Functions.transition_factor(start=0-smoothingRange/2, stop=0+smoothingRange/2, position=x);
-  TPV = ThermoCycle.Functions.transition_factor(start=1-smoothingRange/2, stop=1+smoothingRange/2, position=x);
+  LTP = ThermoCycle.Functions.transition_factor_alt(switch=0, trans=smoothingRange, position=x);
+  TPV = ThermoCycle.Functions.transition_factor_alt(switch=1, trans=smoothingRange, position=x);
 
   U_nom_LTP = (1-LTP)* Unom_l    + LTP*Unom_tp;
   U_nom_TPV = (1-TPV)* Unom_tp   + TPV*Unom_v;
