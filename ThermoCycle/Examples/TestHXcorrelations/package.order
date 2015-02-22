@@ -5,3 +5,6 @@ SmoothedCorrelationsFiltered
 SmoothedCorrelationsLimited
 SmoothedCorrelationsDittusShah
 SmoothedCorrelationsMartinGunger
+Test_Hx1DConst
+Test_Hx1DInc
+Test_Hx1DIncCP
