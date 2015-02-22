@@ -53,8 +53,9 @@ replaceable model HeatTransfer =
   M_dot = m_dot,
   x = x);
 
-    parameter Modelica.SIunits.Temperature T_port=0 "Fixed wall temperature";
-    ThermoCycle.Interfaces.HeatTransfer.ThermalPortL cell_port;
+    input Modelica.SIunits.Temperature T_port=Medium.temperature(state)
+      "Fixed wall temperature";
+    ThermoCycle.Components.HeatFlow.Sources.Source_T_cell source_T;
 
     parameter Medium.AbsolutePressure p_start = 1e5 "Start pressure";
     parameter Medium.AbsolutePressure p_end = p_start "Final pressure";
@@ -90,8 +91,8 @@ equation
   h     = (1-y) * h_start     + y * h_end;
   state = Medium.setState_phX(p=p,h=h);
 
-  //cell_port.T = T_port;
-  connect(heatTransfer.thermalPortL[1], cell_port);
+  T_port =source_T.Temperature;
+  connect(heatTransfer.thermalPortL[1], source_T.ThermalPortCell);
 
 end InputSelector;
 

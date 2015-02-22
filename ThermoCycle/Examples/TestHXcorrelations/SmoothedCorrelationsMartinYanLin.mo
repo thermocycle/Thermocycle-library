@@ -1,7 +1,8 @@
 within ThermoCycle.Examples.TestHXcorrelations;
 model SmoothedCorrelationsMartinYanLin
   "Martin PHX in single-phase and Yan & Lin evaporation"
-  extends Test_HeatTransferTester(tester(redeclare model HeatTransfer =
+  extends Test_HeatTransferTester(tester(T_port=Modelica.SIunits.Conversions.from_degC(150),redeclare
+        model HeatTransfer =
           ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SmoothedInit
           (
           filterConstant=0,

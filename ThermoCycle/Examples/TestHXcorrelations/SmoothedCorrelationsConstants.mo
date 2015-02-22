@@ -1,6 +1,7 @@
 within ThermoCycle.Examples.TestHXcorrelations;
 model SmoothedCorrelationsConstants
-  extends Test_HeatTransferTester(tester(redeclare model HeatTransfer =
+  extends Test_HeatTransferTester(tester(T_port=Modelica.SIunits.Conversions.from_degC(150), redeclare
+        model HeatTransfer =
           ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SmoothedInit
           (
           filterConstant=0,
