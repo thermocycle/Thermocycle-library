@@ -4,7 +4,7 @@ partial model PartialConvectiveSmoothed "Smoothed heat transfer coefficients"
 extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation;
 
-parameter Real smoothingRange(min=0,max=1) = 0.1
+parameter Real smoothingRange(min=0,max=1) = 0.2
     "Vapour quality smoothing range";
 parameter Real    massFlowExp(min=0,max=1) = 0.8
     "Mass flow correction term, disable with 0.0";

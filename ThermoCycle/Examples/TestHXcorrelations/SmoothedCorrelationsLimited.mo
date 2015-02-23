@@ -1,10 +1,8 @@
 within ThermoCycle.Examples.TestHXcorrelations;
 model SmoothedCorrelationsLimited
-  extends Test_HeatTransferTester(tester(                                                   redeclare
-        model HeatTransfer =
+  extends Test_HeatTransferTester(tester(redeclare model HeatTransfer =
           ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SmoothedInit
           (
-          filterConstant=0,
           redeclare model LiquidCorrelation =
               ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.Constant
               (U_c=tester.U_nom_l),
@@ -16,5 +14,5 @@ model SmoothedCorrelationsLimited
               (U_c=tester.U_nom_v),
           t_start=Modelica.Constants.small,
           t_init=Modelica.Constants.small,
-          max_dUdt=2000)));
+          max_dUdt=2500)));
 end SmoothedCorrelationsLimited;

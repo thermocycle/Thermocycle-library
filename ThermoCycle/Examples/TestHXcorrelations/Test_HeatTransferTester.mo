@@ -3,115 +3,122 @@ model Test_HeatTransferTester "A test driver for the different implementations o
   heat transfer models"
   extends Modelica.Icons.Example;
 
-model InputSelector
-replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
-      Modelica.Media.Interfaces.PartialTwoPhaseMedium "Medium"
-    annotation(choicesAllMatching=true);
+  model InputSelector
+    replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
+      Modelica.Media.Interfaces.PartialTwoPhaseMedium "Medium" annotation (
+        choicesAllMatching=true);
 
-// Settings for heat transfer
-Medium.ThermodynamicState state(phase(start=0));
-// Settings for correlation
-parameter Modelica.SIunits.MassFlowRate m_dot_nom = m_dot_start
-      "Nomnial Mass flow rate"
-                           annotation (Dialog(tab="Heat transfer"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_l = 1500
+    // Settings for heat transfer
+    Medium.ThermodynamicState state(phase(start=0));
+    // Settings for correlation
+    parameter Modelica.SIunits.MassFlowRate m_dot_nom=m_dot_start
+      "Nomnial Mass flow rate" annotation (Dialog(tab="Heat transfer"));
+    parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_l=1500
       "Nominal heat transfer coefficient liquid side"
-                                                  annotation (Dialog(tab="Heat transfer"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_tp = 3000
+      annotation (Dialog(tab="Heat transfer"));
+    parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_tp=3000
       "Nominal heat transfer coefficient two phase side"
-                                                     annotation (Dialog(tab="Heat transfer"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_v = 1000
+      annotation (Dialog(tab="Heat transfer"));
+    parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_v=1000
       "Nominal heat transfer coefficient vapor side"
-                                                 annotation (Dialog(tab="Heat transfer"));
-Medium.AbsolutePressure p;
-Medium.SpecificEnthalpy h;
-Medium.Temperature T_port;
-Medium.Temperature T_start;
-Medium.Temperature T_end;
-Medium.SpecificEnthalpy h_start;
-Medium.SpecificEnthalpy h_end;
-Modelica.SIunits.MassFlowRate m_dot "Inlet massflow";
-Real x "Vapor quality";
-Real y "Relative position";
-Modelica.SIunits.Time c = 10;
+      annotation (Dialog(tab="Heat transfer"));
+    Medium.AbsolutePressure p;
+    Medium.SpecificEnthalpy h;
+    Medium.Temperature T_port;
+    Medium.Temperature T_start;
+    Medium.Temperature T_end;
+    Medium.SpecificEnthalpy h_start;
+    Medium.SpecificEnthalpy h_end;
+    Modelica.SIunits.MassFlowRate m_dot "Inlet massflow";
+    Real x "Vapor quality";
+    Real y "Relative position";
+    Modelica.SIunits.Time c=10;
 
-Medium.ThermodynamicState bubbleState(h(start=0));
+    Medium.ThermodynamicState bubbleState(h(start=0));
     Medium.ThermodynamicState dewState(h(start=0));
 
-replaceable model HeatTransfer =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
-  constrainedby
+    replaceable model HeatTransfer =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+      constrainedby
       ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-      "Heat transfer model"
-    annotation(choicesAllMatching=true);
+      "Heat transfer model" annotation (choicesAllMatching=true);
 
     HeatTransfer heatTransfer(
-  redeclare final package Medium = Medium,
-  final n = 1,
-  FluidState = {state},
-  Mdotnom = m_dot_nom,
-  Unom_l =  U_nom_l,
-  Unom_tp = U_nom_tp,
-  Unom_v =  U_nom_v,
-  M_dot = m_dot,
-  x = x);
+      redeclare final package Medium = Medium,
+      final n=1,
+      FluidState={state},
+      Mdotnom=m_dot_nom,
+      Unom_l=U_nom_l,
+      Unom_tp=U_nom_tp,
+      Unom_v=U_nom_v,
+      M_dot=m_dot,
+      x=x);
 
-    parameter Modelica.SIunits.TemperatureDifference Delta_T=5
-      "Fixed wall temperature";
-    ThermoCycle.Components.HeatFlow.Sources.Source_T_cell source_T;
+    parameter Medium.AbsolutePressure p_start=1e5 "Start pressure";
+    parameter Medium.AbsolutePressure p_end=p_start "Final pressure";
 
-    parameter Medium.AbsolutePressure p_start = 1e5 "Start pressure";
-    parameter Medium.AbsolutePressure p_end = p_start "Final pressure";
-
-    parameter Modelica.SIunits.MassFlowRate m_dot_start = 1 "Start flow rate";
-    parameter Modelica.SIunits.MassFlowRate m_dot_end = m_dot_start
+    parameter Modelica.SIunits.MassFlowRate m_dot_start=1 "Start flow rate";
+    parameter Modelica.SIunits.MassFlowRate m_dot_end=m_dot_start
       "Final flow rate";
 
-    parameter Boolean twoPhase = false "is two-phase medium?";
-    parameter Real Delta_x = 0.1;
-    parameter Medium.SpecificEnthalpy h_start_in = 0 "Start enthalpy"
-      annotation(Dialog(enable = not twoPhase));
+    parameter Boolean Delta_T_const=false "Constant dT?";
+    parameter Modelica.SIunits.TemperatureDifference Delta_T=15
+      "wall temperature difference";
+    ThermoCycle.Components.HeatFlow.Sources.Source_T_cell source_T;
+    parameter Boolean twoPhase=false "is two-phase medium?";
+    parameter Real Delta_x=0.55;
 
-    parameter Medium.SpecificEnthalpy h_end_in = h_start_in "Final enthalpy"
-      annotation(Dialog(enable = not twoPhase));
+    Medium.SpecificEnthalpy Delta_h, h_evap;
 
-equation
-  if twoPhase then
-    bubbleState = Medium.setBubbleState(Medium.setSat_p(Medium.pressure(state)));
-    dewState    = Medium.setDewState(   Medium.setSat_p(Medium.pressure(state)));
-    x           = (Medium.specificEnthalpy(state) - Medium.specificEnthalpy(bubbleState))/(Medium.specificEnthalpy(dewState) - Medium.specificEnthalpy(bubbleState));
-    h_start     = Medium.specificEnthalpy(bubbleState) - Delta_x*(Medium.specificEnthalpy(dewState) - Medium.specificEnthalpy(bubbleState));
-    h_end       = Medium.specificEnthalpy(dewState)    + Delta_x*(Medium.specificEnthalpy(dewState) - Medium.specificEnthalpy(bubbleState));
-    T_end       = Medium.temperature_ph(p_end,h_end)+Delta_T;
-    T_start     = Medium.temperature(bubbleState)+ Delta_T - (Delta_x *(T_end-Delta_T-Medium.temperature(bubbleState)))/(1+Delta_x-0);
-  else
-    bubbleState = state;
-    dewState    = state;
-    x           = 0;
-    h_start     = h_start_in;
-    h_end       = h_end_in;
-    T_start     = Medium.temperature_ph(p_start,h_start)+Delta_T;
-    T_end       = Medium.temperature_ph(p_end,h_end)+Delta_T;
-  end if;
+  equation
+  bubbleState = Medium.setBubbleState(Medium.setSat_p(Medium.pressure(state)));
+  dewState = Medium.setDewState(Medium.setSat_p(Medium.pressure(state)));
+  h_evap = Medium.specificEnthalpy(dewState) - Medium.specificEnthalpy(bubbleState);
+  x = (Medium.specificEnthalpy(state) - Medium.specificEnthalpy(bubbleState))/h_evap;
+  h_start = Medium.specificEnthalpy(bubbleState) - Delta_x*h_evap;
+  h_end = Medium.specificEnthalpy(dewState) + Delta_x*h_evap;
+  // Set the sweep variable
   y = time/c;
-  p      = (1-y) * p_start     + y * p_end;
-  m_dot  = (1-y) * m_dot_start + y * m_dot_end;
-  h      = (1-y) * h_start     + y * h_end;
-  T_port = (1-y) * T_start     + y * T_end;
-  //T_port = Medium.temperature(state)+Delta_T;
-  state  = Medium.setState_phX(p=p,h=h);
+  // Linear pressure and mass flow functions
+  p = (1 - y)*p_start + y*p_end;
+  m_dot = (1 - y)*m_dot_start + y*m_dot_end;
+  if twoPhase then
+    // Full enthalpy range
+    Delta_h = h_end-h_start;
+    h = h_start + y*Delta_h;
+    // Apply the Delta_T at the phase boundary
+    T_end = Medium.temperature_ph(p_end, h_end) + Delta_T;
+    T_start = Medium.temperature(bubbleState) + Delta_T - (Delta_x*(T_end -
+      Delta_T - Medium.temperature(bubbleState)))/(1 + Delta_x - 0);
+  else
+    // Only outside the two-phase domain
+    Delta_h = h_end-h_start-h_evap;
+    if (h_start+y*Delta_h)<Medium.specificEnthalpy(bubbleState) then
+      h = h_start + y*Delta_h;
+    else
+      h = h_start + y*Delta_h + h_evap;
+    end if;
+    // Use the normal Delta_T
+    T_start = Medium.temperature_ph(p_start, h_start) + Delta_T;
+    T_end = Medium.temperature_ph(p_end, h_end) + Delta_T;
+  end if;
 
-  T_port =source_T.Temperature;
+  if Delta_T_const then
+    T_port = Medium.temperature(state) + Delta_T;
+  else
+    T_port = (1-y) * T_start     + y * T_end;
+  end if;
+  state = Medium.setState_phX(p=p, h=h);
+  T_port = source_T.Temperature;
   connect(heatTransfer.thermalPortL[1], source_T.ThermalPortCell);
 
-end InputSelector;
+  end InputSelector;
 
   InputSelector tester(
-    h_start_in=100e3,
     twoPhase=true,
     redeclare package Medium = ThermoCycle.Media.R134a_CP(substanceNames={"R134a|debug=0|calc_transport=1|enable_EXTTP=1|enable_TTSE=0"}),
-    p_start=675000,
-    m_dot_start=0.025)
+    m_dot_start=0.025,
+    p_start=675000)
     annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
 
   annotation (experiment(StopTime=10));

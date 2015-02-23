@@ -11,14 +11,13 @@ model SmoothedInit
   parameter Modelica.SIunits.Time t_init=5 "Duration of initialization"
     annotation(Dialog(tab="Initialization"));
 
-  parameter Modelica.SIunits.Time filterConstant = 0
-    "Integration time of filter, 0=disabled"
+  parameter Modelica.SIunits.Time filterConstant(min=1e-8) = 1e-8
+    "Integration time of filter, 1e-8=disabled"
                                annotation(Dialog(group="Correlations"));
 
-  parameter Real max_dUdt(unit="W/(m2.K.s)") = 10000
-    "maximum change in HTC, 0=disabled"
+  parameter Real max_dUdt(unit="W/(m2.K.s)") = 0
+    "maximum change in HTC, 0=disabled, experimental!"
                              annotation(Dialog(group="Correlations"),enabled=(filterConstant>0));
-  Real dUdt_limiter;
   Modelica.SIunits.CoefficientOfHeatTransfer U_limited;
   Modelica.SIunits.CoefficientOfHeatTransfer U_filtered;
   Modelica.SIunits.CoefficientOfHeatTransfer U_initialized;
@@ -75,8 +74,9 @@ model SmoothedInit
   Medium.SpecificEnthalpy h_L;
   Medium.SpecificEnthalpy h_V;
   Medium.SpecificEnthalpy h_TP;
-
   Real x_L,x_LTP,x_TPV,x_V "Vapor quality";
+
+  Real dUdt_limited;
 
 initial algorithm
   U_filtered := U_nom;
@@ -120,19 +120,16 @@ equation
   initialized     = ThermoCycle.Functions.transition_factor(start=t_start, stop=t_start+t_init, position=time);
   U_initialized   = (1-initialized)*U_nom*massFlowFactor + initialized*U_cor;
 
-   if filterConstant<=0 then
-     //U_filtered = U_initialized;
-     der(U_filtered) = (U_initialized-U_filtered)/1e-8;
-   else
-     der(U_filtered) = (U_initialized-U_filtered)/filterConstant;
-   end if;
+  der(U_filtered) = (U_initialized-U_filtered)/filterConstant;
 
    if max_dUdt<=0 then
-     dUdt_limiter = 0;
-     der(U_limited) = der(U_filtered);//(U_filtered-U_limited)/1e-8;
+     der(U_limited) = der(U_filtered);
+     dUdt_limited = der(U_limited);
    else
-     dUdt_limiter = (ThermoCycle.Functions.transition_factor(start=-max_dUdt, stop=max_dUdt, position=(U_filtered-U_limited)/1e-5)-0.5)*2;
-     der(U_limited) = dUdt_limiter*max_dUdt;
+     dUdt_limited = (ThermoCycle.Functions.transition_factor(start=-max_dUdt, stop=max_dUdt, position=(U_filtered-U_limited)/1e-5)-0.5)*2;
+     der(U_limited) = dUdt_limited*max_dUdt;
+     //der(U_limited) = ThermoCycle.Functions.transition_factor(-max_dUdt,max_dUdt,abs(der(U_filtered))) * sign(der(U_filtered)) * max_dUdt;
+     //der(U_limited) = smooth(0, noEvent(if dUdt_filtered > max_dUdt then max_dUdt else if dUdt_filtered < -max_dUdt then -max_dUdt else dUdt_filtered));
    end if;
 
   for i in 1:n loop

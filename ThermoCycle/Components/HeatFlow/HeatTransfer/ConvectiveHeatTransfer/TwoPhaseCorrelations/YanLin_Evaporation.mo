@@ -51,7 +51,7 @@ equation
   //assert(Re_eq > 2000, "Reynolds number too low, make sure you are in the correct flow regime.");
   //assert(Re_eq < 10000, "Reynolds number too high, make sure you are in the correct flow regime.");
 
-  Nu = 1.926*Pr_l^(1/3)*Bo_eq^(0.3)*Re_eq^(0.5)*((1 - X_m) + X_m*(rho_l/rho_v)^0.5) "Eq. 36";
+  Nu = 1.926*Pr_l^(1/3)*Bo_eq^(0.3)*Re^(0.5)*((1 - X_m) + X_m*(rho_l/rho_v)^0.5) "Eq. 36";
   U  = Nu * k_l / d_hyd;
 
   annotation (Documentation(info="<html>
