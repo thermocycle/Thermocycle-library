@@ -146,8 +146,8 @@ equation
 </ul></p>
 <p>In order to increase the robustness of the model an initialization option is available:the heat transfer coefficient value is initialized with the nominal value defined by the user U_nom, and after a certain time (t_init - see below) the value is smoothed to the one calculated with the correlations previusly defined by the user.</p>
 <p>In cases of fluctuating pressures and chattering, applying a first order filter to the change in heat transfer coefficient increases stability, set the parameter filterConstant &GT; 0 to activate it.</p>
-<p>A limiter for the maximum change of the heat transfer coefficent with respect to time can be activated by setting the parameter max_dUdt &GT;=0 in the general tab. </p>
-<p>In the <b>Initialization</b> tab the following options are availabe: </p>
+<p>A limiter for the maximum change of the heat transfer coefficient with respect to time can be activated by setting the parameter max_dUdt &GT;=0 in the general tab. </p>
+<p>In the <b>Initialization</b> tab the following options are available: </p>
 <li><ul>
 <li>t_start: start time for <i>Initialization</i> </li>
 <li>t_init: duration of the <i>Initialization</i> </li>

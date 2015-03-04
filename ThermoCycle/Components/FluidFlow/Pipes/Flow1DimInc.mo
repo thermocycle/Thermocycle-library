@@ -59,7 +59,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
   /******************************* HEAT TRANSFER MODEL **************************************/
 replaceable model Flow1DimIncHeatTransferModel =
       ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
@@ -125,7 +125,7 @@ equation
           lineColor={0,0,255},
           fillColor={0,255,255},
           fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
-       <p><big>This model describes the flow of incompressible fluid through a discretized one dimentional tube. It is obtained by connecting in series <b>N</b> <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1DimInc\">Cell1DimInc</a>.    
+       <p><big>This model describes the flow of incompressible fluid through a discretized one dimensional tube. It is obtained by connecting in series <b>N</b> <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1DimInc\">Cell1DimInc</a>.    
           
           <p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:
            <ul><li> Enthalpy at each node

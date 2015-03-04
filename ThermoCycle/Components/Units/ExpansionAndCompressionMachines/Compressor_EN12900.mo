@@ -120,7 +120,7 @@ equation
 <li>Mass flow and consumed power are calculated with a polynoms as a function of the saturation temperature of the corresponding inlet and outlet temperature </li>
 </ul></p>
 <p><b>Modelling options</b> </p>
-<p>In the <b>General</b> tab the following option is availabe: </p>
+<p>In the <b>General</b> tab the following option is available: </p>
 <p><ul>
 <li>CPmodel: it allows to select one of the different available scroll compressor characteristics. </li>
 <li></li>

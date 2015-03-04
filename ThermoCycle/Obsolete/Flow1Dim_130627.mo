@@ -72,7 +72,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
 //enable=filter_dMdt,enable=max_der,
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 /* FLUID VARIABLES */
   Medium.ThermodynamicState  fluidState[N];
   Medium.SaturationProperties sat;

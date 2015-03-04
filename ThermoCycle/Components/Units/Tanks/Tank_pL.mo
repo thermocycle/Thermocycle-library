@@ -133,7 +133,7 @@ be either subcooled (in which case the receiver pressure is going to decrease), 
 <p><big>It only requires one saturation call to the thermodynamic properties.</p>
 
 <p><b><big>Modelling options</b></p>
-  <p><big> In the <b>Initialization</b> tab the following options are availabe:
+  <p><big> In the <b>Initialization</b> tab the following options are available:
         <ul><li> impose_L: if  true, the level of the tank is imposed during <em>Initialization</em>
          <li> impose_pressure: if  true, the pressure of the tank is imposed during <em>Initialization</em>
          <li> SteadyState_p: if  true, the derivative of the pressure of the tank is set to zero during <em>Initialization</em>

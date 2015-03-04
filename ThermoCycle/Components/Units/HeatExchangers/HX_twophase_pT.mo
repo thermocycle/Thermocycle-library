@@ -30,9 +30,9 @@ model HX_twophase_pT
   parameter Modelica.SIunits.Temperature T_w_start=273.15+60
     "Initial value of wall temperature"                                                  annotation (Dialog(tab="Initialization"));
   parameter Boolean steadystate_T_wall=false
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
   parameter Boolean T_wall_fixed=false
-    "if true, imposes the initial wall temperature"                               annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, imposes the initial wall temperature"                               annotation (Dialog(group="Initialization options", tab="Initialization"));
 
   /******************************* VARIABLES *****************************/
   Modelica.SIunits.ThermodynamicTemperature pinch_sf(displayUnit="K",min=1);

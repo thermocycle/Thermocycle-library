@@ -40,11 +40,11 @@ model HX_singlephase_pT
   parameter Modelica.SIunits.Temperature T_w_2_start=(T_cf_ex_start+T_hf_su_start)/2
     "Initial value of wall temperature between T_cf_ex and T_hf_su"                                                  annotation (Dialog(tab="Initialization"));
   parameter Boolean steadystate_T_wall=false
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
   parameter Boolean T_wall_fixed=false
-    "if true, imposes the initial wall temperature"                                    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, imposes the initial wall temperature"                                    annotation (Dialog(group="Initialization options", tab="Initialization"));
  parameter Boolean Cp_constant=false
-    "if true, sets the specific heat capacity Cp to a constant value computed with inital conditions";
+    "if true, sets the specific heat capacity Cp to a constant value computed with initial conditions";
 
   /******************************* VARIABLES *****************************/
   Modelica.SIunits.Area A(start=A_cf);

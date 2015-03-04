@@ -107,13 +107,13 @@ parameter HT_sf HTtype_sf=HT_sf.Const
      annotation (Dialog(enable=filter_dMdt, group="Numerical options"));
   parameter Boolean steadystate_T_sf=true
     "if true, sets the derivative of T_sf to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
   parameter Boolean steadystate_h=true
     "if true, sets the derivative of h (working fluid enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
   parameter Boolean steadystate_T_wall=true
     "if true, sets the derivative of T_wall to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
   /* VARIABLES */
   /* SECONDARY FLUID */
   Modelica.SIunits.MassFlowRate M_dot_sf;

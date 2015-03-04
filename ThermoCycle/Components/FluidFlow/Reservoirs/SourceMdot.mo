@@ -65,7 +65,7 @@ equation
                     graphics),Documentation(info="<HTML> 
                     <p><big> Model <b>SourceMdot</b> represents an ideal mass flow sources, with prescribed enthalpy of the fluid flowing from the model to the port (i.e. out of the model).
                  <p><b><big>Modelling options</b></p>
-               <p><big> In the <b>General</b> tab the following option is availabe:
+               <p><big> In the <b>General</b> tab the following option is available:
         <ul>
         <li> UseT: if true uses the temperature as an input instead of using enthalpy</ul> 
  <p><big> The mass flow and temperature or enthalpy can be set as parameters or defined by the connectors. 

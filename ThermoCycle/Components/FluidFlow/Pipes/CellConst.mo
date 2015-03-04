@@ -33,7 +33,7 @@ model CellConst
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
 parameter Boolean steadystate=true
     "if true, sets the derivative of T to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 
 /********************************* VARIABLES **************************************************/
   Modelica.SIunits.Temperature T_su;
@@ -120,7 +120,7 @@ equation
   <p><big> The thermal energy transfer  through the lateral surface is computed by the <em><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></em> model which is inerithed in the <em>CellConst</em> model.
          
           <p><b><big>Modelling options</b></p>
-        <p><big> In the <b>General</b> tab the following option is availabe:
+        <p><big> In the <b>General</b> tab the following option is available:
         <ul>
         <li> HeatTransfer: the user can choose the thermal energy model he prefers </ul> 
           <p><b><big>Numerical options</b></p>

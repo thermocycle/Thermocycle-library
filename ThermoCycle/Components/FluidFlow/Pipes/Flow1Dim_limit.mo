@@ -86,7 +86,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
-     annotation (Dialog(group="Intialization options", tab="Initialization"));
+     annotation (Dialog(group="Initialization options", tab="Initialization"));
  /******************************* HEAT TRANSFER MODEL **************************************/
 replaceable model Flow1Dim_limitHeatTransferModel =
       ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence

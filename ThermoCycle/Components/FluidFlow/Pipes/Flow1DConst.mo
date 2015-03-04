@@ -53,7 +53,7 @@ end SummaryClass;
     annotation (Dialog(tab="Initialization"));
 parameter Boolean steadystate=true
     "if true, sets the derivative of T to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 
  /************************** NUMERICAL OPTIONS  ******************************/
   import ThermoCycle.Functions.Enumerations.Discretizations;
@@ -119,7 +119,7 @@ end for;
       smooth=Smooth.None));
   annotation (Icon(graphics={Rectangle(extent={{-90,40},{90,-40}},
             lineColor={0,0,255})}), Diagram(graphics),Documentation(info="<HTML>
-            <p><big>This model describes the flow of a constant heat capacity fluid through a discretized one dimentional tube.  It is obtained by connecting in series <b>N</b> <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.CellConst\">CellConst</a>
+            <p><big>This model describes the flow of a constant heat capacity fluid through a discretized one dimensional tube.  It is obtained by connecting in series <b>N</b> <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.CellConst\">CellConst</a>
                 
             <p><big> The model is characterized by a SummaryClass that provide a quick access to the following variables once the model is simulated:
            <ul><li> Temperature at each nodes

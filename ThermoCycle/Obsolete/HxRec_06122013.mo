@@ -6,7 +6,7 @@ replaceable package MediumCold = ThermoCycle.Media.R245fa_CP
     constrainedby Modelica.Media.Interfaces.PartialMedium "Medium model";
   // Heat exchanger characteristics:
   parameter Integer N(min=1)=5 "Number of cells";
-  parameter Modelica.SIunits.Area A=16.18 "Lenght of the tube";
+  parameter Modelica.SIunits.Area A=16.18 "Length of the tube";
   parameter Modelica.SIunits.Volume V= 0.03781
     "Heat exchanger internal volume, cold fluid side";
   Modelica.SIunits.Volume Vi=V/N;
@@ -96,10 +96,10 @@ replaceable package MediumCold = ThermoCycle.Media.R245fa_CP
     annotation (Dialog(enable=filter_dMdt, group="Numerical options"));
   parameter Boolean steadystate_h=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
   parameter Boolean steadystate_T_wall=true
     "if true, sets the derivative of T_wall to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 /*VARIABLES */
    /*HOT FLUID */
   MediumHot.ThermodynamicState  fluidStateHot[N];

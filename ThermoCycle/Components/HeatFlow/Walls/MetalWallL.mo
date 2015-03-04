@@ -13,7 +13,7 @@ model MetalWallL
     annotation (Dialog(tab="Initialization"));
 /*Numerical Option */
 parameter Boolean steadystate_T_wall=true
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
 ThermoCycle.Interfaces.HeatTransfer.ThermalPortL  Wall_int(T(start=Tstart_wall))
     annotation (Placement(transformation(extent={{-30,20},{30,40}}),
         iconTransformation(extent={{-30,20},{30,40}})));
