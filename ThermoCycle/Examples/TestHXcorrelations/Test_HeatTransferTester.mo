@@ -61,12 +61,14 @@ model Test_HeatTransferTester "A test driver for the different implementations o
     parameter Modelica.SIunits.MassFlowRate m_dot_end=m_dot_start
       "Final flow rate";
 
+    parameter Boolean use_T=true "use temp. or heat flux?";
+    parameter Modelica.SIunits.HeatFlux q=1e4 "constant heat flux";
     parameter Boolean Delta_T_const=false "Constant dT?";
-    parameter Modelica.SIunits.TemperatureDifference Delta_T=15
+    parameter Modelica.SIunits.TemperatureDifference Delta_T=5
       "wall temperature difference";
     ThermoCycle.Components.HeatFlow.Sources.Source_T_cell source_T;
     parameter Boolean twoPhase=false "is two-phase medium?";
-    parameter Real Delta_x=0.55;
+    parameter Real Delta_x=0.05;
 
     Medium.SpecificEnthalpy Delta_h, h_evap;
 
@@ -90,6 +92,7 @@ model Test_HeatTransferTester "A test driver for the different implementations o
     T_end = Medium.temperature_ph(p_end, h_end) + Delta_T;
     T_start = Medium.temperature(bubbleState) + Delta_T - (Delta_x*(T_end -
       Delta_T - Medium.temperature(bubbleState)))/(1 + Delta_x - 0);
+    //T_start = Medium.temperature_ph(p_start, h_start) + Delta_T;
   else
     // Only outside the two-phase domain
     Delta_h = h_end-h_start-h_evap;
@@ -103,10 +106,14 @@ model Test_HeatTransferTester "A test driver for the different implementations o
     T_end = Medium.temperature_ph(p_end, h_end) + Delta_T;
   end if;
 
-  if Delta_T_const then
-    T_port = Medium.temperature(state) + Delta_T;
+  if use_T then
+    if Delta_T_const then
+      T_port = Medium.temperature(state) + Delta_T;
+     else
+      T_port = (1-y) * T_start     + y * T_end;
+    end if;
   else
-    T_port = (1-y) * T_start     + y * T_end;
+    heatTransfer.q_dot[1]=q;
   end if;
   state = Medium.setState_phX(p=p, h=h);
   T_port = source_T.Temperature;
@@ -117,8 +124,8 @@ model Test_HeatTransferTester "A test driver for the different implementations o
   InputSelector tester(
     redeclare package Medium = ThermoCycle.Media.R134a_CP(substanceNames={"R134a|debug=0|calc_transport=1|enable_EXTTP=1|enable_TTSE=0"}),
     m_dot_start=0.025,
-    p_start=675000,
-    twoPhase=true)
+    twoPhase=true,
+    p_start=675000)
     annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
 
   annotation (experiment(StopTime=10));

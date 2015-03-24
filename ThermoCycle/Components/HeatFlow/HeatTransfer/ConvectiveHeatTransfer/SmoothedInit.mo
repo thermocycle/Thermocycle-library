@@ -1,6 +1,6 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer;
 model SmoothedInit
-  "SmoothedInit: Smooth transitions between the different flow regimes including an initialisation and a filtering"
+  "SmoothedInit: Smooth transitions between the different zones including an initialisation and a filtering"
   extends BaseClasses.PartialConvectiveSmoothed(
   redeclare replaceable package Medium =
         Modelica.Media.Interfaces.PartialTwoPhaseMedium

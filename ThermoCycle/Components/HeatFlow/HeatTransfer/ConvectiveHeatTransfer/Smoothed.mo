@@ -1,6 +1,5 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer;
-model Smoothed
-  "Smoothed: Smooth transitions between the different flow regimes"
+model Smoothed "Smoothed: Smooth transitions between the different zones"
   extends BaseClasses.PartialConvectiveSmoothed;
 equation
   for i in 1:n loop

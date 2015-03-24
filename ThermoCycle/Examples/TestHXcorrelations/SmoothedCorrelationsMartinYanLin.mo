@@ -14,6 +14,6 @@ model SmoothedCorrelationsMartinYanLin
 
           redeclare model TwoPhaseCorrelation =
               ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations.YanLin_Evaporation
-              (d_hyd(displayUnit="m") = 2*0.002, A_cro=0.002*2*0.1))));
+              (d_hyd(displayUnit="m") = 2*0.002, A_cro=0.002*0.1))));
 
 end SmoothedCorrelationsMartinYanLin;

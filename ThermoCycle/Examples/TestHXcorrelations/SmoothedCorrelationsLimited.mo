@@ -14,5 +14,5 @@ model SmoothedCorrelationsLimited
               (U_c=tester.U_nom_v),
           t_start=Modelica.Constants.small,
           t_init=Modelica.Constants.small,
-          max_dUdt=2500)));
+          max_dUdt=2000)));
 end SmoothedCorrelationsLimited;

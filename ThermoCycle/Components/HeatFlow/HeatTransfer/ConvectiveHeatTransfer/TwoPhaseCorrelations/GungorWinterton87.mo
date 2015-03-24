@@ -42,7 +42,7 @@ equation
   Fr_l = G^2/(rho_l^2*Modelica.Constants.g_n*d_hyd);
   //calculation of E_new
   Bo =  abs(q_dot)/(abs(G)*(h_v - h_l));  //Boiling number
-  Term1 =  1 + 3000*Bo^0.86 + 1.12*x/(1-x)^0.75*(rho_l/rho_v)^0.41;
+  Term1 =  1 + 3000*Bo^0.86 + 1.12*(x/(1-x))^0.75*(rho_l/rho_v)^0.41;
   Term2 =  if (Fr_l<0.05) then Fr_l^(0.1-2*Fr_l) else 1;
   U = liquidCorrelation.U*Term1*Term2;
     annotation(Documentation(info="<html>
@@ -52,6 +52,13 @@ equation
  calculates the heat transfer coefficient based on the GungerWinterton correlation.
  </p>
 
+<dl>
+<dt>article<a name=\"Shah1982\">(GungorWinterton87)</a></dt>
+<dd>Gungor, K. E. and Winterton, R. H. S.</dd>
+<dd><i>Simplified general correlation for saturated flow boiling and ccomparison of correlations with data</i></dd>
+<dd>Chemical Engineering Research and Design, <b>1987</b>, Vol. 65        , pp. 148-156</dd>
+
+</dl>
 
 <p></p>
 
