@@ -1,5 +1,5 @@
-within ThermoCycle.Examples.TestComponents;
-model Test_Hx1DInc
+within ThermoCycle.Examples.TestHXcorrelations;
+model HX1D_original
 
   ThermoCycle.Components.Units.HeatExchangers.Hx1DInc hx1DInc(
     Mdotnom_sf=3.148,
@@ -68,4 +68,4 @@ equation
   annotation (Diagram(graphics),
     experiment(StopTime=1000),
     __Dymola_experimentSetupOutput);
-end Test_Hx1DInc;
+end HX1D_original;

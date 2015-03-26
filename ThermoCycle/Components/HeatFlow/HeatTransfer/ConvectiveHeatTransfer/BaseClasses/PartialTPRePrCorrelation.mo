@@ -25,9 +25,9 @@ partial model PartialTPRePrCorrelation
 
 equation
   // Filter the input to provide saturation conditions only
-  if     (Medium.vapourQuality(state) >= 0.0 and Medium.vapourQuality(state) < 0.5) then
+  if     (Medium.vapourQuality(state) > 0.0 and Medium.vapourQuality(state) < 0.5) then
     filteredState = Medium.setBubbleState(Medium.setSat_p(Medium.pressure(state)));
-  elseif (Medium.vapourQuality(state) > 0.5 and Medium.vapourQuality(state) <= 1.0) then
+  elseif (Medium.vapourQuality(state) > 0.5 and Medium.vapourQuality(state) < 1.0) then
     filteredState = Medium.setDewState(Medium.setSat_p(Medium.pressure(state)));
   else
     filteredState = state;

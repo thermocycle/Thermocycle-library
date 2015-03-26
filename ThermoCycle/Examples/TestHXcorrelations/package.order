@@ -9,3 +9,7 @@ SmoothedCorrelationsMartinYanLin
 Test_Hx1DConst
 Test_Hx1DInc
 Test_Hx1DIncCP
+HX1D_original
+HX1D_modified
+HX1D_changed
+HX1D_flowInputs

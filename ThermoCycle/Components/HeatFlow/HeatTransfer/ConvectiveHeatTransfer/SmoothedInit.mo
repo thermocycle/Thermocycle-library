@@ -18,6 +18,7 @@ model SmoothedInit
   parameter Real max_dUdt(unit="W/(m2.K.s)") = 0
     "maximum change in HTC, 0=disabled, experimental!"
                              annotation(Dialog(group="Correlations"),enabled=(filterConstant>0));
+
   Modelica.SIunits.CoefficientOfHeatTransfer U_limited;
   Modelica.SIunits.CoefficientOfHeatTransfer U_filtered;
   Modelica.SIunits.CoefficientOfHeatTransfer U_initialized;
@@ -101,9 +102,16 @@ equation
   h_dew_TP = h_bub + x_TPV*delta_h;
   h_dew_V  = h_bub + x_V  *delta_h;
 
-  h_L      = min(h,h_bub_L);
-  h_TP     = max(h_bub_TP,min(h_dew_TP, h));
-  h_V      = max(h,h_dew_V);
+  if forcePhase == 0 then
+    assert(delta_h<>0.0,"Cannot determine the phase if bubble and dew enthalpy are equal");
+    h_L      = min(h,h_bub_L);
+    h_TP     = max(h_bub_TP,min(h_dew_TP, h));
+    h_V      = max(h,h_dew_V);
+  else // use enthalpy directly
+    h_L      = h;
+    h_TP     = h;
+    h_V      = h;
+  end if;
 
   state_L  = Medium.setState_phX(p=p,h=h_L);
   state_TP = Medium.setState_phX(p=p,h=h_TP);

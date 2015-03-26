@@ -8,6 +8,11 @@ parameter Real smoothingRange(min=0,max=1) = 0.2
     "Vapour quality smoothing range";
 parameter Real    massFlowExp(min=0,max=1) = 0.8
     "Mass flow correction term, disable with 0.0";
+  parameter Integer forcePhase=0 "Ignore all other phases" annotation (choices(
+      choice=0 "Disabled",
+      choice=1 "Liquid",
+      choice=2 "Two-phase",
+      choice=3 "Gaseous"));
 
 // parameter Modelica.SIunits.MassFlowRate m_dot_nom "Nomnial Mass flow rate" annotation(Dialog(group="Nominal Operation"));
 // parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_l
@@ -25,7 +30,7 @@ parameter Real    massFlowExp(min=0,max=1) = 0.8
   Modelica.SIunits.CoefficientOfHeatTransfer    U_nom;
 
   Real LTP(min=0,max=1);
-  Real TPV(min=0, max=1);
+  Real TPV(min=0,max=1);
   Real LV(min=0, max=1);
   Real massFlowFactor(min=0);
   Real x_L;
@@ -40,17 +45,30 @@ equation
   x_LTP = 0+smoothingRange/divisor;
   x_TPV = 1-smoothingRange/divisor;
   x_V   = 1+smoothingRange/divisor;
-
-  LTP = ThermoCycle.Functions.transition_factor_alt(switch=0, trans=smoothingRange, position=x);
-  TPV = ThermoCycle.Functions.transition_factor_alt(switch=1, trans=smoothingRange, position=x);
+  if forcePhase == 0 then
+    LTP = ThermoCycle.Functions.transition_factor_alt(switch=0, trans=smoothingRange, position=x);
+    TPV = ThermoCycle.Functions.transition_factor_alt(switch=1, trans=smoothingRange, position=x);
+    // Not really needed, but might be more robust
+    LV  = ThermoCycle.Functions.transition_factor(start=0,    stop=1,     position=x);
+  elseif forcePhase == 1 then // liquid only
+    LTP = 0;
+    TPV = 0;
+    LV  = 0;
+  elseif forcePhase == 2 then // two-phase only
+    LTP = 1;
+    TPV = 0;
+    LV  = ThermoCycle.Functions.transition_factor(start=0,    stop=1,     position=x);
+  elseif forcePhase == 3 then // gas only
+    LTP = 1;
+    TPV = 1;
+    LV  = 1;
+  else
+    assert(1==0,"Error in phase determination");
+  end if;
 
   U_nom_LTP = (1-LTP)* Unom_l    + LTP*Unom_tp;
   U_nom_TPV = (1-TPV)* Unom_tp   + TPV*Unom_v;
-
-  // Not really needed, but more robust
-  LV   = ThermoCycle.Functions.transition_factor(start=0,    stop=1,     position=x);
   U_nom     = (1-LV) * U_nom_LTP + LV* U_nom_TPV;
-
   // Do the mass flow correction
   massFlowFactor = noEvent(abs(M_dot/Mdotnom)^massFlowExp);
 

@@ -39,9 +39,9 @@ equation
 
   // Filter the input to provide saturation conditions only.
   // Be careful, vapourQuality function is limited to 0<=x<=1
-  if     (Medium.vapourQuality(state) <= 0+deltaX) then
+  if     (Medium.vapourQuality(state) < 0+deltaX) then
     filteredState =  bubbleState_TP;
-  elseif (Medium.vapourQuality(state) >= 1-deltaX) then
+  elseif (Medium.vapourQuality(state) > 1-deltaX) then
     filteredState =  dewState_TP;
   else
     filteredState =  state;

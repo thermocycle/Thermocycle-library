@@ -10,7 +10,7 @@ model Test_Hx1DConst
 
 ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
       Medium = Medium,  p0=2357000)
-    annotation (Placement(transformation(extent={{82,-10},{102,10}})));
+    annotation (Placement(transformation(extent={{60,0},{80,20}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     Mdot_0=0.2588,
     h_0=281455,
@@ -18,7 +18,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     redeclare package Medium = Medium,
     p=2357000,
     T_0=353.15)
-    annotation (Placement(transformation(extent={{-92,-10},{-72,10}})));
+    annotation (Placement(transformation(extent={{-80,0},{-60,20}})));
  ThermoCycle.Components.Units.HeatExchangers.Hx1DConst hx1DConst(
     redeclare package Medium1 = Medium,
     steadystate_T_sf=true,
@@ -33,25 +33,26 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceWF(
     rho=928.2,
     Mdot_0=3,
     T_0=418.15)
-    annotation (Placement(transformation(extent={{-18,62},{0,80}})));
+    annotation (Placement(transformation(extent={{-10,50},{10,70}})));
 equation
   connect(sourceWF.flangeB, hx1DConst.inletWf)
                                              annotation (Line(
-      points={{-73,0},{-66,0},{-66,-2},{-56,-2},{-56,10},{-20,10}},
+      points={{-61,10},{-20,10}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(hx1DConst.outletWf, sinkPFluid.flangeB)
                                                 annotation (Line(
-      points={{20,10},{22,10},{22,6},{36,6},{36,-2},{83.6,-2},{83.6,0}},
+      points={{20,10},{22,10},{22,10},{36,10},{36,10},{60,10},{62,10},{62,10},{
+          61.6,10}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(source_Cdot.flange, hx1DConst.inletSf)
                                                annotation (Line(
-      points={{-1.62,70.91},{36,70.91},{36,30},{20,30}},
+      points={{8.2,59.9},{36,59.9},{36,30},{20,30}},
       color={255,0,0},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=true),
+          preserveAspectRatio=false),
                       graphics), Icon(coordinateSystem(extent={{-100,-100},
             {100,100}})),
     experiment(StopTime=1000),
