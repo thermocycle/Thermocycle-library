@@ -102,20 +102,20 @@ equation
   h_dew_TP = h_bub + x_TPV*delta_h;
   h_dew_V  = h_bub + x_V  *delta_h;
 
-  if forcePhase == 0 then
-    assert(delta_h<>0.0,"Cannot determine the phase if bubble and dew enthalpy are equal");
-    h_L      = min(h,h_bub_L);
-    h_TP     = max(h_bub_TP,min(h_dew_TP, h));
-    h_V      = max(h,h_dew_V);
-  else // use enthalpy directly
-    h_L      = h;
-    h_TP     = h;
-    h_V      = h;
-  end if;
+  h_L      = min(h,h_bub_L);
+  h_TP     = max(h_bub_TP,min(h_dew_TP, h));
+  h_V      = max(h,h_dew_V);
 
-  state_L  = Medium.setState_phX(p=p,h=h_L);
-  state_TP = Medium.setState_phX(p=p,h=h_TP);
-  state_V  = Medium.setState_phX(p=p,h=h_V);
+  if forcePhase == 0 then
+    assert(abs(delta_h)>0.1,"Cannot determine the phase if bubble and dew enthalpy are equal");
+    state_L  = Medium.setState_phX(p=p,h=h_L);
+    state_TP = Medium.setState_phX(p=p,h=h_TP);
+    state_V  = Medium.setState_phX(p=p,h=h_V);
+  else // use enthalpy directly
+    state_L  = Medium.setState_phX(p=p,h=h);
+    state_TP = state_L;
+    state_V  = state_L;
+  end if;
 
   U_cor_l  = liquidCorrelation.U;
   U_cor_tp = twoPhaseCorrelation.U;

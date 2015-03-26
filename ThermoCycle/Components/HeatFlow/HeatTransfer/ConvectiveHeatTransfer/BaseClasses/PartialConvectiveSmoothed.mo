@@ -52,14 +52,14 @@ equation
     LV  = ThermoCycle.Functions.transition_factor(start=0,    stop=1,     position=x);
   elseif forcePhase == 1 then // liquid only
     LTP = 0;
-    TPV = 0;
+    TPV = 1;
     LV  = 0;
   elseif forcePhase == 2 then // two-phase only
     LTP = 1;
     TPV = 0;
     LV  = ThermoCycle.Functions.transition_factor(start=0,    stop=1,     position=x);
   elseif forcePhase == 3 then // gas only
-    LTP = 1;
+    LTP = 0;
     TPV = 1;
     LV  = 1;
   else
