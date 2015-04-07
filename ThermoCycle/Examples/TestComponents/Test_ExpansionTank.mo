@@ -21,7 +21,7 @@ model Test_ExpansionTank
     pstart=200000)
             annotation (Placement(transformation(extent={{6,2},{36,38}})));
    // redeclare model HeatTransfer =
-    //    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Ideal,
+    //    ThermoCycle.Components.HeatFlow.HeatTransfer.Ideal,
 
  Components.FluidFlow.Reservoirs.SinkVdot             sinkVdot(
     redeclare package Medium = ThermoCycle.Media.Water,

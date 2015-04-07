@@ -62,10 +62,10 @@ parameter Boolean counterCurrent = true
     "Swap temperature and flux vector order";
 /*Secondary fluid*/
 replaceable model Medium2HeatTransferModel =
-  ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence
+  ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation_IdealFluid
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation_IdealFluid
+                                                                                                      annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_sf = 369
     "Coefficient of heat transfer, secondary fluid" annotation (Dialog(group="Heat transfer", tab="General"));
@@ -73,10 +73,10 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_sf = 369
 /*Working fluid*/
 
 replaceable model Medium1HeatTransferModel =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+    ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+                                                                                                      annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_wf=300
     "Coefficient of heat transfer, primary fluid" annotation (Dialog(group="Heat transfer", tab="General"));
 

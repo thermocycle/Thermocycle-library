@@ -12,7 +12,7 @@ model step5
     redeclare package Medium2 = ThermoCycle.Media.Water,
     N=10,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     M_wall=10,
     Mdotnom_sf=0.52,
     Mdotnom_wf=0.044,

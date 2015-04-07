@@ -10,7 +10,6 @@ model SmoothedCorrelationsMartinShah
           redeclare model VapourCorrelation =
               ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.Martin,
           redeclare model TwoPhaseCorrelation =
-
               ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.Shah_Evaporation
               (
               d_hyd(displayUnit="m") = 0.002*2,

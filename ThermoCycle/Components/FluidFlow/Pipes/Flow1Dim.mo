@@ -83,9 +83,9 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
      annotation (Dialog(group="Initialization options", tab="Initialization"));
 /******************************* HEAT TRANSFER MODEL **************************************/
 replaceable model Flow1DimHeatTransferModel =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+    ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
 constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
     "Fluid heat transfer model" annotation (choicesAllMatching = true);
 /***************  VARIABLES ******************/
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";

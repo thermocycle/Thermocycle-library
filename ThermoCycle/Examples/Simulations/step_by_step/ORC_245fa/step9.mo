@@ -10,9 +10,9 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     steadystate_T_wall=true,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-62,46},{-34,70}})));
 
 ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
@@ -64,9 +64,9 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1D       recuperator(
     steadystate_T_wall=true,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare model ColdSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     redeclare package Medium2 = ThermoCycle.Media.R245fa_CP,
     pstart_hot=177800)
@@ -101,9 +101,9 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    condenser(
     steadystate_T_wall=true,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,

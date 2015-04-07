@@ -26,10 +26,10 @@ parameter Integer N(min=1) = 5 "Number of cells";
 /******************************** HEAT TRANSFER **************************************************/
 /*Secondary fluid*/
 replaceable model Medium2HeatTransferModel =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+    ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+                                                                                                      annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 /*Working fluid*/
 replaceable model Medium1HeatTransferModel =
     ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence

@@ -86,7 +86,7 @@ package HeatStorageWaterHeater
     Cell1DimInc_2ports cell1DimInc_hx[N](
       redeclare package Medium = ThermoCycle.Media.StandardWater,
       redeclare model HeatTransfer =
-          ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+          ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
       each Vi=V_tank/N,
       each Mdotnom=1,
       each Unom=U_amb,
@@ -299,9 +299,9 @@ package HeatStorageWaterHeater
     /********************************* HEAT TRANSFER MODEL ********************************/
     /* Heat transfer Model */
     replaceable model HeatTransfer =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
       constrainedby
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+      ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
       "Convective heat transfer" annotation (choicesAllMatching=true);
     HeatTransfer heatTransfer(
       redeclare final package Medium = Medium,

@@ -15,7 +15,7 @@ model Test_Cell1D
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind,
     pstart=866735,
     redeclare model HeatTransfer =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence)
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence)
     annotation (Placement(transformation(extent={{-28,10},{-8,30}})));
 
   ThermoCycle.Components.HeatFlow.Sources.Source_T_cell source_T

@@ -103,10 +103,10 @@ parameter Boolean steadystate_T_fl=false
 /*************************** HEAT TRANSFER ************************************/
 /*Secondary fluid*/
 replaceable model FluidHeatTransferModel =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+    ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+                                                                                                      annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 
 /******************************************  COMPONENTS *********************************************************/
 

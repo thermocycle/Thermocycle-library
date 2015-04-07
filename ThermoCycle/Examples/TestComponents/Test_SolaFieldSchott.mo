@@ -4,7 +4,7 @@ model Test_SolaFieldSchott
  ThermoCycle.Components.Units.Solar.SolarField_SchottSopo         solarCollectorIncSchott(
     Mdotnom=0.5,
     redeclare model FluidHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Ideal,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Ideal,
     redeclare
       ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Schott_SopoNova.Schott_2008_PTR70_Vacuum
       CollectorGeometry,

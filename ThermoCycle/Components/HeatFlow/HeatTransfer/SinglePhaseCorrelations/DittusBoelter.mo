@@ -21,7 +21,7 @@ equation
 annotation(Documentation(info="<html>
 
 <p><big> The model <b>DittusBoelter</b> extends the partial model
- <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialTPRePrCorrelation\">PartialTPRePrCorrelation</a> and allows the user to define
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialTPRePrCorrelation\">PartialTPRePrCorrelation</a> and allows the user to define
  the value of the hydraulic diameter for the calculation of the heat transfer coefficient based on the DittusBoelter correlation.
  <p></p>
 </html>"));

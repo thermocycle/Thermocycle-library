@@ -16,7 +16,7 @@ input Modelica.SIunits.MassFlowRate M_dot "Inlet massflow";
 input Real x "Vapor quality";
 annotation(Documentation(info="<html>
 
-<p><big> The partial model <b>PartialConvectiveCorrelation</b> extends the partial model
+<p><big> The partial model <b>PartialCorrelation</b> extends the partial model
  <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClass.PartialHeatTransfer\">PartialHeatTransfer</a> 
  and defines some inputs, that are needed to compute the convective heat transfer coefficient for a fluid flow:
    <ul><li> Mdotnom = Nominal mass flow rate

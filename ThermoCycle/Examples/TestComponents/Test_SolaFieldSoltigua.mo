@@ -9,7 +9,7 @@ ThermoCycle.Components.Units.Solar.SolarField_Soltigua_Inc        solarCollector
       ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua.PTMx_18
       CollectorGeometry,
     redeclare model FluidHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     redeclare package Medium1 =
         ThermoCycle.Media.Incompressible.IncompressibleTables.TherminolSP,
     Tstart_inlet=298.15,

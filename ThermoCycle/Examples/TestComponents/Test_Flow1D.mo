@@ -11,7 +11,7 @@ model Test_Flow1D
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare package Medium = ThermoCycle.Media.SES36_CP,
     redeclare model Flow1DimHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     Unom_tp=400,
     pstart=1000000,
     Tstart_inlet=323.15,

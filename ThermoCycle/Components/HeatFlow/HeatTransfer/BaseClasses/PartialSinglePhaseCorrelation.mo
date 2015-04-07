@@ -1,6 +1,7 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
 partial model PartialSinglePhaseCorrelation
   "Base class for single phase heat transfer correlations"
+      extends ThermoCycle.Icons.HeatTransfer;
 
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium in the component"

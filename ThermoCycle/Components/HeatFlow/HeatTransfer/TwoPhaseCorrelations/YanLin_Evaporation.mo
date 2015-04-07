@@ -56,7 +56,7 @@ equation
   U  = Nu * k_l / d_hyd;
 
   annotation (Documentation(info="<html>
-<p>The model <b>YanLin_Evaporation</b> extends the partial model <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialTwoPhaseCorrelation\">PartialTwoPhaseCorrelation</a> and calculates the heat transfer coefficient</p>
+<p>The model <b>YanLin_Evaporation</b> extends the partial model <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialTwoPhaseCorrelation\">PartialTwoPhaseCorrelation</a> and calculates the heat transfer coefficient</p>
 <p><i><b>Article</b></i><a name=\"Yan1999a\"> </a>(Yan1999a)</p>
 <p>Yan, Y. &AMP; Lin, T.</p>
 <p>Evaporation heat transfer and pressure drop of refrigerant R-134a in a plate heat exchanger</p>

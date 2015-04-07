@@ -13,7 +13,7 @@ model Test_CrossCondenser
     A_sf=252.09,
     M_wall_tot=2552.13,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence,
     Mdotnom_sf=585176/3600,
     U_wf=9250,
     h_su_wf_start=2.053e6,

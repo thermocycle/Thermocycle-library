@@ -21,7 +21,7 @@ package Sizing
       V_wf=0.0314159,
       Unom_sf=20000,
       redeclare model Medium1HeatTransferModel =
-          ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+          ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
       Unom_l=3000,
       Unom_tp=10000,
       Unom_v=3000,

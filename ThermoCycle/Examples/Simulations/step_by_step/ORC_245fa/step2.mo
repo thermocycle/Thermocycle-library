@@ -19,7 +19,7 @@ model step2
     steadystate_h_wf=false,
     steadystate_T_wall=false,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-30,-2},{2,36}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,

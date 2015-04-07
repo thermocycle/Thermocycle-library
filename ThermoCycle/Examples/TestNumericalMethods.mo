@@ -83,7 +83,7 @@ package TestNumericalMethods
       Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
       redeclare package Medium = CoolProp2Modelica.Media.SES36_CP,
       redeclare model Flow1DimHeatTransferModel =
-          ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+          ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
       pstart=1000000,
       Tstart_inlet=323.15,
       Tstart_outlet=373.15,

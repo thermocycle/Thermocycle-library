@@ -142,9 +142,9 @@ parameter Modelica.SIunits.Pressure pstart
    /*******************************   HEAT TRANSFER MODEL    **************************************/
 
 replaceable model FluidHeatTransferModel =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+    ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
 constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
     "Fluid heat transfer model" annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 
  /******************************* COMPONENTS ***********************************/

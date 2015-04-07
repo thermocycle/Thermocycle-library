@@ -16,9 +16,9 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     steadystate_h_wf=false,
     steadystate_T_wall=false,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-46,28},{-12,60}})));
 
@@ -74,9 +74,9 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     steadystate_h_hot=false,
     redeclare model ColdSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     redeclare package Medium2 = ThermoCycle.Media.R245fa_CP)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
@@ -107,9 +107,9 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
     filter_dMdt_wf=true,
     N=10,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     pstart_wf=154883,

@@ -16,7 +16,7 @@ model step5
     steadystate_h_wf=false,
     steadystate_T_wall=false,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance)
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-46,28},{-12,60}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot(
     cp=1978,
@@ -69,9 +69,9 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1D    recuperator(
     steadystate_h_hot=true,
     steadystate_T_wall=true,
     redeclare model ColdSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     redeclare model HotSideSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     redeclare package Medium2 = ThermoCycle.Media.R245fa_CP)

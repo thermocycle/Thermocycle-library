@@ -8,7 +8,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc                  evaporator(
     redeclare package Medium2 =
         ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-62,46},{-34,70}})));
 
@@ -56,9 +56,9 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     redeclare package Medium1 = OrganicMedium,
     redeclare package Medium2 = OrganicMedium,
     redeclare model ColdSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     pstart_hot=177800,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
@@ -93,7 +93,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc                 condenser(
     redeclare package Medium2 =
         Modelica.Media.Water.ConstantPropertyLiquidWater,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,

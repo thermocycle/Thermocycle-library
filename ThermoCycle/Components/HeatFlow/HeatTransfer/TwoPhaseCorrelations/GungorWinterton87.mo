@@ -49,7 +49,7 @@ equation
     annotation(Documentation(info="<html>
 
 <p><big> The model <b>GungorWinterton87</b> extends the partial model
- <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialTwoPhaseCorrelation\">PartialTwoPhaseCorrelation</a> and 
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialTwoPhaseCorrelation\">PartialTwoPhaseCorrelation</a> and 
  calculates the heat transfer coefficient based on the GungerWinterton correlation.
  </p>
 

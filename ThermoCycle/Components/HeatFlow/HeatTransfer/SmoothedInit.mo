@@ -147,11 +147,11 @@ equation
   end for;
 
  annotation(Documentation(info="<html>
-<p>The model <b>SmoothedInit</b> extends the partial model <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveSmoothed\">PartialConvectiveSmoothed</a> and allows the user to choose the correlation to calculate the heat transfer coefficient in the different zones: </p>
+<p>The model <b>SmoothedInit</b> extends the partial model <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSmoothed\">PartialSmoothed</a> and allows the user to choose the correlation to calculate the heat transfer coefficient in the different zones: </p>
 <p><ul>
-<li>liquidCorrelation: correlation for the liquid zone. The user can choose between the ones listed in <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations\">SinglePhaseCorrelations</a> </li>
-<li>twoPhaseCorrelation : correlation for the two-phase zone. The user can choose between the ones listed in <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations\">TwoPhaseCorrelations</a> </li>
-<li>vaporCorrelation: correlation for the vapor zone.The user can choose between the ones listed in <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations\">SinglePhaseCorrelations</a> </li>
+<li>liquidCorrelation: correlation for the liquid zone. The user can choose between the ones listed in <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations\">SinglePhaseCorrelations</a> </li>
+<li>twoPhaseCorrelation : correlation for the two-phase zone. The user can choose between the ones listed in <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations\">TwoPhaseCorrelations</a> </li>
+<li>vaporCorrelation: correlation for the vapor zone.The user can choose between the ones listed in <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations\">SinglePhaseCorrelations</a> </li>
 </ul></p>
 <p>In order to increase the robustness of the model an initialization option is available:the heat transfer coefficient value is initialized with the nominal value defined by the user U_nom, and after a certain time (t_init - see below) the value is smoothed to the one calculated with the correlations previusly defined by the user.</p>
 <p>In cases of fluctuating pressures and chattering, applying a first order filter to the change in heat transfer coefficient increases stability, set the parameter filterConstant &GT; 0 to activate it.</p>

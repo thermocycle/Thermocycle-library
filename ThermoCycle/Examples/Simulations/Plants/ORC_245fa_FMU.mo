@@ -9,7 +9,7 @@ model ORC_245fa_FMU
     steadystate_T_wall=false,
     Unom_sf=335,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-92,46},{-64,70}})));
 
@@ -60,9 +60,9 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
     Mdotconst_hot=true,
     steadystate_T_wall=true,
     redeclare model ColdSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     redeclare model HotSideSideHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     pstart_hot=177800)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
@@ -97,7 +97,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst condenser(redeclare
     steadystate_h_wf=true,
     Unom_sf=335,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,

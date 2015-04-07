@@ -16,7 +16,7 @@ q_dot = {U[i]*(thermalPortL[i].T - T_fluid[i])};
   end for;
    annotation(Documentation(info="<html>
 <p><big> The model <b>MassFlowDependance</b> extends the partial model
- <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation\">PartialConvectiveCorrelation</a>
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation\">PartialCorrelation</a>
  and use the following equation to compute the heat transfer coefficient:
  
   <p>

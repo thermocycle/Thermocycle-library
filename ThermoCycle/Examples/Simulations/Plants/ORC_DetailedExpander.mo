@@ -41,7 +41,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot Heat_source(cp=4232)
     max_drhodt_wf=80,
     max_der_wf=true,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     steadystate_h_wf=false,
@@ -74,7 +74,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst Condenser(
     max_drhodt_wf=40,
     filter_dMdt_wf=true,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.VaporQualityDependance,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     pstart_wf=148400,

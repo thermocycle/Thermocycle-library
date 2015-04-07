@@ -4,7 +4,7 @@ model step1
   ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim flow1Dim(
     Mdotnom=0.044,
     redeclare model Flow1DimHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     A=4,
     V=0.002,
     redeclare package Medium = ThermoCycle.Media.R407c_CP,

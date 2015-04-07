@@ -38,9 +38,9 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
 /********************************* HEAT TRANSFER MODEL ********************************/
 /* Heat transfer Model */
 replaceable model HeatTransfer =
-ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
 constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
     "Convective heat transfer"                                                         annotation (choicesAllMatching = true);
 HeatTransfer heatTransfer( redeclare final package Medium = Medium,
 final n=1,

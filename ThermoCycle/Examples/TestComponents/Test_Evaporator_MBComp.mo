@@ -1,5 +1,6 @@
 within ThermoCycle.Examples.TestComponents;
 model Test_Evaporator_MBComp
+
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot source_Cdot3_2(
     Mdot_0=2,
     T_0=653.15,
@@ -18,7 +19,7 @@ model Test_Evaporator_MBComp
     V_wf=0.0314159,
     Unom_sf=20000,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     Unom_l=3000,
     Unom_tp=10000,
     Unom_v=3000,
