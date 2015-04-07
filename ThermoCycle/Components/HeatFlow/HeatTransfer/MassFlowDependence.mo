@@ -1,8 +1,8 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer;
+within ThermoCycle.Components.HeatFlow.HeatTransfer;
 model MassFlowDependence
 
 extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialConvectiveCorrelation;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation;
 Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "Nominal heat transfer coefficient- Average of liquid two phase and vapor";
 Modelica.SIunits.CoefficientOfHeatTransfer[n] U "Heat transfer coefficient";

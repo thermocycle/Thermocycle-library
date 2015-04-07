@@ -1,4 +1,4 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations;
+within ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations;
 model Martin
   "The Martin approach for plate heat exchangers from VDI Heat Atlas"
   extends

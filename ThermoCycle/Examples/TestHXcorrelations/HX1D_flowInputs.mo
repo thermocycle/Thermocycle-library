@@ -2,7 +2,6 @@ within ThermoCycle.Examples.TestHXcorrelations;
 model HX1D_flowInputs
   extends HX1D_modified(hx1DInc(redeclare model Medium1HeatTransferModel =
           ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Smoothed,
-
       N=9,
       V_sf(displayUnit="l") = 0.000195,
       V_wf(displayUnit="l") = 0.000156,
@@ -20,4 +19,5 @@ model HX1D_flowInputs
       Mdot_0=0.02,
       p=900000,
       UseT=true));
+
 end HX1D_flowInputs;

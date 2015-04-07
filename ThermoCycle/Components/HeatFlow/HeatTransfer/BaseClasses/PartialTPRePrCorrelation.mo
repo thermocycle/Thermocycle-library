@@ -1,7 +1,8 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses;
+within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
 partial model PartialTPRePrCorrelation
   "Base class for Reynolds and Prandtl number correlations"
-  extends PartialSinglePhaseCorrelation(
+  extends
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation(
   redeclare replaceable package Medium =
         Modelica.Media.Interfaces.PartialTwoPhaseMedium
   constrainedby Modelica.Media.Interfaces.PartialTwoPhaseMedium);

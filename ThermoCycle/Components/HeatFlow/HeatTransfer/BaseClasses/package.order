@@ -1,0 +1,8 @@
+PartialHeatTransfer
+PartialHeatTransfer_IdealFluid
+PartialCorrelation
+PartialCorrelation_IdealFluid
+PartialSmoothed
+PartialSinglePhaseCorrelation
+PartialTPRePrCorrelation
+PartialTwoPhaseCorrelation

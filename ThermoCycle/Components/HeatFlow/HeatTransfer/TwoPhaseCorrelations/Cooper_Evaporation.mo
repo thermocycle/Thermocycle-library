@@ -1,4 +1,4 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations;
+within ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations;
 model Cooper_Evaporation "Cooper correlation for evaporation"
   extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialTwoPhaseCorrelation;

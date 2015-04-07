@@ -1,4 +1,4 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations;
+within ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations;
 model YanLioLin_Condensation "Yan, Lio & Lin correlation for condensation"
   extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialTwoPhaseCorrelation;

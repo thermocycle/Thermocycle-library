@@ -1,4 +1,4 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations;
+within ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations;
 model GungorWinterton87
   "The simplified Gungor-Winterton correlation for turbulent two phase flow"
   extends
@@ -10,7 +10,7 @@ model GungorWinterton87
     "Cross-sectional area";
 
   replaceable model LiquidCorrelation =
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
+    ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter
   constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation
     "correlated heat transfer coefficient liquid side" annotation(Dialog(group="Correlations"),choicesAllMatching=true);

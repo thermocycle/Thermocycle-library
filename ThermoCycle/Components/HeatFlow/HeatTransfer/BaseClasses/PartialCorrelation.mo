@@ -1,8 +1,8 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses;
-partial model PartialConvectiveCorrelation
+within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
+partial model PartialCorrelation
 
 extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClass.PartialHeatTransfer;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransfer;
 
 input Modelica.SIunits.MassFlowRate Mdotnom "Nomnial Mass flow rate";
 input Modelica.SIunits.CoefficientOfHeatTransfer Unom_l
@@ -27,4 +27,4 @@ annotation(Documentation(info="<html>
      <li> x = vapor quality of the fluid
      </ul>
 </html>"));
-end PartialConvectiveCorrelation;
+end PartialCorrelation;

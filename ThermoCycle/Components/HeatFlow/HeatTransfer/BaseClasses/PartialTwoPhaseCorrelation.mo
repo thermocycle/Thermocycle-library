@@ -1,9 +1,12 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses;
+within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
 partial model PartialTwoPhaseCorrelation
   "Base class for two phase heat transfer correlations"
+    extends ThermoCycle.Icons.HeatTransfer;
 
-  replaceable package Medium = Modelica.Media.Interfaces.PartialTwoPhaseMedium constrainedby
-    Modelica.Media.Interfaces.PartialTwoPhaseMedium "Medium in the component"
+  replaceable package Medium =
+      ExternalMedia.Media.BaseClasses.ExternalTwoPhaseMedium                          constrainedby
+    ExternalMedia.Media.BaseClasses.ExternalTwoPhaseMedium
+    "Medium in the component"
       annotation(Dialog(tab="Internal Interface",enable=false));
 
   input Medium.ThermodynamicState state "Thermodynamic state";

@@ -1,8 +1,8 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses;
-partial model PartialConvectiveSmoothed "Smoothed heat transfer coefficients"
+within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
+partial model PartialSmoothed "Smoothed heat transfer coefficients"
 
 extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation;
 
 parameter Real smoothingRange(min=0,max=1) = 0.2
     "Vapour quality smoothing range";
@@ -80,4 +80,4 @@ annotation(Documentation(info="<html>
  and vapor nominal heat transfer coefficient values using the  <a href=\"modelica://ThermoCycle.Functions.transition_factor\">transition factor</a> based on the vapor quality value of the fluid flow.</p>
    <p></p>
 </html>"));
-end PartialConvectiveSmoothed;
+end PartialSmoothed;

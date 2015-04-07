@@ -1,8 +1,8 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses;
-partial model PartialConvectiveCorrelation_IdealFluid
+within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
+partial model PartialCorrelation_IdealFluid
 
 extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClass.PartialHeatTransfer_IdealFluid;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransfer_IdealFluid;
 
 input Modelica.SIunits.MassFlowRate Mdotnom "Nomnial Mass flow rate";
 input Modelica.SIunits.CoefficientOfHeatTransfer Unom
@@ -23,4 +23,4 @@ annotation(Documentation(info="<html>
      
      </ul>
 </html>"));
-end PartialConvectiveCorrelation_IdealFluid;
+end PartialCorrelation_IdealFluid;

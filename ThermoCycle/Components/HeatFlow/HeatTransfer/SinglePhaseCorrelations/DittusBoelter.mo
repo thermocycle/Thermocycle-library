@@ -1,4 +1,4 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations;
+within ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations;
 model DittusBoelter
   "The Dittus-Boelter correlation for turbulent single phase flow"
   extends

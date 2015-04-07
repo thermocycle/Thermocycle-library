@@ -1,8 +1,8 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer;
+within ThermoCycle.Components.HeatFlow.HeatTransfer;
 model VaporQualityDependance
 
 extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialConvectiveCorrelation;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation;
 constant Real width=0.1;
 Modelica.SIunits.CoefficientOfHeatTransfer[n] U;
 

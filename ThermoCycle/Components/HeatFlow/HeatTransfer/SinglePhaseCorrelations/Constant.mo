@@ -1,4 +1,4 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations;
+within ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations;
 model Constant "Constant: Constant heat transfer coefficient"
   extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation;

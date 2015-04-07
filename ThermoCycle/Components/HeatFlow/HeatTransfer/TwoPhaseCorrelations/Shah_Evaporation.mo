@@ -1,4 +1,4 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations;
+within ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations;
 model Shah_Evaporation "Shah correlation for evaporation"
   extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialTwoPhaseCorrelation;
@@ -11,7 +11,7 @@ model Shah_Evaporation "Shah correlation for evaporation"
   parameter Boolean vertical = true "Vertical or horizontal flow";
 
   replaceable model LiquidCorrelation =
-     ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.DittusBoelter
+     ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter
    constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation
     "correlated heat transfer coefficient liquid side"  annotation(Dialog(group="Correlations"),choicesAllMatching=true);

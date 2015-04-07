@@ -1,4 +1,4 @@
-within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses;
+within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
 partial model PartialSinglePhaseCorrelation
   "Base class for single phase heat transfer correlations"
 

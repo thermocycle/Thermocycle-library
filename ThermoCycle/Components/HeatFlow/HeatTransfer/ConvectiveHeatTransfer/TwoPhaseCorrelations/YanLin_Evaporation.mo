@@ -1,6 +1,7 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations;
 model YanLin_Evaporation "Yan & Lin correlation for evaporation"
-  extends BaseClasses.PartialTwoPhaseCorrelation;
+  extends
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialTwoPhaseCorrelation;
 
   parameter Modelica.SIunits.Length d_hyd(min=0)
     "Hydraulic diameter (2*V/A_lateral)";
