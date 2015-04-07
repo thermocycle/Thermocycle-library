@@ -29,10 +29,10 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_v_cold=100
 
 /*Hot side*/
 replaceable model HotSideSideHeatTransferModel =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+    ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+                                                                                                      annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l_hot=100
     "if HTtype = LiqVap: heat transfer coefficient, liquid zone " annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_tp_hot=100

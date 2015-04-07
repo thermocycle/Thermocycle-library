@@ -66,9 +66,9 @@ final parameter Real pV_gas = pstart*V_tank*(1 - L_lstart) "Initial value of ";
 /********************************* HEAT TRANSFER WITH EXTERNAL AMBIENT ********************************/
  /* Heat transfer Model */
  replaceable model HeatTransfer =
- ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Ideal
+ ThermoCycle.Components.HeatFlow.HeatTransfer.Ideal
  constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
     "Convective heat transfer for the fluid"                                                          annotation (choicesAllMatching = true);
  HeatTransfer heatTransfer( redeclare final package Medium = Medium,
  final n=1,

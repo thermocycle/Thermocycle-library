@@ -63,9 +63,9 @@ parameter Boolean steadystate=true
 /********************************* HEAT TRANSFER MODEL ********************************/
 /* Heat transfer Model */
 replaceable model Flow1DConstHeatTransferModel =
-ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.IdealFluid.MassFlowDependence
+ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence
 constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation_IdealFluid
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation_IdealFluid
     "Convective heat transfer"                                                         annotation (choicesAllMatching = true);
 
 /***************  VARIABLES ******************/

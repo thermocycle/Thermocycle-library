@@ -34,9 +34,9 @@ Medium.ThermodynamicState bubbleState(h(start=0));
     Medium.ThermodynamicState dewState(h(start=0));
 
 replaceable model HeatTransfer =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+    ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
   constrainedby
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+      ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
       "Heat transfer model"
     annotation(choicesAllMatching=true);
 
@@ -111,7 +111,7 @@ end InputSelector;
     m_dot_start=3,
     m_dot_nom=3,
     redeclare model HeatTransfer =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Smoothed,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Smoothed,
     p_start=500000)
     annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
 

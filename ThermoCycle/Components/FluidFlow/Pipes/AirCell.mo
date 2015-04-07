@@ -24,9 +24,9 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_ext
     "Constant heat transfer coefficient";
 /*****************HEAT TRANSFER MODEL************************/
 replaceable model HeatTransfer =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+      ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
 constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
     "Convective heat transfer"                                                         annotation (choicesAllMatching = true);
 HeatTransfer ConvectiveHeatTransfer(redeclare final package Medium = Medium,
 final n=1,

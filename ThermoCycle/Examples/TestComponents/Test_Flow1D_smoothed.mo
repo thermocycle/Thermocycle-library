@@ -18,7 +18,7 @@ model Test_Flow1D_smoothed
     Tstart_inlet=218.15,
     Tstart_outlet=328.15,
     redeclare model Flow1DimHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence)
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence)
     annotation (Placement(transformation(extent={{-20,-20},{20,20}})));
 
   Components.FluidFlow.Reservoirs.SourceMdot             sourceMdot1(

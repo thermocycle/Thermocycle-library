@@ -2,7 +2,8 @@ within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
 partial model PartialHeatTransfer
   "Basic component for partial heat transfer model"
   extends ThermoCycle.Icons.HeatTransfer;
-replaceable package Medium=Modelica.Media.Interfaces.PartialMedium
+  replaceable package Medium=Modelica.Media.Interfaces.PartialMedium
+  constrainedby Modelica.Media.Interfaces.PartialMedium
     "Medium in the component"
     annotation(Dialog(tab="Internal Interface",enable=false));
   parameter Integer n=1 "Number of heat transfer segments";

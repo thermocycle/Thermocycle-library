@@ -5,8 +5,7 @@ partial model PartialTwoPhaseCorrelation
 
   replaceable package Medium =
       ExternalMedia.Media.BaseClasses.ExternalTwoPhaseMedium                          constrainedby
-    ExternalMedia.Media.BaseClasses.ExternalTwoPhaseMedium
-    "Medium in the component"
+    Modelica.Media.Interfaces.PartialTwoPhaseMedium "Medium in the component"
       annotation(Dialog(tab="Internal Interface",enable=false));
 
   input Medium.ThermodynamicState state "Thermodynamic state";

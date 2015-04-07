@@ -32,10 +32,10 @@ replaceable model Medium2HeatTransferModel =
                                                                                                         annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 /*Working fluid*/
 replaceable model Medium1HeatTransferModel =
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+    ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+                                                                                                      annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l= 300
     "if HTtype = LiqVap : Heat transfer coefficient, liquid zone " annotation (Dialog(group="Heat transfer", tab="General"));
