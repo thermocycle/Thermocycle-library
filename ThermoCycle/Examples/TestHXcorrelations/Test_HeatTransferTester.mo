@@ -38,9 +38,9 @@ model Test_HeatTransferTester "A test driver for the different implementations o
     Medium.ThermodynamicState dewState(h(start=0));
 
     replaceable model HeatTransfer =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
       constrainedby
-      ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.BaseClasses.PartialConvectiveCorrelation
+      ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
       "Heat transfer model" annotation (choicesAllMatching=true);
 
     HeatTransfer heatTransfer(

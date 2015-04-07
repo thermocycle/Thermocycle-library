@@ -1,7 +1,7 @@
 within ThermoCycle.Examples.TestHXcorrelations;
 model HX1D_changed
   extends HX1D_modified(hx1DInc(redeclare model Medium1HeatTransferModel =
-          ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Smoothed,
+          ThermoCycle.Components.HeatFlow.HeatTransfer.Smoothed,
       N=9,
       V_sf(displayUnit="l") = 0.000195,
       V_wf(displayUnit="l") = 0.000156,

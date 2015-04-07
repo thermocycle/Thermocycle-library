@@ -19,16 +19,15 @@ model Test_Hx1DIncCP
     Unom_v=3000,
     redeclare package Medium2 =HTFMedium,
     redeclare model Medium1HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SmoothedInit
-        (
+        ThermoCycle.Components.HeatFlow.HeatTransfer.SmoothedInit (
         redeclare model LiquidCorrelation =
-            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.Constant,
+            ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.Constant,
         redeclare model TwoPhaseCorrelation =
-            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.TwoPhaseCorrelations.Constant,
+            ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.Constant,
         redeclare model VapourCorrelation =
-            ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.SinglePhaseCorrelations.Constant),
+            ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.Constant),
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.Constant,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     pstart_sf=100000,
     pstart_wf=888343,
     Tstart_inlet_wf=356.26,
