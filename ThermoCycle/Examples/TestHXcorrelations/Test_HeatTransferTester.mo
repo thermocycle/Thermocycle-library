@@ -16,7 +16,7 @@ model Test_HeatTransferTester "A test driver for the different implementations o
     parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_l=1500
       "Nominal heat transfer coefficient liquid side"
       annotation (Dialog(tab="Heat transfer"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_tp=3000
+    parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_tp=6000
       "Nominal heat transfer coefficient two phase side"
       annotation (Dialog(tab="Heat transfer"));
     parameter Modelica.SIunits.CoefficientOfHeatTransfer U_nom_v=1000
