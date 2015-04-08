@@ -10,6 +10,8 @@ model Shah_Evaporation "Shah correlation for evaporation"
 
   parameter Boolean vertical = true "Vertical or horizontal flow";
 
+  parameter Real C(min=0) = 1.5 "Enhancement term, 1.5 for plate HX";
+
   replaceable model LiquidCorrelation =
      ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter
    constrainedby
@@ -142,7 +144,7 @@ equation
   psi_lo    = psi_0105;
   psi       = (1-psi_trans)*psi_lo + psi_trans*psi_hi;
 
-  htc_TP = U;
+  htc_TP*C = U;
 
   annotation (Documentation(info="<html>
 

@@ -8,6 +8,7 @@ model GungorWinterton87
     "Hydraulic diameter (2*V/A_lateral)";
   parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_hyd^2 / 4
     "Cross-sectional area";
+  parameter Real C(min=0) = 1.5 "Enhancement term, 1.5 for plate HX";
 
   replaceable model LiquidCorrelation =
     ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter
@@ -45,7 +46,7 @@ equation
   Bo =  abs(q_dot)/(abs(G)*(h_v - h_l));  //Boiling number
   Term1 =  1 + 3000*Bo^0.86 + 1.12*(x/(1-x))^0.75*(rho_l/rho_v)^0.41;
   Term2 =  if (Fr_l<0.05) then Fr_l^(0.1-2*Fr_l) else 1;
-  U = liquidCorrelation.U*Term1*Term2;
+  U = C*liquidCorrelation.U*Term1*Term2;
     annotation(Documentation(info="<html>
 
 <p><big> The model <b>GungorWinterton87</b> extends the partial model

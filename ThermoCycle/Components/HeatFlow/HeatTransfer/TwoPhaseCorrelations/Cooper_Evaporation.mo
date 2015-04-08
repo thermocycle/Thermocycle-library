@@ -9,7 +9,7 @@ model Cooper_Evaporation "Cooper correlation for evaporation"
   parameter Real R_p(min=Modelica.Constants.small) = 1
     "Roughness, disable with 1";
   Real log_R_p;
-  parameter Real C(min=0) = 1.5 "Enhancement term, 55*1.5 for plate HX";
+  parameter Real C(min=0) = 1.5 "Enhancement term, 1.5 for plate HX";
 algorithm
   M :=Medium.getMolarMass() "kg/mol, needs transform to kg/kmol";
   p_r :=Medium.pressure(filteredState)/Medium.getCriticalPressure();
