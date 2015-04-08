@@ -65,7 +65,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
 //enable=filter_dMdt,enable=max_der,
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 /* FLUID VARIABLES */
 /* Saturation variables */
   Medium.SaturationProperties sat;
@@ -338,7 +338,7 @@ initial equation
           lineColor={0,0,255},
           fillColor={0,255,255},
           fillPattern=FillPattern.Solid)}),Documentation(info="<HTML>
-          <p><big>Model <b>Flow1Dim_2ph</b> describes the flow of fluid through a discretized one dimentional tube.</p> 
+          <p><big>Model <b>Flow1Dim_2ph</b> describes the flow of fluid through a discretized one dimensional tube.</p> 
           <p><big>Enthalpy and pressure are selected as state variable</p>
           <p><big> In the model the node variables are characterized by the following syntax: <b>_node</b>.
           <p><big>The model is discretized using the collocated grid method: the nodes variable are the state variables and the cell variable are deduced</p>.

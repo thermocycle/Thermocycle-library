@@ -62,7 +62,7 @@ parameter Modelica.SIunits.Pressure pstart
 /*steady state */
  parameter Boolean steadystate_T_fl=false
     "if true, sets the derivative of the fluid Temperature in each cell to zero during Initialization"
-                                                                                                      annotation (Dialog(group="Intialization options", tab="Initialization"));
+                                                                                                      annotation (Dialog(group="Initialization options", tab="Initialization"));
 
 /*******************************************   NUMERICAL OPTION   **************************************/
 

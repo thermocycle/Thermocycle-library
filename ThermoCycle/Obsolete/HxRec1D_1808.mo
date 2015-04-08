@@ -108,12 +108,12 @@ parameter Modelica.SIunits.Temperature Tstart_outlet_hot = 316.91
 /*steady state */
 parameter Boolean steadystate_h_cold=false
     "if true, sets the derivative of h of cold fluid to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 parameter Boolean steadystate_h_hot=false
     "if true, sets the derivative of h of hot fluid to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 parameter Boolean steadystate_T_wall=false
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
 //NUMERICAL OPTIONS
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff

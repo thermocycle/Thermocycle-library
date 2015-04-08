@@ -46,11 +46,11 @@ constrainedby ThermalStorage.FillerMaterial.MaterialBase
   parameter Modelica.SIunits.ThermalConductivity k_wall
     "Wall thermal conductivity" annotation (Dialog(group="Heat transfer", tab="General"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer U_env_bottom
-    "Overall heat transfer coefficient refered to the bottom of the tank" annotation (Dialog(group="Heat transfer", tab="General"));
+    "Overall heat transfer coefficient referred to the bottom of the tank" annotation (Dialog(group="Heat transfer", tab="General"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer U_env_wall
-    "Overall heat transfer coefficient refered to tank wall" annotation (Dialog(group="Heat transfer", tab="General"));
+    "Overall heat transfer coefficient referred to tank wall" annotation (Dialog(group="Heat transfer", tab="General"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer U_env_top
-    "Overall heat transfer coefficient refered to the top of the tank" annotation (Dialog(group="Heat transfer", tab="General"));
+    "Overall heat transfer coefficient referred to the top of the tank" annotation (Dialog(group="Heat transfer", tab="General"));
 
   /* Fluid Variables initial condition */
   parameter Modelica.SIunits.Pressure pstart
@@ -252,12 +252,12 @@ equation
           extent={{-72,118},{70,104}},
           lineColor={0,0,255},
           textString="%name"), Bitmap(extent={{-94,102},{96,-102}}, fileName="modelica://ThermoCycle/Resources/Images/Storage_avatar.bmp")}),Documentation(info="<html>
-<p>Model <b>ThermoclineTank</b> describes a one-dimentional displacement storage-thermocline tank with an effective storage medium formed by either a liquid or both a liquid and a solid filler material.
+<p>Model <b>ThermoclineTank</b> describes a one-dimensional displacement storage-thermocline tank with an effective storage medium formed by either a liquid or both a liquid and a solid filler material.
  The sensible part of enthalpy determines the storage capacity.</p>
 <p><b>Pressure</b> and <b>enthalpy</b> are selected as state variables. </p>
 <p>The assumptions for this model are: </p>
 <p><ul>
-<li> Discretized one-dimentional model in the axial direction </li>
+<li> Discretized one-dimensional model in the axial direction </li>
 <li> For each volume the storage medium (liquid or liquid plus solid filler material) is considered a single effective storage at a certain temperature T: ideal heat transfer between liquid and solid filler - Uniform radial distribution </li>
 <li> Pressure is considered constant and so it is defined as a parameter</li>
 <li> Thermal losses to the environment from the bottom, the top and the lateral surface area of the tank are considered</li>
@@ -270,7 +270,7 @@ equation
 <p>The model is characterized by four flow connector. Two for the inlet and the outlet of the fluid at the top of the tank and two for the inlet and the outlet of the fluid at the bottom of the tank</p>
 <p> </p>
 <p><b>Modelling options</b> </p>
-<p>In the <b>General</b> tab the following options are availabe: </p>
+<p>In the <b>General</b> tab the following options are available: </p>
 <p><ul>
 <li>Medium: the user has the possibility to easly switch the liquid Medium. </li>
 <li>Filler material:the user has the possibility to select among a list of different solid filler material</li>

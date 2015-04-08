@@ -92,12 +92,12 @@ parameter Modelica.SIunits.Temperature Tstart_outlet_sf = 408.45
 /*steady state */
  parameter Boolean steadystate_h_sf=false
     "if true, sets the derivative of T_sf (secondary fluids Temperature in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 parameter Boolean steadystate_h_wf=false
     "if true, sets the derivative of h of primary fluid (working fluids enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 parameter Boolean steadystate_T_wall=false
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
 //NUMERICAL OPTIONS //
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff

@@ -53,7 +53,7 @@ parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 /* FLUID VARIABLES */
   Medium.ThermodynamicState  fluidState[N];
   Modelica.SIunits.MassFlowRate M_dot_su;

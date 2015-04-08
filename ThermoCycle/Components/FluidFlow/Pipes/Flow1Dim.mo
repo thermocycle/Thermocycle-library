@@ -80,7 +80,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
-     annotation (Dialog(group="Intialization options", tab="Initialization"));
+     annotation (Dialog(group="Initialization options", tab="Initialization"));
 /******************************* HEAT TRANSFER MODEL **************************************/
 replaceable model Flow1DimHeatTransferModel =
       ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer.MassFlowDependence
@@ -161,7 +161,7 @@ equation
           extent={{-92,24},{88,-20}},
           lineColor={0,0,255},
           textString="%FLow1D")}),Documentation(info="<HTML>
-          <p><big>This model describes the flow of fluid through a discretized one dimentional tube. It is obtained by connecting in series <b>N</b>  <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>. The
+          <p><big>This model describes the flow of fluid through a discretized one dimensional tube. It is obtained by connecting in series <b>N</b>  <a href=\"modelica://ThermoCycle.Components.FluidFlow.Pipes.Cell1Dim\">Cell1Dim</a>. The
           resulting discretization scheme is of the staggered type i.e. state variables are computed at the center of each cell and the node variables are calculated depending on the local discretization  (Upwind or Central difference). 
           <p><big> The <b>Modelling options</b> and the <b>Numerical options</b> are the same as the one presented in the Cell1D model documentation.
           

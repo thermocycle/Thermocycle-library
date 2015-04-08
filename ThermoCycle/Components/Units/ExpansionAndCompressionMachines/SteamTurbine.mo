@@ -184,7 +184,7 @@ The main advantage is that there is still a solution even if p_ex &GT; p_su.</p>
 <ul>
 <li>Constant isentropic efficiency</li>
 <li>No dynamics</li>
-<li>No thermal energy losses to the enviroment</li>
+<li>No thermal energy losses to the environment</li>
 </ul>
 <h4>Modeling options</h4>
 <ul>

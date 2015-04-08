@@ -24,7 +24,7 @@ parameter Modelica.SIunits.Area Aint "Heat exchange area internal side";
     annotation (Dialog(tab="Initialization"));
 /*Numerical Option */
 parameter Boolean steadystate_T_wall=true
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
   Interfaces.HeatTransfer.ThermalPort Wall_int( N=N, T(start = Tstart_wall))
     annotation (Placement(transformation(extent={{-30,20},{30,40}}),
         iconTransformation(extent={{-30,20},{30,40}})));
@@ -68,13 +68,13 @@ if steadystate_T_wall then
           fillPattern=FillPattern.Solid,
           textString="Ext")}),
     Documentation(info="<HTML>
-<p><big> Model <b>MetalWall</b> represents a discretized 1-dimentional tube of solid material. The assumptions of the model are:
+<p><big> Model <b>MetalWall</b> represents a discretized 1-dimensional tube of solid material. The assumptions of the model are:
 <ul><li> Wall thermal resistance is neglected (i.e. No temperature gradient in the wall)
 <li> Longitudinal thermal energy conduction is neglected
 <li> Dynamic thermal energy capacity is accounted for.
 </u1>
  <p><b><big>Modelling options</b></p>
- <p><big> In the <b>Initialization</b> tab the following options are availabe:
+ <p><big> In the <b>Initialization</b> tab the following options are available:
         <ul><li> steadystate_T_wall: If it sets to true, the derivative of temperature is sets to zero during <em>Initialization</em> 
          </ul>
  

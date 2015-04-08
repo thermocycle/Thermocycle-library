@@ -7,7 +7,7 @@ partial model PartialRecipMachine
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses.BaseGeometry
     geometry constrainedby
     ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Reciprocating.BaseClasses.BaseGeometry
-    "Define geometry here or replace with approriate record." annotation (
+    "Define geometry here or replace with appropriate record." annotation (
       choicesAllMatching=true, Placement(transformation(extent={{58,-123},{103,-78}})));
   final parameter SI.Length s_TDC=sqrt((geometry.crankArm.height + geometry.conrod.height)
       ^2 - geometry.d_ppin^2) "Crank shaft to TDC";

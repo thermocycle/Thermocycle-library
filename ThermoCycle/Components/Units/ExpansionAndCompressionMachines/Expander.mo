@@ -41,13 +41,13 @@ parameter Real epsilon_s=0.7 "Isentropic Efficiency"
     "Outlet enthalpy start value"                                                                                                annotation (Dialog(tab="Initialization"));
   parameter Boolean constPinit=false
     "if true, sets the evaporating pressure to a constant value at the beginning of the simulation in order to avoid oscillations"
-    annotation (Dialog(group="Intialization options",tab="Initialization"));
+    annotation (Dialog(group="Initialization options",tab="Initialization"));
   parameter Boolean constinit=false
     "if true, sets the efficiencies to a constant value at the beginning of the simulation"
-    annotation (Dialog(group="Intialization options",tab="Initialization"));
+    annotation (Dialog(group="Initialization options",tab="Initialization"));
   parameter Modelica.SIunits.Time t_init=10
     "if constinit is true, time during which the efficiencies are set to their start values"
-    annotation (Dialog(group="Intialization options",tab="Initialization", enable=constinit));
+    annotation (Dialog(group="Initialization options",tab="Initialization", enable=constinit));
 
   /****************************************** VARIABLES ******************************************/
   Medium.ThermodynamicState steamIn

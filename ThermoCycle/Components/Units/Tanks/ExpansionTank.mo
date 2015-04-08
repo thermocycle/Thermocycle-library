@@ -216,7 +216,7 @@ initial equation
 <p>The model is characterized by one flow connector. </p>
 <p>The thermal energy transfer through the tank surface is computed by the <i><a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.ConvectiveHeatTransfer\">ConvectiveHeatTransfer</a></i> model which is inerithed in the <i>ExpansionTank</i> model </p>
 <p><b>Modelling options</b> </p>
-<p>In the <b>General</b> tab the following options are availabe: </p>
+<p>In the <b>General</b> tab the following options are available: </p>
 <p><ul>
 <li>Medium: the user has the possibility to easly switch Medium. </li>
 <li>p_const:If true an user defined constant pressure is imposed to the fluid volume --> closed tank at constant pressure</li>

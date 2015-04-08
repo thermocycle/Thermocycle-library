@@ -56,7 +56,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
   Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
  Components.FluidFlow.Pipes.Cell1DimInc Cells[N](

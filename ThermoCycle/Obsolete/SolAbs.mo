@@ -196,7 +196,7 @@ Modelica.SIunits.HeatFlux Phi_tube_tot_N[N]
 Modelica.SIunits.HeatFlux Phi_tube_int[N] "Heat flux of tube internal";
 Modelica.SIunits.HeatFlux Phi_tube_ext[N] "Heat flux of the tube external";
 Modelica.SIunits.HeatFlux Phi_conv_gas[N] "heat flux convection in the vacuum";
-Modelica.SIunits.HeatFlux Phi_rad_gas[N] "heat flux radiation in the vaccum";
+Modelica.SIunits.HeatFlux Phi_rad_gas[N] "heat flux radiation in the vacuum";
 Modelica.SIunits.HeatFlux Phi_glass_int[N] "heat flux of the glass internal";
 Modelica.SIunits.HeatFlux Phi_glass_ext[N] "heat flux of the glass external";
 Modelica.SIunits.HeatFlux Phi_conv_air[N] "Heat flux convection in the air";

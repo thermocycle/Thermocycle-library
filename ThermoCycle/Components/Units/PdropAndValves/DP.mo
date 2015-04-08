@@ -166,16 +166,16 @@ initial equation
 <p><br/>The total pressure drop is computed as the sum of three different terms: a constant pressure difference (e.g. due to the static pressure head), a linear pressure drop (e.g. due to friction in a laminar flow) and a quadratic pressure drop (typical of turbulent flow):</p>
 <p><img src=\"modelica://ThermoCycle/Resources/Images/DELTAp.png\"/></p>
 <p><b>Modelling options</b> </p>
-<p>In the <b>General</b> tab the following options are availabe: </p>
+<p>In the <b>General</b> tab the following options are available: </p>
 <p><ul>
 <li>Medium: the user has the possibility to easly switch Medium. </li>
 <li>UseNom: If true, use the nominal conditions defined in the Nominal Conditions tab to compute the pressure drop characteristic (i.e. the parameters h, K and A)</li>
 </ul></p>
-<p>In the <b>Nominal condition</b> tab the following option is availabe: </p>
+<p>In the <b>Nominal condition</b> tab the following option is available: </p>
 <p><ul>
 <li>use_rho_nom: If true, the density is considered constant during the whole simulation and equal to the nominal value. </li>
 </ul></p>
-<p>In the <b>Initialization</b> tab the following options are availabe: </p>
+<p>In the <b>Initialization</b> tab the following options are available: </p>
 <p><ul>
 <li>constinit: If true, the pressure drop is considered constant at the beginning of the simulation to avoid oscillations. </li>
 <li>UseHomotopy: If true, the homotopy function is used to set the pressure drop to zero in the first initialization. </li>

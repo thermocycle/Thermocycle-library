@@ -34,7 +34,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     "Selection of the spatial discretization scheme"  annotation (Dialog(tab="Numerical options"));
   parameter Boolean steadystate=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 /********************************* HEAT TRANSFER MODEL ********************************/
 /* Heat transfer Model */
 replaceable model HeatTransfer =
@@ -150,10 +150,10 @@ equation
  
         
         <p><b><big>Modelling options</b></p>
-        <p><big> In the <b>General</b> tab the following options are availabe:
+        <p><big> In the <b>General</b> tab the following options are available:
         <ul><li>Medium: the user has the possibility to easly switch Medium.
         <li> HeatTransfer: the user can choose the thermal energy model he prefers </ul> 
-        <p><big> In the <b>Initialization</b> tab the following options are availabe:
+        <p><big> In the <b>Initialization</b> tab the following options are available:
         <ul><li> steadystate: If it sets to true, the derivative of enthalpy is sets to zero during <em>Initialization</em> 
          </ul>
         <p><b><big>Numerical options</b></p>

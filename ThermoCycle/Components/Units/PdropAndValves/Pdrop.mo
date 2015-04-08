@@ -13,7 +13,7 @@ model Pdrop "Valve assuming a linear dependency between Mdot and DELTAp"
     "Start value for the pressure drop"
     annotation (Dialog(tab="Initialization"));
   parameter Modelica.SIunits.MassFlowRate Mdot_start=0.1
-    "Mass flow rate intial value" annotation (Dialog(tab="Initialization"));
+    "Mass flow rate initial value" annotation (Dialog(tab="Initialization"));
   parameter Modelica.SIunits.MassFlowRate Mdot_max=0.1
     "maximum flow rate with valve fully open at DELTAp_max";
   parameter Modelica.SIunits.Pressure DELTAp_max=20E5;

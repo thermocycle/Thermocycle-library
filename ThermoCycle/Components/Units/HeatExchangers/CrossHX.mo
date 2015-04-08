@@ -97,17 +97,17 @@ parameter Modelica.SIunits.Pressure pstart_wf = 23.57
     annotation (Dialog(tab="Initialization"));
 parameter Boolean steadystate_wf=true
     "if true, sets the derivative of h (working fluids enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 parameter Boolean steadystate_T_wall=true
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
       parameter Boolean constinit_sf=false
     "if true, sets the pressure drop to a constant value at the beginning of the simulation in order to avoid oscillations"
-    annotation (Dialog(group="Intialization options",tab="Initialization"));
+    annotation (Dialog(group="Initialization options",tab="Initialization"));
   parameter Boolean UseHomotopy_sf=false
     "if true, uses homotopy to set the pressure drop to zero in the first initialization"
-  annotation (Dialog(group="Intialization options",tab="Initialization"));
+  annotation (Dialog(group="Initialization options",tab="Initialization"));
   parameter Modelica.SIunits.Pressure   DELTAp_start_sf=DELTAp_stat_nom_sf + DELTAp_lin_nom_sf + DELTAp_quad_nom_sf
-    "Start Value for the pressure drop"                                                         annotation (Dialog(group="Intialization options",tab="Initialization"));
+    "Start Value for the pressure drop"                                                         annotation (Dialog(group="Initialization options",tab="Initialization"));
     parameter Modelica.SIunits.Time t_init_sf=10
     "if constinit is true, time during which the pressure drop is set to the constant value DELTAp_start"
     annotation (Dialog(tab="Initialization", enable=constinit));
@@ -246,7 +246,7 @@ equation
 <li>A MetalWall component representing the thermal energy accumulation in the metal wall </li>
 </ul></p>
 <p><b>Modelling options</b> </p>
-<p>In the <b>Initialization</b> tab the following options are availabe: </p>
+<p>In the <b>Initialization</b> tab the following options are available: </p>
 <p><ul>
 <li>steadystate_wf: if true, the derivative of enthalpy of the working fluid is set to zero during <i>Initialization</i> </li>
 <li>steadystate_T_wall: if true, the derivative of temperature of the metal wall is set to zero during <i>Initialization</i> </li>

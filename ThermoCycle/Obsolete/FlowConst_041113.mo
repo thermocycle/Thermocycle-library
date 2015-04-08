@@ -47,7 +47,7 @@ parameter HT_sf HTtype=HT_sf.Const "Select type of heat transfer coefficient";
     annotation (Dialog(tab="Initialization"));
 parameter Boolean steadystate_T=true
     "if true, sets the derivative of T to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 
 /****************** NUMERICAL OPTIONS  ***********************/
   import ThermoCycle.Functions.Enumerations.Discretizations;

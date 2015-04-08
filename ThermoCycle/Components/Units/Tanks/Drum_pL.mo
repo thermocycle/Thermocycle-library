@@ -156,7 +156,7 @@ initial equation
 <p><big>It uses <b>L </b>, the relative level of saturated liquid, and <b>p</b>, pressure, as state variables. </p>
 <p> </p>
 <p><big><b>Modelling options</b> </p>
-<p><big>In the <b>Initialization</b> tab the following options are availabe: </p>
+<p><big>In the <b>Initialization</b> tab the following options are available: </p>
 <ul>
 <li>impose_L: if true, the level of the tank is imposed during <i>Initialization</i> </li>
 <li>impose_pressure: if true, the pressure of the tank is imposed during <i>Initialization</i> </li>

@@ -69,12 +69,12 @@ parameter Modelica.SIunits.Temperature Tstart_outlet_hot = 316.91
 /*steady state */
 parameter Boolean steadystate_h_cold=false
     "if true, sets the derivative of h of cold fluid to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 parameter Boolean steadystate_h_hot=false
     "if true, sets the derivative of h of hot fluid to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 parameter Boolean steadystate_T_wall=false
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
 
 /******************************************** NUMERICAL OPTIONS ****************************************************/
 
@@ -269,7 +269,7 @@ Q_cold_ = -Coldside.Q_tot;
 <li>A CountCurr component that enables the possibility of parallel or countercurrent flow </li>
 </ul></p>
 <p><b>Modelling options</b> </p>
-<p>In the <b>Initialization</b> tab the following options are availabe: </p>
+<p>In the <b>Initialization</b> tab the following options are available: </p>
 <p><ul>
 <li>steadystate_h_cold: if true, the derivative of enthalpy of the cold side is set to zero during <i>Initialization</i> </li>
 <li>steadystate_h_hot: if true, the derivative of enthalpy of the hot side is set to zero during <i>Initialization</i> </li>

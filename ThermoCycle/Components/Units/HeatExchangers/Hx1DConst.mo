@@ -113,12 +113,12 @@ parameter Modelica.SIunits.Temperature Tstart_outlet_sf = 408.45
 /*steady state */
  parameter Boolean steadystate_T_sf=false
     "if true, sets the derivative of T_sf (secondary fluids Temperature in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 parameter Boolean steadystate_h_wf=false
     "if true, sets the derivative of h of primary fluid (working fluids enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 parameter Boolean steadystate_T_wall=false
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
 //NUMERICAL OPTIONS //
   import ThermoCycle.Functions.Enumerations.Discretizations;
   parameter Discretizations Discretization=ThermoCycle.Functions.Enumerations.Discretizations.centr_diff
@@ -249,7 +249,7 @@ equation
 <li>A CountCurr component that enables the possibility of parallel or countercurrent flow </li>
 </ul></p>
 <p><b>Modelling options</b> </p>
-<p>In the <b>Initialization</b> tab the following options are availabe: </p>
+<p>In the <b>Initialization</b> tab the following options are available: </p>
 <p><ul>
 <li>steadystate_T_sf: if true, the derivative of temperature of the constant heat capacity fluid is set to zero during <i>Initialization</i> </li>
 <li>steadystate_h_wf: if true, the derivative of enthalpy of the working fluid is set to zero during <i>Initialization</i> </li>

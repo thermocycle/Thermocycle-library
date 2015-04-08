@@ -112,9 +112,9 @@ replaceable model Medium2HeatTransferModel =
 /* Initialization Options */
 parameter Boolean steadystate_sf=true
     "if true, sets the derivative of h (secondary fluid's enthalpy in each cell) to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 parameter Boolean steadystate_T_wall=true
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
 
 /************************************************* VARIABLES ********************************/
   Modelica.SIunits.Power Qdot
@@ -242,11 +242,11 @@ equation
  and the secondary fluid enters the model from the  <em>InFlow_fl2</em> connector and exits from the  <em>OutFlow_fl2</em> connector. The realInput interface <em>source_T</em> is used to set the saturation state.  
        
         <p><b><big>Modelling options</b></p>
-        <p><big> In the <b>General</b> tab the following options are availabe:
+        <p><big> In the <b>General</b> tab the following options are available:
         <ul><li>Medium1: the user has the possibility to easly switch working fluid.
         <li>Medium2: the user has the possibility to easly switch secondary fluid.
         <li> HeatTransfer: the user can choose the thermal energy model he prefers for modeling the heat transfer between secondary fluid and metal wall </ul> 
-        <p><big> In the <b>Initialization</b> tab the following options are availabe:
+        <p><big> In the <b>Initialization</b> tab the following options are available:
         <ul><li> steadystate_sf: If true, the derivative of enthalpy of the secondary fluid is set to zero during <em>Initialization</em> 
             <li> steadystate_T_wall: If true, the derivative of the temperature of the metal wall is set to zero during <em>Initialization</em> 
          </ul>

@@ -1,6 +1,6 @@
 within ThermoCycle.Components.Units.HeatExchangers;
 model MBeva
-  "Counter current Moving Boundary model: Fluid enters subcooled and exits in super-heated conditons. The model consider the fluid in one side and the metal wall. The secondary fluid is a constant specfic heat fluid"
+  "Counter current Moving Boundary model: Fluid enters subcooled and exits in super-heated conditons. The model consider the fluid in one side and the metal wall. The secondary fluid is a constant specific heat fluid"
 
 /**************** MEDIUM ***************************/
 replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
