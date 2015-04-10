@@ -1,18 +1,13 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
 partial model PartialTwoPhaseCorrelation
-  "Base class for two phase heat transfer correlations"
-    extends ThermoCycle.Icons.HeatTransfer;
+  "Base class for two-phase heat transfer correlations"
+    extends
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferCorrelation;
 
   replaceable package Medium =
       ExternalMedia.Media.BaseClasses.ExternalTwoPhaseMedium                          constrainedby
     Modelica.Media.Interfaces.PartialTwoPhaseMedium "Medium in the component"
       annotation(Dialog(tab="Internal Interface",enable=false));
-
-  input Medium.ThermodynamicState state "Thermodynamic state";
-  input Modelica.SIunits.MassFlowRate m_dot "Inlet massflow";
-  input Modelica.SIunits.HeatFlux q_dot "Heat flow rate per area [W/m2]";
-
-  Modelica.SIunits.CoefficientOfHeatTransfer U;
 
   Medium.ThermodynamicState bubbleState;
   Medium.ThermodynamicState bubbleState_TP "Thermodynamic state";

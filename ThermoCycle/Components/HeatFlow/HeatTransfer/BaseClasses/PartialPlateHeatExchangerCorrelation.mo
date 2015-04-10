@@ -1,17 +1,8 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
 partial model PartialPlateHeatExchangerCorrelation
   "Base class for heat transfer correlations for plate heat exchangers"
-      extends ThermoCycle.Icons.HeatTransfer;
-
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium constrainedby
-    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
-      annotation(Dialog(tab="Internal Interface",enable=false));
-
-  input Medium.ThermodynamicState state "Thermodynamic state";
-  input Modelica.SIunits.MassFlowRate m_dot "Inlet massflow";
-  input Modelica.SIunits.HeatFlux q_dot "Heat flow rate per area [W/m2]";
-
-  output Modelica.SIunits.CoefficientOfHeatTransfer U;
+      extends
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferCorrelation;
 
   parameter Modelica.SIunits.Length a_hat(min=0,displayUnit="mm",nominal=0.002) = 0.002
     "Corrugation amplitude"
@@ -42,20 +33,9 @@ partial model PartialPlateHeatExchangerCorrelation
 
   Modelica.SIunits.CoefficientOfHeatTransfer alpha "The calculated HTC";
 
-//   parameter Modelica.SIunits.ReynoldsNumber Re_tur(min=0,nominal=1000.0) = 2250.00
-//     "Turbulent flow if Re>=Re_tur";
-//   parameter Modelica.SIunits.ReynoldsNumber Re_lam(min=0,nominal=400.0) = 1750.00
-//     "Laminar flow if Re<=Re_lam";
-//
-//   Modelica.SIunits.ReynoldsNumber Re(min=0);
-//   Real lamTur;
-
 equation
   // Enhanced HTC,we can use the projected area for HX calculations
   U      = Phi * alpha;
-  //// Transition range for Reynolds number
-  //lamTur = ThermoCycle.Functions.transition_factor(start=Re_lam, stop=Re_tur, position=Re);
-
 annotation(Documentation(info="<html>
 <p><b><font style=\"font-size: 11pt; color: #008000; \">Plate heat exchanger correlations</font></b></p>
 <p>The model <b>PartialPlateHeatExchangerCorrelation </b>is the basic model for the calculation of heat transfer coefficients for plate heat exchangers. It provides some basic geometric definitions. It returns an enhanced HTC U based on geometry and alpha. Thus U can be used with the projected squared area of the device, which is also the way the discretised models work at the moment. </p>
