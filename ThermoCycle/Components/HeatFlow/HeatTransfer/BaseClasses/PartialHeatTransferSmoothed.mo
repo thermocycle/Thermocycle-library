@@ -71,6 +71,9 @@ equation
     LV = 1;
   else
     assert(1 == 0, "Error in phase determination");
+    LTP = 0.5;
+    TPV = 0.5;
+    LV = 0.5;
   end if;
 
   U_nom_LTP = (1 - LTP)*Unom_l + LTP*Unom_tp;

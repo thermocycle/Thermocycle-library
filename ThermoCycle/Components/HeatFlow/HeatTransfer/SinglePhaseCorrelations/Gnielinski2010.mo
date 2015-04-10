@@ -1,19 +1,17 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations;
-model Gnielinski "Gnielinski pipe equations"
+model Gnielinski2010 "Gnielinski pipe equations"
   extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation(
-  redeclare replaceable package Medium =
-        Modelica.Media.Interfaces.PartialTwoPhaseMedium
-  constrainedby Modelica.Media.Interfaces.PartialTwoPhaseMedium);
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation;
+  extends
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialPipeCorrelation;
 
   import Modelica.Constants.pi;
 
   // General variables
-  parameter Modelica.SIunits.Length d_i(min=0) = 0.003
+  parameter Modelica.SIunits.Length d_i(min=0) = d_h
     "Hydraulic diameter (2*V/A_lateral)";
   parameter Modelica.SIunits.Length l(min=0) =   0.250 "Pipe or plate length";
-  parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_i^2 / 4
-    "Cross-sectional area";
+  //parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_i^2 / 4 "Cross-sectional area";
   Modelica.SIunits.ReynoldsNumber Re(min=0);
   Modelica.SIunits.ReynoldsNumber Re_tur(min=0);
   Modelica.SIunits.ReynoldsNumber Re_lam(min=0);
@@ -108,4 +106,4 @@ equation
 <p></p>
 
 </html>"));
-end Gnielinski;
+end Gnielinski2010;

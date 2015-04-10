@@ -15,7 +15,7 @@ model SmoothedCorrelationsMartinShah
               d_hyd(displayUnit="m") = 0.002*2,
               A_cro=0.002*0.1,
               redeclare model LiquidCorrelation =
-                  ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter
+                  ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter1930
                   (d_hyd(displayUnit="m") = 0.002*2, A_cro=0.002*0.1)))));
 
 end SmoothedCorrelationsMartinShah;

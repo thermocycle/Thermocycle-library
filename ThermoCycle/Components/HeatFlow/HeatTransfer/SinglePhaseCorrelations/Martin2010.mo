@@ -2,7 +2,9 @@ within ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations;
 model Martin2010
   "The Martin approach for plate heat exchangers from VDI Heat Atlas"
   extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhasePHECorrelation;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation;
+  extends
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialPlateHeatExchangerCorrelation;
 
   parameter Modelica.SIunits.Length s_w(min=0,displayUnit="mm",nominal=0.00075) = 0.00075
     "Wall thickness";
@@ -57,7 +59,7 @@ model Martin2010
   Medium.DynamicViscosity eta;
   Medium.DynamicViscosity eta_f_w "Viscosity of fluid at wall temperature";
   Medium.ThermalConductivity lambda;
-  Medium.ThermodynamicState state_f_w = state "Thermodynamic state at wall";
+  Medium.ThermodynamicState state_f_w "Thermodynamic state at wall";
   Medium.AbsolutePressure delta_p;
   Modelica.SIunits.VolumeFlowRate V_dot "Volume flow";
   //Modelica.SIunits.HeatFlowRate Q_dot "Heat flow";

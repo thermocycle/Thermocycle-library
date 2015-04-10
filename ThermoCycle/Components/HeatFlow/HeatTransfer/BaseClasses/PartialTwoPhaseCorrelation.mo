@@ -4,6 +4,7 @@ partial model PartialTwoPhaseCorrelation
     extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferCorrelation;
 
+  input Medium.ThermodynamicState state "Thermodynamic state";
   replaceable package Medium =
       ExternalMedia.Media.BaseClasses.ExternalTwoPhaseMedium                          constrainedby
     Modelica.Media.Interfaces.PartialTwoPhaseMedium "Medium in the component"

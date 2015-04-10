@@ -3,7 +3,6 @@ partial model PartialHeatTransferCorrelation
   "Base class for all heat transfer correlations"
       extends ThermoCycle.Icons.HeatTransfer;
 
-  input Medium.ThermodynamicState state "Thermodynamic state";
   input Modelica.SIunits.MassFlowRate m_dot "Inlet massflow";
   input Modelica.SIunits.HeatFlux q_dot "Heat flow rate per area [W/m2]";
 

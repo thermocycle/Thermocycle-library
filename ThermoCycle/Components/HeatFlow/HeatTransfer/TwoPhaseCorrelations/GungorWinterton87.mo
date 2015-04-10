@@ -11,7 +11,7 @@ model GungorWinterton87
   parameter Real C(min=0) = 1.5 "Enhancement term, 1.5 for plate HX";
 
   replaceable model LiquidCorrelation =
-    ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter
+    ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter1930
   constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation
     "correlated heat transfer coefficient liquid side" annotation(Dialog(group="Correlations"),choicesAllMatching=true);
