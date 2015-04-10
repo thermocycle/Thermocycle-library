@@ -28,9 +28,9 @@ algorithm
   U :=1;
   U :=U*C*55;
   U :=U*Modelica.Fluid.Utilities.regPow(x=p_r, a=0.12 - 0.2*log_R_p);
-  U :=U/Modelica.Fluid.Utilities.regPow(x=-log_p_r, a=0.55);
+  U :=U*Modelica.Fluid.Utilities.regPow(x=-log_p_r, a=-0.55);
   U :=U*Modelica.Fluid.Utilities.regPow(x=q_dot, a=0.67);
-  U :=U/Modelica.Fluid.Utilities.regPow(x=M*1e3, a=0.5);
+  U :=U*Modelica.Fluid.Utilities.regPow(x=M*1e3, a=-0.5);
 //  U = C*55*p_r^(0.12)*log_p_r^(-0.55)*q_dot^(0.67)*(M*1e3)^(-0.5);
 
   annotation (Documentation(info="<html>

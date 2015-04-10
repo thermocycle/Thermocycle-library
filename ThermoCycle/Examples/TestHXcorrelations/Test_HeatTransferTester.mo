@@ -72,7 +72,7 @@ model Test_HeatTransferTester "A test driver for the different implementations o
       "Final flow rate";
 
     parameter Boolean use_T=true "use temp. or heat flux?";
-    parameter Modelica.SIunits.HeatFlux q=1e4 "constant heat flux";
+    parameter Modelica.SIunits.HeatFlux q=1.5e4 "constant heat flux";
     parameter Boolean Delta_T_const=false "Constant dT?";
     parameter Modelica.SIunits.TemperatureDifference Delta_T=5
       "wall temperature difference";

@@ -43,7 +43,7 @@ equation
   assert(lambda > 0, "Invalid thermal conductivity, make sure transport properties are calculated.");
   // Use transport properties to determine dimensionless numbers
   Re = (rho * abs(cVel) * cLen) / eta;
-  assert(Re > 1000, "Invalid Reynolds number, Dittus-Boelter is only for fully turbulent flow.");
+  //assert(Re > 1000, "Invalid Reynolds number, Dittus-Boelter is only for fully turbulent flow.");
   Nu =  a * Re^b * Pr^c;
   U  = Nu * lambda / cLen;
 
