@@ -6,3 +6,6 @@ PartialSmoothed
 PartialSinglePhaseCorrelation
 PartialTPRePrCorrelation
 PartialTwoPhaseCorrelation
+PartialPlateHeatExchangerCorrelation
+PartialSinglePhasePHECorrelation
+PartialTwoPhasePHECorrelation
