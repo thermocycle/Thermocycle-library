@@ -10,7 +10,7 @@ model step8
     Unom_sf=335,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence_IdealFluid,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-46,28},{-12,60}})));
@@ -100,7 +100,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     Unom_sf=335,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence_IdealFluid,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,

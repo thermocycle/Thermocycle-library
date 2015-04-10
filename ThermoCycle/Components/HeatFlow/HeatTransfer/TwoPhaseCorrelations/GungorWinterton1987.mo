@@ -1,14 +1,10 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations;
-model GungorWinterton87
+model GungorWinterton1987
   "The simplified Gungor-Winterton correlation for turbulent two phase flow"
   extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialTwoPhaseCorrelation;
-
-  parameter Modelica.SIunits.Length d_hyd(min=0)
-    "Hydraulic diameter (2*V/A_lateral)";
-  parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_hyd^2 / 4
-    "Cross-sectional area";
-  parameter Real C(min=0) = 1.5 "Enhancement term, 1.5 for plate HX";
+  extends
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialPipeCorrelation;
 
   replaceable model LiquidCorrelation =
     ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter1930
@@ -16,9 +12,9 @@ model GungorWinterton87
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation
     "correlated heat transfer coefficient liquid side" annotation(Dialog(group="Correlations"),choicesAllMatching=true);
   LiquidCorrelation liquidCorrelation(
-    d_hyd = d_hyd,
+    d_h = d_h,
     A_cro = A_cro,
-    redeclare final package Medium = Medium,
+    redeclare package Medium = Medium,
     state = bubbleState,
     m_dot = m_dot*(1-x),
     q_dot = q_dot);
@@ -41,15 +37,15 @@ equation
   h_v   = Medium.specificEnthalpy(dewState);
 
   G = m_dot / A_cro;
-  Fr_l = G^2/(rho_l^2*Modelica.Constants.g_n*d_hyd);
+  Fr_l = G^2/(rho_l^2*Modelica.Constants.g_n*d_h);
   //calculation of E_new
   Bo =  abs(q_dot)/(abs(G)*(h_v - h_l));  //Boiling number
   Term1 =  1 + 3000*Bo^0.86 + 1.12*(x/(1-x))^0.75*(rho_l/rho_v)^0.41;
   Term2 =  if (Fr_l<0.05) then Fr_l^(0.1-2*Fr_l) else 1;
-  U = C*liquidCorrelation.U*Term1*Term2;
+  U = liquidCorrelation.U*Term1*Term2;
     annotation(Documentation(info="<html>
 
-<p><big> The model <b>GungorWinterton87</b> extends the partial model
+<p><big> The model <b>GungorWinterton1987</b> extends the partial model
  <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialTwoPhaseCorrelation\">PartialTwoPhaseCorrelation</a> and 
  calculates the heat transfer coefficient based on the GungerWinterton correlation.
  </p>
@@ -65,4 +61,4 @@ equation
 <p></p>
 
 </html>"));
-end GungorWinterton87;
+end GungorWinterton1987;

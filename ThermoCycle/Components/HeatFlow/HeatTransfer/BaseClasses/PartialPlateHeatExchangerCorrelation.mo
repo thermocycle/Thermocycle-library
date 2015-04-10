@@ -24,10 +24,10 @@ partial model PartialPlateHeatExchangerCorrelation
   parameter Real Phi = 1/6 * ( 1 + sqrt(1+X^2) + 4 * sqrt(1+X^2/2))
     "Enhancement factor"
   annotation (Dialog(group="Advanced geometry"));
-  parameter Modelica.SIunits.Length d_h = 4 * a_hat / Phi
+  replaceable parameter Modelica.SIunits.Length d_h = 4 * a_hat / Phi
     "Characteristic length"
   annotation (Dialog(group="Advanced geometry"));
-  parameter Modelica.SIunits.Area A_cro = 2 * a_hat * B_p
+  replaceable parameter Modelica.SIunits.Area A_cro = 2 * a_hat * B_p
     "Cross-sectional area"
   annotation (Dialog(group="Advanced geometry"));
 

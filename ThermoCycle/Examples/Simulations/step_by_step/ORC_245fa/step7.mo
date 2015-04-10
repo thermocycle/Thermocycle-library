@@ -16,7 +16,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     steadystate_h_wf=false,
     steadystate_T_wall=false,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence_IdealFluid,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
@@ -107,7 +107,7 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
     filter_dMdt_wf=true,
     N=10,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence_IdealFluid,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,

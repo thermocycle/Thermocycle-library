@@ -3,6 +3,16 @@ model Test_HeatTransferTester "A test driver for the different implementations o
   heat transfer models"
   extends Modelica.Icons.Example;
 
+  parameter Modelica.SIunits.Length a_hat = 0.002;
+  parameter Modelica.SIunits.Angle phi = Modelica.SIunits.Conversions.from_deg(45);
+  parameter Modelica.SIunits.Length Lambda = 0.0126;
+  parameter Modelica.SIunits.Length B_p = 0.1;
+
+  parameter Real X =   2 * Modelica.Constants.pi*a_hat/Lambda;
+  parameter Real Phi = 1/6 * ( 1 + sqrt(1+X^2) + 4 * sqrt(1+X^2/2));
+  parameter Modelica.SIunits.Length d_h = 4 * a_hat / Phi;
+  parameter Modelica.SIunits.Area A_cro = 2 * a_hat * B_p;
+
   model InputSelector
     replaceable package Medium = ThermoCycle.Media.DummyFluid constrainedby
       Modelica.Media.Interfaces.PartialTwoPhaseMedium "Medium" annotation (

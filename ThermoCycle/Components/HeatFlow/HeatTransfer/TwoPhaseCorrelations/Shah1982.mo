@@ -1,16 +1,11 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations;
-model Shah_Evaporation "Shah correlation for evaporation"
+model Shah1982 "Shah correlation for evaporation"
   extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialTwoPhaseCorrelation;
-
-  parameter Modelica.SIunits.Length d_hyd(min=0)
-    "Hydraulic diameter (2*V/A_lateral)";
-  parameter Modelica.SIunits.Area A_cro(min=0) = Modelica.Constants.pi * d_hyd^2 / 4
-    "Cross-sectional area";
+  extends
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialPipeCorrelation;
 
   parameter Boolean vertical = true "Vertical or horizontal flow";
-
-  parameter Real C(min=0) = 1.5 "Enhancement term, 1.5 for plate HX";
 
   replaceable model LiquidCorrelation =
      ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter1930
@@ -18,9 +13,9 @@ model Shah_Evaporation "Shah correlation for evaporation"
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation
     "correlated heat transfer coefficient liquid side"  annotation(Dialog(group="Correlations"),choicesAllMatching=true);
   LiquidCorrelation liquidCorrelation(
-     d_hyd = d_hyd,
-     final A_cro = A_cro,
-     redeclare final package Medium = Medium,
+     d_h = d_h,
+     A_cro = A_cro,
+     redeclare package Medium = Medium,
      state = bubbleState,
      m_dot = m_dot*(1-x),
      q_dot = q_dot);
@@ -90,7 +85,7 @@ equation
   Co    = (1/max(Modelica.Constants.small,x) -1)^0.8 * sqrt(rho_v/rho_l) "Eq. 2";
   Bo    = q_dot / (G*i_fg) "Eq. 3";
   sqrtBo = Modelica.Fluid.Utilities.regRoot2(Bo,x_small=1e-10);
-  Fr_l  = G^2/(rho_l^2*Modelica.Constants.g_n*d_hyd) "Eq. 4";
+  Fr_l  = G^2/(rho_l^2*Modelica.Constants.g_n*d_h) "Eq. 4";
   htc_l = liquidCorrelation.U "Eq. 5";
 
   // Convective (cb) and fully nucleate boiling (nb), N>1.0
@@ -144,7 +139,7 @@ equation
   psi_lo    = psi_0105;
   psi       = (1-psi_trans)*psi_lo + psi_trans*psi_hi;
 
-  htc_TP*C = U;
+  htc_TP = U;
 
   annotation (Documentation(info="<html>
 
@@ -164,4 +159,4 @@ equation
 
 <p></p>
 </html>"));
-end Shah_Evaporation;
+end Shah1982;

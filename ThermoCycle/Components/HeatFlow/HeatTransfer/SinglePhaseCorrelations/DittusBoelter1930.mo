@@ -3,10 +3,14 @@ model DittusBoelter1930
   "The Dittus-Boelter correlation for turbulent single phase flow"
   extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSinglePhaseCorrelation;
+  //extends
+  //  ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialPipeCorrelation;
+  extends
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialPlateHeatExchangerCorrelation;
 
-  parameter Modelica.SIunits.Length d_h(min=0) "Hydraulic diameter";
-  parameter Modelica.SIunits.Area A_cro(min=0)=Modelica.Constants.pi * d_h^2 / 4
-    "Cross-sectional area";
+  //parameter Modelica.SIunits.Length d_h(min=0)=0 "Hydraulic diameter";
+  //parameter Modelica.SIunits.Area A_cro(min=0)=Modelica.Constants.pi * d_h^2 / 4
+  //  "Cross-sectional area";
 
   parameter Real a = 0.023 "Factor: 0.023 pipe, 0.035 plate HX?";
   parameter Real b = 0.800 "Reynolds exponent";

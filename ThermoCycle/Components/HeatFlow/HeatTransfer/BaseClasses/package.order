@@ -3,7 +3,6 @@ PartialHeatTransfer_IdealFluid
 PartialHeatTransferZones
 PartialHeatTransferZones_IdealFluid
 PartialHeatTransferSmoothed
-PartialTPRePrCorrelation
 PartialHeatTransferCorrelation
 PartialSinglePhaseCorrelation
 PartialTwoPhaseCorrelation

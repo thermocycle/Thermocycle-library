@@ -7,10 +7,11 @@ model SmoothedCorrelationsDittusCooper
           t_init=Modelica.Constants.small,
           redeclare model LiquidCorrelation =
               ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter1930
-              (d_hyd(displayUnit="mm") = 0.002*2, A_cro=0.002*0.1),
+              (d_h=d_h, A_cro=A_cro),
           redeclare model TwoPhaseCorrelation =
-              ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.Cooper_Evaporation,
+              ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.Cooper1984
+              (C=1),
           redeclare model VapourCorrelation =
               ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter1930
-              (d_hyd(displayUnit="mm") = 0.002*2, A_cro=0.002*0.1))));
+              (d_h=d_h, A_cro=A_cro))));
 end SmoothedCorrelationsDittusCooper;

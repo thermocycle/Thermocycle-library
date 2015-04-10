@@ -10,7 +10,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    hx1DConst(
     steadystate_T_wall=true,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence_IdealFluid,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance)
     annotation (Placement(transformation(extent={{-62,46},{-34,70}})));
@@ -101,7 +101,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DConst    condenser(
     steadystate_T_wall=true,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     redeclare model Medium2HeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence,
+        ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence_IdealFluid,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
     redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,

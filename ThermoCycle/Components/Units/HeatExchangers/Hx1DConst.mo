@@ -66,7 +66,7 @@ parameter Boolean counterCurrent = true
     "Swap temperature and flux vector order";
 /*Secondary fluid*/
 replaceable model Medium2HeatTransferModel =
-  ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence
+  ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence_IdealFluid
    constrainedby
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones_IdealFluid
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
