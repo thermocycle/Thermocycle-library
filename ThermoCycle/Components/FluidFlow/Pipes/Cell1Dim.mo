@@ -66,7 +66,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
 replaceable model HeatTransfer =
 ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
 constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
     "Convective heat transfer"                                                         annotation (choicesAllMatching = true);
 
 HeatTransfer heatTransfer( redeclare final package Medium = Medium,

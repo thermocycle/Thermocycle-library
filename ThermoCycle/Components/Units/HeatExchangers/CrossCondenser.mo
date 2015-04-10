@@ -75,7 +75,7 @@ parameter Modelica.SIunits.SpecificHeatCapacity c_wall= 500
 replaceable model Medium2HeatTransferModel =
     ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
     "Heat transfer model of secondary fluid"                                                                                                   annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_sf
     "Heat transfer coefficient of secondary fluid"                                                         annotation (Dialog(group="Heat transfer", tab="General"));

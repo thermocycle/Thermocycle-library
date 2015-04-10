@@ -81,7 +81,7 @@ parameter Modelica.SIunits.Temperature T_nom=423.15 "Nominal temperature"
 replaceable model MultiFlow1DimHeatTransferModel =
       ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
 constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
     "Fluid heat transfer model" annotation (choicesAllMatching = true);
 
    /****************************  CELLS ***************************************/

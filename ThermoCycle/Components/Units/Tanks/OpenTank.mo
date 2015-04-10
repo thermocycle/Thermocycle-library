@@ -67,7 +67,7 @@ parameter Modelica.SIunits.Temperature Tstart= 100+273.15 "Initial temperature"
  replaceable model HeatTransfer =
  ThermoCycle.Components.HeatFlow.HeatTransfer.Ideal
  constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
     "Convective heat transfer for the fluid"                                                          annotation (choicesAllMatching = true);
  HeatTransfer heatTransfer( redeclare final package Medium = Medium,
  final n=1,

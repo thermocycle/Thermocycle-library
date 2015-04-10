@@ -1,8 +1,8 @@
 PartialHeatTransfer
 PartialHeatTransfer_IdealFluid
-PartialCorrelation
-PartialCorrelation_IdealFluid
-PartialSmoothed
+PartialHeatTransferZones
+PartialHeatTransferZones_IdealFluid
+PartialHeatTransferSmoothed
 PartialSinglePhaseCorrelation
 PartialTPRePrCorrelation
 PartialTwoPhaseCorrelation

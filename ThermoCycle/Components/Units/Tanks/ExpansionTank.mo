@@ -68,7 +68,7 @@ final parameter Real pV_gas = pstart*V_tank*(1 - L_lstart) "Initial value of ";
  replaceable model HeatTransfer =
  ThermoCycle.Components.HeatFlow.HeatTransfer.Ideal
  constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
     "Convective heat transfer for the fluid"                                                          annotation (choicesAllMatching = true);
  HeatTransfer heatTransfer( redeclare final package Medium = Medium,
  final n=1,

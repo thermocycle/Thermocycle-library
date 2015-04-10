@@ -2,7 +2,7 @@ within ThermoCycle.Components.HeatFlow.HeatTransfer;
 model MassFlowDependence
 
 extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones;
 Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "Nominal heat transfer coefficient- Average of liquid two phase and vapor";
 Modelica.SIunits.CoefficientOfHeatTransfer[n] U "Heat transfer coefficient";
@@ -16,7 +16,7 @@ q_dot = {U[i]*(thermalPortL[i].T - T_fluid[i])};
   end for;
    annotation(Documentation(info="<html>
 <p><big> The model <b>MassFlowDependance</b> extends the partial model
- <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation\">PartialCorrelation</a>
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones\">PartialHeatTransferZones</a>
  and use the following equation to compute the heat transfer coefficient:
  
   <p>

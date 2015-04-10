@@ -52,7 +52,7 @@ parameter Boolean steadystate=true
 replaceable model HeatTransfer =
 ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid.MassFlowDependence
 constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation_IdealFluid
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones_IdealFluid
     "Convective heat transfer"                                                                                                   annotation (choicesAllMatching = true);
 HeatTransfer heatTransfer(
 final Mdotnom = Mdotnom/Nt,

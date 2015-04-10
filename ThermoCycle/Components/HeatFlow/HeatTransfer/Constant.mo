@@ -1,7 +1,7 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer;
 model Constant "Constant: Constant heat transfer coefficient"
   extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones;
   Modelica.SIunits.CoefficientOfHeatTransfer U_0 "heat transfer coefficient";
 equation
   U_0 = (Unom_l + Unom_tp + Unom_v)/3;

@@ -105,7 +105,7 @@ parameter Boolean steadystate_T_fl=false
 replaceable model FluidHeatTransferModel =
     ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 
 /******************************************  COMPONENTS *********************************************************/

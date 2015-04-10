@@ -40,7 +40,7 @@ model Test_HeatTransferTester "A test driver for the different implementations o
     replaceable model HeatTransfer =
         ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
       constrainedby
-      ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+      ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
       "Heat transfer model" annotation (choicesAllMatching=true);
 
     HeatTransfer heatTransfer(

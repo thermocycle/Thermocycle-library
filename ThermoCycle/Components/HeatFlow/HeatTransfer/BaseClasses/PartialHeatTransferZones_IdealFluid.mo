@@ -1,5 +1,6 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
-partial model PartialCorrelation_IdealFluid
+partial model PartialHeatTransferZones_IdealFluid
+  "A partial heat transfer model with one ideal nominal HTC for all zones"
 
 extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransfer_IdealFluid;
@@ -13,7 +14,7 @@ input Modelica.SIunits.Temperature T_fluid "Temperature of the fluid";
 
 annotation(Documentation(info="<html>
 
-<p><big> The partial model <b>PartialCorrelation_IdealFluid</b> extends the partial model
+<p><big> The partial model <b>PartialHeatTransferZones_IdealFluid</b> extends the partial model
  <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClass.PartialHeatTransfer_IdealFluid\">PartialHeatTransfer_IdealFluid</a> 
  and defines some inputs, that are needed to compute the convective heat transfer coefficient for an ideal fluid flow:
    <ul><li> Mdotnom = Nominal mass flow rate
@@ -23,4 +24,4 @@ annotation(Documentation(info="<html>
      
      </ul>
 </html>"));
-end PartialCorrelation_IdealFluid;
+end PartialHeatTransferZones_IdealFluid;

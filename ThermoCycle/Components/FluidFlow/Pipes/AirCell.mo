@@ -26,7 +26,7 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_ext
 replaceable model HeatTransfer =
       ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
 constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
     "Convective heat transfer"                                                         annotation (choicesAllMatching = true);
 HeatTransfer ConvectiveHeatTransfer(redeclare final package Medium = Medium,
 final n=1,

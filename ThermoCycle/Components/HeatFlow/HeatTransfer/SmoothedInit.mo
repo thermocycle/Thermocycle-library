@@ -2,7 +2,7 @@ within ThermoCycle.Components.HeatFlow.HeatTransfer;
 model SmoothedInit
   "SmoothedInit: Smooth transitions between the different zones including an initialisation and a filtering"
   extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSmoothed(
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferSmoothed(
   redeclare replaceable package Medium =
         Modelica.Media.Interfaces.PartialTwoPhaseMedium
   constrainedby Modelica.Media.Interfaces.PartialTwoPhaseMedium);
@@ -147,7 +147,7 @@ equation
   end for;
 
  annotation(Documentation(info="<html>
-<p>The model <b>SmoothedInit</b> extends the partial model <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSmoothed\">PartialSmoothed</a> and allows the user to choose the correlation to calculate the heat transfer coefficient in the different zones: </p>
+<p>The model <b>SmoothedInit</b> extends the partial model <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferSmoothed\">PartialHeatTransferSmoothed</a> and allows the user to choose the correlation to calculate the heat transfer coefficient in the different zones: </p>
 <p><ul>
 <li>liquidCorrelation: correlation for the liquid zone. The user can choose between the ones listed in <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations\">SinglePhaseCorrelations</a> </li>
 <li>twoPhaseCorrelation : correlation for the two-phase zone. The user can choose between the ones listed in <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations\">TwoPhaseCorrelations</a> </li>

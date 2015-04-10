@@ -28,13 +28,13 @@ parameter Integer N(min=1) = 5 "Number of cells";
 replaceable model Medium2HeatTransferModel =
     ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 /*Working fluid*/
 replaceable model Medium1HeatTransferModel =
     ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l= 300

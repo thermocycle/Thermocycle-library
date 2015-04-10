@@ -36,7 +36,7 @@ Medium.ThermodynamicState bubbleState(h(start=0));
 replaceable model HeatTransfer =
     ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
   constrainedby
-      ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+      ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
       "Heat transfer model"
     annotation(choicesAllMatching=true);
 

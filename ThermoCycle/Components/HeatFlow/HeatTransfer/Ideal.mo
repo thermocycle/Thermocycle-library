@@ -2,7 +2,7 @@ within ThermoCycle.Components.HeatFlow.HeatTransfer;
 model Ideal "Ideal: Heat transfer without thermal resistance"
 
   extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones;
 equation
   T_fluid = thermalPortL.T;
   annotation(Documentation(info="<html>

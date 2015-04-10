@@ -18,7 +18,7 @@ parameter Boolean counterCurrent = true
 replaceable model Medium2HeatTransferModel =
     ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_sf = 369
     "Coefficient of heat transfer, secondary fluid" annotation (Dialog(group="Heat transfer", tab="General"));
@@ -27,7 +27,7 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_sf = 369
 replaceable model Medium1HeatTransferModel =
     ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
    constrainedby
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),choicesAllMatching=true);
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l=300
     "if HTtype = LiqVap: heat transfer coeff, liquid zone." annotation (Dialog(group="Heat transfer", tab="General"));

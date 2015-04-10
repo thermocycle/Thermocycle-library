@@ -1,7 +1,7 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer;
 model Smoothed "Smoothed: Smooth transitions between the different zones"
   extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSmoothed;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferSmoothed;
 equation
   for i in 1:n loop
     U[i] = U_nom * massFlowFactor;
@@ -11,14 +11,14 @@ equation
 annotation(Documentation(info="<html>
 
 <p><big> The model <b>Smoothed</b> extends the partial model
- <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSmoothed\">PartialSmoothed</a> 
+ <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferSmoothed\">PartialHeatTransferSmoothed</a> 
  and calculates the heat transfer coefficient based on the following equation:</p>
   
  <p>
 <img src=\"modelica://ThermoCycle/Resources/Images/HTC_massFlow.png\">
 </p>  
   
-<p><big> Note that in the model U_nom corresponds to the smoothed heat transfer coefficient calculated in  <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialSmoothed\">PartialSmoothed</a> 
+<p><big> Note that in the model U_nom corresponds to the smoothed heat transfer coefficient calculated in  <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferSmoothed\">PartialHeatTransferSmoothed</a> 
 </p> 
  <p></p>
 </html>"));

@@ -1,5 +1,6 @@
 within ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses;
-partial model PartialCorrelation
+partial model PartialHeatTransferZones
+  "A partial heat transfer model with different HTC for liquid, two-phase and vapour"
 
 extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransfer;
@@ -16,7 +17,7 @@ input Modelica.SIunits.MassFlowRate M_dot "Inlet massflow";
 input Real x "Vapor quality";
 annotation(Documentation(info="<html>
 
-<p><big> The partial model <b>PartialCorrelation</b> extends the partial model
+<p><big> The partial model <b>PartialHeatTransferZones</b> extends the partial model
  <a href=\"modelica://ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClass.PartialHeatTransfer\">PartialHeatTransfer</a> 
  and defines some inputs, that are needed to compute the convective heat transfer coefficient for a fluid flow:
    <ul><li> Mdotnom = Nominal mass flow rate
@@ -27,4 +28,4 @@ annotation(Documentation(info="<html>
      <li> x = vapor quality of the fluid
      </ul>
 </html>"));
-end PartialCorrelation;
+end PartialHeatTransferZones;

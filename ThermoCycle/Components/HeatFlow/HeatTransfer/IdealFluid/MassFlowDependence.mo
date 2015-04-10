@@ -2,7 +2,7 @@ within ThermoCycle.Components.HeatFlow.HeatTransfer.IdealFluid;
 model MassFlowDependence
 
 extends
-    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialCorrelation_IdealFluid;
+    ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones_IdealFluid;
 input Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "Nominal heat transfer coefficient- Average of liquid two phase and vapor";
 Modelica.SIunits.CoefficientOfHeatTransfer U "Heat transfer coefficient";
