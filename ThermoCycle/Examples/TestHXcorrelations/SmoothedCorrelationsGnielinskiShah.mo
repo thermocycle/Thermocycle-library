@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.TestHXcorrelations;
-model SmoothedCorrelationsGnielinskiGungor
-  "Gnielinski pipe in single-phase and simplified Gungor Winterton in two-phase"
+model SmoothedCorrelationsGnielinskiShah "Gnielinski (1p) and Shah (2p)"
   extends Test_HeatTransferTester(tester(redeclare model HeatTransfer =
           ThermoCycle.Components.HeatFlow.HeatTransfer.SmoothedInit (
           t_start=Modelica.Constants.small,
@@ -12,7 +11,7 @@ model SmoothedCorrelationsGnielinskiGungor
               A_cro=A_cro,
               l=0.2),
           redeclare model TwoPhaseCorrelation =
-              ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.GungorWinterton1987
+              ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.Shah1982
               (
               d_h=d_h,
               A_cro=A_cro,
@@ -26,4 +25,4 @@ model SmoothedCorrelationsGnielinskiGungor
               A_cro=A_cro,
               l=0.2))));
 
-end SmoothedCorrelationsGnielinskiGungor;
+end SmoothedCorrelationsGnielinskiShah;

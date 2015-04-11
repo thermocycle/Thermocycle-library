@@ -1,6 +1,5 @@
 within ThermoCycle.Examples.TestHXcorrelations;
-model SmoothedCorrelationsMartinYanLin
-  "Martin2010 in single-phase and YanLin1999 for evaporation"
+model SmoothedCorrelationsMartinCooper "Martin (1p) and Cooper (2p)"
   extends Test_HeatTransferTester(tester(redeclare model HeatTransfer =
           ThermoCycle.Components.HeatFlow.HeatTransfer.SmoothedInit (
           t_start=Modelica.Constants.small,
@@ -12,7 +11,7 @@ model SmoothedCorrelationsMartinYanLin
               ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.Martin2010
               (a_hat = a_hat, phi = phi, Lambda = Lambda, B_p = B_p),
           redeclare model TwoPhaseCorrelation =
-              ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.YanLin1999
-              (a_hat = a_hat, phi = phi, Lambda = Lambda, B_p = B_p))));
+              ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.Cooper1984
+              (C=1.5))));
 
-end SmoothedCorrelationsMartinYanLin;
+end SmoothedCorrelationsMartinCooper;

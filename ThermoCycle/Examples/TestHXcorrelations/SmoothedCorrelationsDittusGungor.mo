@@ -1,6 +1,6 @@
 within ThermoCycle.Examples.TestHXcorrelations;
-model SmoothedCorrelationsDittusCooper
-  "A combination of the Dittus-Boelter equation for single phase and the Cooper evaporation correlation"
+model SmoothedCorrelationsDittusGungor
+  "Dittus-Boelter (1p) and Gungor-Winterton (2p)"
   extends Test_HeatTransferTester(tester(redeclare model HeatTransfer =
           ThermoCycle.Components.HeatFlow.HeatTransfer.SmoothedInit (
           t_start=Modelica.Constants.small,
@@ -9,9 +9,14 @@ model SmoothedCorrelationsDittusCooper
               ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter1930
               (d_h=d_h, A_cro=A_cro),
           redeclare model TwoPhaseCorrelation =
-              ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.Cooper1984
-              (C=1),
+              ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.GungorWinterton1987
+              (
+              d_h=d_h,
+              A_cro=A_cro,
+              redeclare model LiquidCorrelation =
+                  ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter1930
+                  (d_h=d_h, A_cro=A_cro)),
           redeclare model VapourCorrelation =
               ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter1930
               (d_h=d_h, A_cro=A_cro))));
-end SmoothedCorrelationsDittusCooper;
+end SmoothedCorrelationsDittusGungor;
