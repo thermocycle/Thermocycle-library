@@ -3,14 +3,15 @@ model Test_HeatTransferTester "A test driver for the different implementations o
   heat transfer models"
   extends Modelica.Icons.Example;
 
-  parameter Modelica.SIunits.Length a_hat = 0.002;
-  parameter Modelica.SIunits.Angle phi = Modelica.SIunits.Conversions.from_deg(45);
-  parameter Modelica.SIunits.Length Lambda = 0.0126;
-  parameter Modelica.SIunits.Length B_p = 0.1;
+  parameter Modelica.SIunits.Length a_hat = 0.0012;
+  parameter Modelica.SIunits.Angle phi = Modelica.SIunits.Conversions.from_deg(65);
+  parameter Modelica.SIunits.Length Lambda = 0.0075;
+  parameter Modelica.SIunits.Length B_p = 0.04;
 
   parameter Real X =   2 * Modelica.Constants.pi*a_hat/Lambda;
   parameter Real Phi = 1/6 * ( 1 + sqrt(1+X^2) + 4 * sqrt(1+X^2/2));
   parameter Modelica.SIunits.Length d_h = 4 * a_hat / Phi;
+  parameter Modelica.SIunits.Length d_e = 2 * a_hat;
   parameter Modelica.SIunits.Area A_cro = 2 * a_hat * B_p;
 
   model InputSelector
@@ -138,5 +139,7 @@ model Test_HeatTransferTester "A test driver for the different implementations o
     p_start=675000)
     annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
 
-  annotation (experiment(StopTime=10));
+  annotation (experiment(StopTime=10), Documentation(info="<html>
+<p>The inputs to the heat transfer models are calculated here. Note that pipe correlations should use d_e as characteristic length while plate heat exchanger models should use d_h. </p>
+</html>"));
 end Test_HeatTransferTester;

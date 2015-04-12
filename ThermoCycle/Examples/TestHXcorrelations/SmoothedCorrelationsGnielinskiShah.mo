@@ -7,13 +7,13 @@ model SmoothedCorrelationsGnielinskiShah "Gnielinski (1p) and Shah (2p)"
           redeclare model LiquidCorrelation =
               ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.Gnielinski2010
               (
-              d_h=d_h,
+              d_h=d_e,
               A_cro=A_cro,
               l=0.2),
           redeclare model TwoPhaseCorrelation =
               ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.Shah1982
               (
-              d_h=d_h,
+              d_h=d_e,
               A_cro=A_cro,
               redeclare model LiquidCorrelation =
                   ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.DittusBoelter1930
@@ -21,7 +21,7 @@ model SmoothedCorrelationsGnielinskiShah "Gnielinski (1p) and Shah (2p)"
           redeclare model VapourCorrelation =
               ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhaseCorrelations.Gnielinski2010
               (
-              d_h=d_h,
+              d_h=d_e,
               A_cro=A_cro,
               l=0.2))));
 
