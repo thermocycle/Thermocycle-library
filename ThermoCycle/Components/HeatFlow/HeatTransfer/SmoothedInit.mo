@@ -3,6 +3,7 @@ model SmoothedInit
   "SmoothedInit: Smooth transitions between the different zones including an initialisation and a filtering"
   extends
     ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferSmoothed(
+     massFlowExp=0.0,
   redeclare replaceable package Medium =
         Modelica.Media.Interfaces.PartialTwoPhaseMedium
   constrainedby Modelica.Media.Interfaces.PartialTwoPhaseMedium);
