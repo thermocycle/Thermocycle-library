@@ -37,10 +37,10 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
                                                         expander(redeclare
       package Medium =
         ThermoCycle.Media.R245fa_CP,
-    ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.ORCNext,
     V_s=1,
     constPinit=false,
     constinit=false,
+    ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.Screw,
     p_su_start=2357000,
     p_ex_start=177800,
     T_su_start=413.15)

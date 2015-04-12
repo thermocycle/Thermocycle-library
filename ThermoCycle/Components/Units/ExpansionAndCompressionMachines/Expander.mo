@@ -94,7 +94,7 @@ if (ExpType == ExpTypes.ODExp) then
           rho=rho_su,
           log_rp=log(p_su/p_ex),
           N_rot=rpm);
-elseif (ExpType == ExpTypes.ORCNext) then
+elseif (ExpType == ExpTypes.Screw) then
   FF= ThermoCycle.Functions.TestRig.GenericScrewExpander_FillingFactor(
                                                            p_su_exp= p_su,rho_su_exp= rho_su,rpm=N_rot*60);  // V_s has to be set ugual to 1 [m3]
     epsilon = ThermoCycle.Functions.TestRig.GenericScrewExpander_IsentropicEfficiency(

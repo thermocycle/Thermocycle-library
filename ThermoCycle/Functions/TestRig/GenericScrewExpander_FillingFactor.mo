@@ -13,9 +13,7 @@ Real m_dot_pred;
 algorithm
 rpm_star :=(rpm - rpm_ref)/rpm_ref;
 p_star :=(p_su_exp/1e5 - p_ref)/p_ref;
-m_dot_pred :=4.12755649E-01 + 5.53460859E-01*p_star + 2.02259908E-01*p_star^2 +
-    1.77533206E-01*rpm_star - 9.68383257E-02*rpm_star^2 + 1.65849332E-01*p_star*
-    rpm_star;
+m_dot_pred :=4.00774818E-01+5.33125918E-01*p_star+1.49433502E-01*p_star^2-2.76390528E-01*rpm_star-1.44346740E+00*rpm_star^2+2.42971080E-01*p_star*rpm_star;
 
 FFVs :=m_dot_pred/(rpm/60*rho_su_exp);
 

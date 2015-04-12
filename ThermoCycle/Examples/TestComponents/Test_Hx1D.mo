@@ -5,8 +5,8 @@ model Test_Hx1D
 // Modelica.SIunits.Power PowerRec = Recuperator.Q_hot_;
 
   ThermoCycle.Components.Units.HeatExchangers.Hx1D    Recuperator(
-    redeclare package Medium1 = CoolProp2Modelica.Media.SES36_CP,
-    redeclare package Medium2 = CoolProp2Modelica.Media.SES36_CP,
+    redeclare package Medium1 = ThermoCycle.Media.SES36_CP,
+    redeclare package Medium2 = ThermoCycle.Media.SES36_CP,
     MdotNom_Hot=0.3335,
     MdotNom_Cold=0.3335,
     steadystate_h_cold=true,
@@ -27,18 +27,18 @@ model Test_Hx1D
     annotation (Placement(transformation(extent={{-34,-22},{28,40}})));
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(
-    redeclare package Medium = CoolProp2Modelica.Media.SES36_CP,
+    redeclare package Medium = ThermoCycle.Media.SES36_CP,
     Mdot_0=0.3335,
     p=888343,
     T_0=303.59)
     annotation (Placement(transformation(extent={{-94,-28},{-74,-8}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP(redeclare package
-      Medium = CoolProp2Modelica.Media.SES36_CP,
+      Medium = ThermoCycle.Media.SES36_CP,
     h=290659,
     p0=863885)
     annotation (Placement(transformation(extent={{68,-48},{88,-28}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot1(
-    redeclare package Medium = CoolProp2Modelica.Media.SES36_CP,
+    redeclare package Medium = ThermoCycle.Media.SES36_CP,
     Mdot_0=0.3335,
     UseT=false,
     h_0=236271,
@@ -46,7 +46,7 @@ model Test_Hx1D
     T_0=368.05)
     annotation (Placement(transformation(extent={{26,70},{46,90}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP1(
-    redeclare package Medium = CoolProp2Modelica.Media.SES36_CP,
+    redeclare package Medium = ThermoCycle.Media.SES36_CP,
     h=363652,
     p0=127890)
     annotation (Placement(transformation(extent={{-54,72},{-36,90}})));
@@ -54,16 +54,16 @@ model Test_Hx1D
 // PowerRec = 20.330e3;
 
   ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp(redeclare package
-      Medium = CoolProp2Modelica.Media.SES36_CP)
+      Medium = ThermoCycle.Media.SES36_CP)
     annotation (Placement(transformation(extent={{-32,18},{-52,38}})));
   ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp1(redeclare package
-      Medium = CoolProp2Modelica.Media.SES36_CP)
+      Medium = ThermoCycle.Media.SES36_CP)
     annotation (Placement(transformation(extent={{30,-12},{50,8}})));
   ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp2(redeclare package
-      Medium = CoolProp2Modelica.Media.SES36_CP)
+      Medium = ThermoCycle.Media.SES36_CP)
     annotation (Placement(transformation(extent={{-62,-22},{-42,-2}})));
   ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp3(redeclare package
-      Medium = CoolProp2Modelica.Media.SES36_CP)
+      Medium = ThermoCycle.Media.SES36_CP)
     annotation (Placement(transformation(extent={{40,34},{60,54}})));
 equation
 
