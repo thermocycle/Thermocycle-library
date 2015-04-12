@@ -15,7 +15,7 @@ model Cooper1984 "Cooper correlation for nucleate boiling"
   parameter Modelica.SIunits.Length R_p(min=Modelica.Constants.small,displayUnit="mm") = 1e-6
     "Roughness, disable with 1um";
   Real log_R_p;
-  parameter Real C(min=0) = 1.5 "Enhancement term, 1.5 for plate HX";
+  parameter Real C(min=0) = 1.0 "Enhancement term, 0.7-1.5 for plate HX";
 
 algorithm
   M :=Medium.getMolarMass() "kg/mol, needs transform to kg/kmol";

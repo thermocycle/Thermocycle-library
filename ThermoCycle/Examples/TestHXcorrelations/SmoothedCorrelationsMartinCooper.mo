@@ -12,6 +12,6 @@ model SmoothedCorrelationsMartinCooper "Martin (1p) and Cooper (2p)"
               (a_hat = a_hat, phi = phi, Lambda = Lambda, B_p = B_p),
           redeclare model TwoPhaseCorrelation =
               ThermoCycle.Components.HeatFlow.HeatTransfer.TwoPhaseCorrelations.Cooper1984
-              (C=1.5))));
+              (C=1.0))));
 
 end SmoothedCorrelationsMartinCooper;
