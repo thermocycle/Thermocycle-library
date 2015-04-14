@@ -105,12 +105,12 @@ equation
   Q_dot_hf = AU_hf * LMTD_hf;
 
   /* Heat transfer calculation between the cold fluid and the wall */
-  LMTD_cf = homotopy(ThermoCycle.Functions.LMTD_robust(T_w_1 - stateIn_cf.T, T_w_2 -
+  LMTD_cf =homotopy(ThermoCycle.Functions.RLMTD(T_w_1 - stateIn_cf.T, T_w_2 -
     stateOut_cf.T), max(0, pinch_cf));
 
   /* Heat transfer calculation between the hot fluid and the wall */
-  LMTD_hf = homotopy(ThermoCycle.Functions.LMTD_robust(T_hf_ex - T_w_1, stateIn_hf.T - T_w_2),
-    max(0, pinch_hf));
+  LMTD_hf =homotopy(ThermoCycle.Functions.RLMTD(T_hf_ex - T_w_1, stateIn_hf.T
+     - T_w_2), max(0, pinch_hf));
 
   pinch_cf = min(T_w_1-stateIn_cf.T,T_w_2-stateOut_cf.T);
   pinch_hf = min(T_hf_ex-T_w_1,stateIn_hf.T-T_w_2);

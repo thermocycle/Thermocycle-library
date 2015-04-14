@@ -1,5 +1,5 @@
 within ThermoCycle.Functions;
-function LMTD_robust
+function RLMTD
   "Computes LMTD without numerical issue in case of negative pinch"
   input Real DELTAT1;
   input Real DELTAT2;
@@ -29,4 +29,4 @@ algorithm
   end if;
 
   annotation (smoothOrder=1);
-end LMTD_robust;
+end RLMTD;
