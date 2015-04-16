@@ -17,22 +17,23 @@ model Test_SolaFieldSchott
 
  ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot sourceMdot(Mdot_0=0.5,
     redeclare package Medium = ThermoCycle.Media.Water,
-    p=1000000)
+    p=1000000,
+    T_0=353.15)
     annotation (Placement(transformation(extent={{-66,-70},{-46,-50}})));
  ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP(redeclare package
       Medium = ThermoCycle.Media.Water, p0=1000000)
     annotation (Placement(transformation(extent={{22,56},{42,76}})));
   Modelica.Blocks.Sources.Constant const(k=25 + 273.15)
-    annotation (Placement(transformation(extent={{-94,-12},{-74,8}})));
+    annotation (Placement(transformation(extent={{-94,-8},{-74,12}})));
   Modelica.Blocks.Sources.Constant const1(k=0)
-    annotation (Placement(transformation(extent={{-94,16},{-74,36}})));
+    annotation (Placement(transformation(extent={{-94,18},{-74,38}})));
   Modelica.Blocks.Sources.Constant const3(k=0)
     annotation (Placement(transformation(extent={{-92,48},{-72,68}})));
   Modelica.Blocks.Sources.Step step(
-    offset=850,
     startTime=100,
-    height=0)
-    annotation (Placement(transformation(extent={{-92,-40},{-72,-20}})));
+    height=0,
+    offset=0)
+    annotation (Placement(transformation(extent={{-94,-40},{-74,-20}})));
 equation
   connect(sourceMdot.flangeB, solarCollectorIncSchott.InFlow) annotation (
       Line(
@@ -48,16 +49,16 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(const1.y, solarCollectorIncSchott.Theta) annotation (Line(
-      points={{-73,26},{-48,26},{-48,21.3182},{-30.5,21.3182}},
+      points={{-73,28},{-48,28},{-48,21.3182},{-30.5,21.3182}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(const.y, solarCollectorIncSchott.Tamb) annotation (Line(
-      points={{-73,-2},{-54,-2},{-54,6.04545},{-30.9667,6.04545}},
+      points={{-73,2},{-54,2},{-54,6.04545},{-30.9667,6.04545}},
       color={0,0,127},
       smooth=Smooth.None));
 
   connect(step.y, solarCollectorIncSchott.DNI) annotation (Line(
-      points={{-71,-30},{-56,-30},{-56,-12.4091},{-30.5,-12.4091}},
+      points={{-73,-30},{-56,-30},{-56,-12.4091},{-30.5,-12.4091}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-80},{60,100}}),

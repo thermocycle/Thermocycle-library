@@ -64,13 +64,13 @@ Modelica.SIunits.HeatFlowRate Q_tube_tot
 
 /****************************************THERMAL FLUX ****************************************/
 Modelica.SIunits.HeatFlux Phi_conv_f[N] "Heat flux to the fluid";
-
+Modelica.SIunits.HeatFlux Phi_amb[N] "Heat flux to the ambient";
 /**************************************** EFFICIENCIES ****************************************/
 Real Eta_tot_N[N] "Efficiency based on Soltigua data sheet";
 Real Eta_tot "Averaged overall Efficiency";
 equation
-//Total thermal energy flow on the tube from the Sun [W]. Depend on the Focusing Parameter//
 
+  /* Focusing effect */
 if Focusing ==1 then S_eff =geometry.S_net;
 else  S_eff = geometry.S_ext_t;
 end if;
@@ -87,11 +87,13 @@ for i in 1:N loop
   if DNI > 0 then
     Eta_tot_N[i]*DNI*(S_eff/geometry.S_net) = (DNI*K_l*0.747*(S_eff/geometry.S_net)
        - 0.64*(T_fluid[i] - Tamb));
+    Phi_amb[i] = 0;
   else
     Eta_tot_N[i] = 0;
+    Phi_amb[i] = 0.64*(Tamb -T_fluid[i]);
   end if;
-
-Phi_conv_f[i]= Q_tube_tot*Eta_tot_N[i]/ geometry.A_ext_t;
+  // Remove the part based on Tdrop
+  Phi_conv_f[i]= Q_tube_tot*Eta_tot_N[i]/ geometry.A_ext_t + Phi_amb[i];
 //    Phi_conv_f[i] = (DNI*Modelica.Math.cos(Theta*pi/180)*(S_eff/geometry.S_net)
 //      *geometry.S_net*K_l*0.747 - geometry.S_net*0.64*(T_fluid[i] - Tamb))/
 //      geometry.A_ext_t;
