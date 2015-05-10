@@ -18,40 +18,41 @@ model Test_Cell1D
     pstart=866735)
     annotation (Placement(transformation(extent={{-16,10},{4,30}})));
 
-  Components.FluidFlow.Reservoirs.SourceMdot             sourceMdot1(
+  Components.FluidFlow.Reservoirs.SourceMdot SourceMdot(
     redeclare package Medium = ThermoCycle.Media.R407c_CP,
     h_0=84867,
     Mdot_0=0.3334,
     UseT=true,
     p=888343,
     T_0=356.26)
-    annotation (Placement(transformation(extent={{-72,10},{-52,30}})));
+    annotation (Placement(transformation(extent={{-60,10},{-40,30}})));
   Components.FluidFlow.Reservoirs.SinkP             sinkP(redeclare package
       Medium = ThermoCycle.Media.R407c_CP,
     h=254381,
     p0=866735)
-    annotation (Placement(transformation(extent={{46,12},{66,32}})));
-  Modelica.Blocks.Sources.Step step(
+    annotation (Placement(transformation(extent={{22,10},{42,30}})));
+  Modelica.Blocks.Sources.Step StepBlock(
     startTime=10,
     height=-15,
     offset=83.11 + 273.15)
-    annotation (Placement(transformation(extent={{-96,42},{-76,62}})));
+    annotation (Placement(transformation(extent={{-76,40},{-60,56}})));
 equation
-  connect(sourceMdot1.flangeB, flow1Dim.InFlow) annotation (Line(
-      points={{-53,20},{-16,20}},
+  connect(SourceMdot.flangeB, flow1Dim.InFlow) annotation (Line(
+      points={{-41,20},{-16,20}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(flow1Dim.OutFlow, sinkP.flangeB) annotation (Line(
-      points={{4,20.1},{25,20.1},{25,22},{47.6,22}},
+      points={{4,20.1},{25,20.1},{25,20},{23.6,20}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(step.y, sourceMdot1.in_T) annotation (Line(
-      points={{-75,52},{-72,52},{-72,50},{-62.2,50},{-62.2,26}},
+  connect(StepBlock.y, SourceMdot.in_T) annotation (Line(
+      points={{-59.2,48},{-50.2,48},{-50.2,26}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}}), graphics),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-20},{60,
+            80}}),      graphics),
     experiment(StopTime=100),
-    __Dymola_experimentSetupOutput);
+    __Dymola_experimentSetupOutput,
+    Icon(coordinateSystem(extent={{-100,-20},{60,80}})));
 end Test_Cell1D;

@@ -8,7 +8,7 @@ model Test_ExpansionTank
     redeclare package Medium = ThermoCycle.Media.Water,
     p=200000,
     T_0=313.15)
-              annotation (Placement(transformation(extent={{-56,-34},{-36,-14}})));
+              annotation (Placement(transformation(extent={{-56,-22},{-36,-2}})));
   Components.Units.Tanks.ExpansionTank expansionTank(
     H_D=2.5,
     V_tank=5,
@@ -31,7 +31,7 @@ model Test_ExpansionTank
     annotation (Placement(transformation(extent={{62,-22},{82,-2}})));
 equation
   connect(sourceWF.flangeB, expansionTank.InFlow) annotation (Line(
-      points={{-37,-24},{21,-24},{21,2.36}},
+      points={{-37,-12},{21,-12},{21,2.36}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(expansionTank.InFlow, sinkVdot.flangeB) annotation (Line(
