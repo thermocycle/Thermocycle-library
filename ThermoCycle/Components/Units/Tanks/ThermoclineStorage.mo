@@ -24,10 +24,10 @@ ThermoCycle.Interfaces.Fluid.FlangeA portHotSF(redeclare package Medium = Medium
         iconTransformation(extent={{-88,-8},{-68,12}})));
 
 /**********************FILLER MATERIAL **********************/
-inner replaceable parameter ThermalStorage.FillerMaterial.MaterialBase
+replaceable parameter FillerMaterial.MaterialBase
                                               FillerMaterial
-constrainedby ThermalStorage.FillerMaterial.MaterialBase
-    "Select solid material in the tank"                                                       annotation (choicesAllMatching=true);
+constrainedby ThermoCycle.Components.Units.Tanks.FillerMaterial.MaterialBase
+    "Select solid material in the tank"                                                                                          annotation (choicesAllMatching=true);
 
 /********************** PARAMETERS **********************/
   constant Real pi= Modelica.Constants.pi;

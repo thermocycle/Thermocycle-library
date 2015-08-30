@@ -13,8 +13,11 @@ parameter Integer N(min=1) = 2 "Number of cells per collector";
 parameter Integer Ns(min=1) = 1 "Number of Collector in series";
 parameter Integer Nt(min=1) = 1 "Number of collectors in parallel";
 
-/*********************  Parameters for convective heat transfer in the fluid *********************/
+/*********************  Parameters for Defocusing *********************/
+parameter Real Def = 25
+    "Percentage value of the SF surface that goes to defocusing (25-50-75)"                     annotation(Dialog(group="DEFOCUSING", tab="General"));
 
+/*********************  Parameters for convective heat transfer in the fluid *********************/
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom=300
     "Coefficient of heat transfer" annotation (Dialog(group="Heat transfer", tab="General"));
 parameter Modelica.SIunits.MassFlowRate Mdotnom "Total nominal Mass flow";
@@ -57,7 +60,7 @@ replaceable model FluidHeatTransferModel =
 
 /******************************************  COMPONENTS *********************************************************/
 
- ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSoltigua[Ns] SolarAbsorber(each N=N, each geometry=CollectorGeometry)
+ ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSoltigua[Ns] SolarAbsorber(each N=N, each geometry=CollectorGeometry, each Defocusing = Def)
     annotation (Placement(transformation(extent={{-24,6},{14,40}})));
   Modelica.Blocks.Interfaces.RealInput v_wind
     annotation (Placement(transformation(extent={{-86,60},{-46,100}}),

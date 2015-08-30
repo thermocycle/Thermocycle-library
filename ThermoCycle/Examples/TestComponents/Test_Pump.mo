@@ -20,7 +20,7 @@ model Test_Pump
         ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66,
     p0=115794,
     T_0=389.15)
-    annotation (Placement(transformation(extent={{-100,-16},{-80,4}})));
+    annotation (Placement(transformation(extent={{-98,-16},{-78,4}})));
   Components.FluidFlow.Reservoirs.SinkP sinkP(redeclare package Medium =
         ThermoCycle.Media.Incompressible.IncompressibleTables.Therminol66, p0=
         150000) annotation (Placement(transformation(extent={{54,2},{74,22}})));
@@ -28,7 +28,7 @@ model Test_Pump
     annotation (Placement(transformation(extent={{-62,42},{-42,62}})));
 equation
   connect(sourceP.flange, pump.InFlow) annotation (Line(
-      points={{-80.6,-6},{-46,-6},{-46,-2.35},{-10.36,-2.35}},
+      points={{-78.6,-6},{-46,-6},{-46,-2.35},{-10.36,-2.35}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(pump.OutFlow, sinkP.flangeB) annotation (Line(

@@ -1,6 +1,6 @@
 within ThermoCycle.Components.Units.BaseUnits;
 partial model BaseHxConst
-replaceable package Medium1 = ThermoCycle.Media.R245fa_CP
+replaceable package Medium1 = ThermoCycle.Media.DummyFluid
                                                constrainedby
     Modelica.Media.Interfaces.PartialMedium   annotation (choicesAllMatching = true);
   Interfaces.Fluid.Flange_Cdot inletSf

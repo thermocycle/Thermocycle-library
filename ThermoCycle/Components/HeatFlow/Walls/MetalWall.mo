@@ -36,11 +36,20 @@ Modelica.SIunits.Temperature T_wall[N](start=linspace(
           Tstart_wall_1,
           Tstart_wall_end,
           N)) "Cell temperatures";
+
+Modelica.SIunits.Power Q_tot_int
+    "Total heat flux exchanged by the internal thermal port";
+Modelica.SIunits.Power Q_tot_ext
+    "Total heat flux exchanged by the external thermal port";
 equation
   for j in 1:N loop
     /*Metal wall */
     M_wall/(N)*der(T_wall[j])*c_wall = Aext_i*Wall_ext.phi[j] + Aint_i*Wall_int.phi[j];
   end for;
+
+  Q_tot_int = Aint*sum(Wall_int.phi)/N;
+  Q_tot_ext = Aext*sum(Wall_ext.phi)/N;
+
 //* BOUNDARY CONDITION *//
 //No temperature gradient
 Wall_ext.T = T_wall;

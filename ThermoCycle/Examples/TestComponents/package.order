@@ -29,3 +29,5 @@ Test_OpenTank
 Test_ExpansionTank
 Test_HeatTransferTester
 Test_BoilerSystem
+Test_Hx1D_I
+Test_Hx1D_II

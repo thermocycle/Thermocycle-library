@@ -20,11 +20,11 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     constinit=false,
     use_rho_nom=true,
-    UseHomotopy=false,
     p_nom=2357000,
     T_nom=413.15,
     DELTAp_lin_nom=3000,
-    DELTAp_quad_nom=5150)
+    DELTAp_quad_nom=5150,
+    UseHomotopy=true)
     annotation (Placement(transformation(extent={{0,42},{20,62}})));
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
                                                          expander(
@@ -71,12 +71,12 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     A=(2*9.5*23282.7)^(-0.5),
     Mdot_nom=0.2588,
     use_rho_nom=true,
-    UseHomotopy=false,
     redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     p_nom=190000,
     T_nom=351.15,
     DELTAp_lin_nom=3000,
-    DELTAp_quad_nom=5150)
+    DELTAp_quad_nom=5150,
+    UseHomotopy=true)
     annotation (Placement(transformation(extent={{32,0},{12,20}})));
  ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     condenser(
     Unom_l=500,

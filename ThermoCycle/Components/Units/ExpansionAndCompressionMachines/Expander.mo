@@ -1,7 +1,7 @@
 within ThermoCycle.Components.Units.ExpansionAndCompressionMachines;
 model Expander "Generic expander model"
  /****************************************** FLUID ******************************************/
-replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
+replaceable package Medium = ThermoCycle.Media.DummyFluid  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
  /*Ports */
 public

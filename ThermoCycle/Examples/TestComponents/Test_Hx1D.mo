@@ -18,6 +18,10 @@ model Test_Hx1D
     Unom_l_hot=1000,
     Unom_tp_hot=1000,
     Unom_v_hot=1000,
+    redeclare model ColdSideHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.SmoothedInit,
+    redeclare model HotSideSideHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.SmoothedInit,
     pstart_cold=863885,
     pstart_hot=127890,
     Tstart_inlet_cold=303.59,

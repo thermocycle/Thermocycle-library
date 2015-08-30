@@ -1,9 +1,9 @@
 within ThermoCycle.Components.Units.BaseUnits;
 partial model BaseHx
-replaceable package Medium1 = ThermoCycle.Media.R245fa_CP
+replaceable package Medium1 = ThermoCycle.Media.DummyFluid
                                                constrainedby
     Modelica.Media.Interfaces.PartialMedium "Working fluid"   annotation (choicesAllMatching = true);
-replaceable package Medium2 = ThermoCycle.Media.R245fa_CP
+replaceable package Medium2 = ThermoCycle.Media.DummyFluid
                                                constrainedby
     Modelica.Media.Interfaces.PartialMedium "In Hx1DInc: Secondary fluid"  annotation (choicesAllMatching = true);
   Interfaces.Fluid.FlangeA inlet_fl1( redeclare package Medium = Medium1)

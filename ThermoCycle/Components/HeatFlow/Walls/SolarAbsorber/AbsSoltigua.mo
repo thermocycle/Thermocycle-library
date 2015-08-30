@@ -47,7 +47,8 @@ constrainedby
 parameter Integer N = 2 "number of cells";
 final parameter Modelica.SIunits.Length ll= geometry.L/(N-1)
     "Length of each cell";
-
+    parameter Real Defocusing = 25
+    "Percentage value of the SF surface that goes to defocusing (25-50-75)";
 /*************************** VARIABLES ****************************************/
 
 /******************* Area of Collector and Reflector *****************************/
@@ -71,8 +72,12 @@ Real Eta_tot "Averaged overall Efficiency";
 equation
 
   /* Focusing effect */
+//if Focusing ==1 then S_eff =geometry.S_net;
+//else  S_eff = geometry.S_ext_t;
+//end if;
+
 if Focusing ==1 then S_eff =geometry.S_net;
-else  S_eff = geometry.S_ext_t;
+else  S_eff = geometry.S_net*(1-Defocusing/100);
 end if;
 
 /* Get Theta in degree */
@@ -85,9 +90,10 @@ Q_tube_tot = DNI*S_eff*Modelica.Math.cos(Theta);
 
 for i in 1:N loop
   if DNI > 0 then
-    Eta_tot_N[i]*DNI*(S_eff/geometry.S_net) = (DNI*K_l*0.747*(S_eff/geometry.S_net)
-       - 0.64*(T_fluid[i] - Tamb));
-    Phi_amb[i] = 0;
+  //  Eta_tot_N[i]*DNI*(S_eff/geometry.S_net) = (DNI*K_l*0.747*(S_eff/geometry.S_net)
+  //     - 0.64*(T_fluid[i] - Tamb)*(S_eff/geometry.S_net));
+    Eta_tot_N[i] = max(Modelica.Constants.small,K_l*0.747 - 0.64*(T_fluid[i] - Tamb)/max(Modelica.Constants.small,DNI));
+    Phi_amb[i] = 0.64*(Tamb -T_fluid[i]);
   else
     Eta_tot_N[i] = 0;
     Phi_amb[i] = 0.64*(Tamb -T_fluid[i]);
