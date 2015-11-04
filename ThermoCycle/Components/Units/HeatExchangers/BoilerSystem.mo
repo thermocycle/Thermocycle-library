@@ -230,8 +230,7 @@ ThermoCycle.Interfaces.Fluid.FlangeB_pT
   Modelica.Blocks.Interfaces.RealOutput level annotation (Placement(
         transformation(extent={{82,2},{102,22}}),  iconTransformation(extent={{98,-22},
             {104,-16}})));
-  FluidFlow.Sensors.SensTpSat sensSat(redeclare package Medium = Medium_wf,
-      ComputeSat=true)
+  FluidFlow.Sensors.SensTpSat sensSat(redeclare package Medium = Medium_wf)
     annotation (Placement(transformation(extent={{-50,0},{-30,20}})));
 equation
    Q_dot_tot = ECO.Q_dot_cf + EVA.Q_dot_iso + SH1.Q_dot_cf + SH2.Q_dot_cf;

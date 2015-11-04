@@ -24,6 +24,11 @@ model HX_singlephase_pT
   parameter Modelica.SIunits.ThermalConductance AU_global=27240
     "Global Thermal conductance"                                                    annotation (Dialog(group="Heat transfer", tab="General", enable=(Use_AU)));
 
+  parameter Modelica.SIunits.MassFlowRate Mdot_nom_hf = 1
+    "Nominal hot fluid flow rate";
+  parameter Modelica.SIunits.MassFlowRate Mdot_nom_cf = 1
+    "Nominal cold fluid flow rate";
+
   /****************** Initialization parameters ******************/
   parameter Modelica.SIunits.AbsolutePressure p_cf_start=50E5
     "Initial pressure of the cold working fluid" annotation (Dialog(tab="Initialization"));
@@ -40,11 +45,11 @@ model HX_singlephase_pT
   parameter Modelica.SIunits.Temperature T_w_2_start=(T_cf_ex_start+T_hf_su_start)/2
     "Initial value of wall temperature between T_cf_ex and T_hf_su"                                                  annotation (Dialog(tab="Initialization"));
   parameter Boolean steadystate_T_wall=false
-    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Initialization options", tab="Initialization"));
+    "if true, sets the derivative of T_wall to zero during Initialization"    annotation (Dialog(group="Intialization options", tab="Initialization"));
   parameter Boolean T_wall_fixed=false
-    "if true, imposes the initial wall temperature"                                    annotation (Dialog(group="Initialization options", tab="Initialization"));
+    "if true, imposes the initial wall temperature"                                    annotation (Dialog(group="Intialization options", tab="Initialization"));
  parameter Boolean Cp_constant=false
-    "if true, sets the specific heat capacity Cp to a constant value computed with initial conditions";
+    "if true, sets the specific heat capacity Cp to a constant value computed with inital conditions";
 
   /******************************* VARIABLES *****************************/
   Modelica.SIunits.Area A(start=A_cf);
@@ -55,6 +60,7 @@ model HX_singlephase_pT
   Modelica.SIunits.Temperature T_wall(start=(T_w_1_start+T_w_2_start)/2);
   Modelica.SIunits.Temperature T_w_1(start=T_w_1_start);
   Modelica.SIunits.Temperature T_w_2(start=T_w_2_start);
+  Modelica.SIunits.Temperature DELTAT_w(start=T_w_2_start - T_w_1_start);
   Modelica.SIunits.ThermodynamicTemperature LMTD_cf(displayUnit="K");
   Modelica.SIunits.ThermodynamicTemperature LMTD_hf(displayUnit="K");
   Modelica.SIunits.ThermodynamicTemperature pinch_cf(displayUnit="K",min=1);
@@ -105,12 +111,12 @@ equation
   Q_dot_hf = AU_hf * LMTD_hf;
 
   /* Heat transfer calculation between the cold fluid and the wall */
-  LMTD_cf =homotopy(ThermoCycle.Functions.RLMTD(T_w_1 - stateIn_cf.T, T_w_2 -
+  LMTD_cf = homotopy(ThermoCycle.Functions.RLMTD(T_w_1 - stateIn_cf.T, T_w_2 -
     stateOut_cf.T), max(0, pinch_cf));
 
   /* Heat transfer calculation between the hot fluid and the wall */
-  LMTD_hf =homotopy(ThermoCycle.Functions.RLMTD(T_hf_ex - T_w_1, stateIn_hf.T
-     - T_w_2), max(0, pinch_hf));
+  LMTD_hf = homotopy(ThermoCycle.Functions.RLMTD(T_hf_ex - T_w_1, stateIn_hf.T - T_w_2),
+    max(0, pinch_hf));
 
   pinch_cf = min(T_w_1-stateIn_cf.T,T_w_2-stateOut_cf.T);
   pinch_hf = min(T_hf_ex-T_w_1,stateIn_hf.T-T_w_2);
@@ -123,15 +129,17 @@ equation
     Cp_hf = Medium2.specificHeatCapacityCp(Medium2.setState_pT(inlet_hf.p,(T_hf_su_start+T_hf_ex_start)/2));
   end if;
 
-  Q_dot_cf = inlet_cf.m_flow * (h_cf_ex - stateIn_cf.h);
-  Q_dot_hf = inlet_hf.m_flow * Cp_hf * (stateIn_hf.T - T_hf_ex);
+  Q_dot_cf = max(Mdot_nom_cf/100,inlet_cf.m_flow) * (h_cf_ex - stateIn_cf.h);
+  Q_dot_hf = max(Mdot_nom_hf/100,inlet_hf.m_flow) * Cp_hf * (stateIn_hf.T - T_hf_ex);
 
 /* Metal wall energy balance */
   M_wall * c_wall * der(T_wall) = Q_dot_hf - Q_dot_cf;
+  T_wall = (T_w_2 + T_w_1)/2;
 
   /* Linear temperature gradient in the wall */
-  T_w_2 - T_w_1 = (AU_cf*(stateOut_cf.T-stateIn_cf.T) + AU_hf*(stateIn_hf.T-T_hf_ex))/(AU_cf+AU_hf);
-  T_wall = T_w_1 + (T_w_2 - T_w_1)/2;
+  DELTAT_w = T_w_2 - T_w_1;
+  M_wall * c_wall * der(DELTAT_w) = AU_cf*(stateOut_cf.T-stateIn_cf.T - DELTAT_w) + AU_hf*(stateIn_hf.T-T_hf_ex - DELTAT_w);
+  //DELTAT_w = (AU_cf*(stateOut_cf.T-stateIn_cf.T) + AU_hf*(stateIn_hf.T-T_hf_ex))/(AU_cf+AU_hf);
 
   stateOut_cf = Medium1.setState_ph(outlet_cf.p,h_cf_ex);
   stateOut_hf = Medium2.setState_pT(outlet_hf.p,T_hf_ex);
@@ -139,12 +147,14 @@ equation
 /* BOUNDARY CONDITIONS */
 
   /*Boundary Conditions Cold Fluid*/
-  inlet_cf.h_outflow=inStream(outlet_cf.h_outflow);
+  //inlet_cf.h_outflow=inStream(outlet_cf.h_outflow);
+  inlet_cf.h_outflow=1E5;  // Backflow not allowed
   outlet_cf.h_outflow = stateOut_cf.h;
   inlet_cf.m_flow = - outlet_cf.m_flow;
   inlet_cf.p = outlet_cf.p;
   /*Boundary Conditions Hot Fluid*/
-  inlet_hf.T_outflow=inStream(outlet_hf.T_outflow);
+  //inlet_hf.T_outflow=inStream(outlet_hf.T_outflow);
+  inlet_hf.T_outflow=300;  // Backflow not allowed
   outlet_hf.T_outflow=T_hf_ex;
   inlet_hf.m_flow = - outlet_hf.m_flow;
   inlet_hf.p = outlet_hf.p;
@@ -312,5 +322,6 @@ initial equation
 <ul>
 <li>Use_AU: allows the user to use a global thermal conductance, assuming constant heat exchange area</li>
 </ul>
-</html>"));
+</html>"),
+    uses(Modelica(version="3.2.1")));
 end HX_singlephase_pT;
