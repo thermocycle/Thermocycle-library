@@ -8,7 +8,7 @@ connector Flange_pT
   Medium.AbsolutePressure p "Thermodynamic pressure in the connection point";
   stream Medium.Temperature T_outflow
     "Temperature close to the connection point if m_flow < 0";
- stream Medium.MassFraction Xi_outflow[Medium.nXi]
+  stream Medium.MassFraction Xi_outflow[Medium.nXi]
     "Independent mixture mass fractions m_i/m close to the connection point if m_flow < 0";
   stream Medium.ExtraProperty C_outflow[Medium.nC]
     "Properties c_i/m close to the connection point if m_flow < 0";

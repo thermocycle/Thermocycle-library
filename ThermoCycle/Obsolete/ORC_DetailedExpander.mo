@@ -1,4 +1,4 @@
-within ThermoCycle.Examples.Simulations.Plants;
+within ThermoCycle.Obsolete;
 model ORC_DetailedExpander
   "Non-regenerative ORC with double-PID control system and variable Tev, detailed expander model"
 

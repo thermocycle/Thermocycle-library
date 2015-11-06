@@ -32,6 +32,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     constPinit=false,
     constinit=false,
     ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.Screw,
+    redeclare package Medium = ThermoCycle.Media.R245fa_CP,
     p_su_start=2357000,
     p_ex_start=177800,
     T_su_start=413.15)
@@ -64,7 +65,7 @@ ThermoCycle.Components.Units.HeatExchangers.Hx1DInc     evaporator(
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
     annotation (Placement(transformation(extent={{-16,15},{16,-15}},
         rotation=90,
-        origin={-13,-6})));
+        origin={-13,-8})));
 
 ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     k=38.4E3*9.5,
@@ -94,12 +95,13 @@ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(
     max_der_wf=true,
     redeclare model Medium1HeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.VaporQualityDependance,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+    redeclare package Medium1 = ThermoCycle.Media.R245fa_CP,
     pstart_wf=177800,
     Tstart_inlet_wf=316.92,
     Tstart_outlet_wf=298.15,
     Tstart_inlet_sf=293.15,
-    Tstart_outlet_sf=296.36,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    Tstart_outlet_sf=296.36)
     annotation (Placement(transformation(extent={{30,-50},{6,-70}})));
 
  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Pump
@@ -171,15 +173,15 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(recuperator.inlet_fl1, pump.OutFlow) annotation (Line(
-      points={{-18,-16.6667},{-18,-33.12},{-55.28,-33.12}},
+      points={{-18,-18.6667},{-18,-33.12},{-55.28,-33.12}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.inlet_fl2, dp_lp.OutFlow) annotation (Line(
-      points={{-7,4.45333},{-7,10},{13,10}},
+      points={{-7,2.45333},{-7,10},{13,10}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.outlet_fl2, condenser.inlet_fl1) annotation (Line(
-      points={{-7.2,-16.4533},{-7.2,-36},{38,-36},{38,-56.1538},{27.2308,
+      points={{-7.2,-18.4533},{-7.2,-36},{38,-36},{38,-56.1538},{27.2308,
           -56.1538}},
       color={0,0,255},
       smooth=Smooth.None));
@@ -196,7 +198,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(recuperator.outlet_fl1, evaporator.inlet_fl1) annotation (Line(
-      points={{-18,4.66667},{-18,26},{-84,26},{-84,51.3846},{-58.7692,51.3846}},
+      points={{-18,2.66667},{-18,26},{-84,26},{-84,51.3846},{-58.7692,51.3846}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(evaporator.outlet_fl1, dp_hp.InFlow) annotation (Line(

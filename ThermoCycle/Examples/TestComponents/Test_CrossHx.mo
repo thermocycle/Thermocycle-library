@@ -15,6 +15,7 @@ model Test_CrossHx
     Unom_v=660,
     Unom_sf=50,
     UseNom_sf=true,
+    redeclare package Medium2 = Modelica.Media.Air.SimpleAir,
     T_nom_sf=298.15,
     DELTAp_quad_nom_sf=50000,
     pstart_wf=211000,
@@ -26,8 +27,8 @@ model Test_CrossHx
     T_0=323.15)
     annotation (Placement(transformation(extent={{-90,4},{-70,24}})));
  Components.FluidFlow.Reservoirs.SourceMdot             sourceAir(
-    redeclare package Medium = Modelica.Media.Air.SimpleAir,
     Mdot_0=6/12/2,
+    redeclare package Medium = Modelica.Media.Air.SimpleAir,
     T_0=303.81)
     annotation (Placement(transformation(extent={{-10,76},{10,96}})));
  Components.FluidFlow.Reservoirs.SinkP             sinkP(redeclare package

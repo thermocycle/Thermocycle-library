@@ -1,14 +1,15 @@
 within ThermoCycle.Components.FluidFlow.Pipes;
-model AirCell "Constant specific heat fluid"
+model AirCell_pT
+  "Incompressible flow with negligible density (no energy accumulation). No flow reversal allowed"
 replaceable package Medium = Modelica.Media.Air.SimpleAir constrainedby
     Modelica.Media.Interfaces.PartialMedium
 annotation (choicesAllMatching = true);
 /************ Thermal and fluid ports ***********/
-  ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium =
+  ThermoCycle.Interfaces.Fluid.FlangeA_pT InFlow(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
- ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium =
+ ThermoCycle.Interfaces.Fluid.FlangeB_pT OutFlow(redeclare package Medium =
         Medium)
     annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{80,-18},{120,20}})));
@@ -17,13 +18,13 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_ext
         iconTransformation(extent={{-40,40},{40,60}})));
 /************ Geometric characteristics **************/
   constant Real pi = Modelica.Constants.pi "pi-greco";
-  parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
   parameter Modelica.SIunits.Area Ai "Lateral surface of a single cell";
   parameter Modelica.SIunits.MassFlowRate Mdotnom "Nominal fluid flow rate";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom
     "Constant heat transfer coefficient";
 
   parameter Medium.Temperature T_start=273.15+25 annotation (tab="Numerical options");
+
 /*****************HEAT TRANSFER MODEL************************/
 replaceable model HeatTransfer =
       ThermoCycle.Components.HeatFlow.HeatTransfer.MassFlowDependence
@@ -43,42 +44,47 @@ final FluidState={fluidState})
 /********************* VARIABLES *********************/
   Medium.ThermodynamicState  fluidState;
   Modelica.SIunits.MassFlowRate Mdot;
-  Medium.SpecificEnthalpy h(start=Medium.specificEnthalpy(Medium.setState_pT(1E5,T_start)))
-    "Average fluid enthalpy";
-  Medium.Density rho "Average fluid cell density";
+  Medium.Temperature T_su "Inlet fluid temperature";
+  Medium.Temperature T_ex "Exit fluid temperature";
+  Medium.SpecificHeatCapacity cp "Average fluid cell heat capacity";
   Modelica.SIunits.HeatFlux qdot "heat flux at each cell";
   Modelica.SIunits.Power Q_tot "Total heat flux exchanged by the thermal port";
-  Modelica.SIunits.Mass M_tot "Total mass of the fluid in the component";
 equation
   /* Fluid Properties */
-  h = (OutFlow.h_outflow + inStream(InFlow.h_outflow))/2;
-  fluidState = Medium.setState_ph(InFlow.p,h);
-  rho = Medium.density(fluidState);
+  fluidState = Medium.setState_pTX(InFlow.p,(T_su + T_ex)/2,OutFlow.Xi_outflow);
+  cp = Medium.specificHeatCapacityCp(fluidState);
   /* ENERGY BALANCE */
-  Mdot*(OutFlow.h_outflow - inStream(InFlow.h_outflow)) = Ai*qdot
-    "Energy balance";
+  Mdot*cp*(T_ex - T_su) = Ai*qdot "Energy balance";
   Q_tot = Ai*qdot "Total heat flow through the thermal port";
   qdot = ConvectiveHeatTransfer.q_dot[1];
-  M_tot = Vi*rho;
-  //* BOUNDARY CONDITIONS *//
-  InFlow.h_outflow = 0;   // Never used since flow reversals not allowed
-  /* pressures */
-  InFlow.p = OutFlow.p;
-  /*Mass Flow*/
-  Mdot = InFlow.m_flow;
-  OutFlow.m_flow = -Mdot;
-  assert(Mdot>=0,"AirCell does not allow flow reversals. A negative flow has been encountered");
+//* BOUNDARY CONDITIONS *//
+ /* Temperatures */
+ InFlow.T_outflow = 0;    // Never used since flow reversals not allowed
+ T_su = inStream(InFlow.T_outflow);
+ OutFlow.T_outflow = T_ex;
+/* pressures */
+ InFlow.p = OutFlow.p;
+/*Mass Flow*/
+ Mdot = InFlow.m_flow;
+ OutFlow.m_flow = -Mdot;
+ assert(Mdot>=0,"AirCell_pT does not allow flow reversals. A negative flow has been encountered");
+  /* Composition */
+  OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
+  InFlow.Xi_outflow = inStream(OutFlow.Xi_outflow);
+
   /* Thermal port boundary condition */
   connect(ConvectiveHeatTransfer.thermalPortL[1], Wall_ext) annotation (Line(
       points={{1.8,0.6},{1.8,22.3},{2,22.3},{2,50}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(graphics), Icon(graphics={Rectangle(
+  annotation (Diagram(graphics), Icon(coordinateSystem(preserveAspectRatio=false,
+          extent={{-100,-100},{100,100}}),
+                                      graphics={Rectangle(
           extent={{-92,40},{88,-40}},
           lineColor={0,0,255},
           fillColor={170,255,255},
           fillPattern=FillPattern.Solid), Line(
-          points={{-54,2},{58,2},{32,16},{58,2},{34,-12}},
+          points={{-60,0},{52,0},{26,14},{52,0},{28,-14}},
           color={0,0,255},
           smooth=Smooth.None)}),           Documentation(info="<HTML>
           
@@ -94,4 +100,4 @@ equation
          <li> Thermal energy transfer through the lateral surface is ensured by the <em>wall_int</em> connector. The actual heat flow is computed by the thermal energy model
          </ul>
 </HTML>"));
-end AirCell;
+end AirCell_pT;

@@ -10,7 +10,7 @@ Modelica.SIunits.CoefficientOfHeatTransfer[n] U "Heat transfer coefficient";
 equation
   for i in 1:n loop
     Unom = (Unom_l + Unom_tp + Unom_v)/3;
-    U[i] = Unom*noEvent(abs(M_dot/Mdotnom)^0.8);
+    U[i] = Unom*noEvent(0.00001 + abs(M_dot/Mdotnom)^0.8);
   /* Insert Qflow and T */
 q_dot = {U[i]*(thermalPortL[i].T - T_fluid[i])};
   end for;

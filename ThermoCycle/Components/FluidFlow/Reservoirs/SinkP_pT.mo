@@ -6,7 +6,15 @@ model SinkP_pT
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Modelica.SIunits.Pressure p0=1.01325e5 "Nominal pressure";
   parameter Modelica.SIunits.Temperature T=283.15 "Nominal specific enthalpy";
-  Modelica.SIunits.Pressure p;
+  parameter Medium.MassFraction X[Medium.nX] = Medium.X_default
+    "Fixed value of composition"
+    annotation (Evaluate = true,
+                Dialog(enable = Medium.nXi > 0));
+  parameter Medium.ExtraProperty C[Medium.nC](
+     quantity=Medium.extraPropertiesNames)=fill(0, Medium.nC)
+    "Fixed values of trace substances"
+  annotation (Evaluate=true,
+              Dialog(enable = Medium.nC > 0));
   Modelica.Blocks.Interfaces.RealInput in_p0 annotation (Placement(
         transformation(
         origin={-40,88},
@@ -21,8 +29,7 @@ model SinkP_pT
     annotation (Placement(transformation(extent={{-94,-10},{-74,10}}),
         iconTransformation(extent={{-94,-10},{-74,10}})));
 equation
-  flangeB.p = p;
-  p = in_p0;
+  flangeB.p = in_p0;
   if cardinality(in_p0) == 0 then
     in_p0 = p0 "Pressure set by parameter";
   end if;
@@ -30,6 +37,8 @@ equation
   if cardinality(in_T) == 0 then
     in_T = T "Enthalpy set by parameter";
   end if;
+  flangeB.Xi_outflow = X[1:Medium.nXi];
+  flangeB.C_outflow = C;
     annotation (Placement(transformation(extent={{-108,-10},{-88,10}})),
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
             100}}), graphics={Text(extent={{-106,92},{-56,50}}, textString=

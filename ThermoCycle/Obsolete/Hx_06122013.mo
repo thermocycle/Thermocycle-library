@@ -1,8 +1,25 @@
 within ThermoCycle.Obsolete;
 model Hx_06122013 "Simplified heat exchanger model. Not object-oriented"
- extends ThermoCycle.Components.Units.BaseUnits.BaseHxConst;
- replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
-    Modelica.Media.Interfaces.PartialMedium "Medium model";
+ //extends ThermoCycle.Components.Units.BaseUnits.BaseHxConst;
+
+replaceable package Medium = ThermoCycle.Media.R245fa_CP
+                                               constrainedby
+    Modelica.Media.Interfaces.PartialMedium   annotation (choicesAllMatching = true);
+  Interfaces.Fluid.Flange_Cdot inletSf
+    annotation (Placement(transformation(extent={{88,40},{108,60}}),
+        iconTransformation(extent={{90,40},{110,60}})));
+  Interfaces.Fluid.Flange_ex_Cdot outletSf
+    annotation (Placement(transformation(extent={{-106,40},{-86,60}}),
+        iconTransformation(extent={{-110,40},{-90,60}})));
+  Interfaces.Fluid.FlangeA inletWf( redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{-100,-60},{-80,-40}}),
+        iconTransformation(extent={{-110,-60},{-90,-40}})));
+  Interfaces.Fluid.FlangeB outletWf( redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{86,-60},{106,-40}}),
+        iconTransformation(extent={{90,-60},{110,-40}})));
+
+// replaceable package Medium = ThermoCycle.Media.R245fa_CP  constrainedby
+//    Modelica.Media.Interfaces.PartialMedium "Medium model";
 public
  record SummaryBase
    replaceable Arrays T_profile;
