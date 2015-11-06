@@ -34,7 +34,7 @@ model DP_pT "Lumped, 3-terms pressure drop model, pT formulation"
 //           p_nom,
 //           T_nom,fill(0,0)) "Nominal density"    annotation (Dialog(tab="Nominal Conditions"));
   parameter Modelica.SIunits.Density rho_nom=Medium.density(Medium.setState_pTX(
-          p_nom,T_nom,fill(0,0))) "Nominal density"    annotation (Dialog(tab="Nominal Conditions"));
+          p_nom,T_nom,Medium.X_default)) "Nominal density"    annotation (Dialog(tab="Nominal Conditions"));
   parameter Modelica.SIunits.Pressure   DELTAp_stat_nom=0
     "Nominal static pressure drop"
                            annotation (Dialog(tab="Nominal Conditions"));
