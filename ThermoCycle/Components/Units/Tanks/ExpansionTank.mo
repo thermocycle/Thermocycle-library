@@ -130,7 +130,7 @@ p_fl - p_gas = g*V_l/A_cross*rho;
 end if;
 
 /* Energy Balance */
-dMdt*h + der(h)*M_l - der(p)*V_l - p*der(V_l) = (h_su-h)*M_dot + Atot_tank*qdot;
+dMdt*h + der(h)*M_l - der(p)*V_l - p*der(V_l) = h_su*M_dot + Atot_tank*qdot;
 
 qdot = heatTransfer.q_dot[1];
 
