@@ -20,8 +20,8 @@ constant Real pi = Modelica.Constants.pi "pi-greco";
 constant Real RR = Modelica.Constants.R "Molar gas constant [J/mol.K]";
 
 /************ Geometric Characteristics  ************/
-parameter Real H_D "Height to diameter ratio";
-parameter Modelica.SIunits.Volume V_tank "Volume of the Tank";
+parameter Real H_D=1 "Height to diameter ratio";
+parameter Modelica.SIunits.Volume V_tank=0.01 "Volume of the Tank";
 final parameter Modelica.SIunits.Length   r_int = ((V_tank/(H_D)*4/pi)^(1/3))/2
     "Internal tank radius ";
 final parameter Modelica.SIunits.Length   D_int = r_int*2
@@ -38,9 +38,9 @@ parameter Boolean p_const = false "Impose a constant pressure to the tank";
 parameter Modelica.SIunits.Pressure p_ext = 1e5 "Constant pressure value"
                                                                          annotation (Dialog(enable=p_const));
  /************ FLUID INITIAL VALUES ***************/
-  parameter Modelica.SIunits.Temperature Tstart "Initial temperature"
+  parameter Modelica.SIunits.Temperature Tstart=273.15+25 "Initial temperature"
     annotation (Dialog(tab="Initialization"));
-parameter Modelica.SIunits.Pressure pstart "Initial pressure in the tank"
+parameter Modelica.SIunits.Pressure pstart=1E5 "Initial pressure in the tank"
     annotation (Dialog(tab="Initialization"));
 
 final parameter Modelica.SIunits.SpecificEnthalpy hstart=
@@ -51,7 +51,7 @@ final parameter Modelica.SIunits.SpecificEnthalpy hstart=
     "Start value of enthalpy vector (initialized by default)"
     annotation (Dialog(tab="Initialization"));
 
-parameter Real L_lstart( min=0,max=0.5)
+parameter Real L_lstart( min=0,max=1)= 0.5
     "Start value for the liquid level with respect to the tank height min=0,max=0.5"
  annotation (Dialog(tab="Initialization"));
 
@@ -105,7 +105,7 @@ Modelica.SIunits.Volume V_gas(start=V_tank*(1 - L_lstart)) "ideal gas volume";
 Medium.AbsolutePressure p_gas "Ideal gas pressure";
 
 equation
-assert(L_l <0.5 and L_l>0, "Height of the fluid with respect to tank height = " + String(L_l) + ", Value out of limit min 0 max 0.5");
+assert(L_l <1 and L_l>0, "Height of the fluid with respect to tank height = " + String(L_l) + ", Value out of limit min 0 max 1");
 
 fluidState = Medium.setState_ph(p,h);
 rho = Medium.density(fluidState);

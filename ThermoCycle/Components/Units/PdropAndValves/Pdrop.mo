@@ -1,5 +1,5 @@
 within ThermoCycle.Components.Units.PdropAndValves;
-model Pdrop "Valve assuming a linear dependency between Mdot and DELTAp"
+model Pdrop "Linear pressure drop"
   extends ThermoCycle.Icons.Water.PressDrop;
     replaceable package Medium = ThermoCycle.Media.R245fa_CP
     constrainedby Modelica.Media.Interfaces.PartialMedium "Medium model"
@@ -15,8 +15,9 @@ model Pdrop "Valve assuming a linear dependency between Mdot and DELTAp"
   parameter Modelica.SIunits.MassFlowRate Mdot_start=0.1
     "Mass flow rate initial value" annotation (Dialog(tab="Initialization"));
   parameter Modelica.SIunits.MassFlowRate Mdot_max=0.1
-    "maximum flow rate with valve fully open at DELTAp_max";
-  parameter Modelica.SIunits.Pressure DELTAp_max=20E5;
+    "flow rate at DELTAp_max";
+  parameter Modelica.SIunits.Pressure DELTAp_max=20E5
+    "Pressure drop at Mdot_max";
   /* Variables */
   Modelica.SIunits.MassFlowRate Mdot(start=Mdot_start);
   Modelica.SIunits.Pressure DELTAp(start=DELTAp_start);
