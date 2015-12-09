@@ -38,6 +38,8 @@ package HeatStorageWaterHeater
   parameter Modelica.SIunits.SpecificHeatCapacity c_wall_hx= 500
       "Specific heat capacity of metal wall" annotation(group="Heat exchanger");
 
+     parameter Boolean FlowReversal = false
+      "Allow flow reversal (might complexify the final system of equations)";
    parameter Modelica.SIunits.Pressure pstart_tank=1E5
       "Tank pressure start value"      annotation (Dialog(tab="Initialization"));
     parameter Modelica.SIunits.Temperature Tstart_inlet_tank=273.15+10
@@ -78,7 +80,8 @@ package HeatStorageWaterHeater
       each Ai=A_amb/N,
       each pstart=pstart_tank,
       hstart=hstart_tank,
-      each A_hx=1/(N2 - N1 + 1))
+      each A_hx=1/(N2 - N1 + 1),
+      each FlowReversal=FlowReversal)
       annotation (Placement(transformation(extent={{-16,-10},{18,24}})));
 
   public
@@ -205,7 +208,8 @@ package HeatStorageWaterHeater
       "Mass of the metal wall between the two fluids" annotation(group="Heat exchanger");
   parameter Modelica.SIunits.SpecificHeatCapacity c_wall_hx= 500
       "Specific heat capacity of metal wall" annotation(group="Heat exchanger");
-
+  parameter Boolean FlowReversal = false
+      "Allow flow reversal (might complexify the final system of equations)";
    parameter Modelica.SIunits.Pressure pstart_tank=1E5
       "Tank pressure start value"      annotation (Dialog(tab="Initialization"));
     parameter Modelica.SIunits.Temperature Tstart_inlet_tank=273.15+10
@@ -258,7 +262,8 @@ package HeatStorageWaterHeater
       each Ai=A_amb/N,
       each pstart=pstart_tank,
       hstart=hstart_tank,
-      each A_hx=1/(N2 - N1 + 1))
+      each A_hx=1/(N2 - N1 + 1),
+      each FlowReversal=FlowReversal)
       annotation (Placement(transformation(extent={{-16,-10},{18,24}})));
 
     ThermoCycle.Interfaces.HeatTransfer.ThermalPortConverter thermalPortConverter(N=N2 - N1
