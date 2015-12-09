@@ -467,6 +467,9 @@ package HeatStorageWaterHeater
       constrainedby
       ThermoCycle.Components.HeatFlow.HeatTransfer.BaseClasses.PartialHeatTransferZones
       "Convective heat transfer" annotation (choicesAllMatching=true);
+    parameter Boolean FlowReversal = false
+      "Allow flow reversal (might complexify the final system of equations)";
+
     HeatTransfer heatTransfer(
       redeclare final package Medium = Medium,
       final n=1,
@@ -537,12 +540,18 @@ package HeatStorageWaterHeater
 
     qdot_hx = heatTransfer1.q_dot[1];
 
-    hnode_su = inStream(InFlow.h_outflow);
-    hnode_ex = h;
+    if FlowReversal then
+      hnode_ex = if M_dot >= 0 then h else inStream(OutFlow.h_outflow);
+      hnode_su = if M_dot <= 0 then h else inStream(InFlow.h_outflow);
+      InFlow.h_outflow = hnode_su;
+    else
+      hnode_su = inStream(InFlow.h_outflow);
+      hnode_ex = h;
+      InFlow.h_outflow = hstart;
+    end if;
 
     //* BOUNDARY CONDITIONS *//
     /* Enthalpies */
-    hnode_su = InFlow.h_outflow;
     OutFlow.h_outflow = hnode_ex;
     /* pressures */
     p = OutFlow.p;
