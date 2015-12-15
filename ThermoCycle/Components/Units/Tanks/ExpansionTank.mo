@@ -141,7 +141,7 @@ dMdt = rho*der(V_l) + V_l*drdh*der(h);
 
 /* Boundary Conditions */
  /* Enthalpies */
-  InFlow.h_outflow = h_su;
+  InFlow.h_outflow = h;
 
 h_su = if noEvent(M_dot <= 0) then h else inStream(InFlow.h_outflow);
 
