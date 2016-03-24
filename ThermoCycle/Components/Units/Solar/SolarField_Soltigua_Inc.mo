@@ -61,7 +61,7 @@ replaceable model FluidHeatTransferModel =
 /******************************************  COMPONENTS *********************************************************/
 
  ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.AbsSoltigua[Ns] SolarAbsorber(each N=N, each geometry=CollectorGeometry, each Defocusing = Def)
-    annotation (Placement(transformation(extent={{-24,6},{14,40}})));
+    annotation (Placement(transformation(extent={{-24,4},{14,38}})));
   Modelica.Blocks.Interfaces.RealInput v_wind
     annotation (Placement(transformation(extent={{-86,60},{-46,100}}),
         iconTransformation(extent={{-14,-14},{14,14}},
@@ -146,27 +146,27 @@ Q_tot = sum(flow1DimInc[:].Q_tot) "Total power absorbed by the fluid";
 
 for i in 1:Ns loop
      connect(Theta, SolarAbsorber[i].Theta) annotation (Line(
-      points={{-68,40},{-52,40},{-52,38},{-42,38},{-42,30.65},{-21.91,30.65}},
+      points={{-68,40},{-52,40},{-52,38},{-42,38},{-42,28.65},{-21.91,28.65}},
       color={0,0,127},
       smooth=Smooth.None));
            connect(v_wind, SolarAbsorber[i].v_wind) annotation (Line(
-      points={{-66,80},{-50,80},{-50,78},{-36,78},{-36,37.45},{-21.91,37.45}},
+      points={{-66,80},{-50,80},{-50,78},{-36,78},{-36,35.45},{-21.91,35.45}},
       color={0,0,127},
       smooth=Smooth.None));
      connect(SolarAbsorber[i].wall_int, flow1DimInc[i].Wall_int) annotation (Line(
-      points={{12.1,23},{20.5,23},{20.5,23.5},{31.375,23.5}},
+      points={{12.1,21},{20.5,21},{20.5,23.5},{31.375,23.5}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(Tamb, SolarAbsorber[i].Tamb) annotation (Line(
-      points={{-68,2},{-56,2},{-56,4},{-42,4},{-42,24.36},{-22.1,24.36}},
+      points={{-68,2},{-56,2},{-56,4},{-42,4},{-42,22.36},{-22.1,22.36}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(DNI, SolarAbsorber[i].DNI) annotation (Line(
-      points={{-66,-34},{-52,-34},{-52,-32},{-32,-32},{-32,17.73},{-21.53,17.73}},
+      points={{-66,-34},{-52,-34},{-52,-32},{-32,-32},{-32,15.73},{-21.53,15.73}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(booleanToInteger.y, SolarAbsorber[i].Focusing) annotation (Line(
-      points={{-39.5,-55},{-24,-55},{-24,8.38}},
+      points={{-39.5,-55},{-24,-55},{-24,6.38}},
       color={255,127,0},
       smooth=Smooth.None));
 
@@ -194,7 +194,7 @@ end for;
       color={255,0,255},
       smooth=Smooth.None));
   connect(booleanToInteger.y, SolarAbsorber[1].Focusing) annotation (Line(
-      points={{-39.5,-55},{-24,-55},{-24,8.38}},
+      points={{-39.5,-55},{-24,-55},{-24,6.38}},
       color={255,127,0},
       smooth=Smooth.None));
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),

@@ -69,15 +69,21 @@ Modelica.SIunits.HeatFlux Phi_amb[N] "Heat flux to the ambient";
 /**************************************** EFFICIENCIES ****************************************/
 Real Eta_tot_N[N] "Efficiency based on Soltigua data sheet";
 Real Eta_tot "Averaged overall Efficiency";
+parameter Boolean TotalDefocusing = false "Set to true for total defocusing";
+Real S_defocusing;
 equation
 
   /* Focusing effect */
 //if Focusing ==1 then S_eff =geometry.S_net;
 //else  S_eff = geometry.S_ext_t;
 //end if;
+if TotalDefocusing then
+  S_defocusing = geometry.A_ext_t;
+else S_defocusing = geometry.S_net*(1-Defocusing/100);
+end if;
 
 if Focusing ==1 then S_eff =geometry.S_net;
-else  S_eff = geometry.S_net*(1-Defocusing/100);
+else  S_eff = S_defocusing;
 end if;
 
 /* Get Theta in degree */
@@ -90,23 +96,16 @@ Q_tube_tot = DNI*S_eff*Modelica.Math.cos(Theta);
 
 for i in 1:N loop
   if DNI > 0 then
-  //  Eta_tot_N[i]*DNI*(S_eff/geometry.S_net) = (DNI*K_l*0.747*(S_eff/geometry.S_net)
-  //     - 0.64*(T_fluid[i] - Tamb)*(S_eff/geometry.S_net));
-    Eta_tot_N[i] = max(Modelica.Constants.small,K_l*0.747 - 0.64*(T_fluid[i] - Tamb)/max(Modelica.Constants.small,DNI));
-    Phi_amb[i] = 0.64*(Tamb -T_fluid[i]);
+  Eta_tot_N[i] = max(Modelica.Constants.small,K_l*0.747 - 0.64*(T_fluid[i] - Tamb)/max(Modelica.Constants.small,DNI));
+  Phi_amb[i] = 0.64*(Tamb -T_fluid[i]);
   else
-    Eta_tot_N[i] = 0;
-    Phi_amb[i] = 0.64*(Tamb -T_fluid[i]);
+  Eta_tot_N[i] = 0;
+  Phi_amb[i] = 0.64*(Tamb -T_fluid[i]);
   end if;
-  // Remove the part based on Tdrop
-  Phi_conv_f[i]= Q_tube_tot*Eta_tot_N[i]/ geometry.A_ext_t + Phi_amb[i];
-//    Phi_conv_f[i] = (DNI*Modelica.Math.cos(Theta*pi/180)*(S_eff/geometry.S_net)
-//      *geometry.S_net*K_l*0.747 - geometry.S_net*0.64*(T_fluid[i] - Tamb))/
-//      geometry.A_ext_t;
+  Phi_conv_f[i]= Q_tube_tot*Eta_tot_N[i]/ geometry.A_ext_t;
 /* Connection */
 T_fluid[i] = wall_int.T[i];
 wall_int.phi[i] = - Phi_conv_f[i];
-
 end for;
 
 Eta_tot =sum(Eta_tot_N)/N;

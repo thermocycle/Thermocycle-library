@@ -213,7 +213,7 @@ constrainedby
                                   annotation (Placement(transformation(
         extent={{-27.5,-31.5},{27.5,31.5}},
         rotation=90,
-        origin={34.5,7.5})));
+        origin={46.5,7.5})));
   Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium1)
     annotation (Placement(transformation(extent={{30,-110},{50,-90}}),
         iconTransformation(extent={{30,-110},{50,-90}})));
@@ -298,7 +298,7 @@ Q_htf_ = sum(flow1Dim[:].Q_tot) "Total power absorbed by the fluid";
 
   for i in 1:Ns loop
       connect(solAbs[i].wall_int, flow1Dim[i].Wall_int) annotation (Line(
-      points={{11.8,9},{20.45,9},{20.45,7.5},{21.375,7.5}},
+      points={{11.8,9},{20.45,9},{20.45,7.5},{33.375,7.5}},
       color={255,0,0},
       smooth=Smooth.None));
         connect(DNI, solAbs[i].DNI) annotation (Line(
@@ -329,11 +329,11 @@ Q_htf_ = sum(flow1Dim[:].Q_tot) "Total power absorbed by the fluid";
   end for;
 
   connect(flow1Dim[1].InFlow, InFlow) annotation (Line(
-      points={{34.5,-15.4167},{34.5,-100},{40,-100}},
+      points={{46.5,-15.4167},{46.5,-100},{40,-100}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(flow1Dim[Ns].OutFlow, OutFlow) annotation (Line(
-      points={{34.2375,30.4167},{34.2375,60.2083},{40,60.2083},{40,118}},
+      points={{46.2375,30.4167},{46.2375,60.2083},{40,60.2083},{40,118}},
       color={0,0,255},
       smooth=Smooth.None));
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),
