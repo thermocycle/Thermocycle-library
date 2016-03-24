@@ -148,5 +148,4 @@ equation
                    preserveAspectRatio=false),
                                      graphics={
                                Bitmap(extent={{-102,106},{80,-88}}, fileName="modelica://ThermoCycle/Resources/Images/MB/Cond_D_wf.png")}));
-
 end CondFlooded;
