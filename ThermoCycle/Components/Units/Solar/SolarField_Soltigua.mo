@@ -225,7 +225,7 @@ end for;
       smooth=Smooth.None));
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),
               Diagram(coordinateSystem(extent={{-80,-100},{100,120}},
-          preserveAspectRatio=true),
+          preserveAspectRatio=false),
                       graphics), Icon(coordinateSystem(extent={{-80,-100},{100,
             120}},
           preserveAspectRatio=false), graphics={

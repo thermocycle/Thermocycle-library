@@ -105,7 +105,7 @@ for i in 1:N loop
   Phi_conv_f[i]= Q_tube_tot*Eta_tot_N[i]/ geometry.A_ext_t;
 /* Connection */
 T_fluid[i] = wall_int.T[i];
-wall_int.phi[i] = - Phi_conv_f[i];
+wall_int.phi[i] = - Phi_conv_f[i] - Phi_amb[i];
 end for;
 
 Eta_tot =sum(Eta_tot_N)/N;

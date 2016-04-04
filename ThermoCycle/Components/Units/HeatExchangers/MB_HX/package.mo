@@ -2,11 +2,6 @@ within ThermoCycle.Components.Units.HeatExchangers;
 package MB_HX 
 
 
-
-
-
-
-
 annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}),
                         graphics),                             Documentation(info="<html>
