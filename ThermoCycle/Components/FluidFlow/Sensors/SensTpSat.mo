@@ -1,7 +1,7 @@
 within ThermoCycle.Components.FluidFlow.Sensors;
 model SensTpSat
   "Temperature and pressure sensor for working fluid, compute the saturation properties as well"
-  extends ThermoCycle.Icons.Water.SensThrough;
+  extends ThermoCycle.Icons.Water.SensP;
 replaceable package Medium = ThermoCycle.Media.DummyFluid
                                           constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium Model" annotation (choicesAllMatching = true);
@@ -15,9 +15,8 @@ replaceable package Medium = ThermoCycle.Media.DummyFluid
         transformation(extent={{-60,40},{-100,80}}, rotation=0)));
 
   Interfaces.Fluid.FlangeA InFlow( redeclare package Medium = Medium, m_flow(min= 0))
-    annotation (Placement(transformation(extent={{-80,-58},{-60,-38}})));
-  Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium = Medium, m_flow(min= 0))
-    annotation (Placement(transformation(extent={{60,-58},{80,-38}})));
+    annotation (Placement(transformation(extent={{-10,-110},{10,-90}}),
+        iconTransformation(extent={{-16,-112},{18,-80}})));
 
 Modelica.Blocks.Interfaces.RealOutput Tsat annotation (Placement(
         transformation(extent={{60,4},{100,44}},  rotation=0),
@@ -39,16 +38,14 @@ equation
   InFlow.p =p;
   Tsat = sat.Tsat;
 
-  InFlow.m_flow + OutFlow.m_flow = 0 "Mass balance";
-  InFlow.p = OutFlow.p "No pressure drop";
+  InFlow.m_flow = 0 "Mass balance";
   // Boundary conditions
-  InFlow.h_outflow = inStream(OutFlow.h_outflow);
-  inStream(InFlow.h_outflow) = OutFlow.h_outflow;
+  InFlow.h_outflow = Medium.h_default;
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
             100}}),     graphics),
-    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}),
-                    graphics={Text(
+    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
+            100}}), graphics={Text(
           extent={{-40,84},{38,34}},
           lineColor={0,0,0},
           textString="p,T"), Line(points={{-60,60},{-40,60}}),

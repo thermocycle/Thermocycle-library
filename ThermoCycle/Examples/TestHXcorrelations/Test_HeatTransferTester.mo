@@ -136,6 +136,8 @@ model Test_HeatTransferTester "A test driver for the different implementations o
     redeclare package Medium = ThermoCycle.Media.R134a_CP(substanceNames={"R134a|debug=0|calc_transport=1|enable_EXTTP=1|enable_TTSE=0"}),
     m_dot_start=0.025,
     twoPhase=true,
+    redeclare model HeatTransfer =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.SinglePhase,
     p_start=675000)
     annotation (Placement(transformation(extent={{-42,42},{-22,62}})));
 

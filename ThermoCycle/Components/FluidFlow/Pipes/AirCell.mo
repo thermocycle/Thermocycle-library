@@ -15,8 +15,10 @@ annotation (choicesAllMatching = true);
 ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_ext
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
         iconTransformation(extent={{-40,40},{40,60}})));
-/************ Geometric characteristics **************/
+        /************ Geometric characteristics **************/
+
   constant Real pi = Modelica.Constants.pi "pi-greco";
+  parameter Integer Nt(min=1) = 1 "Number of cells in parallel";
   parameter Modelica.SIunits.Volume Vi "Volume of a single cell";
   parameter Modelica.SIunits.Area Ai "Lateral surface of a single cell";
   parameter Modelica.SIunits.MassFlowRate Mdotnom "Nominal fluid flow rate";
@@ -65,8 +67,8 @@ equation
   /* pressures */
   InFlow.p = OutFlow.p;
   /*Mass Flow*/
-  Mdot = InFlow.m_flow;
-  OutFlow.m_flow = -Mdot;
+  Mdot = InFlow.m_flow/Nt;
+  OutFlow.m_flow/Nt = -Mdot;
   assert(Mdot>=0,"AirCell does not allow flow reversals. A negative flow has been encountered");
   /* Thermal port boundary condition */
   connect(ConvectiveHeatTransfer.thermalPortL[1], Wall_ext) annotation (Line(

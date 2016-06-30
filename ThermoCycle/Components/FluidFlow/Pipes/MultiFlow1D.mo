@@ -112,7 +112,7 @@ ThermoCycle.Components.Units.PdropAndValves.DP[N] dP(redeclare package Medium
     each UseHomotopy=UseHomotopy,
     each DELTAp_start=DELTAp_start/N,
     each t_init=t_init)
-    annotation (Placement(transformation(extent={{4,-10},{24,10}})));
+    annotation (Placement(transformation(extent={{6,-10},{26,10}})));
 
 equation
   connect(flangeA, multiPort.port_a) annotation (Line(
@@ -128,7 +128,7 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
     connect(simpleAirCell.OutFlow, dP.InFlow) annotation (Line(
-      points={{-10,0.1},{-12,0.1},{-12,0},{5,0}},
+      points={{-10,0.1},{-12,0.1},{-12,0},{7,0}},
       color={0,0,255},
       smooth=Smooth.None));
   for j in 1:N loop

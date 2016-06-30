@@ -26,7 +26,7 @@ public
         iconTransformation(extent={{-120,-20},{-80,20}})));
   ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium =
         Medium)
-    annotation (Placement(transformation(extent={{80,-10},{100,10}}),
+    annotation (Placement(transformation(extent={{90,-10},{110,10}}),
         iconTransformation(extent={{80,-18},{120,20}})));
   ThermoCycle.Interfaces.HeatTransfer.ThermalPort Wall_int(N=N)
     annotation (Placement(transformation(extent={{-28,40},{32,60}}),
@@ -114,7 +114,7 @@ constrainedby
     hstart = hstart,
     each sat_in= {sat.ddldp,sat.ddvdp,sat.dhldp,sat.dhvdp,sat.dTp,sat.hl,sat.hv,sat.sigma,sat.sl,sat.sv,sat.dl,sat.dv,sat.psat,sat.Tsat},
     each ComputeSat = false)
-            annotation (Placement(transformation(extent={{-28,-48},{26,-4}})));
+            annotation (Placement(transformation(extent={{-26,-56},{28,-12}})));
   Interfaces.HeatTransfer.ThermalPortConverter
                        thermalPortConverter(N=N)
     annotation (Placement(transformation(extent={{-10,6},{10,26}})));
@@ -122,7 +122,7 @@ protected
   Modelica.SIunits.SpecificEnthalpy hnode_[N+1];
   Modelica.SIunits.MassFlowRate Mdot_[N+1];
 equation
-  // Connect wall and refrigerant cells with eachother
+  // Connect refrigerant cells with eachother
   for i in 1:N-1 loop
     connect(Cells[i].OutFlow, Cells[i+1].InFlow);
   end for;
@@ -134,23 +134,23 @@ equation
   Q_tot = A/N*sum(Cells.qdot)*Nt "Total heat flow through the thermal port";
   M_tot = V/N*sum(Cells.rho);
   connect(InFlow, Cells[1].InFlow) annotation (Line(
-      points={{-90,0},{-60,0},{-60,-26},{-28,-26}},
+      points={{-90,0},{-60,0},{-60,-34},{-26,-34}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(Cells[N].OutFlow, OutFlow) annotation (Line(
-      points={{26,-25.78},{57,-25.78},{57,0},{90,0}},
+      points={{28,-33.78},{57,-33.78},{57,0},{100,0}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(thermalPortConverter.single, Cells.Wall_int) annotation (Line(
-      points={{0,11.9},{0,-9.05},{-1,-9.05},{-1,-15}},
+      points={{0,11.9},{0,-9.05},{1,-9.05},{1,-23}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(thermalPortConverter.multi, Wall_int) annotation (Line(
       points={{0,19.5},{0,48},{2,50}},
       color={255,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,
-            -120},{120,120}}),
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,-120},
+            {120,120}}),
                       graphics), Icon(coordinateSystem(preserveAspectRatio=false,
                   extent={{-120,-120},{120,120}}),
                                       graphics={Rectangle(

@@ -10,7 +10,7 @@ model DP "Lumped, 3-terms pressure drop model"
                Medium)
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
 
-  replaceable package Medium = ExternalMedia.Media.CoolPropMedium  constrainedby
+  replaceable package Medium = ThermoCycle.Media.DummyFluid  constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium model" annotation (choicesAllMatching = true);
   parameter Boolean UseNom=false
     "Use Nominal conditions to compute pressure drop characteristics";

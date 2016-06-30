@@ -44,7 +44,7 @@ model Test_Flow1D
     annotation (Placement(transformation(extent={{-116,50},{-102,64}})));
   Components.FluidFlow.Sensors.SensTpSat T_su_Sensor(redeclare package Medium
       = ThermoCycle.Media.SES36_CP)
-    annotation (Placement(transformation(extent={{-66,10},{-46,30}})));
+    annotation (Placement(transformation(extent={{-64,10},{-44,30}})));
   Components.FluidFlow.Sensors.SensTpSat T_ex_Sensor(redeclare package Medium
       = ThermoCycle.Media.SES36_CP)
     annotation (Placement(transformation(extent={{14,14},{34,34}})));
@@ -62,19 +62,19 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(flow1Dim.OutFlow, T_ex_Sensor.InFlow) annotation (Line(
-      points={{-5.16667,15.1583},{4,15.1583},{4,19.2},{17,19.2}},
-      color={0,0,255},
-      smooth=Smooth.None));
-  connect(T_ex_Sensor.OutFlow, sinkP.flangeB) annotation (Line(
-      points={{31,19.2},{38,19.2},{38,24},{51.6,24}},
+      points={{-5.16667,15.1583},{4,15.1583},{4,14.4},{24.1,14.4}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sourceMdot1.flangeB, T_su_Sensor.InFlow) annotation (Line(
-      points={{-77.3,19},{-70,19},{-70,15.2},{-63,15.2}},
+      points={{-77.3,19},{-70,19},{-70,10.4},{-53.9,10.4}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(T_su_Sensor.OutFlow, flow1Dim.InFlow) annotation (Line(
-      points={{-49,15.2},{-43.5,15.2},{-43.5,15},{-36.8333,15}},
+  connect(T_ex_Sensor.InFlow, sinkP.flangeB) annotation (Line(
+      points={{24.1,14.4},{42,14.4},{42,24},{51.6,24}},
+      color={0,0,255},
+      smooth=Smooth.None));
+  connect(T_su_Sensor.InFlow, flow1Dim.InFlow) annotation (Line(
+      points={{-53.9,10.4},{-46,10.4},{-46,15},{-36.8333,15}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (

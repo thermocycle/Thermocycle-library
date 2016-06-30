@@ -1,7 +1,7 @@
 within ThermoCycle.Components.FluidFlow.Sensors;
 model SensTpw "Temperature sensor for moist air"
-  extends ThermoCycle.Icons.Water.SensThrough;
-replaceable package Medium = Modelica.Media.Air.MoistAir
+  extends ThermoCycle.Icons.Water.SensP;
+replaceable package Medium = ThermoCycle.Media.DummyFluid
                                           constrainedby
     Modelica.Media.Interfaces.PartialMedium "Medium Model" annotation (choicesAllMatching = true);
 
@@ -21,14 +21,11 @@ replaceable package Medium = Modelica.Media.Air.MoistAir
 Medium.ThermodynamicState fluidState "Thermodynamic state of the fluid";
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium,
       m_flow(min=0))
-    annotation (Placement(transformation(extent={{-80,-58},{-60,-38}})));
-  ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium =
-        Medium, m_flow(min=0))
-    annotation (Placement(transformation(extent={{60,-58},{80,-38}})));
+    annotation (Placement(transformation(extent={{-8,-108},{12,-88}}),
+        iconTransformation(extent={{-16,-112},{16,-78}})));
 
 equation
-  InFlow.m_flow + OutFlow.m_flow = 0 "Mass balance";
-  InFlow.p = OutFlow.p "No pressure drop";
+  InFlow.m_flow = 0 "Mass balance";
   // Set fluid properties
   X[1] = inStream(InFlow.Xi_outflow[1]);
   X[2] = 1 - inStream(InFlow.Xi_outflow[1]);
@@ -38,15 +35,13 @@ equation
   T = Medium.temperature(fluidState);
   InFlow.p =p;
   // Boundary conditions
-  InFlow.h_outflow = inStream(OutFlow.h_outflow);
-  inStream(InFlow.h_outflow) = OutFlow.h_outflow;
-  InFlow.Xi_outflow = inStream(OutFlow.Xi_outflow);
-  OutFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
+  InFlow.h_outflow = Medium.h_default;
+  InFlow.Xi_outflow = inStream(InFlow.Xi_outflow);
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{120,
             160}}),     graphics),
-    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{120,
-            160}}), graphics={Text(
+    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{120,160}}),
+                    graphics={Text(
           extent={{-38,68},{40,18}},
           lineColor={0,0,0},
           textString="p,T,w
