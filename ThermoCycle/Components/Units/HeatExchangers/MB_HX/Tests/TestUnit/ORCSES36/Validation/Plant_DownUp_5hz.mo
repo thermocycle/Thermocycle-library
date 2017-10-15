@@ -297,7 +297,7 @@ equation
     <p><big>The amplitude of the step is 5 Hz. 
     <p><big>The step downwards happens at t = 300 seconds the step upwards happens at t=2061 seconds.
     <p><big> The presence of non-condensable gases is modelled in the system by calculating the total pressure of the system as the sum of the working fluid pressure plus a constant 
-    value representing the partial pressure of the non-condensable gases, calculated off-line based on the experimental values.<\p>
+    value representing the partial pressure of the non-condensable gases, calculated off-line based on the experimental values.</p>
      <p><big> The inputs to the model are:
      <ul>
      <li>Temperature and mass flow of the thermal energy source (they are constant during the simulation).
@@ -305,9 +305,9 @@ equation
      <li>Working fluid mass flow rate
      <li>Temperature and mass flow of the cooling circuit. (the cooling fluid mass flow is not constant and it is imposed with a spline signal
 </ul>
-    <p> <\p>
-    <p> <\p>
-    <p> <\p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
     The first steady state corresponds to line 93 of the EES file Data_Analysis_AD
     
     </HTML>"));
