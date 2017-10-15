@@ -57,7 +57,7 @@ parameter Real T_ext_param = -1;
 /*steady state */
 parameter Boolean steadystate_h=false
     "if true, sets the derivative of h to zero during Initialization"
-    annotation (Dialog(group="Intialization options", tab="Initialization"));
+    annotation (Dialog(group="Initialization options", tab="Initialization"));
 
 /******************************************** NUMERICAL OPTIONS ****************************************************/
 
