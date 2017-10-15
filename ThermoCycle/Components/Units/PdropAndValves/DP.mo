@@ -17,7 +17,7 @@ model DP "Lumped, 3-terms pressure drop model"
   parameter Modelica.SIunits.Length h=0 "Static fluid head (dp = h * rho * g)"  annotation (Dialog(enable=(not UseNom)));
   parameter Real k=0 "Coefficient for linear pressure drop (dp = k * V_dot)" annotation (Dialog(enable=(not UseNom)));
   parameter Modelica.SIunits.Area A=10e-5
-    "Valve throat area for quadratic pressure drop (dp = 1/A²*M_dot²/(2*rho)) - Set 5e3 to put it to zero"
+    "Valve throat area for quadratic pressure drop (dp = 1/AÂ²*M_dotÂ²/(2*rho)) - Set 5e3 to put it to zero"
                                                                                  annotation (Dialog(enable=(not UseNom)));
   Modelica.SIunits.Length h_ok;
   Real k_ok;

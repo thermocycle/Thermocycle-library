@@ -13,8 +13,8 @@ Ian Bell &LT;<a href=\"ian.h.bell@gmail.com\">ian.h.bell@gmail.com</a>&GT;<br>
 Jorrit Wronski &LT;<a href=\"jowr@mek.dtu.dk\">jowr@mek.dtu.dk</a>&GT;<br><br>
 University of Liege<br>
 Thermodynamic laboratory<br>
-Campus du Sart-Tilman Bât B49 (P33)<br>
-B-4000 Liège - BELGIUM -<br><br>
+Campus du Sart-Tilman B&acirc;t B49 (P33)<br>
+B-4000 Li&egrave;ge - BELGIUM -<br><br>
 
 This Modelica package is free software and the use is completely at your own risk; 
 it can be redistributed and/or modified under the terms of the Modelica License 2. 

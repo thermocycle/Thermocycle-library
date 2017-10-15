@@ -184,7 +184,7 @@ It is composed by four flow connectors and by the Drum_pL model.
 <li> InFlow_l: it represents the boiler feed water
 <li> InFlow_v: it represents the low-pressure heated steam which enters below the perforation trays to remove the gas dissolved and it also enters in the horizontal storage vessel to keep the deaerated water warm
 <li> OutFlow_v: it represents the gas/steam mixture
- <li> OutFlow_l: it represents the dearated water which is collected at the bottoò of the storage vessel</li>
+ <li> OutFlow_l: it represents the dearated water which is collected at the bottoÃ² of the storage vessel</li>
 
 </html>"),                       Diagram(coordinateSystem(preserveAspectRatio=false,
           extent={{-100,-100},{100,100}}), graphics));

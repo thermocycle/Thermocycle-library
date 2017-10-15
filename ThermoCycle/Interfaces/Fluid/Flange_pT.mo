@@ -18,7 +18,7 @@ connector Flange_pT
    to characterize the flow of incompressible fluids increases the computational efficiency.  
 </HTML>",
       revisions="<html>
-University of Liège, November 2012"),
+University of Li&egrave;ge, November 2012"),
     Diagram(graphics),
     Icon(graphics));
 end Flange_pT;

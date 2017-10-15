@@ -37,7 +37,7 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL[N] thermalPortCell
   parameter Real k= 38.4E3*9.5
     "Coefficient for linear pressure drop (dp = k * V_dot)"                            annotation (Dialog(enable=(not UseNom)));
   parameter Modelica.SIunits.Area A=(2*9.5*23282.7)^(-0.5)
-    "Valve throat area for quadratic pressure drop (dp = 1/A²*M_dot²/(2*rho))"
+    "Valve throat area for quadratic pressure drop (dp = 1/AÂ²*M_dotÂ²/(2*rho))"
                                                                                  annotation (Dialog(enable=(not UseNom)));
  parameter Modelica.SIunits.Pressure DELTAp_0=500
     "Pressure drop below which a 3rd order interpolation is used for the computation of the flow rate in order to avoid infinite derivative at 0";

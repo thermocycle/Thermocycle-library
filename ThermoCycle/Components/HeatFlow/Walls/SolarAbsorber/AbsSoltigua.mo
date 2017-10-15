@@ -1,7 +1,7 @@
 within ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber;
 model AbsSoltigua
 // It solves the 1D radial energy balance around the Heat Transfer Element based on the SOLTIGUA PTMx Datasheet (see PTMx REV03-04/2013 and REV09-08/2013)
-// min oil flow rate: 50 l/min @ 100-150 °C , 25 l/min @ 151-200 °C , 20 l/min @ 201 - 250 °C
+// min oil flow rate: 50 l/min @ 100-150 Â°C , 25 l/min @ 151-200 Â°C , 20 l/min @ 201 - 250 Â°C
 
 /*********************** PORTS ***********************/
   ThermoCycle.Interfaces.HeatTransfer.ThermalPort wall_int(N=N)
