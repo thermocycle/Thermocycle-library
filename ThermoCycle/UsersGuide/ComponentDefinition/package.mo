@@ -15,7 +15,7 @@ applied.
 </p>
 <p><big>
 Two types of variables can be identified: cell variables and node variables. Node variables are distinguished by the su (supply) and ex (exhaust)
-subscripts, and correspond to the inlet and outlet nodes of each cell (Fig. \ref{fig:cells}).
+subscripts, and correspond to the inlet and outlet nodes of each cell (Fig. \\ref{fig:cells}).
  The relation between the cell and node values depends on the discretization scheme. 
  In the cell component two schemes are implemented, the central difference scheme ( h = (h_su + h_ex)/2 ) and the upwind scheme ( h=h_su ).
 Since the model accounts for flow reversal, a conditional statement is added depending on the flow rates at the inlet and outlet nodes.
