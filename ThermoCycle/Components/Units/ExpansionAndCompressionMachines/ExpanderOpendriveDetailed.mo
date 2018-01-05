@@ -235,7 +235,7 @@ equation
  //---------------------
  fluid_su = Medium.setState_ph(h=h_su,p=p_su);
 //  fluid_su.h=h_su;
-//  fluid_su.d = rho_su; //calculé avec l'équation du débit, ce qui permet de recalculer la pression
+//  fluid_su.d = rho_su; //calculÃ© avec l'Ã©quation du dÃ©bit, ce qui permet de recalculer la pression
  T_su=fluid_su.T;
  s_su=fluid_su.s;
  v_su=1/rho_su;

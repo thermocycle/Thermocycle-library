@@ -327,12 +327,12 @@ equation
   flangeA.h_outflow = 1E5;
   //dummy value for the reversed flow
   flangeA.p = fluid_su.p;
-  //cette équation impose la pression dans le port
+  //cette Ã©quation impose la pression dans le port
   flangeA.p = p_su;
   M_dot = flangeA.m_flow;
   //p_su=10e5;
   h_su = inStream(flangeA.h_outflow);
-  //le modèle d'expanseur reçoit l'enthalpie du port
+  //le modÃ¨le d'expanseur reÃ§oit l'enthalpie du port
   flangeB.p = p_ex;
   flangeB.m_flow = -M_dot;
   flangeB.h_outflow = h_ex;
@@ -342,7 +342,7 @@ equation
   //---------------------
   fluid_su.h = h_su;
   fluid_su.d = rho_su;
-  //calculé avec l'équation du débit, ce qui permet de recalculer la pression
+  //calculÃ© avec l'Ã©quation du dÃ©bit, ce qui permet de recalculer la pression
   T_su = fluid_su.T;
   s_su = fluid_su.s;
   v_su = 1/rho_su;

@@ -12,7 +12,7 @@ parameter Medium.Temperature T_ex_start=273.15+100
 Medium.ThermodynamicState meanState;
 parameter Modelica.SIunits.ThermalConductance AU = 35 "Thermal conductance";
 Modelica.SIunits.Power Q_dot;
-Medium.Temperature T_iso; //Température de la plaque isotherme
+Medium.Temperature T_iso; //TempÃ©rature de la plaque isotherme
 Real C_dot;
 Real NTU;
 Real epsilon;
@@ -24,12 +24,12 @@ Real epsilon;
     annotation (Placement(transformation(extent={{-10,-104},{10,-84}})));
 
 equation
-//Etat en entrée de l'échangeur semi-isothermes
+//Etat en entrÃ©e de l'Ã©changeur semi-isothermes
 meanState= Medium.setState_pT(supply.p,(T_su + T_ex)/2);
 supply.p = exhaust.p;
 C_dot = supply.m_flow*Medium.specificHeatCapacityCp(meanState);
 NTU = AU/C_dot;
-epsilon = 1-exp(-NTU); //Efficacité de l'échangeur
+epsilon = 1-exp(-NTU); //EfficacitÃ© de l'Ã©changeur
 if supply.m_flow > 0 then
   T_su = inStream(supply.T_outflow);
   Q_dot = epsilon*C_dot*(T_su - T_iso);
@@ -43,7 +43,7 @@ T_ex = T_su - Q_dot/C_dot;
   supply.T_outflow = T_su;
   exhaust.T_outflow = T_ex;
 
-//Conservation du débit
+//Conservation du dÃ©bit
 supply.m_flow + exhaust.m_flow = 0;
 
 //Informations au port thermique

@@ -1,4 +1,4 @@
-﻿within ThermoCycle.Examples.Simulations.Plants;
+within ThermoCycle.Examples.Simulations.Plants;
 model SQThesisModel
   "Non-regenerative ORC with double-PID control system and variable Tev"
 

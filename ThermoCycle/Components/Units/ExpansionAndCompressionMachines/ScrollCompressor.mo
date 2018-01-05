@@ -106,10 +106,10 @@ package ScrollCompressor
   p_su = su.p;
 
   V_dot_leak = A_leak*C_thr;
-  // Première partie de la tuyère : isentropique
-  // Etat au col de la tuyère
+  // PremiÃ¨re partie de la tuyÃ¨re : isentropique
+  // Etat au col de la tuyÃ¨re
   throat = Medium.setState_ps(p_thr, inlet.s);
-  // Conservation de l'énergie
+  // Conservation de l'Ã©nergie
   inlet.h = throat.h + 0.5*C_thr^2;
 
   su.m_flow = V_dot_leak*throat.d;
@@ -196,7 +196,7 @@ package ScrollCompressor
           extent={{6,6},{-6,-6}},
           rotation=90,
           origin={-60,18})));
-    //Température ambiante en entrée
+    //TempÃ©rature ambiante en entrÃ©e
     Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Ambient
       annotation (Placement(transformation(extent={{-16,-98},{16,-66}}),
           iconTransformation(extent={{-8,-30},{6,-16}})));

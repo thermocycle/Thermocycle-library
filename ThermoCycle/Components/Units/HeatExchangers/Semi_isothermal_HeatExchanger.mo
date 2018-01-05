@@ -8,7 +8,7 @@ Medium.ThermodynamicState inlet;
 Medium.ThermodynamicState outlet;
 parameter Modelica.SIunits.ThermalConductance AU = 35 "Thermal conductance";
 Modelica.SIunits.Power Q_dot;
-Medium.Temperature T_iso; //Température de la plaque isotherme
+Medium.Temperature T_iso; //TempÃ©rature de la plaque isotherme
 Real C_dot_min;
 Real NTU;
 Real epsilon;

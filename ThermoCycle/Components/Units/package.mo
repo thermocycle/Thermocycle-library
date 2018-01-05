@@ -21,8 +21,8 @@ annotation (Documentation(info="<HTML>
 <dd>Jorrit Wronski &LT;<a href=\"jowr@mek.dtu.dk\">jowr@mek.dtu.dk</a>&GT;<br/></dd>
 <dd>University of Liege</dd>
 <dd>Laboratory of thermodynamics</dd>
-<dd>Campus du Sart-Tilman Bât B49 (P33)</dd>
-<dd>B-4000 Liège - BELGIUM -<br/></dd>
+<dd>Campus du Sart-Tilman B&acirc;t B49 (P33)</dd>
+<dd>B-4000 Li&egrave;ge - BELGIUM -<br/></dd>
 <dt><b>Copyright:</b> </dt>
 <dd>Copyright &copy; 2013-2014, Sylvain Quoilin and Adriano Desideri.<br/></dd>
 <dd><i>The IndustrialControlSystems package is <b>free</b> software; it can be redistributed and/or modified under the terms of the <b>Modelica license</b>.</i><br/></dd>
