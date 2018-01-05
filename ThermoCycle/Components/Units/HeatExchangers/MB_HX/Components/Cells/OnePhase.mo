@@ -57,7 +57,7 @@ parameter Boolean subcooled = true "Set to true if cell is subcooled" annotation
  Modelica.SIunits.Length[3] length "Length vector for summaryClass";
   /* Geometry */
   Modelica.SIunits.Length ll(start=lstart,min= Modelica.Constants.small)
-    "Lenght of this segment";
+    "Length of this segment";
   Modelica.SIunits.Length la "length at the inlet of the CV";
   Modelica.SIunits.Length lb "length at the outlet of the CV";
   Modelica.SIunits.Velocity dldt "Change of the length with time";
