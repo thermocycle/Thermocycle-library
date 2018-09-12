@@ -1,1 +1,4 @@
 *.bak-mo
+
+docs/_build/*
+docs/_static/*
