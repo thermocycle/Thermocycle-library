@@ -13,12 +13,26 @@ Thermodynamic properties of organic fluids require complex equations of state av
 
 The ThermoCycle package is free software licensed under the Modelica License 2. It can be redistributed and/or modified under the terms of this license.
 
+
+Main developers:
+
+* Sylvain Quoilin (KU Leuven & University of Liège, Energy Systems Research Unit, Belgium)
+* Adriano Desideri (University of Liège, Energy Systems Research Unit, Belgium)
+* Jorrit Wronski (DTU Mechanical Engineering, Denmark)
+* Ian H. Bell (University of Liège, Energy Systems Research Unit, Belgium)
+
+
+Contents
+========
+
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    howtos
    numerical
    components
+   publications
+   downloads
 
 
 Indices and tables
@@ -27,3 +41,8 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+License
+=======
+
+Copyright 2018 Sylvain Quoilin
