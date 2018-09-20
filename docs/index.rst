@@ -42,7 +42,4 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-License
-=======
 
-Copyright 2018 Sylvain Quoilin
