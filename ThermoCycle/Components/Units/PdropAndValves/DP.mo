@@ -1,4 +1,4 @@
-within ThermoCycle.Components.Units.PdropAndValves;
+﻿within ThermoCycle.Components.Units.PdropAndValves;
 model DP "Lumped, 3-terms pressure drop model"
   extends ThermoCycle.Icons.Water.PressDrop;
 

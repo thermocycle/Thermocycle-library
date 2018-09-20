@@ -23,8 +23,7 @@ model Test_FloodedUnit
     annotation (Placement(transformation(extent={{70,-20},{90,0}})));
     parameter Integer n=2;
 parameter Boolean counterCurrent = true;
-ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.Unit.EvaFw
-                                                                                    evaF(
+ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.Unit.EvaFw  evaF(
     redeclare package Medium = Medium,
     YY=1.57,
     cpw=500,

@@ -40,8 +40,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
   parameter Boolean limit_hnode=true
     "Limits the node enthalpy to ensure more robustness"                                  annotation(Dialog(tab="Numerical options"));
   parameter Real yLimit(min=0,max=1)=0.9
-    "Limiting factor. Defines how close to the singular system we can go. Should be set close to 1"
-                                                                                                        annotation(Dialog(tab="Numerical options",enable=limit_hnode));
+    "Limiting factor. Defines how close to the singular system we can go. Should be set close to 1"     annotation(Dialog(tab="Numerical options",enable=limit_hnode));
   parameter Boolean Mdotconst=false
     "Set to yes to assume constant mass flow rate at each node (easier convergence)"
     annotation (Dialog(tab="Numerical options"));

@@ -1,4 +1,4 @@
-within ThermoCycle.Components.Units.ExpansionAndCompressionMachines;
+﻿within ThermoCycle.Components.Units.ExpansionAndCompressionMachines;
 package ScrollCompressor
   "Detailed, semi-empirical model of a scroll compressor"
 

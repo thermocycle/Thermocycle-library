@@ -83,8 +83,8 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkPFluid(redeclare package
         rotation=90,
         origin={3,-22})));
 
- ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(redeclare package Medium
-      =        ThermoCycle.Media.R245fa_CP,
+ ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(redeclare package Medium =
+               ThermoCycle.Media.R245fa_CP,
     k=38.4E3*9.5,
     A=(2*9.5*23282.7)^(-0.5),
     Mdot_nom=0.2588,

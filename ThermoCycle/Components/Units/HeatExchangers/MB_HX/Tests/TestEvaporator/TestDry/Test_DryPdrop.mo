@@ -2,8 +2,7 @@ within ThermoCycle.Components.Units.HeatExchangers.MB_HX.Tests.TestEvaporator.Te
 model Test_DryPdrop
   replaceable package Medium =
       ExternalMedia.Examples.WaterCoolProp;
-ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.Unit.EvaDw
-                                                                                   evaD(
+ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.Unit.EvaDw evaD(
     redeclare package Medium = Medium,
     YY=1.57,
     cpw=500,

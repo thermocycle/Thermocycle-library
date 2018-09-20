@@ -115,8 +115,7 @@ parameter Boolean steadystate_T_wall=false
 /******************************* COMPONENTS ***********************************/
 
   ThermoCycle.Components.FluidFlow.Pipes.Flow1Dim
-                                         WorkingFluid(redeclare package Medium
-      =                                                                          Medium1,
+                                         WorkingFluid(redeclare package Medium = Medium1,
   redeclare final model Flow1DimHeatTransferModel =
         Medium1HeatTransferModel,
     N=N,

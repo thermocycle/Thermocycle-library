@@ -45,11 +45,9 @@ public
     "Nominal mass flow rate" annotation (Dialog(group="Secondary side", tab="General"));
 
   /****************** Heat Transfer parameter  ******************/
-  parameter Boolean Use_AU=false "if true, uses the global thermal conductance"
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General"));
+  parameter Boolean Use_AU=false "if true, uses the global thermal conductance"                         annotation (Dialog(group="Heat transfer", tab="General"));
   parameter Modelica.SIunits.Area A_ps=0.03 "Heat transfer area primary side" annotation (Dialog(group="Heat transfer", tab="General", enable=(not Use_AU)));
-  parameter Modelica.SIunits.Area A_ss=0.03 "Heat transfer area secondary side"
-                                                                                                        annotation (Dialog(group="Heat transfer", tab="General", enable=(not Use_AU)));
+  parameter Modelica.SIunits.Area A_ss=0.03 "Heat transfer area secondary side"                         annotation (Dialog(group="Heat transfer", tab="General", enable=(not Use_AU)));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer U_ps
     "Constant heat transfer coefficient primary side" annotation (Dialog(group="Heat transfer", tab="General"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer U_ss

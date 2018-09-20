@@ -54,8 +54,7 @@ parameter Modelica.SIunits.Pressure pstart "Fluid pressure start value"
     "Integration time of the first-order filter"
     annotation (Dialog(enable=filter_dMdt, tab="Numerical options"));
   parameter Boolean ComputeSat=false
-    "Can be disabled if the flow is single-phase, or if saturation is passed as a parameter"
-                                                                                             annotation (Dialog(tab="Numerical options"));
+    "Can be disabled if the flow is single-phase, or if saturation is passed as a parameter" annotation (Dialog(tab="Numerical options"));
   //Medium.SaturationProperties  sat_in(ddldp=0,ddvdp=0,dhldp=0,dhvdp=0,dTp=0,hl=0,hv=1E5,sigma=0,sl=0,sv=0,dl=0,dv=0,psat=0,Tsat=300);
   Real[14] sat_in= {0,0,0,0,0,0,1E5,0,0,0,0,0,0,300};
   parameter Boolean steadystate=true

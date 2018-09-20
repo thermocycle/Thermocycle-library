@@ -1,4 +1,4 @@
-within ThermoCycle.Components.Units.Solar;
+﻿within ThermoCycle.Components.Units.Solar;
 model SolarField_Soltigua "Solar field model with Soltigua collector"
 replaceable package Medium1 = ThermoCycle.Media.DummyFluid
                                            constrainedby
@@ -63,8 +63,7 @@ parameter Boolean steadystate_T_fl=false
 
 /****************** GEOMETRY  *********************/
 inner replaceable parameter
-    ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua.BaseGeometry
-                                                                                        CollectorGeometry
+    ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua.BaseGeometry  CollectorGeometry
 constrainedby
     ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua.BaseGeometry
                                                                                        annotation (choicesAllMatching=true);

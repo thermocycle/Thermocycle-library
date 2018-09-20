@@ -98,11 +98,11 @@ package HeatStorageWaterHeater
   ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_ext
       annotation (Placement(transformation(extent={{-14,48},{16,60}}),
           iconTransformation(extent={{-40,-6},{-34,12}})));
-    ThermoCycle.Interfaces.Fluid.FlangeA MainFluid_su(redeclare package Medium
-        = MainFluid) annotation (Placement(transformation(extent={{-52,-94},{-32,-74}}),
+    ThermoCycle.Interfaces.Fluid.FlangeA MainFluid_su(redeclare package Medium =
+          MainFluid) annotation (Placement(transformation(extent={{-52,-94},{-32,-74}}),
                      iconTransformation(extent={{-42,-84},{-32,-74}})));
-    ThermoCycle.Interfaces.Fluid.FlangeB MainFluid_ex(redeclare package Medium
-        = MainFluid) annotation (Placement(transformation(extent={{-14,72},{6,
+    ThermoCycle.Interfaces.Fluid.FlangeB MainFluid_ex(redeclare package Medium =
+          MainFluid) annotation (Placement(transformation(extent={{-14,72},{6,
               92}}),
           iconTransformation(extent={{-6,80},{6,92}})));
   equation
@@ -302,15 +302,15 @@ package HeatStorageWaterHeater
   ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_ext
       annotation (Placement(transformation(extent={{-14,48},{16,60}}),
           iconTransformation(extent={{-40,-6},{-34,12}})));
-    ThermoCycle.Interfaces.Fluid.FlangeA MainFluid_su(redeclare package Medium
-        = MainFluid) annotation (Placement(transformation(extent={{-52,-94},{-32,-74}}),
+    ThermoCycle.Interfaces.Fluid.FlangeA MainFluid_su(redeclare package Medium =
+          MainFluid) annotation (Placement(transformation(extent={{-52,-94},{-32,-74}}),
                      iconTransformation(extent={{-42,-84},{-32,-74}})));
     ThermoCycle.Interfaces.Fluid.FlangeB SecondaryFluid_ex(redeclare package
         Medium = SecondaryFluid)
                      annotation (Placement(transformation(extent={{-64,-76},{-44,-56}}),
           iconTransformation(extent={{34,-36},{46,-24}})));
-    ThermoCycle.Interfaces.Fluid.FlangeB MainFluid_ex(redeclare package Medium
-        = MainFluid) annotation (Placement(transformation(extent={{-14,72},{6,
+    ThermoCycle.Interfaces.Fluid.FlangeB MainFluid_ex(redeclare package Medium =
+          MainFluid) annotation (Placement(transformation(extent={{-14,72},{6,
               92}}),
           iconTransformation(extent={{-6,80},{6,92}})));
     ThermoCycle.Interfaces.Fluid.FlangeA SecondaryFluid_su(redeclare package
@@ -850,15 +850,15 @@ package HeatStorageWaterHeater
   ThermoCycle.Interfaces.HeatTransfer.ThermalPortL Wall_ext
       annotation (Placement(transformation(extent={{-14,48},{16,60}}),
           iconTransformation(extent={{-40,-6},{-34,12}})));
-    ThermoCycle.Interfaces.Fluid.FlangeA MainFluid_su(redeclare package Medium
-        = MainFluid) annotation (Placement(transformation(extent={{-52,-94},{-32,-74}}),
+    ThermoCycle.Interfaces.Fluid.FlangeA MainFluid_su(redeclare package Medium =
+          MainFluid) annotation (Placement(transformation(extent={{-52,-94},{-32,-74}}),
                      iconTransformation(extent={{-42,-84},{-32,-74}})));
     ThermoCycle.Interfaces.Fluid.FlangeB SecondaryFluid_ex(redeclare package
         Medium = SecondaryFluid)
                      annotation (Placement(transformation(extent={{-64,-76},{-44,-56}}),
           iconTransformation(extent={{34,-36},{46,-24}})));
-    ThermoCycle.Interfaces.Fluid.FlangeB MainFluid_ex(redeclare package Medium
-        = MainFluid) annotation (Placement(transformation(extent={{-14,72},{6,
+    ThermoCycle.Interfaces.Fluid.FlangeB MainFluid_ex(redeclare package Medium =
+          MainFluid) annotation (Placement(transformation(extent={{-14,72},{6,
               92}}),
           iconTransformation(extent={{-6,80},{6,92}})));
     ThermoCycle.Interfaces.Fluid.FlangeA SecondaryFluid_su(redeclare package

@@ -13,8 +13,8 @@ model Test_Compressor_EN12900
     annotation (Placement(transformation(extent={{-96,38},{-76,58}})));
   ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Compressor_EN12900
                                                         compressor(redeclare
-      package Medium = ThermoCycle.Media.R407c_CP, redeclare function CPmodel
-      = ThermoCycle.Functions.Compressors_EN12900.ZRD42KCE_TFD)
+      package Medium = ThermoCycle.Media.R407c_CP, redeclare function CPmodel =
+        ThermoCycle.Functions.Compressors_EN12900.ZRD42KCE_TFD)
     annotation (Placement(transformation(extent={{-46,4},{-4,44}})));
 equation
   connect(sourceWF.flangeB, compressor.InFlow) annotation (Line(

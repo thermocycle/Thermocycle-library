@@ -81,8 +81,7 @@ parameter Modelica.SIunits.ThermodynamicTemperature pinch_start(displayUnit="K")
 
 parameter Modelica.SIunits.ThermodynamicTemperature DELTAT_approach(displayUnit="K")=10
     "Approach temperature difference between the economizer and the drum"                                                                                     annotation(Dialog(tab="Initialization"));
-parameter Real x_ex_ev_nom=0.32 "Vapor quality at the outlet of the evaporator"
-                                                                                  annotation(Dialog(tab="Initialization"));
+parameter Real x_ex_ev_nom=0.32 "Vapor quality at the outlet of the evaporator"   annotation(Dialog(tab="Initialization"));
 parameter Medium_sf.Temperature T_sf_su_start=273.15+400
     "Secondary fluid inlet temperature"                                                      annotation(Dialog(tab="Initialization"));
 

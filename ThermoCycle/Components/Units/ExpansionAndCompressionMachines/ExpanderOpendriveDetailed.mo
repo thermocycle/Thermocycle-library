@@ -1,4 +1,4 @@
-within ThermoCycle.Components.Units.ExpansionAndCompressionMachines;
+﻿within ThermoCycle.Components.Units.ExpansionAndCompressionMachines;
 model ExpanderOpendriveDetailed
   "Detailed expander model (oil free, open-drive)"
 //2. PORTS AND FLUIDS

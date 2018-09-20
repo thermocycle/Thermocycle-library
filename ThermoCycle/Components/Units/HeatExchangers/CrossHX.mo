@@ -1,4 +1,4 @@
-within ThermoCycle.Components.Units.HeatExchangers;
+﻿within ThermoCycle.Components.Units.HeatExchangers;
 model CrossHX
 parameter Integer N(min=1) = 5 "Number of cells";
  replaceable package Medium1 =ThermoCycle.Media.R245fa_CP  constrainedby
@@ -55,8 +55,7 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer Unom_l= 300
   parameter Real k_sf= 38.4E3*9.5
     "Coefficient for linear pressure drop (dp = k * V_dot)"                            annotation (Dialog(enable=(not UseNom_sf),group="Pdrop_sf", tab="General"));
   parameter Modelica.SIunits.Area Athroat_sf=(2*9.5*23282.7)^(-0.5)
-    "Valve throat area for quadratic pressure drop (dp = 1/A²*M_dot²/(2*rho))"
-                                                                                 annotation (Dialog(enable=(not UseNom_sf),group="Pdrop_sf", tab="General"));
+    "Valve throat area for quadratic pressure drop (dp = 1/A²*M_dot²/(2*rho))" annotation (Dialog(enable=(not UseNom_sf),group="Pdrop_sf", tab="General"));
  parameter Modelica.SIunits.Pressure DELTAp_0_sf=500
     "Pressure drop below which a 3rd order interpolation is used for the computation of the flow rate in order to avoid infinite derivative at 0"
                                                                                                         annotation (Dialog(group="Pdrop_sf", tab="General"));

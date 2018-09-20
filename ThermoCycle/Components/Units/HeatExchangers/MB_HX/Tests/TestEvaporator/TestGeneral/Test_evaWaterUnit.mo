@@ -2,8 +2,7 @@ within ThermoCycle.Components.Units.HeatExchangers.MB_HX.Tests.TestEvaporator.Te
 model Test_evaWaterUnit
   replaceable package Medium =
       ExternalMedia.Examples.WaterCoolProp;
-ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.Unit.EvaGw
-                                                                                    evaG(
+ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.Unit.EvaGw  evaG(
     redeclare package Medium = Medium,
     YY=1.57,
     cpw=500,

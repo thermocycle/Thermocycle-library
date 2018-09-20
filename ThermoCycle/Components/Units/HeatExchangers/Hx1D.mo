@@ -249,8 +249,7 @@ Q_cold_ = -Coldside.Q_tot;
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-150,-150},
-            {150,150}}),
-                      graphics), Icon(coordinateSystem(preserveAspectRatio=false,
+            {150,150}})),        Icon(coordinateSystem(preserveAspectRatio=false,
                   extent={{-150,-150},{150,150}}),
                                       graphics={
         Rectangle(

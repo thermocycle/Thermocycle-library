@@ -7,8 +7,7 @@ annotation (choicesAllMatching = true);
   ThermoCycle.Interfaces.Fluid.FlangeA Classical(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-60,-10},{-40,10}}),
         iconTransformation(extent={{-60,-10},{-40,10}})));
-  ThermoCycle.Interfaces.Fluid.FlangeB_limit Limited(redeclare package Medium
-      =                                                                         Medium)
+  ThermoCycle.Interfaces.Fluid.FlangeB_limit Limited(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{40,-10},{60,10}}),
         iconTransformation(extent={{40,-10},{60,10}})));
   parameter Modelica.SIunits.SpecificEnthalpy h_limit=-1E12;

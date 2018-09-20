@@ -41,8 +41,7 @@ model CondFlooded
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare final package Medium =
                Medium)
     annotation (Placement(transformation(extent={{-112,-8},{-92,12}})));
-  ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(  redeclare final package Medium
-      =                                                                           Medium)
+  ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(  redeclare final package Medium = Medium)
     annotation (Placement(transformation(extent={{70,-4},{90,16}}),
         iconTransformation(extent={{70,-4},{90,16}})));
 

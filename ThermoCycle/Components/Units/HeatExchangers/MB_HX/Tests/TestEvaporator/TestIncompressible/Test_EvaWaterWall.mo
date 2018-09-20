@@ -9,8 +9,7 @@ parameter Medium.ThermodynamicState stateOut= Medium.setState_pT(p_out,T_sf_su-1
 parameter Modelica.SIunits.SpecificEnthalpy h0 = Medium.specificEnthalpy(stateOut);
 parameter Integer n=3;
 parameter Boolean counterCurrent = true;
-ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.EvaGeneral
-                                                                                    evaGeneral(
+ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.EvaGeneral  evaGeneral(
     redeclare package Medium = Medium,
     hstartSC=7.7E5,
     hstartTP=2E6,
@@ -21,8 +20,7 @@ ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.EvaGener
     YY=1.57,
     pstart=6000000)
     annotation (Placement(transformation(extent={{-10,-62},{10,-42}})));
-ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.SecondaryFluid.SecondaryFluid
-                                                                                           secondaryFluid(
+ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.SecondaryFluid.SecondaryFluid secondaryFluid(
     n=n,
     Usf=1000,
     AA=0.0019,

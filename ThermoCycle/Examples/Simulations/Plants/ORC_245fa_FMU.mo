@@ -69,8 +69,8 @@ ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
         rotation=90,
         origin={-13,-6})));
 
-ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(redeclare package Medium
-      = ThermoCycle.Media.R245fa_CP,
+ThermoCycle.Components.Units.PdropAndValves.DP dp_lp(redeclare package Medium =
+        ThermoCycle.Media.R245fa_CP,
     k=38.4E3*9.5,
     A=(2*9.5*23282.7)^(-0.5),
     Mdot_nom=0.2588,
@@ -129,8 +129,8 @@ ThermoCycle.Components.Units.Tanks.Tank_pL tank(redeclare package Medium =
     impose_pressure=true,
     pstart=135000)
     annotation (Placement(transformation(extent={{-42,-78},{-24,-60}})));
- ThermoCycle.Components.FluidFlow.Sensors.SensP sensP(redeclare package Medium
-      = ThermoCycle.Media.R245fa_CP)
+ ThermoCycle.Components.FluidFlow.Sensors.SensP sensP(redeclare package Medium =
+        ThermoCycle.Media.R245fa_CP)
               annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
@@ -220,7 +220,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(sensP.InFlow, tank.OutFlow) annotation (Line(
-      points={{-100.1,-70},{-56,-70},{-56,-76.92},{-33,-76.92}},
+      points={{-94.9,-64},{-56,-64},{-56,-76.92},{-33,-76.92}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(pump.OutFlow, sensMdot.InFlow) annotation (Line(

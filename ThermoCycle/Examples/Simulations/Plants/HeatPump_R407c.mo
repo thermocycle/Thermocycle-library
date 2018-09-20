@@ -114,9 +114,9 @@ model HeatPump_R407c
     duration=2,
     startTime=50)
     annotation (Placement(transformation(extent={{-12,0},{-2,10}})));
-  Components.HeatFlow.Sensors.SensTp             sensTp(redeclare package
+  Components.FluidFlow.Sensors.SensTp             sensTp(redeclare package
       Medium = ThermoCycle.Media.R407c_CP)
-    annotation (Placement(transformation(extent={{46,-56},{62,-40}})));
+    annotation (Placement(transformation(extent={{40,-50},{56,-34}})));
   Components.Units.ControlSystems.SH_block sH_block(redeclare package Medium =
         ThermoCycle.Media.R407c_CP)
     annotation (Placement(transformation(extent={{70,24},{80,34}})));
@@ -192,21 +192,17 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(dp_ev.OutFlow, sensTp.InFlow) annotation (Line(
-      points={{37,-52},{42,-52},{42,-51.84},{48.4,-51.84}},
-      color={0,0,255},
-      smooth=Smooth.None));
-  connect(sensTp.OutFlow, compressor.InFlow) annotation (Line(
-      points={{59.6,-51.84},{69.7667,-51.84},{69.7667,-27.7}},
+      points={{37,-52},{42,-52},{42,-49.52},{48,-49.52}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sensTp.T, sH_block.T_measured) annotation (Line(
-      points={{60.4,-43.2},{82,-43.2},{82,4},{62,4},{62,31.5},{69.7,31.5}},
+      points={{54.4,-37.2},{82,-37.2},{82,4},{62,4},{62,31.5},{69.7,31.5}},
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
   connect(sensTp.p, sH_block.p_measured) annotation (Line(
-      points={{47.6,-43.2},{44,-43.2},{44,-36},{84,-36},{84,6},{64,6},{64,27},{
-          69.9,27}},
+      points={{41.6,-37.2},{40,-37.2},{40,-32},{80,-32},{80,10},{60,10},{60,27},
+          {69.9,27}},
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
@@ -223,8 +219,10 @@ equation
       points={{108.54,19},{118,19},{118,82},{-82,82},{-82,-26},{-48,-26}},
       color={0,0,127},
       smooth=Smooth.None));
+  connect(dp_ev.OutFlow, compressor.InFlow) annotation (Line(points={{37,-52},{
+          69.7667,-52},{69.7667,-27.7}}, color={0,0,255}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{140,100}}),      graphics),
+            -100},{140,100}})),
     experiment(StopTime=100),
     __Dymola_experimentSetupOutput,
     Icon(coordinateSystem(extent={{-100,-100},{140,100}})));

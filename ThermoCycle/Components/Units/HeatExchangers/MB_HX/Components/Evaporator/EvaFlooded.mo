@@ -40,8 +40,7 @@ model EvaFlooded
                Medium)
     annotation (Placement(transformation(extent={{-110,0},{-90,20}}),
         iconTransformation(extent={{-110,0},{-90,20}})));
-  ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(  redeclare final package Medium
-      =                                                                           Medium)
+  ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(  redeclare final package Medium = Medium)
     annotation (Placement(transformation(extent={{70,0},{90,20}}),
         iconTransformation(extent={{70,0},{90,20}})));
 

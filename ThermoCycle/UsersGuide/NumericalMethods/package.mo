@@ -1,4 +1,4 @@
-within ThermoCycle.UsersGuide;
+﻿within ThermoCycle.UsersGuide;
 package NumericalMethods 
 extends Modelica.Icons.Information;
 

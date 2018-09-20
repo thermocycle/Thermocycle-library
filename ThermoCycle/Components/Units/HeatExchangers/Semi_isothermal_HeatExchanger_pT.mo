@@ -1,4 +1,4 @@
-within ThermoCycle.Components.Units.HeatExchangers;
+﻿within ThermoCycle.Components.Units.HeatExchangers;
 model Semi_isothermal_HeatExchanger_pT
   "Steady-state model of a semi-isothermal heat exchanger using epsilon-NTU"
   import ThermoCycle;

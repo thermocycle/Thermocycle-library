@@ -1,4 +1,4 @@
-within ThermoCycle.Obsolete;
+﻿within ThermoCycle.Obsolete;
 model ExpanderHermeticDetailed_06_11_2014
   "Expander model (oil free, open-drive)"
 /* FLUIDS AND PORTS */

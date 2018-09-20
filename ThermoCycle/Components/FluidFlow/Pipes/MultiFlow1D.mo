@@ -1,4 +1,4 @@
-within ThermoCycle.Components.FluidFlow.Pipes;
+﻿within ThermoCycle.Components.FluidFlow.Pipes;
 model MultiFlow1D
   "1-D fluid flow model. The Cells are in parallel and a pressure drop is considered"
 
@@ -37,8 +37,7 @@ ThermoCycle.Interfaces.HeatTransfer.ThermalPortL[N] thermalPortCell
   parameter Real k= 38.4E3*9.5
     "Coefficient for linear pressure drop (dp = k * V_dot)"                            annotation (Dialog(enable=(not UseNom)));
   parameter Modelica.SIunits.Area A=(2*9.5*23282.7)^(-0.5)
-    "Valve throat area for quadratic pressure drop (dp = 1/A²*M_dot²/(2*rho))"
-                                                                                 annotation (Dialog(enable=(not UseNom)));
+    "Valve throat area for quadratic pressure drop (dp = 1/A²*M_dot²/(2*rho))" annotation (Dialog(enable=(not UseNom)));
  parameter Modelica.SIunits.Pressure DELTAp_0=500
     "Pressure drop below which a 3rd order interpolation is used for the computation of the flow rate in order to avoid infinite derivative at 0";
 
@@ -93,8 +92,7 @@ constrainedby
     each Vi=V_f/N,
     each Ai=A_f/N)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
-ThermoCycle.Components.Units.PdropAndValves.DP[N] dP(redeclare package Medium
-      =                                                                               Medium,
+ThermoCycle.Components.Units.PdropAndValves.DP[N] dP(redeclare package Medium =       Medium,
     each UseNom=UseNom,
     each h=h,
     each k=k,

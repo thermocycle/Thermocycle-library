@@ -37,8 +37,7 @@ model EvaDry
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare final package Medium =
                Medium)
     annotation (Placement(transformation(extent={{-112,-8},{-92,12}})));
-  ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(  redeclare final package Medium
-      =                                                                           Medium)
+  ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(  redeclare final package Medium = Medium)
     annotation (Placement(transformation(extent={{72,-8},{92,12}})));
 
 import ThermoCycle.Components.Units.HeatExchangers.MB_HX.Records;

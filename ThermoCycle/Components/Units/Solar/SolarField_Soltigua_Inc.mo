@@ -44,8 +44,7 @@ parameter Boolean steadystate_T_fl=false
 
 /****************** GEOMETRY  *********************/
 inner replaceable parameter
-    ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua.BaseGeometry
-                                                                                        CollectorGeometry
+    ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua.BaseGeometry  CollectorGeometry
 constrainedby
     ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.Geometry.Soltigua.BaseGeometry
                                                                                        annotation (choicesAllMatching=true);

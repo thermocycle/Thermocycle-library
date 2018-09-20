@@ -16,8 +16,7 @@ model Test_FloodedUnitPdrop_TC
     T_0=523.15)
              annotation (Placement(transformation(extent={{8,74},{28,94}})));
 
-ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.Unit.EvaFw
-                                                                                    evaF(
+ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.Unit.EvaFw  evaF(
     redeclare package Medium = Medium,
     YY=1.57,
     cpw=500,

@@ -1,4 +1,4 @@
-within ThermoCycle.Examples.Simulations.Plants;
+﻿within ThermoCycle.Examples.Simulations.Plants;
 model SQThesisModel
   "Non-regenerative ORC with double-PID control system and variable Tev"
 
@@ -94,14 +94,14 @@ ThermoCycle.Obsolete.Hx_06122013  Condenser(
     annotation (Placement(transformation(extent={{6,-12},{-14,8}})));
 ThermoCycle.Components.FluidFlow.Reservoirs.Source_Cdot  Heat_sink(rho=1000, cp=4188)
     annotation (Placement(transformation(extent={{-46,-6},{-26,14}})));
-ThermoCycle.Components.FluidFlow.Sensors.SensP sensP(redeclare package Medium
-      = ThermoCycle.Media.R245fa_CP)
+ThermoCycle.Components.FluidFlow.Sensors.SensP sensP(redeclare package Medium =
+        ThermoCycle.Media.R245fa_CP)
                                   annotation (Placement(transformation(
         extent={{-5,-6},{5,6}},
         rotation=90,
         origin={-80,-11})));
- ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp(redeclare package Medium
-      = ThermoCycle.Media.R245fa_CP)
+ ThermoCycle.Components.HeatFlow.Sensors.SensTp sensTp(redeclare package Medium =
+        ThermoCycle.Media.R245fa_CP)
                                     annotation (Placement(transformation(extent={{16,40},
             {26,50}})));
  ThermoCycle.Components.FluidFlow.Sensors.SensMdot sensMdot(redeclare package
@@ -240,7 +240,7 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(tank.OutFlow, sensP.InFlow) annotation (Line(
-      points={{-34,-30.8},{-34,-38},{-77.66,-38},{-77.66,-14}},
+      points={{-34,-30.8},{-34,-38},{-74.54,-38},{-74.54,-11}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sensP.OutFlow, Pump.InFlow) annotation (Line(

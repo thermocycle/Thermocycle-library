@@ -2,8 +2,7 @@ within ThermoCycle.Components.Units.HeatExchangers.MB_HX.Tests.TestEvaporator.Te
 model Test_evaSES36Unit
 replaceable package Medium =
       ThermoCycle.Media.SES36_CP;
- ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.Unit.EvaGw
-                                                                                    evaG(
+ ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Evaporator.Unit.EvaGw evaG(
     redeclare package Medium = Medium,
     cpw=500,
     Ltotal=66.6,

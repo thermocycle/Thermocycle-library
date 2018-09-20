@@ -43,8 +43,7 @@ model CondGeneralInc
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare final package Medium =
                Medium)
     annotation (Placement(transformation(extent={{-112,-8},{-92,12}})));
-  ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(  redeclare final package Medium
-      =                                                                           Medium)
+  ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(  redeclare final package Medium = Medium)
     annotation (Placement(transformation(extent={{76,-8},{96,12}})));
 
   Cells.OnePhaseInc volumeSH(

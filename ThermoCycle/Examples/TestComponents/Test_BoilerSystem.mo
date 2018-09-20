@@ -64,8 +64,8 @@ end FlueGas;
         FlueGas,
     DELTAp_nom=10000)
     annotation (Placement(transformation(extent={{-28,76},{-12,92}})));
-  Interfaces.Fluid.FlangeConverter   flangeConverter(redeclare package Medium
-      = FlueGas)
+  Interfaces.Fluid.FlangeConverter   flangeConverter(redeclare package Medium =
+        FlueGas)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={4,64})));

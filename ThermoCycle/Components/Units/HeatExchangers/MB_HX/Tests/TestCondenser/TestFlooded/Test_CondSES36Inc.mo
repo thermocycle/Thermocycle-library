@@ -5,8 +5,7 @@ replaceable package Medium =
       parameter Modelica.SIunits.AbsolutePressure pp = 0.91e5;
       parameter Medium.SaturationProperties sat = Medium.setSat_p(pp);
       parameter Medium.SpecificEnthalpy h0 = Medium.dewEnthalpy(sat)+5E3;
-ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Condenser.Incompressible.Unit.CondFwInc
-                                                                                                     condFw(
+ThermoCycle.Components.Units.HeatExchangers.MB_HX.Components.Condenser.Incompressible.Unit.CondFwInc condFw(
     redeclare package Medium = Medium,
     AA=0.0007,
     YY=0.243,
