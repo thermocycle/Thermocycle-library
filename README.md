@@ -20,7 +20,8 @@ can be redistributed and/or modified under the terms of this license.
 
 Main developpers:
 
-- Sylvain Quoilin (University of Liège, Energy Systems Research Unit, Belgium)
-- Adriano Desideri (University of Liège, Energy Systems Research Unit, Belgium)
+- Bertrand Dechesne (University of Liège, Energy Systems Research Unit, Belgium)
+- Javier Vega (University of Liège, Energy Systems Research Unit, Belgium)
+- Sylvain Quoilin (KU Leuven, Smart Thermal Energy Systems, Belgium)
 - Jorrit Wronski (DTU Mechanical Engineering, Denmark)
-- Ian H. Bell (University of Liège, Energy Systems Research Unit, Belgium)
+
