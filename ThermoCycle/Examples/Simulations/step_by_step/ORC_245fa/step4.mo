@@ -40,11 +40,11 @@ ThermoCycle.Components.FluidFlow.Reservoirs.SourceCdot  source_Cdot(
     annotation (Placement(transformation(extent={{14,26},{34,46}})));
   ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
                                                           expander(
-    ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.ORCNext,
     V_s=1,
     constPinit=false,
     constinit=false,
     redeclare package Medium = ThermoCycle.Media.R245fa_CP,
+    ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.ODExp,
     p_su_start=2357000,
     p_ex_start=153400,
     T_su_start=413.15)
@@ -94,10 +94,10 @@ equation
       points={{68,8},{68,-5.8},{73.6,-5.8},{73.6,-16}},
       color={0,0,255},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
+  annotation (Diagram(coordinateSystem(extent={{-180,-100},{220,180}},
           preserveAspectRatio=false),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},
-            {100,100}})),
+                      graphics), Icon(coordinateSystem(extent={{-180,-100},{220,
+            180}})),
     experiment(StopTime=1000, __Dymola_NumberOfIntervals=5000),
     __Dymola_experimentSetupOutput);
 end step4;

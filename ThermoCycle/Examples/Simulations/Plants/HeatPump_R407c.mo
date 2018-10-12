@@ -79,17 +79,6 @@ model HeatPump_R407c
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP sinkP3(redeclare package
       Medium = Modelica.Media.Air.DryAirNasa)
     annotation (Placement(transformation(extent={{-30,-86},{-50,-66}})));
-  ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Compressor
-                                                            compressor(
-    epsilon_v=0.9,
-    redeclare package Medium = ThermoCycle.Media.R407c_CP,
-    V_s=85e-6,
-    p_su_start=380000,
-    p_ex_start=1650000,
-    T_su_start=278.15) annotation (Placement(transformation(
-        extent={{-19,-18},{19,18}},
-        rotation=180,
-        origin={59,-16})));
   ThermoCycle.Components.Units.ExpansionAndCompressionMachines.ElectricDrive
                                                                electricDrive
     annotation (Placement(transformation(extent={{28,-26},{8,-6}})));
@@ -116,7 +105,11 @@ model HeatPump_R407c
     annotation (Placement(transformation(extent={{-12,0},{-2,10}})));
   Components.FluidFlow.Sensors.SensTp             sensTp(redeclare package
       Medium = ThermoCycle.Media.R407c_CP)
+<<<<<<< Updated upstream
     annotation (Placement(transformation(extent={{40,-50},{56,-34}})));
+=======
+    annotation (Placement(transformation(extent={{88,-64},{104,-48}})));
+>>>>>>> Stashed changes
   Components.Units.ControlSystems.SH_block sH_block(redeclare package Medium =
         ThermoCycle.Media.R407c_CP)
     annotation (Placement(transformation(extent={{70,24},{80,34}})));
@@ -171,16 +164,8 @@ equation
       points={{-8.8,-62.8},{-20,-62.8},{-20,-76},{-31.6,-76}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(electricDrive.shaft, compressor.flange_elc) annotation (Line(
-      points={{26.6,-16},{36.4667,-16},{36.4667,-16},{46.3333,-16}},
-      color={0,0,0},
-      smooth=Smooth.None));
   connect(evaporator.outlet_fl1, dp_ev.InFlow) annotation (Line(
       points={{11,-52},{19,-52}},
-      color={0,0,255},
-      smooth=Smooth.None));
-  connect(compressor.OutFlow, dp_cd.InFlow) annotation (Line(
-      points={{45.3833,-10},{44,-10},{44,24},{37,24}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(dp_cd.OutFlow, condenser.inlet_fl1) annotation (Line(
@@ -192,17 +177,30 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(dp_ev.OutFlow, sensTp.InFlow) annotation (Line(
+<<<<<<< Updated upstream
       points={{37,-52},{42,-52},{42,-49.52},{48,-49.52}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sensTp.T, sH_block.T_measured) annotation (Line(
       points={{54.4,-37.2},{82,-37.2},{82,4},{62,4},{62,31.5},{69.7,31.5}},
+=======
+      points={{37,-52},{42,-52},{42,-63.52},{96,-63.52}},
+      color={0,0,255},
+      smooth=Smooth.None));
+  connect(sensTp.T, sH_block.T_measured) annotation (Line(
+      points={{102.4,-51.2},{82,-51.2},{82,4},{62,4},{62,31.5},{69.7,31.5}},
+>>>>>>> Stashed changes
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
   connect(sensTp.p, sH_block.p_measured) annotation (Line(
+<<<<<<< Updated upstream
       points={{41.6,-37.2},{40,-37.2},{40,-32},{80,-32},{80,10},{60,10},{60,27},
           {69.9,27}},
+=======
+      points={{89.6,-51.2},{44,-51.2},{44,-36},{84,-36},{84,6},{64,6},{64,27},{
+          69.9,27}},
+>>>>>>> Stashed changes
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));

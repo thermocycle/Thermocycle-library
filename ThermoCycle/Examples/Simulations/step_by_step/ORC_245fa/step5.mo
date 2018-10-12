@@ -40,7 +40,7 @@ model step5
     annotation (Placement(transformation(extent={{14,26},{34,46}})));
 ThermoCycle.Components.Units.ExpansionAndCompressionMachines.Expander
                                                         expander(
-    ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.ORCNext,
+    ExpType=ThermoCycle.Functions.Enumerations.ExpTypes.HermExp,
     V_s=1,
     constPinit=false,
     constinit=false,

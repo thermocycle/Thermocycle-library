@@ -75,7 +75,7 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=true),
+          preserveAspectRatio=false),
                       graphics), Icon(coordinateSystem(extent={{-100,-100},
             {100,100}})),
     experiment(StopTime=1000),
