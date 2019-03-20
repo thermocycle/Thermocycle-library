@@ -9,7 +9,7 @@ model Pump_Mdot "Pump model - Prescribed mass flow rate"
   /***************************************** PARAMETERS *****************************************/
   parameter Modelica.SIunits.MassFlowRate Mdot_0 = 1
     "Mass flow if external signal not connected";
-  parameter Real eta_is=1 "Overall Isentropic efficiency of the pump" annotation (Dialog(enable= (PumpType == "User Defined")));
+  parameter Real eta_is=1 "Overall Isentropic efficiency of the pump";
   parameter Boolean NeglectDELTAh=true
     "if true, neglects the enthalpy difference due to the compression";
 
@@ -61,19 +61,13 @@ equation
             -100},{100,100}}),
                          graphics), Diagram(coordinateSystem(
           preserveAspectRatio=true, extent={{-100,-100},{100,100}}), graphics),Documentation(info="<html>
-<p>The Pump model represents the compression of a fluid in a turbo or volumetric machine. It is a lumped model based on performance curves where pump speed is set as an input.</p>
+          <p>The Pump model represents the compression of a fluid in a turbo or volumetric machine. It is a constant efficiency model where pump speed is set as an input.</p>
 <p>The assumptions for this model are:</p>
 <p><ul>
 <li>No dynamics ( it is considered negligible when compared to the one characterizing the heat exchanger).</li>
 <li>No thermal energy losses to the environment</li>
 <li>Isentropic efficiency based on empirical performance curve</li>
 <li>Mass flow rate based on empirical performance curve</li>
-</ul></p>
-<p><b>Modelling options</b></p>
-<p>In the General tab the following options are available:</p>
-<p><ul>
-<li>PumpType: select between different performance curves for isentropic and volumetric efficiencies.</li>
-<li>PumpInput: switch the input between frequency and flow fraction</li>
 </ul></p>
 </html>"));
 end Pump_Mdot;
